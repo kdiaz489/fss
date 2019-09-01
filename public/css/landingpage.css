@@ -1,0 +1,207 @@
+/* RESET RULES & HELPER CLASSES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+/* https://coolors.co/e26b0a-4f81bd-ebebeb-c0c0c0-3e3e3b */
+
+
+:root {
+
+    --gunmetal: #3E3E3B;
+    --denim: #4F81BD;
+    --orange : #fd5822;
+    --frenchblue: #A2AAB0;
+    --whitewash: #EBECED;
+
+
+  }
+
+  a,
+  a:hover {
+    color: inherit;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  .bg-gunmetal{
+    background-color: var(--gunmetal);
+  }
+
+  .bg-frenchblue {
+    background: var(--frenchblue);
+  }
+
+  .bg-whitewash {
+    background: var(--whitewash);
+  }
+
+  .bg-denim {
+    background: var(--denim);
+  }
+
+  .bg-orange {
+    background: var(--orange);
+  }
+
+  .bg-white {
+    background: white;
+  }
+
+  .text-denim {
+    color: var(--denim);
+  }
+
+  .text-orange {
+    color: var(--orange);
+  }
+
+  .text-frenchblue {
+    color: var(--frenchblue);
+  }
+
+  .text-gunmetal {
+    color: var(--gunmetal);
+  }
+
+  .container-fluid-max {
+    max-width: 1440px;
+  }
+
+  .border-denim{
+    border-color: var(--denim);
+  }
+
+  .border-frenchblue{
+    border-color: var(--frenchblue);
+  }
+
+  .cover {
+    background: no-repeat center/cover;
+  }
+
+  .p-15 {
+    padding: 15px;
+  }
+
+  .services-container{
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  /* SCROLL ANIMATIONS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
+  .scroll .page-header {
+    background: var(--red);
+  }
+
+  .scroll .hero {
+    transform: scale(0.98);
+  }
+
+  /* HEADER
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
+  .page-header {
+    transition: background 0.5s ease-in-out;
+  }
+
+  .page-header .navbar {
+    padding: 1rem 0;
+  }
+
+  .page-header .navbar-toggler {
+    /* the variable is inherited from BS4 built-in variables */
+    border-color: var(--white);
+  }
+
+  /* BANNER SECTION
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
+  .hero {
+    background-attachment: fixed;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(
+      rgba(0, 0, 0, 0.5) 0,
+      rgba(0, 0, 0, 0.3) 50%,
+      rgba(0, 0, 0, 0.1) 100%
+    );
+  }
+
+  .hero .container-fluid {
+    z-index: 10;
+  }
+
+  /* POPULAR DESTINATIONS SECTION
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
+  .popular-destinations figure {
+    margin-bottom: 30px;
+  }
+
+  .popular-destinations figcaption {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  .popular-destinations img {
+    filter: grayscale(100%) blur(3px);
+    transition: transform 0.5s, filter 0.75s;
+  }
+
+  .popular-destinations a:hover img {
+    transform: scale(1.25);
+    filter: none;
+  }
+
+  /* PAGE FOOTER
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
+  .page-footer .footer-links {
+    text-align: right;
+  }
+
+  /* MEDIA QUERIES
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
+  .vh-75{
+    height: 40vh;
+    width: auto;
+  }
+
+  .left-text{
+    padding: 50px 0;
+    /*padding-right: 60px;*/
+    margin:auto;
+    width:80%;
+    height: auto;
+  }
+
+  .right-text{
+    padding: 50px 0;
+    /*padding-left: 60px;*/
+    margin:auto;
+    width:80%;
+    height: auto;
+  }
+
+  /* MEDIUM SCREENS */
+  @media screen and (max-width: 991px) {
+    .page-header {
+      background: var(--red);
+    }
+  }
+
+  /* SMALL SCREENS */
+  @media screen and (max-width: 767px) {
+    .page-footer .footer-child {
+      text-align: center;
+    }
+  }
