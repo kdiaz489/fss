@@ -166,7 +166,7 @@ html {
   /* Navigation Bar style begins
   -------------------------------------------------- */
   .signup {
-    margin-top: 5%;
+    
     padding: 2% 2%;
     border: 1px solid;
     border-color: #D3D3D3;
@@ -188,6 +188,7 @@ html {
 
   .navbar li {
     padding: 15px 15px;
+    font-size: 18px;
 
   }
 
@@ -202,6 +203,16 @@ html {
 
   .fa-2x{
     font-size: 3em;
+  }
+
+  .fa-exclamation-circle{
+    color:red;
+    font-size: 50px;
+  }
+
+  .fa-check-circle{
+    color: #4BB543;
+    font-size: 50px;
   }
 
   /* Navigation Bar style ends
@@ -246,7 +257,7 @@ html {
   -------------------------------------------------- */
 
   .freight-quote-container{
-    max-width: 1400px;
+    max-width: 1000px;
     padding: 2%;
   }
 
@@ -358,34 +369,6 @@ html {
     padding: 4%;
   }
 
-  .StripeElement {
-    box-sizing: border-box;
-
-    height: 40px;
-
-    padding: 10px 12px;
-
-    border: 1px solid transparent;
-    border-radius: 4px;
-    background-color: white;
-
-    box-shadow: 0 1px 3px 0 #e6ebf1;
-    -webkit-transition: box-shadow 150ms ease;
-    transition: box-shadow 150ms ease;
-  }
-
-  .StripeElement--focus {
-    box-shadow: 0 1px 3px 0 #cfd7df;
-  }
-
-  .StripeElement--invalid {
-    border-color: #fa755a;
-  }
-
-  .StripeElement--webkit-autofill {
-    background-color: #fefde5 !important;
-  }
-
   .test{
 
     display: flex;
@@ -430,6 +413,28 @@ html {
   border-left: 1px solid #A2AAB0;
 }
 
+.navbar-nav .nav-link:focus, .navbar-nav .nav-link:hover {
+  background-color: white !important;
+  color: black !important;
+
+}
+
+.dropdown-menu {
+  font-size: 18px;
+}
+
+input.error {
+  border: 1px solid red;
+  font-weight: 300;
+  color: red;
+}
+
+label.error {
+  color: red;
+  font-size: .8rem;
+  display: block;
+  margin-top: 5px;
+}
 
   /*DESKTOP SPECIFIC CONDITIONS*/
   @media(min-width: 768px) {
@@ -468,18 +473,15 @@ html {
     /*
     .dropdown:hover>.dropdown-menu {
       display: block;
+      font-size: 18px;
       border-radius: 0;
       padding-left: 22px;
       padding-right: 22px;
       padding-top: 15px;
       padding-bottom: 15px;
-    }
-*/
-    .navbar-nav .nav-link:focus, .navbar-nav .nav-link:hover {
-        background-color: white !important;
-        color: black !important;
-
+      */
     }
 
 
-  }
+
+

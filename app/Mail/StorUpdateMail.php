@@ -30,6 +30,6 @@ class StorUpdateMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.contact.stor-update-email')->subject('Storage Order Update');
+        return $this->markdown('emails.contact.stor-update-email')->subject('Storage Request Update');
     }
 }

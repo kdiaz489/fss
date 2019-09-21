@@ -9,6 +9,7 @@ use App\User;
 use Auth;
 use DB;
 use App\Mail\ShipUpdateMail;
+use App\Mail\ShipmentBookingMail;
 use Illuminate\Support\Facades\Mail;
 
 class ShipmentsController extends Controller
@@ -61,6 +62,19 @@ class ShipmentsController extends Controller
     public function create(){
         $title = 'Shipping';
         return view('shipments.ship')->with('title', $title);
+    }
+
+    public function requestshipment(){
+        
+        return view('shipments.requestship_appr');
+    }
+
+    public function requestshipment_nocred(){
+        return view('shipments.requestship_notappr');
+    }
+
+    public function bookshipment(){
+        return view('shipments.bookshipment');
     }
 
     public function calcLength($width, $totItems, $length){
@@ -185,6 +199,106 @@ class ShipmentsController extends Controller
         elseif (($mileage >= 151) && ($mileage <= 160)){
             $mileageCost = 55;
         }
+        elseif (($mileage >= 161) && ($mileage <= 170)){
+            $mileageCost = 60;
+        }
+        elseif (($mileage >= 171) && ($mileage <= 180)){
+            $mileageCost = 65;
+        }
+        elseif (($mileage >= 181) && ($mileage <= 190)){
+            $mileageCost = 70;
+        }
+        elseif (($mileage >= 191) && ($mileage <= 200)){
+            $mileageCost = 75;
+        }
+        elseif (($mileage >= 201) && ($mileage <= 210)){
+            $mileageCost = 80;
+        }
+        elseif (($mileage >= 211) && ($mileage <= 220)){
+            $mileageCost = 85;
+        }
+        elseif (($mileage >= 221) && ($mileage <= 230)){
+            $mileageCost = 90;
+        }
+        elseif (($mileage >= 231) && ($mileage <= 240)){
+            $mileageCost = 95;
+        }
+        elseif (($mileage >= 241) && ($mileage <= 250)){
+            $mileageCost = 100;
+        }
+        elseif (($mileage >= 251) && ($mileage <= 260)){
+            $mileageCost = 105;
+        }
+        elseif (($mileage >= 261) && ($mileage <= 270)){
+            $mileageCost = 110;
+        }
+        elseif (($mileage >= 281) && ($mileage <= 290)){
+            $mileageCost = 115;
+        }
+        elseif (($mileage >= 291) && ($mileage <= 300)){
+            $mileageCost = 120;
+        }
+        elseif (($mileage >= 301) && ($mileage <= 310)){
+            $mileageCost = 125;
+        }
+        elseif (($mileage >= 311) && ($mileage <= 320)){
+            $mileageCost = 130;
+        }
+        elseif (($mileage >= 321) && ($mileage <= 330)){
+            $mileageCost = 135;
+        }
+        elseif (($mileage >= 331) && ($mileage <= 340)){
+            $mileageCost = 140;
+        }
+        elseif (($mileage >= 341) && ($mileage <= 350)){
+            $mileageCost = 145;
+        }
+        elseif (($mileage >= 351) && ($mileage <= 360)){
+            $mileageCost = 150;
+        }
+        elseif (($mileage >= 371) && ($mileage <= 380)){
+            $mileageCost = 155;
+        }
+        elseif (($mileage >= 381) && ($mileage <= 390)){
+            $mileageCost = 160;
+        }
+        elseif (($mileage >= 391) && ($mileage <= 400)){
+            $mileageCost = 165;
+        }
+        elseif (($mileage >= 401) && ($mileage <= 410)){
+            $mileageCost = 170;
+        }
+        elseif (($mileage >= 411) && ($mileage <= 421)){
+            $mileageCost = 175;
+        }
+        elseif (($mileage >= 421) && ($mileage <= 430)){
+            $mileageCost = 180;
+        }
+
+        elseif (($mileage >= 431) && ($mileage <= 440)){
+            $mileageCost = 185;
+        }
+
+        elseif (($mileage >= 441) && ($mileage <= 450)){
+            $mileageCost = 190;
+        }
+        elseif (($mileage >= 451) && ($mileage <= 460)){
+            $mileageCost = 195;
+        }
+        elseif (($mileage >= 461) && ($mileage <= 470)){
+            $mileageCost = 200;
+        }
+
+        elseif (($mileage >= 471) && ($mileage <= 480)){
+            $mileageCost = 205;
+        }
+        elseif (($mileage >= 481) && ($mileage <= 490)){
+            $mileageCost = 210;
+        }
+        elseif (($mileage >= 491) && ($mileage <= 500)){
+            $mileageCost = 215;
+        }
+
         return $mileageCost;
     }
 
@@ -209,7 +323,7 @@ class ShipmentsController extends Controller
         );
         //Calculates Extra Weight Charge
         if(($totWeight/$totItems) > 1000){
-            $data['ext_wght'] = round(($totWeight - ($totItems*1000)),2);
+            $data['ext_wght'] = bcdiv(($totWeight - ($totItems*1000)), 1, 2);
 
         }
         else{
@@ -221,12 +335,12 @@ class ShipmentsController extends Controller
             $data['sing_pal_cost'] = 68.33;
         }
         else{
-            $data['sing_pal_cost'] = round(($pal_area * 4.27),2);
+            $data['sing_pal_cost'] = bcdiv(($pal_area * 4.27), 1, 2);
         }
 
         //Calculates Small Pallet Charge
         if ($pal_area < (0.5*16)) {
-            $data['sm_pall_chg'] = round((0.5 * $data['sing_pal_cost']),2);
+            $data['sm_pall_chg'] = bcdiv((0.5 * $data['sing_pal_cost']), 1, 2);
         }
         else{
             $data['sm_pall_chg'] = 0;
@@ -235,23 +349,23 @@ class ShipmentsController extends Controller
 
         //Calculates Multiple Small Pallet Cost
         if($pal_area <= (0.5 * 16)){
-            $data['mult_sm_pal_cost'] = round(($data['sm_pall_chg'] * $totItems),2);
+            $data['mult_sm_pal_cost'] = bcdiv(($data['sm_pall_chg'] * $totItems), 1, 2);
         }
         else{
             $data['mult_sm_pal_cost'] = 0;
         }
 
         // Calculates Multiple Pallet Cost
-        $data['mult_pal_cost'] = round(($totItems * $data['sing_pal_cost']),2);
+        $data['mult_pal_cost'] = bcdiv(($totItems * $data['sing_pal_cost']), 1,2);
 
         //Calculates extra weight charge
         if (array_key_exists($totItems, $this->weight_disc)) {
             $wt_chg_disc = $this->weight_disc[$totItems];
-            $data['wt_chg'] = round(($wt_chg_disc * 4 * ($data['ext_wght']/100)),2);
+            $data['wt_chg'] = bcdiv(($wt_chg_disc * 4 * ($data['ext_wght']/100)),1,2);
         }
         else if($totItems > 12){
             $wt_chg_disc = 0.0837;
-            $data['wt_chg'] = round(($wt_chg_disc * 4 * ($data['ext_wght']/100)),2);
+            $data['wt_chg'] = bcdiv(($wt_chg_disc * 4 * ($data['ext_wght']/100)),1,2);
         }
 
         //Calculates Pallet Discount, if applies, else, returns 0 as pallet discount
@@ -274,7 +388,7 @@ class ShipmentsController extends Controller
             $data['pall_disc_cst'] = 0;
         }
         else{
-            $data['pall_disc_cst'] = round(($data['sing_pal_cost'] * $data['pall_disc']),2);
+            $data['pall_disc_cst'] = bcdiv(($data['sing_pal_cost'] * $data['pall_disc']),1,2);
         }
 
 
@@ -283,16 +397,17 @@ class ShipmentsController extends Controller
         $data['mileage'] = $distanceMiles;
 
         $mileageCost = $this->calcMileageCost($distanceMiles);
-        $data['tot_load_cost'] = $data['tot_load_cost'] + $mileageCost;
         $data['mileage_cost_total'] = $mileageCost;
+        $data['tot_load_cost'] = $data['tot_load_cost'] + $mileageCost;
+        
 
         //Calculates Total Load Cost
         if($pal_area <= (0.5*16)){
-            $data['tot_load_cost'] = round((($data['wt_chg'] + $data['mileage_cost_total'] + $data['sm_pall_chg']) - $data['pall_disc_cst']),2);
+            $data['tot_load_cost'] = bcdiv((($data['wt_chg'] + $data['mileage_cost_total'] + $data['sm_pall_chg']) - $data['pall_disc_cst']),1,2);
 
         }
         else{
-            $data['tot_load_cost'] = round((($data['wt_chg'] + $data['mileage_cost_total'] + $data['mult_pal_cost']) - $data['pall_disc_cst']),2);
+            $data['tot_load_cost'] = bcdiv((($data['wt_chg'] + $data['mileage_cost_total'] + $data['mult_pal_cost']) - $data['pall_disc_cst']),1,2);
 
         }
 
@@ -322,6 +437,7 @@ class ShipmentsController extends Controller
         $orig_address_02 = request('orig_address_02') .  ' ';
         if($orig_address_02 == ' '){
             $orig_address_02 = '';
+        
         }
         $orig_address_city = request('orig_city') .  ' ';
         $orig_address_state =  request('orig_state') .  ' ';
@@ -336,6 +452,17 @@ class ShipmentsController extends Controller
         $dest_address_state =  request('dest_state') .  ' ';
         $dest_address_zip = request('dest_zip');
         $dest_address = $dest_address_01 . $dest_address_02 . $dest_address_city . $dest_address_state . $dest_address_zip;
+
+
+
+        //User discount
+        if(Auth::guest() ){
+            $discount = 1;
+        }
+        else{
+            $discount = auth()->user()->discount;
+            $discount = (1 - $discount);
+        }
 
 
         //Pallet Go No Go
@@ -384,7 +511,8 @@ class ShipmentsController extends Controller
 
         //return redirect('/ship')->with('success', 'Shipment Request Sent');
         //dd($palletGo, $charges);
-        $charges['tot_load_cost'] = round($charges['tot_load_cost'], 2);
+        $charges['tot_load_cost'] = ($charges['tot_load_cost'] * $discount);
+        $charges['tot_load_cost'] = bcdiv($charges['tot_load_cost'], 1, 2);
         return response()->json($charges);
     }
 
@@ -420,10 +548,20 @@ class ShipmentsController extends Controller
         //dd($useremail);
         Mail::to($useremail)->send(new ShipUpdateMail($shipment));
         Mail::to('ship@fillstorship.com')->send(new ShipUpdateMail($shipment));
-        return redirect('/dashboard')->with('success', 'Shipment has been updated');
+        return redirect('/dashboard#allshipments')->with('success', 'Shipment has been updated');
     }
 
-    public function store(){
+    public function cancelrequest(Request $request, $id){
+
+        $shipment = Shipment::find($id);
+        $shipment->work_status = 'Cancelled';
+        $shipment->save();
+
+        Mail::to('ship@fillstorship.com')->send(new ShipUpdateMail($shipment));
+        return redirect('/dashboard#allshipments')->with('success', 'Shipment has been updated');
+    }
+
+    public function store(Request $request){
         $shipment = new Shipment();
 
         if(Auth::guest() ){
@@ -435,17 +573,43 @@ class ShipmentsController extends Controller
         }
 
         if(request('orig_address_02') == ''){
-            $origAddress02 = 'N/A';
+            $orig_address_02 = 'N/A';
         }
         else{
-            $origAddress02 = request('orig_address_02');
+            $orig_address_02 = request('orig_address_02');
         }
 
         if(request('dest_address_02') == ''){
-            $destAddress02 = 'N/A';
+            $dest_address_02 = 'N/A';
         }
         else{
-            $destAddress02 = request('dest_address_02');
+            $dest_address_02 = request('dest_address_02');
+        }
+        if(request('orig_notes') == '' || request('orig_notes') == ' '){
+            $orig_notes = 'N/A';
+        }
+        else{
+            $orig_notes = request('orig_notes'); 
+        }
+        if(request('dest_notes') == '' || request('dest_notes') == ' '){
+            $dest_notes = 'N/A';
+        }
+        else{
+            $dest_notes = request('dest_notes');
+        }
+        if(request('prod_desc') == '' || request('prod_desc') == ' '){
+            $prod_desc = 'N/A';
+        }
+        else{
+            $prod_desc = request('prod_desc');
+         
+        }
+        if(request('prod_value') == '' || request('prod_value') == ' '){
+            $prod_desc = 'N/A';
+        }
+        else{
+            $prod_desc = request('prod_value');
+         
         }
 
         $shipment->pro_no = 0;
@@ -456,7 +620,7 @@ class ShipmentsController extends Controller
         $shipment->work_status = 'In Progress';
         $shipment->orig_company =request('orig_company');
         $shipment->orig_address_01 =request('orig_address_01');
-        $shipment->orig_address_02 = $origAddress02;
+        $shipment->orig_address_02 = $orig_address_02;
         $shipment->orig_city =request('orig_city');
         $shipment->orig_zip =request('orig_zip');
         $shipment->orig_state =request('orig_state');
@@ -470,10 +634,10 @@ class ShipmentsController extends Controller
         $shipment->orig_flrstk =request('orig_flrstk');
         $shipment->orig_inside =request('orig_inside');
         $shipment->orig_lfgt =request('orig_lfgt');
-        $shipment->orig_notes =request('orig_notes');
+        $shipment->orig_notes =$orig_notes;
         $shipment->dest_company =request('dest_company');
         $shipment->dest_address_01 =request('dest_address_01');
-        $shipment->dest_address_02 = $destAddress02;
+        $shipment->dest_address_02 = $dest_address_02;
         $shipment->dest_city =request('dest_city');
         $shipment->dest_zip =request('dest_zip');
         $shipment->dest_state =request('dest_state');
@@ -487,9 +651,9 @@ class ShipmentsController extends Controller
         $shipment->dest_inside=request('dest_inside');
         $shipment->dest_lfgt=request('dest_lfgt');
         $shipment->dest_app_req =request('dest_app_req');
-        $shipment->dest_notes =request('dest_notes');
+        $shipment->dest_notes =$dest_notes;
         $shipment->prod_type =request('prod_type');
-        $shipment->prod_desc =request('prod_desc');
+        $shipment->prod_desc = $prod_desc;
         $shipment->prod_value =request('prod_value');
         $shipment->prod_hazard =request('prod_hazard');
         $shipment->prod_stackable =request('prod_stackable');
@@ -578,7 +742,7 @@ class ShipmentsController extends Controller
 
         //return redirect('/ship')->with('success', 'Shipment Request Sent');
         //dd($palletGo, $charges);
-        $charges['tot_load_cost'] = round($charges['tot_load_cost'], 2);
+        $charges['tot_load_cost'] = bcdiv($charges['tot_load_cost'],1,2);
 
 
         $shipment->pal_area = $palArea;
@@ -596,6 +760,25 @@ class ShipmentsController extends Controller
         $shipment->wt_chg = $charges['wt_chg'];
         $shipment->pall_disc = $charges['pall_disc'];
         $shipment->pall_disc_cst = $charges['pall_disc_cst'];
+        //User discount
+        if(Auth::guest() ){
+            $discount = 1;
+        }
+        else{
+            $discount = auth()->user()->discount;
+            $discount = (1 - $discount);
+        }
+
+        //Calculates Total Pallet Discount Cost, if applies, else, returns 0 as pallet discount
+        if($totItems == 1){
+            $charges['pall_disc_cst'] = 0;
+        }
+        else{
+            $charges['pall_disc_cst'] = bcdiv(($charges['sing_pal_cost'] * $charges['pall_disc']),1,2);
+        }
+        
+        $charges['tot_load_cost'] = ($charges['tot_load_cost'] * $discount);
+        $charges['tot_load_cost'] = bcdiv($charges['tot_load_cost'], 1, 2);
         $shipment->tot_load_cost = $charges['tot_load_cost'];
         $shipment->save();
 
@@ -604,7 +787,9 @@ class ShipmentsController extends Controller
         
         //return redirect('/ship')->with('success', 'Shipment Request Sent');
         //dd($palletGo, $charges);
+        $emaildata = $request;
 
+        Mail::to('ship@fillstorship.com')->send(new ShipmentBookingMail($emaildata));
         return response()->json($charges);
     }
 

@@ -30,6 +30,6 @@ class ShipCreditAppMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.contact.ship-credit-app-email');
+        return $this->markdown('emails.contact.ship-credit-app-email')->subject('Shipping Credit Application Submitted');
     }
 }

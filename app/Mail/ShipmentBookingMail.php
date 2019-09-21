@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class StorCreditAppMail extends Mailable
+class ShipmentBookingMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -30,6 +30,6 @@ class StorCreditAppMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.contact.stor-credit-app-email')->subject('Storage Credit Application Submitted');
+        return $this->markdown('emails.contact.ship-booking-email')->subject('Shipment Request Submitted');
     }
 }

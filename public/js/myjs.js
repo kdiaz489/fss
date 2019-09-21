@@ -1,3 +1,5 @@
+
+
  /* Javascript to check if form is empty
   *
   *
@@ -27,20 +29,107 @@
  */
 
 
-  var app = '<div class="container app-success"><div class="alert alert-success justify-content-center"><p>Successfully sent to FillStorShip.\
-  <br> We will get back to you shortly.</p>';
+  var app = '<div class="container app-success text-center justify-content-center" style="border: 1px solid #4BB543"> <p>Your submission to FillStorShip was successful. We will get back to you shortly.<br><br> <i class="fas fa-check-circle"></i></p> </div>';
+
+  var errorModal ='<div class="container app-success text-center justify-content-center" style="border: 1px solid red"> <p>There was an error with your submssion.\
+  <br> Please make sure you filled in the form correctly or contact us. <br><br> <i class="fas fa-exclamation-circle"></i></p> </div>';
 
   var modalFooter = '<button type="button" id="storage-apply-credit" name="storage-quote-submit" class="btn btn-primary">Apply for Credit</button>';
 
-  var closeFooter = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onClick="location.reload()">Close</button>';
+  var closeFooter = '<div class="m-auto"> <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick="location.reload()">Close</button></div>';
+
+  var initialContent;
+  var initialFooter;
 
   var shippingQuoteParms;
   var quoteTotal;
-  var storQuote;
+  var quote;
 
+/*
+  window.onbeforeunload = function() {
+    sessionStorage.setItem("orig_zip", $('#orig_zip').val());
+    sessionStorage.setItem("orig_dock", $('#orig_dock').val());
+    sessionStorage.setItem("orig_frklft", $('#orig_frklft').val());
+    sessionStorage.setItem("orig_lfgt", $('#orig_lfgt').val());
+    sessionStorage.setItem("orig_flrstk", $('#orig_flrstk').val());
+    
+    sessionStorage.setItem("dest_zip", $('#dest_zip').val());
+    sessionStorage.setItem("dest_dock", $('#dest_dock').val());
+    sessionStorage.setItem("dest_frklft", $('#dest_frklft').val());
+    sessionStorage.setItem("dest_lfgt", $('#dest_lfgt').val());
+    sessionStorage.setItem("no_of_pallets", $('#no_of_pallets').val());
+
+    sessionStorage.setItem("prod_type", $('#prod_type').val());
+    sessionStorage.setItem("weight_per_pallet", $('#weight_per_pallet').val());
+    sessionStorage.setItem("tot_load_wt", $('#tot_load_wt').val());
+    sessionStorage.setItem("pallet_width", $('#pallet_width').val());
+    sessionStorage.setItem("pallet_length", $('#pallet_length').val());
+    sessionStorage.setItem("pallet_height", $('#pallet_height').val());
+    sessionStorage.setItem("prod_hazard", $('#prod_hazard').val());
+    sessionStorage.setItem("prod_stackable", $('#prod_stackable').val());
+    sessionStorage.setItem("load_strap", $('#load_strap').val());
+    sessionStorage.setItem("load_blck", $('#load_blck').val());
+}
+
+
+window.onload = function() {
+
+  var orig_zip = sessionStorage.getItem("orig_zip");
+  var orig_dock = sessionStorage.getItem("orig_dock");
+  var orig_frklft = sessionStorage.getItem("orig_frklft");
+  var orig_lfgt = sessionStorage.getItem("orig_lfgt");
+  var orig_flrstk = sessionStorage.getItem("orig_flrstk");
+  var dest_zip = sessionStorage.getItem("dest_zip");
+  var dest_dock = sessionStorage.getItem("dest_dock");
+  var dest_frklft = sessionStorage.getItem("dest_frklft");
+  var dest_lfgt = sessionStorage.getItem("dest_lfgt");
+  var no_of_pallets = sessionStorage.getItem("no_of_pallets");
+  var prod_type = sessionStorage.getItem("prod_type");
+  var weight_per_pallet = sessionStorage.getItem("weight_per_pallet");
+  var tot_load_wt = sessionStorage.getItem("tot_load_wt");
+  var pallet_width = sessionStorage.getItem("pallet_width");
+  var pallet_length = sessionStorage.getItem("pallet_length");
+  var pallet_height = sessionStorage.getItem("pallet_height");
+  var prod_hazard = sessionStorage.getItem("prod_hazard");
+  var prod_stackable = sessionStorage.getItem("prod_stackable");
+  var load_strap = sessionStorage.getItem("load_strap");
+  var load_blck = sessionStorage.getItem("load_blck");
+
+  if (orig_zip !== null) $('#orig_zip').val(orig_zip);
+  if (orig_dock !== null) $('#orig_dock').val(orig_dock);
+  if (orig_frklft !== null) $('#orig_frklft').val(orig_frklft);
+  if (orig_lfgt !== null) $('#orig_lfgt').val(orig_lfgt);
+  if (orig_flrstk !== null) $('#orig_flrstk').val(orig_flrstk);
+  if (dest_zip !== null) $('#dest_zip').val(dest_zip);
+  if (dest_dock !== null) $('#dest_dock').val(dest_dock);
+  if (dest_frklft !== null) $('#dest_frklft').val(dest_frklft);
+  if (dest_lfgt !== null) $('#dest_lfgt').val(dest_lfgt);
+  if (no_of_pallets !== null) $('#no_of_pallets').val(no_of_pallets);
+  if (prod_type !== null) $('#prod_type').val(prod_type);
+  if (weight_per_pallet !== null) $('#weight_per_pallet').val(weight_per_pallet);
+  if (tot_load_wt !== null) $('#tot_load_wt').val(tot_load_wt);
+  if (pallet_width !== null) $('#pallet_width').val(pallet_width);
+  if (pallet_length !== null) $('#pallet_length').val(pallet_length);
+  if (pallet_height !== null) $('#pallet_height').val(pallet_height);
+  if (prod_hazard !== null) $('#prod_hazard').val(prod_hazard);
+  if (prod_stackable !== null) $('#prod_stackable').val(prod_stackable);
+  if (load_strap !== null) $('#load_strap').val(load_strap);
+  if (load_blck !== null) $('#load_blck').val(load_blck);
+
+  
+}
+*/
 
 $(document).ready(function() {
-
+ 
+  $(document).ajaxStart(function(){
+    $(".wait").css("display", "block");
+  });
+  $(document).ajaxComplete(function(){
+    $(".wait").css("display", "none");
+  });
+  
+  /****  Code for Dash board tabs begins ****/
   $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
     var hash = $(e.target).attr('href');
     if (history.pushState) {
@@ -54,6 +143,13 @@ $(document).ready(function() {
   if (hash) {
     $('.nav-link[href="' + hash + '"]').tab('show');
   }
+
+  /**** Code for Dash board tabs ends ****/
+
+
+
+
+  /**** Code for shipping quote (any route) begins ****/
 
   $('#case_qty').keyup(function(){
     updateTotal();
@@ -85,49 +181,286 @@ $(document).ready(function() {
     
   };
 
-
-  /* Javascript for Ship Page
-  *
-  *
-  */
- 
-
-  $('#presubmit').click(function(e) {
-
-      e.preventDefault();
-
-       var formCheck = emptyForm();
-       if(formCheck === true){
-         alert('Shipping Form not completed.');
-       }
-       else if(formCheck === false){
-         shippingQuoteParms = $('#insert_form').serialize();
-          $.ajax({
-            type: 'POST',
-            url: 'ship/calc',
-            data: $('#insert_form').serialize(),
-            success: function(result) {
-
-              $('#quoteTotal').text(result.tot_load_cost);
-              quoteTotal = result.tot_load_cost;
-
-              $('#confirm_data_Modal').modal('show');
-              console.log("Application submission was successful");
-              console.log(result.orig_address);
-              console.log(result.dest_address);
-              console.log('mileage = ' + result.mileage);
-              console.log('mileage cost = ' + result.mileage_cost_total);
-              //console.log(result.tot_load_cost);
-              sessionStorage.clear();
-            }
-
-          });
-       }
+  $('#weight_per_pallet').keyup(function(){
+    updateTotalWeight();
   });
 
+  $('#no_of_pallets').keyup(function(){
+    updateTotalWeight();
+  }); 
 
 
-$('.shipModal').on('click', '#doCredit', function(e){
+
+  var updateTotalWeight = function () {
+    var input1 = parseInt($('#weight_per_pallet').val());
+    var input2 = parseInt($('#no_of_pallets').val());
+
+    $('#tot_load_wt').val(input1 * input2);
+    
+  };
+
+
+/****  Code for shipping quote (any route) ends ****/
+
+
+
+
+
+/****** Code for /ship begins here *****/
+
+$('.presubmit').click(function(e) {
+  
+      e.preventDefault();
+      initialContent = $('.modal-content').html();
+      shippingQuoteParms = $('.shipquote_form').serialize();
+      
+      if ($("#insert_form").valid()) {
+        $.ajax({
+          type: 'POST',
+          url: '/ship/calc',
+          data: $('.shipquote_form').serialize(),
+          success: function(result) {
+  
+            $('.modal-body').html('<h2 class="text-center">Your Quote: $' + result.tot_load_cost +  '</h2>' + '<br> <h5 class="text-center"> Total Mileage: ' 
+            + result.mileage + ' mi</h5> <br> <h5 class="text-center"> Total Pallets: ' + $('#no_of_pallets').val() + '</h5> <br> <h5 class="text-center"> Total Weight: ' 
+            + $('#tot_load_wt').val() + ' lbs</h5><div class="wait justify-content-center text-center" style="display:none;width:69px;height:89px;padding:2px; margin:auto;"><img src="https://www.grouplandmark.in/assets/visual/logo/loader.gif" width="64" height="64" /><br>Loading...</div>');
+  
+            quoteTotal = result.tot_load_cost;
+           
+            $('.modal').modal('show');
+            console.log("Application submission was successful");
+            console.log(result.orig_address);
+            console.log(result.dest_address);
+            console.log('mileage = ' + result.mileage);
+            console.log('mileage cost = ' + result.mileage_cost_total);
+            $('.modal').on('hide.bs.modal', function(e){
+              $('.modal-content').html(initialContent);
+            });
+            
+          },
+          error: function(error){
+            console.log(error);
+            $(".modal-body").html(errorModal);
+            $(".modal-footer").html('');
+            $('#confirm_data_Modal').modal('show');
+  
+            $('.modal').on('hide.bs.modal', function(e){
+              $('.modal-content').html(initialContent);
+            });
+          }
+  
+        });
+      }
+
+
+});
+
+
+/****** Code for /ship ends here *****/
+
+
+
+
+
+/****** Code for /ship/book begins here *****/
+
+
+$('#bookshipment').click(function(e) {
+
+  e.preventDefault();
+  initialContent = $('.modal-content').html();
+  if ($("#final_book_shipment_form").valid()) {
+    $.ajax({
+      type: 'POST',
+      url: '/ship/calc',
+      data: $('#final_book_shipment_form').serialize(),
+      success: function(result) {
+
+        $('.modal-body').html('<h2 class="text-center">Your Quote: $' + result.tot_load_cost +
+          '</h2>' + '<br> <h5 class="text-center"> Total Mileage: ' + result.mileage + ' mi</h5> <br> <h5 class="text-center"> Total Pallets: ' 
+          + $('#no_of_pallets').val() + '</h5> <br> <h5 class="text-center"> Total Weight: ' + $('#tot_load_wt').val() + ' lbs</h5><br>\
+          <div class="wait justify-content-center text-center" style="display:none;width:69px;height:89px;padding:2px; margin:auto;">\
+          <img src="https://www.grouplandmark.in/assets/visual/logo/loader.gif" width="64" height="64" /><br>Loading...</div>');
+
+        quoteTotal = result.tot_load_cost;
+       
+        $('#final_book_shipment_modal').modal('show');
+        console.log("Application submission was successful");
+        console.log(result.orig_address);
+        console.log(result.dest_address);
+        console.log('mileage = ' + result.mileage);
+        console.log('mileage cost = ' + result.mileage_cost_total);
+        $('.modal').on('hide.bs.modal', function(e){
+          $('.modal-content').html(initialContent);
+        });
+      },
+      
+
+      error: function(error){
+        console.log(error);
+        $(".modal-body").html(errorModal);
+        $(".modal-footer").html('');
+        $('#final_book_shipment_modal').modal('show');
+        $('.modal').on('hide.bs.modal', function(e){
+          $('.modal-content').html(initialContent);
+        });
+      }
+
+    });
+  }
+});
+
+
+
+$('#paywcredit').click(function(e) {
+
+  e.preventDefault();
+  initialContent = $('.modal-content').html();
+
+  $.ajax({
+    type: 'POST',
+    url: '/submitshipment',
+    data: $('#final_book_shipment_form').serialize() + '&quote=' + quoteTotal,
+    success: function() {
+      //sessionStorage.clear();
+      $(".modal-body").html(app);
+      $(".modal-footer").html('');
+      $('#final_book_shipment_modal').modal('show');
+      console.log("Shipping Form submission was successful. We will get back to you shortly");
+      $('.modal').on('hide.bs.modal', function(e){
+        $('.modal-content').html(initialContent);
+      });
+    },
+        
+  
+    error: function(error){
+      console.log(error);
+      $(".modal-body").html(errorModal);
+      $(".modal-footer").html(closeFooter);
+      $('#final_book_shipment_modal').modal('show');
+      $('.modal').on('hide.bs.modal', function(e){
+        $('.modal-content').html(initialContent);
+      });
+      
+    }
+
+  });
+   
+});
+ 
+$('#book30').click(function(e) {
+
+  e.preventDefault();
+  initialContent = $('.modal-content').html();
+     //shippingQuoteParms = $('#bookshipment_form').serialize();
+      $.ajax({
+        type: 'POST',
+        url: '/submitshipment',
+        data: $('#book_shipment_form').serialize(),
+        success: function(result) {
+
+          $('.modal-body').html('<h2 class="text-center">Your Quote: $' + result.tot_load_cost +  '</h2>' + '<br> <h5 class="text-center"> Total Mileage: ' 
+          + result.mileage + ' mi</h5> <br> <h5 class="text-center"> Total Pallets: ' + $('#no_of_pallets').val() + '</h5> <br> <h5 class="text-center"> Total Weight: ' 
+          + $('#tot_load_wt').val() + ' lbs</h5><br><div class="wait justify-content-center text-center" style="display:none;width:69px;height:89px;padding:2px; margin:auto;">\
+          <img src="https://www.grouplandmark.in/assets/visual/logo/loader.gif" width="64" height="64" /><br>Sending Request...</div>');
+
+          quoteTotal = result.tot_load_cost;
+         
+          $('#book_shipment_modal').modal('show');
+          console.log("Application submission was successful");
+          console.log(result.orig_address);
+          console.log(result.dest_address);
+          console.log('mileage = ' + result.mileage);
+          console.log('mileage cost = ' + result.mileage_cost_total);
+          $('.modal').on('hide.bs.modal', function(e){
+            $('.modal-content').html(initialContent);
+          });
+          
+        },
+        error: function(error){
+          console.log(error);
+          $(".modal-body").html(errorModal);
+          $(".modal-footer").html(closeFooter);
+          $('#book_shipment_modal').modal('show');
+          $('.modal').on('hide.bs.modal', function(e){
+            $('.modal-content').html(initialContent);
+          });
+          
+        }
+
+      });
+   
+});
+
+$('.storModal').on('click', '.credit-submit', function(e){
+
+  e.preventDefault();
+  e.stopImmediatePropagation();
+  initialContent = $('.modal-content').html();
+  if ($("#storage-quote-form").valid()) {
+    $.ajax({
+      type: 'POST',
+      url: '/applyforstorcredit/submit',
+      data: $('#storage-quote-form').serialize() + '&quote=' + quoteTotal,
+      success: function() {
+        //sessionStorage.clear();
+        $(".modal-body").html(app);
+        $(".modal-footer").html(closeFooter);
+        $('.modal').modal('show');
+        console.log("Credit Application submission was successful");
+        $('.modal').on('hide.bs.modal', function(e){
+          $('.modal-content').html(initialContent);
+        });
+      },
+      
+      error: function(jqXHR, textStatus, error){
+        $(".modal-body").html(errorModal);
+        $(".modal-footer").html(closeFooter);
+        $('.modal').on('hide.bs.modal', function(e){
+          $('.modal-content').html(initialContent);
+        });
+      }
+
+    });
+  }
+});
+
+
+$('.shipModal').on('click', '.credit-submit', function(e){
+
+  e.preventDefault();
+  e.stopImmediatePropagation();
+  initialContent = $('.modal-content').html();
+  if ($("#final_book_shipment_form").valid()) {
+    $.ajax({
+      type: 'POST',
+      url: '/applyforshipcredit/submit',
+      data: $('#credit-form').serialize() + '&quote=' + quoteTotal,
+      success: function() {
+        //sessionStorage.clear();
+        $(".modal-body").html(app);
+        $(".modal-footer").html(closeFooter);
+        $('.modal').modal('show');
+        console.log("Credit Application submission was successful");
+        $('.modal').on('hide.bs.modal', function(e){
+          $('.modal-content').html(initialContent);
+        });
+      },
+      
+      error: function(jqXHR, textStatus, error){
+        $(".modal-body").html(errorModal);
+        $(".modal-footer").html(closeFooter);
+        $('.modal').on('hide.bs.modal', function(e){
+          $('.modal-content').html(initialContent);
+        });
+      }
+
+    });
+  }
+});
+
+
+$('#final_book_shipment_modal').on('click', '#na_applycredit', function(e){
 
   e.preventDefault();
   $(".modal-body").load('/applyforcredit');
@@ -135,60 +468,90 @@ $('.shipModal').on('click', '#doCredit', function(e){
 
 });
 
-$('.shipModal').on('click', '#applyforcredit-submit', function(e){
+
+
+/****** Code for /ship/book code ends here *****/
+
+
+
+
+
+
+/****** Code for ship redirect + credit app begins here *****/
+
+$('.modal').on('click', '#doCredit', function(e){
 
   e.preventDefault();
-  e.stopImmediatePropagation();
-    $.ajax({
-      type: 'POST',
-      url: 'applyforcredit/submit',
-      data: $('#credit-form').serialize() + '&quote=' + quoteTotal,
-      success: function() {
-        //sessionStorage.clear();
-
-        console.log("Credit Application submission was successful");
-      }
-
-    });
-    $.ajax({
-      type: 'POST',
-      url: 'ship',
-      data: shippingQuoteParms ,
-      success: function() {
-        //sessionStorage.clear();
-        $(".modal-body").html(app);
-        $(".modal-footer").html(closeFooter);
-        console.log("Shipping Form submission was successful. We will get back to you shortly");
-      }
-
-    });
+  $(".modal-body").load('/applyforcredit');
+  $('.modal-footer').html('');
 
 });
 
 
-/* Javascript for Stor Page
-*
-*
-*/
+
+$('.shipModal').on('click', '#register', function(e){
+
+  e.preventDefault();
+  document.location.href = '/register';
+
+});
 
 
+
+$('.book-btn').on('click', function(e){
+
+  e.preventDefault();
+  document.location.href = '/ship/book';
+
+});
+
+
+/****** Code for ship redirect + credit app ends here *****/
+
+
+
+
+
+/****  Code for Stor Page begins here ****/
 
 
 $('.storModal').on('click', '#generate-storage-quote', function(e){
   e.preventDefault();
+  initialContent = $('.modal-content').html();
+  if ($("#storage-quote-form").valid()) {
   $.ajax({
     type: 'POST',
-    url: 'stor/calc',
+    url: '/stor/calc',
     data: $('#storage-quote-form').serialize(),
     success: function(result){
       console.log(result);
-      storQuote = result;
-      $(".modal-body").html('<p> Your quote is the following: $' + result + '</p>' );
-      $('.modal-footer').html('<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button> <input type="button" name="creditApp" id="doCredit" value="Apply for Credit" class="btn btn-primary" />');
+      quoteTotal = result;
+      $(".modal-body").html('<div class="text-center justify-content-center"> <h2> Your quote is the following: $' + result + '</h2>\
+       </div><br><div class="wait justify-content-center text-center" style="display:none;width:69px;height:89px;padding:2px; margin:auto;">\
+       <img src="https://www.grouplandmark.in/assets/visual/logo/loader.gif" width="64" height="64" /><br>Loading...</div>' );
+
+
+      $('.modal-footer').html('<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>\
+      <input type="button" name="creditApp" id="doCredit" value="Apply for Credit" class="btn btn-primary" />');
+
       console.log('Storage Quote Submission was a success');
+      $('.storModal').modal('show');
+
+      $('.storModal').on('hide.bs.modal', function(e){
+        $('.modal-content').html(initialContent);
+      });
+    },
+      
+    error: function(jqXHR, textStatus, error){
+      $(".modal-body").html(errorModal);
+      $(".modal-footer").html(closeFooter);
+      $('.storModal').modal('show');
+      $('.storModal').on('hide.bs.modal', function(e){
+        $('.modal-content').html(initialContent);
+      });
     }
   });
-
+  }
 });
 
 $('.storModal').on('click', '#doCredit', function(e){
@@ -203,25 +566,47 @@ $('.storModal').on('click', '#applyforcredit-submit', function(e){
 
   e.preventDefault();
   e.stopImmediatePropagation();
+  initialContent = $('.modal-content').html();
     $.ajax({
       type: 'POST',
-      url: 'applyforstoragecredit/submit',
-      data: $('#credit-form').serialize() + '&quote=' + storQuote,
+      url: '/applyforstoragecredit/submit',
+      data: $('#credit-form').serialize() + '&quote=' + quoteTotal,
       success: function() {
-        //sessionStorage.clear();
-
+        $(".modal-body").html(app);
+        $(".modal-footer").html(closeFooter);
+        $('.storModal').modal('show');
         console.log("Credit Application submission was successful");
+        $('.storModal').on('hide.bs.modal', function(e){
+          $('.modal-content').html(initialContent);
+        });
+      },
+      
+      error: function(jqXHR, textStatus, error){
+        $(".modal-body").html(errorModal);
+        $(".modal-footer").html(closeFooter);
+        $('.storModal').modal('show');
+
+        $('.storModal').on('hide.bs.modal', function(e){
+          $('.modal-content').html(initialContent);
+        });
       }
 
     });
 
 });
+/****  Code for Stor Page begins here ****/
 
 
-$('.filModal').on('click', '#fil-request-submit', function(e){
 
+
+
+
+/* Code for fulfillment page starts here */
+
+$('.modal').on('click', '#fil-request-submit', function(e){
+  initialContent = $('.modal-content').html();
   e.preventDefault();
-
+  if ($("#fil-form").valid()) {
     $.ajax({
       type: 'POST',
       url: 'fil/submitrequest',
@@ -230,14 +615,27 @@ $('.filModal').on('click', '#fil-request-submit', function(e){
         //sessionStorage.clear();
         $(".modal-body").html(app);
         $(".modal-footer").html(closeFooter);
+        $('.modal').modal('show');
 
         console.log("Fil request submission was successful");
+        $('.modal').on('hide.bs.modal', function(e){
+          $('.modal-content').html(initialContent);
+        });
+      },
+      
+      error: function(jqXHR, textStatus, error){
+        $(".modal-body").html(errorModal);
+        $(".modal-footer").html(closeFooter);
+        $('.modal').modal('show');
+        $('.modal').on('hide.bs.modal', function(e){
+          $('.modal-content').html(initialContent);
+        });
       }
 
     });
-
+  }
 });
-
+/* Code for fulfillment page ends here */
 
 
 

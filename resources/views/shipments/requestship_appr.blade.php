@@ -5,7 +5,7 @@
 
     <div class="jumbotron-fluid jumbotron-ship">
             <div class="container">
-              <h1 class="display-3">Shipping Quote</h1>
+              <h1 class="display-3">Shipping Quote app</h1>
               <hr class="my-4" style="background-color:white">
               <p class="lead">We offer shipping services to the Southwestern region of the United States. Try out our shipping quote generator to find your cost for shipping with FillStorShip. </p>
 
@@ -14,7 +14,7 @@
 
 
           <!-- Confirm Data Modal -->
-          <div class="modal fade shipModal" action="insert.php" id="confirm_data_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal fade shipModal confirm_data_Modal" action="insert.php" id="confirm_data_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -29,15 +29,8 @@
 
                 <div class="modal-footer">
                   <div class="m-auto">
-                    @guest
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <input type="button" href="/register" name="register" id="register" value="Register" class="btn btn-primary" />
-                    @endguest
-
-                    @auth
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" id="bookshipment_auth" class="btn bg-denim text-white book-btn">Book</button>
-                    @endauth
+                    <input type="button" name="ccpurchase" id="ccpurchase" value="Purchase w/ CC" class="btn btn-primary" />
+                    <input type="button" name="book30" id="book30" value="Book w/ 30 day" class="btn btn-primary" />
                   </div>
                 </div>
               </div>
@@ -50,7 +43,7 @@
           <h3 class="text-center"><small><span style="color:orange">*</span> required for quote</small></h3>
         </div>
 
-         <form id = "insert_form" class="shipquote_form" action="ship" method="POST">
+         <form id = "bookshipment_form" action="ship" method="POST">
            <div class="container-fluid freight-quote-container">
 
             
@@ -148,7 +141,7 @@
 
                   <div class="col-sm-6">
                     <label>Zip <span style="color:orange">*</span></label>
-                    <input type="text" class="form-control form-control-sm required" name="dest_zip" id="dest_zip" value="{{ old('dest_zip') }}" placeholder="Zip/Postal Code">
+                    <input type="text" class="form-control form-control-sm required" name="dest_zip" id="dest_zip" placeholder="Zip/Postal Code">
                       
                   </div>
 
@@ -331,19 +324,11 @@
             </div>
 
              <div class="row justify-content-center">
-                 
-                 @guest
-                  <button type="button" class="btn bg-denim text-white quote-btn presubmit" style="margin-right:10px">Get Quote</button>
-                  <button type="button" id="bookshipment_guest" class="btn bg-denim text-white quote-btn book-btn" disabled>Book Shipment</button>
-                 @endguest
-
-                 @auth
-                    <button type="button" class="btn bg-denim text-white quote-btn presubmit" style="margin-right:10px">Get Quote</button>
-                    <button type="button" id="bookshipment_guest" class="btn bg-denim text-white quote-btn book-btn">Book Shipment</button>
-                 @endauth
+                 <button type="button" id="getquote" class="btn bg-denim text-white quote-btn" style="margin-right:10px">Get Quote</button>
+                 <button type="button" id="book" class="btn bg-denim text-white quote-btn">Book Shipment</button>
              </div>
 
-           
+           </div>
            @csrf
          </form>
 

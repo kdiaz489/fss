@@ -32,8 +32,12 @@ class DashboardController extends Controller
 
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
+        $shipments = $user->shipments->sortKeysDesc();
+        $storagework = $user->storagework->sortKeysDesc();
+        $storage = $user->storage->sortKeysDesc();
+        
         if($user->hasAnyRole('user')){
-            return view('dashboard')->with('shipments', $user->shipments)->with('storage', $user->storage)->with('storagework', $user->storagework);
+            return view('dashboard')->with('shipments', $shipments)->with('storage', $storage)->with('storagework', $storagework);
         }
         elseif($user->hasAnyRole('admin')){
             

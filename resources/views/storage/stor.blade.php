@@ -82,17 +82,14 @@
            <div class="modal-dialog modal-dialog-centered" role="document">
              <div class="modal-content">
                <div class="modal-header">
-                 <h5 class="modal-title" id="modalCenterTitle">Storage Quote</h5>
-
-
                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                    <span aria-hidden="true">&times;</span>
                  </button>
                </div>
                <form id="storage-quote-form">
-                 <div class="modal-body">
-                   <div class="container-modal">
-                    * Fill in all fields. If one does not apply, type in 0 instead.
+                 <div class="modal-body" style="margin:auto">
+                   <div class="container-modal text-center">
+                    * Fill in all fields. If one does not apply, type in 0.
                     <br>
                     <br>
                      <div class="form-row">
@@ -147,9 +144,9 @@
                 </div>
               </div>
 
-               <div class="modal-footer">
+               <div class="modal-footer justify-content-center">
                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                 <button type="button" id="generate-storage-quote" name="storage-quote-submit" class="btn btn-primary">Generate Quote</button>
+                 <button type="button" id="generate-storage-quote" name="storage-quote-submit" class="btn btn-primary">Quick Quote</button>
                </div>
                @csrf
              </form>

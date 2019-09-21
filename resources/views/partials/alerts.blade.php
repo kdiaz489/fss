@@ -1,18 +1,13 @@
 @if(session('success'))
-    <div class="container">
-        <div class="alert alert-warning" role="alert">
+        <div class="alert alert-warning text-center" role="alert">
             {{session('success')}}
         </div>
-    </div>
-
 @endif
 
 @if(session('warning'))
-    <div class="container">
-        <div class=" alert alert-warning" role="alert">
-                {{session('warning')}}
-            </div>
+    
+    <div class=" alert alert-warning text-center" role="alert">
+        {{session('warning')}}
     </div>
-
-
+    
 @endif

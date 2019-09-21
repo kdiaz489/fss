@@ -25,6 +25,13 @@
     <div class="jumbotron bg-whitewash mt-5">
         <h1 class="display-4 text-center">Administrator Dashboard.</h1>
     </div>
+
+    <!-- Flash Alerts Begin -->
+
+    @include('partials.alerts')
+    
+    <!-- Flash Alerts Ends -->
+
 </div>
 <div class="container-fluid">
 
@@ -45,9 +52,13 @@
                             <div class="tab-content">
                                 <br>
                                 <div role="tabpanel" class="tab-pane active" id="allshipments">
+                                
+                                    <div class="container dashboard-container" style="display: block; overflow-x: auto; white-space: nowrap;">
+                                    
                                     <h1 class="display-4">Shipments</h1>
                                     <br>
                                     <br>
+                                 
                                     @if(count($shipments) > 0)
                                     <table class="table table-bordered">
                                         <tr>
@@ -88,8 +99,8 @@
                                             <td>{{$shipment->work_status}}</td>
                                             <td>{{$shipment->orig_company}}</td>
                                             <td>{{$shipment->dest_company}}</td>
-                                            <td>{{$shipment->created_at}}</td>
-                                            <td>{{$shipment->updated_at}}</td>
+                                            <td>{{$shipment->created_at->format('H:i:s   m/d/y')}}</td>
+                                            <td>{{$shipment->updated_at->format('H:i:s   m/d/y')}}</td>
                                             <td>${{$shipment->tot_load_cost}}</td>
                                             <td>
                                                 <div>
@@ -112,6 +123,8 @@
                                         <p>You have no posts.</p>
                                     @endif
                                 </div>
+                            </div>
+                          
                             
 
                                 <div role="tabpanel" class="tab-pane fade" id="allusers">
@@ -158,7 +171,8 @@
                                
 
 
-                                <div role="tabpanel" class="tab-pane fade" id="inventoryrequests">
+                                <div role="tabpanel" class="tab-pane fade" id="inventoryrequests" >
+                                    <div class="container dashboard-container" style="display: block; overflow-x: auto; white-space: nowrap;">
                                         <h1 class="display-4">Inventory</h1>
                                         <br>
                                         <br>
@@ -257,8 +271,8 @@
                                                 <td>{{$item->building}}</td>
                                                 <td>{{$item->row_}}</td>
                                                 <td>{{$item->column_}}</td>
-                                                <td>{{$item->created_at}}</td>
-                                                <td>{{$item->updated_at}}</td>
+                                                <td>{{$item->created_at->format('H:i:s m/d/y')}}</td>
+                                                <td>{{$item->updated_at->format('H:i:s m/d/y')}}</td>
                                                 
 
 
@@ -271,6 +285,7 @@
                                             <p>You have no posts.</p>
                                         @endif
                                 </div>
+                            </div>  
                             
                         </div>
                     </div>

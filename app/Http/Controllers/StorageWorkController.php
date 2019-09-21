@@ -9,6 +9,7 @@ use Auth;
 use DB;
 use App\User;
 use App\Mail\StorUpdateMail;
+use App\Mail\StorRequestMail;
 use Illuminate\Support\Facades\Mail;
 
 class StorageWorkController extends Controller
@@ -69,6 +70,15 @@ class StorageWorkController extends Controller
         Mail::to($useremail)->send(new StorUpdateMail($storagework));
         //dd($useremail);
         return redirect('/dashboard#inventoryrequests')->with('success', 'Storage has been updated');
+    }
+
+    public function cancelrequest(Request $request, $id){
+        $storagework = StorageWork::find($id);
+        $storagework->work_status = 'Cancelled';
+        $storagework->save();
+
+        Mail::to('ship@fillstorship.com')->send(new StorUpdateMail($storagework));
+        return redirect('/dashboard#inventoryrequests')->with('success', 'Storage request has been cancelled');
     }
 
     public function destroy($id)
@@ -189,16 +199,14 @@ class StorageWorkController extends Controller
         
         $storageuser->save();
 
-        //return redirect('/ship')->with('success', 'Shipment Request Sent');
-        //dd($palletGo, $charges);
-
-        return redirect('/dashboard')->with('success', 'Storage Request Sent');
+        Mail::to('ship@fillstorship.com')->send(new StorRequestMail($storage));
+        return redirect('/dashboard#inventoryrequests')->with('success', 'Storage Request Sent');
     }
 
 
     public function storeTransOutInventory(){
         $storage = new StorageWork();
-
+        
         if(Auth::guest() ){
             $storage->user_id = 0;
 
@@ -208,6 +216,7 @@ class StorageWorkController extends Controller
         }
 
         $storage->out_carton = 0;
+        $storage->pro_no = 0;
         $storage->pu_no = 0;
         $storage->po_no = 0;
         $storage->barcode = 0;
@@ -226,20 +235,13 @@ class StorageWorkController extends Controller
         $storage->elim_item = 0;
         $storage->elim_tot_qty = 0;
         $storage->building = 'N/A';
+        $storage->work_status = 'Pending';
         $storage->row_ = 'N/A';
         $storage->column_ = 'N/A';
-
-
-
         $storage->save();
 
-
-
-
-        //return redirect('/ship')->with('success', 'Shipment Request Sent');
-        //dd($palletGo, $charges);
-
-        return redirect('/dashboard')->with('success', 'Storage Request Sent');
+        Mail::to('ship@fillstorship.com')->send(new StorRequestMail($storage));
+        return redirect('/dashboard#inventoryrequests')->with('success', 'Storage Request Sent');
     }
 
 }

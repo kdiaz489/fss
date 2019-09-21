@@ -15,20 +15,25 @@ Route::get('/', 'PagesController@index');
 
 Route::get('/about', 'PagesController@about');
 
-Route::get('/applyforcredit', 'ShipCreditApplicationController@apply');
-Route::post('/applyforcredit/submit', 'ShipCreditApplicationController@store');
-
+Route::get('/applyforcredit', 'CreditApplicationController@apply');
+Route::post('/applyforshipcredit/submit', 'CreditApplicationController@shipcreditsubmit');
+Route::post('/applyforstorcredit/submit', 'CreditApplicationController@storcreditsubmit');
 Route::get('/ship', 'ShipmentsController@create');
+Route::get('/ship/request', 'ShipmentsController@requestshipment');
+Route::get('/ship/book', 'ShipmentsController@bookshipment');
 Route::get('/ship/admin', 'ShipmentsController@index')->middleware(['auth', 'auth.admin']);
 Route::get('/ship/admin/edit/{id}', 'ShipmentsController@edit')->middleware(['auth', 'auth.admin']);
 Route::put('/ship/admin/update/{id}', 'ShipmentsController@update')->middleware(['auth', 'auth.admin']);
-Route::post('/ship', 'ShipmentsController@store');
+Route::post('/submitshipment', 'ShipmentsController@store');
 Route::post('/ship/calc', 'ShipmentsController@calc');
 Route::get('/ship/{id}', 'ShipmentsController@show');
 Route::delete('/ship/{id}', 'ShipmentsController@destroy');
+Route::put('/ship/cancel/{id}', 'ShipmentsController@cancelrequest');
+
 
 Route::get('/applyforstoragecredit', 'StorCreditApplicationController@apply');
 Route::post('/applyforstoragecredit/submit', 'StorCreditApplicationController@store');
+
 
 Route::get('/stor', 'StorageController@create');
 Route::get('/stor/admin', 'StorageWorkController@index')->middleware(['auth', 'auth.admin']);
@@ -40,6 +45,7 @@ Route::get('/stor/{id}', 'StorageWorkController@show');
 Route::delete('/stor/{id}', 'StorageWorkController@destroy');
 Route::post('/stor/submittransout', 'StorageWorkController@storeTransOutInventory');
 Route::post('/stor/submitinventory', 'StorageWorkController@store');
+Route::put('/stor/cancel/{id}', 'StorageWorkController@cancelrequest');
 Route::post('/stor/calc', 'StorageController@calc');
 
 
@@ -58,7 +64,7 @@ Route::resource('posts', 'PostsController');
 Auth::routes(['verify' =>true]);
 
 // The part that is commented out allows us to force the user to verify their email address
-Route::get('/dashboard', 'DashboardController@index')->middleware('verified');
+Route::get('/dashboard', 'DashboardController@index')/*->middleware('verified')*/;
 
 Route::get('/admin', function(){
     return 'You are an admin';

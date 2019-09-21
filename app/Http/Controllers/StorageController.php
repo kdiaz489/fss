@@ -151,6 +151,7 @@ class StorageController extends Controller
 
         $storage->out_carton = 0;
         $storage->pu_no = 0;
+        $storage->pro_no = 0;
         $storage->po_no = 0;
         $storage->barcode = 0;
         $storage->sku = 0;
@@ -168,6 +169,7 @@ class StorageController extends Controller
         $storage->elim_item = 0;
         $storage->elim_tot_qty = 0;
         $storage->building = 'N/A';
+        $storage->work_status = 'Pending';
         $storage->row_ = 'N/A';
         $storage->column_ = 'N/A';
 

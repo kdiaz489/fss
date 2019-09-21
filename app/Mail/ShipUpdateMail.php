@@ -30,6 +30,6 @@ class ShipUpdateMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.contact.ship-update-email')->subject('Shipment Update');
+        return $this->markdown('emails.contact.ship-update-email')->subject('Shipment Request Update');
     }
 }

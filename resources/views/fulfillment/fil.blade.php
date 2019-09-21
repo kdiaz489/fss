@@ -8,7 +8,7 @@
           <hr class="my-4" style="background-color:white">
           <p class="lead">Interested in having FillStorShip fulfill your orders? Submit a request below and we will begin the process with you as soon as possible.</p>
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-light btn-lg" id="open-storage-quote" data-toggle="modal" data-target="#modalCenter">
+          <button type="button" class="btn btn-light btn-lg" id="open-storage-quote" data-toggle="modal" data-target="#modalCenterFil">
             Fulfillment Request
           </button>
 
@@ -104,11 +104,11 @@
 
 
          <!-- Modal -->
-         <div class="modal fade filModal" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
+         <div class="modal fade filModal" id="modalCenterFil" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitleFil" aria-hidden="true">
            <div class="modal-dialog modal-dialog-centered" role="document">
              <div class="modal-content">
                <div class="modal-header">
-                 <h5 class="modal-title" id="modalCenterTitle">Fulfillment Request</h5>
+                 <h5 class="modal-title" id="modalCenterTitleFil">Fulfillment Request</h5>
 
 
                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -116,7 +116,7 @@
                  </button>
                </div>
                <form id="fil-form">
-                 <div class="modal-body">
+                 <div class="modal-body" style="margin:auto">
                    <div class="container-modal">
 
                      <div class="form-row">
@@ -180,7 +180,7 @@
                      <div class=" form-group col-lg-12 col-12">
 
                        <label>Description</label>
-                       <textarea class="form-control" name="desc" id="desc" rows="3" placeholder="Description"></textarea>
+                       <textarea class="form-control required" name="desc" id="desc" rows="3" placeholder="Description"></textarea>
 
                        </select>
 

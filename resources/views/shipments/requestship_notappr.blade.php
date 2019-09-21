@@ -29,15 +29,8 @@
 
                 <div class="modal-footer">
                   <div class="m-auto">
-                    @guest
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <input type="button" href="/register" name="register" id="register" value="Register" class="btn btn-primary" />
-                    @endguest
-
-                    @auth
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" id="bookshipment_auth" class="btn bg-denim text-white book-btn">Book</button>
-                    @endauth
+                    <input type="button" name="creditApp" id="doCredit" value="Apply for Credit" class="btn btn-primary" />
                   </div>
                 </div>
               </div>
@@ -50,7 +43,7 @@
           <h3 class="text-center"><small><span style="color:orange">*</span> required for quote</small></h3>
         </div>
 
-         <form id = "insert_form" class="shipquote_form" action="ship" method="POST">
+         <form id = "insert_form" action="ship" method="POST">
            <div class="container-fluid freight-quote-container">
 
             
@@ -148,7 +141,7 @@
 
                   <div class="col-sm-6">
                     <label>Zip <span style="color:orange">*</span></label>
-                    <input type="text" class="form-control form-control-sm required" name="dest_zip" id="dest_zip" value="{{ old('dest_zip') }}" placeholder="Zip/Postal Code">
+                    <input type="text" class="form-control form-control-sm required" name="dest_zip" id="dest_zip" placeholder="Zip/Postal Code">
                       
                   </div>
 
@@ -331,19 +324,11 @@
             </div>
 
              <div class="row justify-content-center">
-                 
-                 @guest
-                  <button type="button" class="btn bg-denim text-white quote-btn presubmit" style="margin-right:10px">Get Quote</button>
-                  <button type="button" id="bookshipment_guest" class="btn bg-denim text-white quote-btn book-btn" disabled>Book Shipment</button>
-                 @endguest
-
-                 @auth
-                    <button type="button" class="btn bg-denim text-white quote-btn presubmit" style="margin-right:10px">Get Quote</button>
-                    <button type="button" id="bookshipment_guest" class="btn bg-denim text-white quote-btn book-btn">Book Shipment</button>
-                 @endauth
+                 <button type="button" id="presubmit" class="btn bg-denim text-white quote-btn" style="margin-right:10px">Get Quote</button>
+                 <button type="button" id="bookshipment" class="btn bg-denim text-white quote-btn disabled">Book Shipment</button>
              </div>
 
-           
+           </div>
            @csrf
          </form>
 
