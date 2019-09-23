@@ -27,7 +27,6 @@ class CreditApplicationController extends Controller
             'id-num' => 'required',
             'num-employees' => 'required',
             'biz-rev' => 'required',
-
             'biz-years' => 'required',
             'biz-industry' => 'required',
             'biz-category' => 'required',
@@ -60,7 +59,6 @@ class CreditApplicationController extends Controller
             'id-num' => 'required',
             'num-employees' => 'required',
             'biz-rev' => 'required',
-
             'biz-years' => 'required',
             'biz-industry' => 'required',
             'biz-category' => 'required',

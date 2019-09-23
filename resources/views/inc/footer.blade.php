@@ -16,11 +16,11 @@
         </ul>
       </div>
       <div class="col-6 col-md">
-        <h5 class="text-gunmetal">FillStorShip</h5>
+        <h5 class="text-gunmetal">Support</h5>
         <ul class="list-unstyled text-small">
-          <li><a class="text-muted" href="/about">About Us</a></li>
-          <li><a class="text-muted" href="/login">Log In</a></li>
-          <li><a class="text-muted" href="/register">Register</a></li>
+          <li><a class="text-muted" href="/termsofuse">Terms of Use</a></li>
+          <li><a class="text-muted" href="/privacypolicy">Privacy Policy</a></li>
+          <li><a class="text-muted" href="/privacypolicy">Return Policy</a></li>
         </ul>
       </div>
       <div class="col-6 col-md">

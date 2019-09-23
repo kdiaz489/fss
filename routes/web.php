@@ -15,6 +15,10 @@ Route::get('/', 'PagesController@index');
 
 Route::get('/about', 'PagesController@about');
 
+Route::get('/termsofuse', 'SupportController@termsofuse');
+Route::get('/privacypolicy', 'SupportController@privacypolicy');
+Route::get('/returnpolicy', 'SupportController@returnpolicy');
+
 Route::get('/applyforcredit', 'CreditApplicationController@apply');
 Route::post('/applyforshipcredit/submit', 'CreditApplicationController@shipcreditsubmit');
 Route::post('/applyforstorcredit/submit', 'CreditApplicationController@storcreditsubmit');

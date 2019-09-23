@@ -120,7 +120,7 @@
                                         @endforeach
                                     </table>
                                     @else
-                                        <p>You have no posts.</p>
+                                        <p>You have no requests.</p>
                                     @endif
                                 </div>
                             </div>
@@ -282,7 +282,7 @@
                                             @endforeach
                                         </table>
                                         @else
-                                            <p>You have no posts.</p>
+                                            <p>You have no requests.</p>
                                         @endif
                                 </div>
                             </div>  

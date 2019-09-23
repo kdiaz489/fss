@@ -87,7 +87,7 @@
                                         @endforeach
                                     </table>
                                     @else
-                                        <p>You have no posts.</p>
+                                        <p>You have no shipments.</p>
                                     @endif
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="inventoryrequests">
@@ -131,7 +131,7 @@
                                         </table>
                                     
                                         @else
-                                            <p>You have no posts.</p>
+                                            <p>You have no inventory requests.</p>
                                         @endif
                                 </div>
 
