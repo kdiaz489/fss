@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Storage;
 use Auth;
+use App\Mail\StorRequestMail;
+use App\Mail\CustomerStorRequestMail;
+
 
 class StorageController extends Controller
 {
@@ -133,7 +136,8 @@ class StorageController extends Controller
 
         //return redirect('/ship')->with('success', 'Shipment Request Sent');
         //dd($palletGo, $charges);
-
+        //Mail::to('ship@fillstorship.com')->send(new StorRequestMail($emaildata));
+        //Mail::to(auth()->user()->email)->send(new CustomerStorRequestMail($emaildata));
         return redirect('/dashboard')->with('success', 'Storage Request Sent');
     }
 

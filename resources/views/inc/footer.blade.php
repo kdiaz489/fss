@@ -20,7 +20,7 @@
         <ul class="list-unstyled text-small">
           <li><a class="text-muted" href="/termsofuse">Terms of Use</a></li>
           <li><a class="text-muted" href="/privacypolicy">Privacy Policy</a></li>
-          <li><a class="text-muted" href="/privacypolicy">Return Policy</a></li>
+          <li><a class="text-muted" href="/returnpolicy">Return Policy</a></li>
         </ul>
       </div>
       <div class="col-6 col-md">

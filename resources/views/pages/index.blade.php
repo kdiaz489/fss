@@ -3,14 +3,14 @@
 @section('content')
     <div class="jumbotron-fluid jumbotron-home">
         <div class="container">
-          <h1 class="display-1">Welcome to FillStorShip</h1>
+          <h1 class="display-3 text-break">Welcome to FillStorShip</h1>
           <hr class="my-4" style="background-color:white">
           <p class="lead">Fillstorship combines our experience in manufacturing and warehousing with E-commerce order processing so your products and kits can be fulfilled during the E-commerce order process.
              The results are faster turn time to customer, reduced warehousing cost, reduced shrinkage loss, and less handling charges</p>
         </div>
       </div>
 
-      <div class=" services-container container" >
+      <div class="services-container container">
           <section id="process" class="process">
             <div class="container-fluid container-fluid-max">
               <div class="row text-center">

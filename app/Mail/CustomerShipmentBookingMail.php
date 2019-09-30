@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ContactFormMail extends Mailable
+class CustomerShipmentBookingMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -30,6 +30,6 @@ class ContactFormMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.contact.contact-form')->subject('Contact Form Notification');
+        return $this->markdown('emails.contact.cust-ship-booking-email')->subject('Shipment Request Submitted');
     }
 }

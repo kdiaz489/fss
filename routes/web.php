@@ -33,6 +33,7 @@ Route::post('/ship/calc', 'ShipmentsController@calc');
 Route::get('/ship/{id}', 'ShipmentsController@show');
 Route::delete('/ship/{id}', 'ShipmentsController@destroy');
 Route::put('/ship/cancel/{id}', 'ShipmentsController@cancelrequest');
+Route::get('/pdf/{id}', 'ShipmentsController@pdfexport');
 
 
 Route::get('/applyforstoragecredit', 'StorCreditApplicationController@apply');
@@ -63,12 +64,28 @@ Route::post('/fil/submitrequest', 'FulfillmentRequestsController@store');
 Route::get('/contact', 'ContactFormController@create');
 Route::post('/contact', 'ContactFormController@store');
 
+
+
 Route::resource('posts', 'PostsController');
 
 Auth::routes(['verify' =>true]);
 
 // The part that is commented out allows us to force the user to verify their email address
 Route::get('/dashboard', 'DashboardController@index')/*->middleware('verified')*/;
+Route::get('/updateusername', 'DashboardController@getupdateusername');
+Route::get('/updateemail', 'DashboardController@getupdateemail');
+Route::get('/updatepass', 'DashboardController@getupdatepass');
+Route::get('/updatecompanyname', 'DashboardController@getupdatecompanyname');
+Route::get('/updatecontactname', 'DashboardController@getupdatecontactname');
+Route::get('/updateaddress', 'DashboardController@getupdateaddress');
+Route::get('/adduser', 'DashboardController@getadduser');
+Route::post('/submitupdateusername', 'DashboardController@updateusername');
+Route::post('/submitupdateemail', 'DashboardController@updateemail');
+Route::post('/submitupdatecompanyname', 'DashboardController@updatecompanyname');
+Route::post('/submitupdatecontactname', 'DashboardController@updatecontactname');
+Route::post('/submitupdateaddress', 'DashboardController@updateaddress');
+
+Route::get('/boltemplate', 'PDFController@index');
 
 Route::get('/admin', function(){
     return 'You are an admin';

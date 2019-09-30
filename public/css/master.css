@@ -421,6 +421,8 @@ html {
 
 .dropdown-menu {
   font-size: 18px;
+  border-radius: 0rem;
+  border: none;
 }
 
 input.error {
@@ -434,6 +436,35 @@ label.error {
   font-size: .8rem;
   display: block;
   margin-top: 5px;
+}
+
+.modal-footer{
+  border-top: transparent;
+}
+.modal-header{
+  border-bottom: transparent;
+}
+
+.close{
+  font-size: 1.75rem;
+  opacity: 1;
+}
+
+.rotate {
+
+  transform: 
+    translate(0px, 110px)
+    rotate(-90deg);
+
+  }
+
+  .signature{
+    border:0;
+    border-bottom: 1px solid black;
+  }
+
+  input[type=checkbox] {
+    transform: scale(1);
 }
 
   /*DESKTOP SPECIFIC CONDITIONS*/

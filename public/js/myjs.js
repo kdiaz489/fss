@@ -23,14 +23,13 @@
     }
   }
 
- /* Variables for modal footer and content
-  * Variables to stor quote numbers
-  *
- */
 
 
-  var app = '<div class="container app-success text-center justify-content-center" style="border: 1px solid #4BB543"> <p>Your submission to FillStorShip was successful. We will get back to you shortly.<br><br> <i class="fas fa-check-circle"></i></p> </div>';
+ /***** Variables for modal footer and content ****/
+  var appsuccess = '<div class="container app-success text-center justify-content-center" style="border: 1px solid #4BB543"> <p>Your submission to FillStorShip was successful. We will get back to you shortly.<br><br> <i class="fas fa-check-circle"></i></p> </div>';
 
+  var success = '<div class="container app-success text-center justify-content-center" style="border: 1px solid #4BB543"> <p>Your account update was successful.<br><br> <i class="fas fa-check-circle"></i></p> </div>';
+  
   var errorModal ='<div class="container app-success text-center justify-content-center" style="border: 1px solid red"> <p>There was an error with your submssion.\
   <br> Please make sure you filled in the form correctly or contact us. <br><br> <i class="fas fa-exclamation-circle"></i></p> </div>';
 
@@ -38,12 +37,18 @@
 
   var closeFooter = '<div class="m-auto"> <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick="location.reload()">Close</button></div>';
 
+  var loader = '<div class="wait justify-content-center text-center" style="display:none;width:69px;height:89px;padding:2px; margin:auto;">\
+                <img src="https://www.grouplandmark.in/assets/visual/logo/loader.gif" width="64" height="64" /><br>Loading...</div>';
+ 
+ 
+  /***** Variables to stor quote numbers *****/
   var initialContent;
   var initialFooter;
-
   var shippingQuoteParms;
   var quoteTotal;
   var quote;
+
+
 
 /*
   window.onbeforeunload = function() {
@@ -146,6 +151,384 @@ $(document).ready(function() {
 
   /**** Code for Dash board tabs ends ****/
 
+
+
+
+  /**** Code for updating account info begins ****/
+
+  
+  $('.editusername').on('click', function(e){
+
+    e.preventDefault();
+    initialContent = $('.modal-content').html();
+    $(".modal-body").load('/updateusername');
+    $('.modal-footer').html('');
+    $('.modal').modal('show');
+    
+  
+  });
+
+  $('.editemail').on('click', function(e){
+
+    e.preventDefault();
+    initialContent = $('.modal-content').html();
+    $(".modal-body").load('/updateemail');
+    $('.modal-footer').html('');
+    $('.modal').modal('show');
+    
+  
+  });
+
+  $('.editpass').on('click', function(e){
+
+    e.preventDefault();
+    initialContent = $('.modal-content').html();
+    $(".modal-body").load('/updatepass');
+    $('.modal-footer').html('');
+    $('.modal').modal('show');
+    
+  
+  });
+
+  $('.editcompanyname').on('click', function(e){
+
+    e.preventDefault();
+    initialContent = $('.modal-content').html();
+    $(".modal-body").load('/updatecompanyname');
+    $('.modal-footer').html(''); 
+    $('.modal').modal('show');
+    
+  
+  });
+
+  $('.editcontact').on('click', function(e){
+
+    e.preventDefault();
+    initialContent = $('.modal-content').html();
+    $(".modal-body").load('/updatecontactname');
+    $('.modal-footer').html(''); 
+    $('.modal').modal('show');
+    
+  
+  });
+
+  $('.editaddress').on('click', function(e){
+
+    e.preventDefault();
+    initialContent = $('.modal-content').html();
+    $(".modal-body").load('/updateaddress');
+    $('.modal-footer').html(''); 
+    $('.modal').modal('show');
+    
+  
+  });
+
+  $('.adduser').on('click', function(e){
+
+    e.preventDefault();
+    initialContent = $('.modal-content').html();
+    $(".modal-body").load('/adduser');
+    $('.modal-footer').html('');
+    $('.modal').modal('show');
+    
+  
+  });
+
+
+  // Code for handling new username submission
+  $('.modal').on('click', '#newusername-submit', function(e){
+  
+    e.preventDefault();
+    $('form').append(loader);
+
+    if ($("#new-username-form").valid()) {
+      $.ajax({
+        type: 'POST',
+        url: '/submitupdateusername',
+        data: $('#new-username-form').serialize(),
+        success: function(result) {
+
+          $('.modal-body').html(appsuccess);
+          $('.modal-footer').html('');
+          $('.modal').modal('show');
+
+          $('.modal').on('hide.bs.modal', function(e){
+            $('.modal-content').html(initialContent);
+            $('.wait').remove();
+          });
+          
+        },
+        error: function(error){
+          console.log(error);
+          $(".modal-body").html(errorModal);
+          $(".modal-footer").html('');
+          $('#confirm_data_Modal').modal('show');
+
+          $('.modal').on('hide.bs.modal', function(e){
+            $('.modal-content').html(initialContent);
+            $('.wait').remove();
+          });
+        }
+
+      });
+    }
+
+
+});
+
+  // Code for handling new password (email) submission
+  $('.modal').on('click', '#newpass-submit', function(e){
+  
+    e.preventDefault();
+    $('form').append(loader);
+
+    if ($("#new-pass-email-form").valid()) {
+      $.ajax({
+        type: 'POST',
+        url: '/password/email',
+        data: $('#new-pass-email-form').serialize(),
+        success: function(result) {
+
+          $('.modal-body').html(appsuccess);
+          $('.modal-footer').html('');
+          $('.modal').modal('show');
+
+          $('.modal').on('hide.bs.modal', function(e){
+            $('.modal-content').html(initialContent);
+            $('.wait').remove();
+          });
+          
+        },
+        error: function(error){
+          console.log(error);
+          $(".modal-body").html(errorModal);
+          $(".modal-footer").html('');
+          $('#confirm_data_Modal').modal('show');
+
+          $('.modal').on('hide.bs.modal', function(e){
+            $('.modal-content').html(initialContent);
+            $('.wait').remove();
+          });
+        }
+
+      });
+    }
+
+
+});
+
+
+// Code for handling new email submission
+$('.modal').on('click', '#newemail-submit', function(e){
+  
+  e.preventDefault();
+  $('form').append(loader);
+
+  if ($("#new-email-form").valid()) {
+    $.ajax({
+      type: 'POST',
+      url: '/submitupdateemail',
+      data: $('#new-email-form').serialize(),
+      success: function(result) {
+
+        $('.modal-body').html(appsuccess);
+        $('.modal-footer').html('');
+        $('.modal').modal('show');
+
+        $('.modal').on('hide.bs.modal', function(e){
+          $('.modal-content').html(initialContent);
+          $('.wait').remove();
+        });
+        
+        
+      },
+      error: function(error){
+        console.log(error);
+        $(".modal-body").html(errorModal);
+        $(".modal-footer").html('');
+        $('#confirm_data_Modal').modal('show');
+
+        $('.modal').on('hide.bs.modal', function(e){
+          $('.modal-content').html(initialContent);
+          $('.wait').remove();
+        });
+        
+      }
+
+    });
+  }
+
+
+});
+
+
+// Code for handling new user submission
+
+$('.modal').on('click', '#adduser-submit', function(e){
+  
+  e.preventDefault();
+
+  if ($("#add-user-form").valid()) {
+    $.ajax({
+      type: 'POST',
+      url: '/register',
+      data: $('#add-user-form').serialize(),
+      success: function(result) {
+
+        $('.modal-body').html(success);
+        $('.modal-footer').html('');
+        $('.modal').modal('show');
+
+        $('.modal').on('hide.bs.modal', function(e){
+          $('.modal-content').html(initialContent);
+          $('.wait').remove();
+        });
+        
+      },
+      error: function(error){
+        console.log(error);
+        $(".modal-body").html(errorModal);
+        $(".modal-footer").html('');
+        $('#confirm_data_Modal').modal('show');
+
+        $('.modal').on('hide.bs.modal', function(e){
+          $('.modal-content').html(initialContent);
+          $('.wait').remove();
+        });
+      }
+
+    });
+  }
+
+
+});
+
+// Code for handling new company name submission
+
+$('.modal').on('click', '#newcompanyname-submit', function(e){
+  
+  e.preventDefault();
+  $('form').append(loader);
+
+  if ($("#new-companyname-form").valid()) {
+    $.ajax({
+      type: 'POST',
+      url: '/submitupdatecompanyname',
+      data: $('#new-companyname-form').serialize(),
+      success: function(result) {
+
+        $('.modal-body').html(success);
+        $('.modal-footer').html('');
+        $('.modal').modal('show');
+
+        $('.modal').on('hide.bs.modal', function(e){
+          $('.modal-content').html(initialContent);
+          $('.wait').remove();
+        });
+        
+      },
+      error: function(error){
+        console.log(error);
+        $(".modal-body").html(errorModal);
+        $(".modal-footer").html('');
+        $('#confirm_data_Modal').modal('show');
+
+        $('.modal').on('hide.bs.modal', function(e){
+          $('.modal-content').html(initialContent);
+          $('.wait').remove();
+        });
+      }
+
+    });
+  }
+
+
+});
+
+// Code for handling new contact name submission
+
+$('.modal').on('click', '#newcontactname-submit', function(e){
+  
+  e.preventDefault();
+  $('form').append(loader);
+
+  if ($("#new-contactname-form").valid()) {
+    $.ajax({
+      type: 'POST',
+      url: '/submitupdatecontactname',
+      data: $('#new-contactname-form').serialize(),
+      success: function(result) {
+
+        $('.modal-body').html(success);
+        $('.modal-footer').html('');
+        $('.modal').modal('show');
+
+        $('.modal').on('hide.bs.modal', function(e){
+          $('.modal-content').html(initialContent);
+          $('.wait').remove();
+        });
+        
+      },
+      error: function(error){
+        console.log(error);
+        $(".modal-body").html(errorModal);
+        $(".modal-footer").html('');
+        $('#confirm_data_Modal').modal('show');
+
+        $('.modal').on('hide.bs.modal', function(e){
+          $('.modal-content').html(initialContent);
+          $('.wait').remove();
+        });
+      }
+
+    });
+  }
+
+
+});
+
+
+// Code for handling new address submission
+
+$('.modal').on('click', '#newaddress-submit', function(e){
+  
+  e.preventDefault();
+  $('form').append(loader);
+
+  if ($("#new-address-form").valid()) {
+    $.ajax({
+      type: 'POST',
+      url: '/submitupdateaddress',
+      data: $('#new-address-form').serialize(),
+      success: function(result) {
+
+        $('.modal-body').html(success);
+        $('.modal-footer').html('');
+        $('.modal').modal('show');
+
+        $('.modal').on('hide.bs.modal', function(e){
+          $('.modal-content').html(initialContent);
+          $('.wait').remove();
+        });
+        
+      },
+      error: function(error){
+        console.log(error);
+        $(".modal-body").html(errorModal);
+        $(".modal-footer").html('');
+        $('#confirm_data_Modal').modal('show');
+
+        $('.modal').on('hide.bs.modal', function(e){
+          $('.modal-content').html(initialContent);
+          $('.wait').remove();
+        });
+      }
+
+    });
+  }
+
+
+});
 
 
 
@@ -323,7 +706,7 @@ $('#paywcredit').click(function(e) {
     data: $('#final_book_shipment_form').serialize() + '&quote=' + quoteTotal,
     success: function() {
       //sessionStorage.clear();
-      $(".modal-body").html(app);
+      $(".modal-body").html(appsuccess);
       $(".modal-footer").html('');
       $('#final_book_shipment_modal').modal('show');
       console.log("Shipping Form submission was successful. We will get back to you shortly");
@@ -336,7 +719,7 @@ $('#paywcredit').click(function(e) {
     error: function(error){
       console.log(error);
       $(".modal-body").html(errorModal);
-      $(".modal-footer").html(closeFooter);
+      $(".modal-footer").html('');
       $('#final_book_shipment_modal').modal('show');
       $('.modal').on('hide.bs.modal', function(e){
         $('.modal-content').html(initialContent);
@@ -380,7 +763,7 @@ $('#book30').click(function(e) {
         error: function(error){
           console.log(error);
           $(".modal-body").html(errorModal);
-          $(".modal-footer").html(closeFooter);
+          $(".modal-footer").html('');
           $('#book_shipment_modal').modal('show');
           $('.modal').on('hide.bs.modal', function(e){
             $('.modal-content').html(initialContent);
@@ -404,8 +787,8 @@ $('.storModal').on('click', '.credit-submit', function(e){
       data: $('#storage-quote-form').serialize() + '&quote=' + quoteTotal,
       success: function() {
         //sessionStorage.clear();
-        $(".modal-body").html(app);
-        $(".modal-footer").html(closeFooter);
+        $(".modal-body").html(appsuccess);
+        $(".modal-footer").html('');
         $('.modal').modal('show');
         console.log("Credit Application submission was successful");
         $('.modal').on('hide.bs.modal', function(e){
@@ -415,7 +798,7 @@ $('.storModal').on('click', '.credit-submit', function(e){
       
       error: function(jqXHR, textStatus, error){
         $(".modal-body").html(errorModal);
-        $(".modal-footer").html(closeFooter);
+        $(".modal-footer").html('');
         $('.modal').on('hide.bs.modal', function(e){
           $('.modal-content').html(initialContent);
         });
@@ -434,12 +817,12 @@ $('.shipModal').on('click', '.credit-submit', function(e){
   if ($("#final_book_shipment_form").valid()) {
     $.ajax({
       type: 'POST',
-      url: '/applyforshipcredit/submit',
+      url: '/appsuccesslyforshipcredit/submit',
       data: $('#credit-form').serialize() + '&quote=' + quoteTotal,
       success: function() {
         //sessionStorage.clear();
-        $(".modal-body").html(app);
-        $(".modal-footer").html(closeFooter);
+        $(".modal-body").html(appsuccess);
+        $(".modal-footer").html('');
         $('.modal').modal('show');
         console.log("Credit Application submission was successful");
         $('.modal').on('hide.bs.modal', function(e){
@@ -449,7 +832,7 @@ $('.shipModal').on('click', '.credit-submit', function(e){
       
       error: function(jqXHR, textStatus, error){
         $(".modal-body").html(errorModal);
-        $(".modal-footer").html(closeFooter);
+        $(".modal-footer").html('');
         $('.modal').on('hide.bs.modal', function(e){
           $('.modal-content').html(initialContent);
         });
@@ -544,7 +927,7 @@ $('.storModal').on('click', '#generate-storage-quote', function(e){
       
     error: function(jqXHR, textStatus, error){
       $(".modal-body").html(errorModal);
-      $(".modal-footer").html(closeFooter);
+      $(".modal-footer").html('');
       $('.storModal').modal('show');
       $('.storModal').on('hide.bs.modal', function(e){
         $('.modal-content').html(initialContent);
@@ -572,8 +955,8 @@ $('.storModal').on('click', '#applyforcredit-submit', function(e){
       url: '/applyforstoragecredit/submit',
       data: $('#credit-form').serialize() + '&quote=' + quoteTotal,
       success: function() {
-        $(".modal-body").html(app);
-        $(".modal-footer").html(closeFooter);
+        $(".modal-body").html(appsuccess);
+        $(".modal-footer").html('');
         $('.storModal').modal('show');
         console.log("Credit Application submission was successful");
         $('.storModal').on('hide.bs.modal', function(e){
@@ -583,7 +966,7 @@ $('.storModal').on('click', '#applyforcredit-submit', function(e){
       
       error: function(jqXHR, textStatus, error){
         $(".modal-body").html(errorModal);
-        $(".modal-footer").html(closeFooter);
+        $(".modal-footer").html('');
         $('.storModal').modal('show');
 
         $('.storModal').on('hide.bs.modal', function(e){
@@ -613,8 +996,8 @@ $('.modal').on('click', '#fil-request-submit', function(e){
       data: $('#fil-form').serialize(),
       success: function() {
         //sessionStorage.clear();
-        $(".modal-body").html(app);
-        $(".modal-footer").html(closeFooter);
+        $(".modal-body").html(appsuccess);
+        $(".modal-footer").html('');
         $('.modal').modal('show');
 
         console.log("Fil request submission was successful");
@@ -625,7 +1008,7 @@ $('.modal').on('click', '#fil-request-submit', function(e){
       
       error: function(jqXHR, textStatus, error){
         $(".modal-body").html(errorModal);
-        $(".modal-footer").html(closeFooter);
+        $(".modal-footer").html('');
         $('.modal').modal('show');
         $('.modal').on('hide.bs.modal', function(e){
           $('.modal-content').html(initialContent);

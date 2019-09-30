@@ -2,18 +2,41 @@
 
 @section('content')
 
+<div class="modal fade editAdminModal" id="editAdminModal" tabindex="-1" role="dialog" aria-labelledby="editAdminModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            
+            </div>
+            <div class="modal-footer m-auto">
+              <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-outline-primary">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
 <div class="container-fluid bg-whitewash ">
     <div class="container dashboard-container pt-5">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs border-1" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#allshipments" role="tab" data-toggle="tab">All Shipments</a>
+                    <a class="nav-link active" href="#allshipments" role="tab" data-toggle="tab">Shipments</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#allusers" role="tab" data-toggle="tab">Manage Users</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#inventoryrequests" role="tab" data-toggle="tab">All Inventory Requests</a>
+                    <a class="nav-link" href="#inventoryrequests" role="tab" data-toggle="tab">Inventory Requests</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#account" role="tab" data-toggle="tab">Account</a>
                 </li>
             </ul>
     </div>
@@ -23,7 +46,7 @@
 
 <div class="container-fluid dashboard-container">
     <div class="jumbotron bg-whitewash mt-5">
-        <h1 class="display-4 text-center">Administrator Dashboard.</h1>
+        <h1 class="display-4 text-break text-center">Admin Dashboard.</h1>
     </div>
 
     <!-- Flash Alerts Begin -->
@@ -93,7 +116,7 @@
                                                             
                                                             </div>
                                                         
-                                                        <button type="submit" style=" margin-left: 1.25rem;" class="btn btn-primary btn-sm">Update</button>
+                                                        <button type="submit" style=" margin-left: 1.25rem;" class="btn btn-link btn-sm">Update</button>
                                                     </form>
                                             </td>
                                             <td>{{$shipment->work_status}}</td>
@@ -105,14 +128,14 @@
                                             <td>
                                                 <div>
                                                     <a href="/ship/{{$shipment->id}}" class="float-left" style="margin-right:1%">
-                                                            <button class="btn btn-outline-secondary btn-sm" type="button">View</button>
+                                                            <button class="btn btn-link btn-sm" type="button">View</button>
                                                         </a>
 
                                                     <form action="/ship/{{$shipment->id}}" method="POST" class="float-left">
                                                         @method('DELETE')
                                                         @csrf
                                                         
-                                                        <button type="submit" class="btn bg-frenchblue text-white btn-sm">Delete</button>
+                                                        <button type="submit" class="btn btn-link text-danger btn-sm">Delete</button>
                                                     </form>
                                                 </div>
                                             </td>
@@ -130,6 +153,9 @@
                                 <div role="tabpanel" class="tab-pane fade" id="allusers">
                                     <div class="container dashboard-container">
                                         <h1 class="display-4">Manage Users</h1>
+                                        <br>
+                                        <p>*Feature under development</p>
+                                        <button type="button" class="adduser btn btn-outline-secondary" data-toggle="modal" data-target="#editAdminModal" disabled>Add User</button>
                                         <br>
                                         <br>
                                         <table class="table table-striped">
@@ -149,12 +175,12 @@
                                                         <td>{{implode(', ', $user->roles()->pluck('name')->toArray())}}</td>
                                                         <td>
                                                         <a href="{{ route('admin.users.edit', $user->id) }}" class="float-left">
-                                                            <button class="btn btn-primary btn-sm" type="button">Edit Access</button>
+                                                            <button class="btn btn-link text-primary btn-sm" type="button">Edit Roles</button>
                                                         </a>
                                                     <form action="{{route('admin.users.destroy', $user->id) }}" method="POST" class="float-left">
                                                         @csrf
                                                         {{method_field('DELETE')}}
-                                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                        <button type="submit" class="btn btn-link text-danger btn-sm">Delete</button>
                                                     </form>
                                                     <!---
                                                     <a href="{{ route('admin.impersonate', $user->id) }}" class="float-left">
@@ -171,19 +197,21 @@
                                
 
 
-                                <div role="tabpanel" class="tab-pane fade" id="inventoryrequests" >
-                                    <div class="container dashboard-container" style="display: block; overflow-x: auto; white-space: nowrap;">
-                                        <h1 class="display-4">Inventory</h1>
+                                <div role="tabpanel" class="tab-pane fade" id="inventoryrequests">
+                                    
+                                    <div class="container dashboard-container" >
+                                        <h1 class="display-4">Inventory Requests</h1>
                                         <br>
+                                        
                                         <br>
 
                                         @if(count($storagework) > 0)
-                                        <table class="table table-bordered">
+                                        <table class="table table-bordered" style="display: block; overflow-x: auto; white-space: nowrap;">
                                             <tr>
                                                 <th style="padding-left:60px; padding-right:60px;">Edit</th>
                                                 <th style="padding-left:60px; padding-right:60px;">Data</th>
                                                 <th>work_status</th>
-                                                <th>id</th>
+                                                <th>company</th>
                                                 <th>user_id</th>
                                                 <th>sku</th>
                                                 <th>description</th>
@@ -228,31 +256,14 @@
                                                                     
                                                                 </div>
                                                             
-                                                            <button type="submit" style="margin-left:40px" class="btn btn-primary btn-sm">Update</button>
+                                                            <button type="submit" style="margin-left:40px" class="btn btn-link btn-sm">Update</button>
                                                         
                                                         </form>
-                                                        <!--
-                                                            <div>
-                                                                    <a href="/stor/{{$item->id}}" class="float-left">
-                                                                        <button class="btn btn-outline-secondary btn-sm" type="button">View</button>
-                                                                    </a>
-                                                                    <br>
-                                                                    <a href="/stor/admin/edit/{{$item->id}}" class="float-left">
-                                                                        <button class="btn btn-primary btn-sm" type="button">Status</button>
-                                                                    </a>
-                                                                    
-                                                                    <br>
-                                                                    <form action="/stor/{{$item->id}}" method="POST" class="float-left">
-                                                                        @method('DELETE')
-                                                                        @csrf
-                                                                        <button type="submit" class="btn bg-frenchblue text-white btn-sm">Cancel</button>
-                                                                    </form>
-                                                                </div>
-                                                            -->
+
                                                     </td>
                                                 <td style="padding-right:40px;">Pro #: {{$item->pro_no}} <br> Pu #: {{$item->pu_no}} <br> Po #: {{$item->po_no}} <br> Barcode: {{$item->barcode}}</td>
                                                 <td>{{$item->work_status}}</td>
-                                                <td>{{$item->id}}</td>
+                                                <td>{{$item->company}}</td>
                                                 <td>{{$item->user_id}}</td>
                                                 <td>{{$item->sku}}</td>
                                                 <td>{{$item->description}}</td>
@@ -286,10 +297,108 @@
                                         @endif
                                 </div>
                             </div>  
-                            
+                            <div role="tabpanel" class="tab-pane fade" id="account">
+                                <div class="container dashboard-container">
+                                        <h1 class="display-4">Account Settings</h1>
+                                        <br>
+                                        <br>
+                                        <div class="container-fluid px-5" style="border: solid 1px #dee2e6; border-radius: 10px">
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <h2 class="mt-4">Profile</h2>
+                                                    </div> 
+                                                </div>
+                                                
+                                                <div class="row py-5 border-bottom">
+                                                    <div class="col-lg-4">
+                                                        <h5>Username:</h5>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <h5>{{auth()->user()->user_name}}</h5>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <a href="" href="" class="editusername" id=""><i class="fas fa-pencil-alt"></i></a>
+                                                    </div>
+                
+                                                </div>
+    
+                                                <div class="row py-5 border-bottom">
+                                                    <div class="col-lg-4">
+                                                        <h5>E-Mail:</h5>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <h5>{{auth()->user()->email}}</h5>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <a href="" class="editemail" id=""><i class="fas fa-pencil-alt"></i></a>
+                                                    </div>
+                    
+                                                </div>
+    
+                                                <div class="row py-5 ">
+                                                    <div class="col-lg-4">
+                                                        <h5>Password:</h5>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <input type="password" style="border:none;" value={{auth()->user()->password}}/>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <a href=""  class="editpass" id=""><i class="fas fa-pencil-alt"></i></a>
+                                                    </div>
+                        
+                                                </div>
+                                        </div>
+
+                                        <div class="container-fluid px-5 mt-4" style="border: solid 1px #dee2e6; border-radius: 10px">
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <h2 class="mt-4">Contact Info</h2>
+                                                    </div> 
+                                                </div>
+                                                <div class="row py-5 border-bottom">
+                                                    <div class="col-lg-4">
+                                                        <h5>Company Name:</h5>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <h5>{{auth()->user()->company_name}}</h5>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <a href="" href="" class="editcompanyname" id=""><i class="fas fa-pencil-alt"></i></a>
+                                                    </div>
+                
+                                                </div>
+    
+                                                <div class="row py-5 border-bottom">
+                                                    <div class="col-lg-4">
+                                                        <h5>Contact Name:</h5>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <h5>{{auth()->user()->name}}</h5>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <a href="" class="editcontact" id=""><i class="fas fa-pencil-alt"></i></a>
+                                                    </div>
+                    
+                                                </div>
+    
+                                                <div class="row py-5 ">
+                                                    <div class="col-lg-4">
+                                                        <h5>Address:</h5>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <h5>{{auth()->user()->street_address.' '.auth()->user()->city.', '.auth()->user()->state. ' '.auth()->user()->zip}}</h5>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <a href=""  class="editaddress" id=""><i class="fas fa-pencil-alt"></i></a>
+                                                    </div>
+                        
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-        </div>
-    </div>
+                </div>
 
 @endsection

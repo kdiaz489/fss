@@ -22,6 +22,6 @@ class ContactFormController extends Controller
         //Send Email
         Mail::to('ship@fillstorship.com')->send(new ContactFormMail($data));
 
-        return redirect('contact')->with('message', "Thanks for your message. We'll be in touch");
+        return redirect('contact')->with('message', "Thanks for your message. We'll be in touch.");
     }
 }

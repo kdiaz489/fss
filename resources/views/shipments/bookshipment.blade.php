@@ -149,13 +149,13 @@
                             <div class="small">
                                     <div class="form-check form-check-inline">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="orig_dock" id="orig_dock" value="Yes"> Yes
+                                            <input class="form-check-input" type="radio" name="orig_dock" id="orig_dock" value="Yes" checked> Yes
                                         </label>
                                     </div>
                                     
                                     <div class="form-check form-check-inline">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="orig_dock" id="orig_dock" value="No" checked> No
+                                            <input class="form-check-input" type="radio" name="orig_dock" id="orig_dock" value="No"> No
                                         </label>
                                     </div>
                                 </div>
@@ -357,13 +357,13 @@
                                         <div class="small">
                                                 <div class="form-check form-check-inline">
                                                     <label class="form-check-label">
-                                                        <input class="form-check-input" type="radio" name="dest_dock" id="dest_dock" value="Yes"> Yes
+                                                        <input class="form-check-input" type="radio" name="dest_dock" id="dest_dock" value="Yes" checked> Yes
                                                     </label>
                                                 </div>
                                                 
                                                 <div class="form-check form-check-inline">
                                                     <label class="form-check-label">
-                                                        <input class="form-check-input" type="radio" name="dest_dock" id="dest_dock" value="No" checked> No
+                                                        <input class="form-check-input" type="radio" name="dest_dock" id="dest_dock" value="No"> No
                                                     </label>
                                                 </div>
                                             </div>

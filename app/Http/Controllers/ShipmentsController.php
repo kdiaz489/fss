@@ -10,7 +10,9 @@ use Auth;
 use DB;
 use App\Mail\ShipUpdateMail;
 use App\Mail\ShipmentBookingMail;
+use App\Mail\CustomerShipmentBookingMail;
 use Illuminate\Support\Facades\Mail;
+use PDF;
 
 class ShipmentsController extends Controller
 {
@@ -75,6 +77,17 @@ class ShipmentsController extends Controller
 
     public function bookshipment(){
         return view('shipments.bookshipment');
+    }
+
+    public function pdfexport($id){
+        //return view('pdf.boltemplate');
+        
+        $shipment = Shipment::find($id);
+        //dd($shipment->user_id);
+        $pdf = PDF::loadView('pdf.invoice', ['shipment' => $shipment]);
+        $fileName = 'testpdf';
+        return $pdf->stream('billoflading'. '_' . $id . '.pdf');
+        //return $pdf->download('document.pdf')
     }
 
     public function calcLength($width, $totItems, $length){
@@ -556,7 +569,9 @@ class ShipmentsController extends Controller
         $shipment = Shipment::find($id);
         $shipment->work_status = 'Cancelled';
         $shipment->save();
-
+        $useremail = User::find($shipment->user_id);
+        $useremail = $useremail->email;
+        Mail::to($useremail)->send(new ShipUpdateMail($shipment));
         Mail::to('ship@fillstorship.com')->send(new ShipUpdateMail($shipment));
         return redirect('/dashboard#allshipments')->with('success', 'Shipment has been updated');
     }
@@ -564,6 +579,7 @@ class ShipmentsController extends Controller
     public function store(Request $request){
         $shipment = new Shipment();
 
+        //Generates user id that is stored
         if(Auth::guest() ){
             $shipment->user_id = 0;
 
@@ -571,7 +587,21 @@ class ShipmentsController extends Controller
         else{
             $shipment->user_id = auth()->user()->id;
         }
+        //User id code ends here
 
+
+        //User discount
+        if(Auth::guest() ){
+            $discount = 1;
+        }
+        else{
+            $discount = auth()->user()->discount;
+            $discount = (1 - $discount);
+        }
+        //User discount Ends
+
+
+        //Blank Input Handler
         if(request('orig_address_02') == ''){
             $orig_address_02 = 'N/A';
         }
@@ -611,6 +641,8 @@ class ShipmentsController extends Controller
             $prod_desc = request('prod_value');
          
         }
+        //Blank Input Handler ends here
+
 
         $shipment->pro_no = 0;
         $shipment->pu_no = 0;
@@ -760,14 +792,6 @@ class ShipmentsController extends Controller
         $shipment->wt_chg = $charges['wt_chg'];
         $shipment->pall_disc = $charges['pall_disc'];
         $shipment->pall_disc_cst = $charges['pall_disc_cst'];
-        //User discount
-        if(Auth::guest() ){
-            $discount = 1;
-        }
-        else{
-            $discount = auth()->user()->discount;
-            $discount = (1 - $discount);
-        }
 
         //Calculates Total Pallet Discount Cost, if applies, else, returns 0 as pallet discount
         if($totItems == 1){
@@ -777,6 +801,7 @@ class ShipmentsController extends Controller
             $charges['pall_disc_cst'] = bcdiv(($charges['sing_pal_cost'] * $charges['pall_disc']),1,2);
         }
         
+        //Calculates final cost with discount
         $charges['tot_load_cost'] = ($charges['tot_load_cost'] * $discount);
         $charges['tot_load_cost'] = bcdiv($charges['tot_load_cost'], 1, 2);
         $shipment->tot_load_cost = $charges['tot_load_cost'];
@@ -790,6 +815,7 @@ class ShipmentsController extends Controller
         $emaildata = $request;
 
         Mail::to('ship@fillstorship.com')->send(new ShipmentBookingMail($emaildata));
+        Mail::to(auth()->user()->email)->send(new CustomerShipmentBookingMail($emaildata));
         return response()->json($charges);
     }
 

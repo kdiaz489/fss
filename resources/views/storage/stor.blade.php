@@ -89,7 +89,7 @@
                <form id="storage-quote-form">
                  <div class="modal-body" style="margin:auto">
                    <div class="container-modal text-center">
-                    * Fill in all fields. If one does not apply, type in 0.
+                    <span style="color:orange">* </span> Fill in all fields. If one does not apply, type in 0.
                     <br>
                     <br>
                      <div class="form-row">

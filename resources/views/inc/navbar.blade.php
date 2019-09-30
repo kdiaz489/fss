@@ -54,7 +54,7 @@
                             @endhasrole
 
                             @hasrole('admin')
-                            <a class="dropdown-item" href="/stor/admin">Storage Requests</a>
+                            <a class="dropdown-item" href="/stor/admin">Stor Requests</a>
                             @endhasrole
 
                             @hasrole('admin')

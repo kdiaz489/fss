@@ -177,7 +177,9 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Unisharp\Ckeditor\ServiceProvider::class,
         App\Providers\BladeExtrasServiceProvider::class,
-
+        Barryvdh\Snappy\ServiceProvider::class,
+        
+ 
     ],
 
     /*
@@ -230,6 +232,9 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
+        'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
+        
 
     ],
 

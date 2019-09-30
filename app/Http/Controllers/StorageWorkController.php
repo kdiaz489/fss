@@ -10,6 +10,7 @@ use DB;
 use App\User;
 use App\Mail\StorUpdateMail;
 use App\Mail\StorRequestMail;
+use App\Mail\CustomerStorRequestMail;
 use Illuminate\Support\Facades\Mail;
 
 class StorageWorkController extends Controller
@@ -84,10 +85,14 @@ class StorageWorkController extends Controller
     public function destroy($id)
     {
         $storagework = StorageWork::find($id);
+        $data = $storagework;
+        $data->work_status = 'Deleted';
         $storagework->delete();
 
         $storage = Storage::where('stor_work_id', $id);
         $storage->delete();
+
+        Mail::to('ship@fillstorship.com')->send(new StorUpdateMail($data));
         return redirect('/dashboard#inventoryrequests')->with('success', 'Inventory Request Cancelled');
     }
 
@@ -151,30 +156,35 @@ class StorageWorkController extends Controller
             $storage->user_id = 0;
             $storageuser->user_id = 0;
 
+            $storage->company = 'Guest';
+            $storageuser->company = 'Guest';
         }
         else{
             $storage->user_id = auth()->user()->id;
             $storageuser->user_id = auth()->user()->id;
+
+            $storage->company = auth()->user()->company_name;
+            $storageuser->company = auth()->user()->company_name;
         }
 
-        $storage->pro_no = 0;
-        $storage->pu_no = 0;
+        $storage->pro_no = 'N/A';
+        $storage->pu_no = 'N/A';
         $storage->po_no = request('po_no');
-        $storage->barcode = 0;
+        $storage->barcode = 'N/A';
         $storage->sku = request('sku');
         $storage->description = request('description');
         $storage->inb_carton = request('inb_carton');
         $storage->inb_case = request('inb_case');
         $storage->inb_item = request('inb_item');
         $storage->inb_tot_qty = request('inb_tot_qty');
-        $storage->out_carton = 0;
-        $storage->out_case = 0;
-        $storage->out_item = 0;
-        $storage->out_tot_qty = 0;
-        $storage->elim_carton = 0;
-        $storage->elim_case = 0;
-        $storage->elim_item = 0;
-        $storage->elim_tot_qty = 0;
+        $storage->out_carton = 'N/A';
+        $storage->out_case = 'N/A';
+        $storage->out_item = 'N/A';
+        $storage->out_tot_qty = 'N/A';
+        $storage->elim_carton = 'N/A';
+        $storage->elim_case = 'N/A';
+        $storage->elim_item = 'N/A';
+        $storage->elim_tot_qty = 'N/A';
         $storage->building = 'N/A';
         $storage->row_ = 'N/A';
         $storage->column_ = 'N/A';
@@ -182,23 +192,24 @@ class StorageWorkController extends Controller
         $storage->save();
 
         
-        $storageuser->pro_no = 0;
-        $storageuser->pu_no = 0;
+        $storageuser->pro_no = 'N/A';
+        $storageuser->pu_no = 'N/A';
         $storageuser->po_no = request('po_no');
-        $storageuser->barcode = 0;
+        $storageuser->barcode = 'N/A';
         $storageuser->sku = request('sku');
         $storageuser->description = request('description');
-        $storageuser->carton_qty = 0;
-        $storageuser->case_qty = 0;
-        $storageuser->item_qty = 0;
-        $storageuser->building = 0;
-        $storageuser->row_ = 0;
-        $storageuser->col_ = 0;
+        $storageuser->carton_qty = 'N/A';
+        $storageuser->case_qty = 'N/A';
+        $storageuser->item_qty = 'N/A';
+        $storageuser->building = 'N/A';
+        $storageuser->row_ = 'N/A';
+        $storageuser->col_ = 'N/A';
         $storageuser->work_status = 'Pending';
         $storageuser->stor_work_id = $storage->id;
         
         $storageuser->save();
 
+        Mail::to(auth()->user()->email)->send(new CustomerStorRequestMail($storage));
         Mail::to('ship@fillstorship.com')->send(new StorRequestMail($storage));
         return redirect('/dashboard#inventoryrequests')->with('success', 'Storage Request Sent');
     }
@@ -215,31 +226,32 @@ class StorageWorkController extends Controller
             $storage->user_id = auth()->user()->id;
         }
 
-        $storage->out_carton = 0;
-        $storage->pro_no = 0;
-        $storage->pu_no = 0;
-        $storage->po_no = 0;
-        $storage->barcode = 0;
-        $storage->sku = 0;
-        $storage->description = 0;
-        $storage->inb_carton = 0;
-        $storage->inb_case = 0;
-        $storage->inb_item = 0;
-        $storage->inb_tot_qty = 0;
+        $storage->out_carton = 'N/A';
+        $storage->pro_no = 'N/A';
+        $storage->pu_no = 'N/A';
+        $storage->po_no = 'N/A';
+        $storage->barcode = 'N/A';
+        $storage->sku = 'N/A';
+        $storage->description = 'N/A';
+        $storage->inb_carton = 'N/A';
+        $storage->inb_case = 'N/A';
+        $storage->inb_item = 'N/A';
+        $storage->inb_tot_qty = 'N/A';
         $storage->out_carton = request('out_carton');
         $storage->out_case = request('out_case');
         $storage->out_item = request('out_item');
         $storage->out_tot_qty = request('out_tot_qty');
-        $storage->elim_carton = 0;
-        $storage->elim_case = 0;
-        $storage->elim_item = 0;
-        $storage->elim_tot_qty = 0;
+        $storage->elim_carton = 'N/A';
+        $storage->elim_case = 'N/A';
+        $storage->elim_item = 'N/A';
+        $storage->elim_tot_qty = 'N/A';
         $storage->building = 'N/A';
         $storage->work_status = 'Pending';
         $storage->row_ = 'N/A';
         $storage->column_ = 'N/A';
         $storage->save();
 
+        Mail::to(auth()->user()->email)->send(new CustomerStorRequestMail($storage));
         Mail::to('ship@fillstorship.com')->send(new StorRequestMail($storage));
         return redirect('/dashboard#inventoryrequests')->with('success', 'Storage Request Sent');
     }

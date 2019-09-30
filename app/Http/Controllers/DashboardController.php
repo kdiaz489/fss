@@ -25,6 +25,84 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+    public function updateusername(){
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+        $user->user_name = request('username');
+        $user->save();
+        return redirect('/dashboard#account')->with('success', 'Updated User Name');
+    }
+
+    public function updateemail(){
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+        $user->email = request('email');
+        $user->save();
+        return redirect('/dashboard#account')->with('success', 'Updated Username');
+    }
+
+    public function updatecompanyname(){
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+        $user->company_name = request('company-name');
+        $user->save();
+        return redirect('/dashboard#account')->with('success', 'Updated Company Name');
+    }
+
+    public function updatecontactname(){
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+        $user->name = request('contact-name');
+        $user->save();
+        return redirect('/dashboard#account')->with('success', 'Updated Contact Name');
+    }
+
+    public function updateaddress(){
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+        $user->street_address = request('street-address');
+        $user->city = request('city');
+        $user->state = request('state');
+        $user->zip = request('zip');
+        $user->save();
+        return redirect('/dashboard#account')->with('success', 'Updated Company Address');
+    }
+
+    public function getadduser(){
+
+        return view('dashboard.adduser');
+    }
+    public function getupdateusername(){
+
+        return view('dashboard.editusername');
+    }
+
+    public function getupdateemail(){
+
+        return view('dashboard.editemail');
+    }
+
+    public function getupdatepass(){
+
+        return view('dashboard.editpass');
+    }
+
+    public function getupdatecompanyname(){
+
+        return view('dashboard.editcompanyname');
+    }
+
+    public function getupdatecontactname(){
+
+        return view('dashboard.editcontactname');
+    }
+
+    public function getupdateaddress(){
+
+        return view('dashboard.editaddress');
+    }
+
     public function index()
     {
 

@@ -27,7 +27,7 @@
     <p>
         fillstorship.com contains a number of links to other websites and online resources that are not owned or controlled by FillStorShip.
         FillStorShip has no control over, and is therefore not responsible or liable for the content or practices of, any third party sites and/or services. Therefore, we strongly advise you to read the entire terms and conditions, and privacy policies of any site that you visit as a result of following a link that is posted on our site.
-        Changes to This Agreement
+        
     </p>
 
     <h1 class="display-5">Changes to This Agreement</h1>
