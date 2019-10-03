@@ -607,7 +607,7 @@ $('.presubmit').click(function(e) {
           data: $('.shipquote_form').serialize(),
           success: function(result) {
   
-            $('.modal-body').html('<h2 class="text-center">Your Quote2: $' + result.tot_load_cost +  '</h2>' + '<br> <h5 class="text-center"> Total Mileage: ' 
+            $('.modal-body').html('<h2 class="text-center">Your Quote: $' + result.tot_load_cost +  '</h2>' + '<br> <h5 class="text-center"> Total Mileage: ' 
             + result.mileage + ' mi</h5> <br> <h5 class="text-center"> Total Pallets: ' + $('#no_of_pallets').val() + '</h5> <br> <h5 class="text-center"> Total Weight: ' 
             + $('#tot_load_wt').val() + ' lbs</h5>'+ disclaimer +'<div class="wait justify-content-center text-center" style="display:none;width:69px;height:89px;padding:2px; margin:auto;">\
             <div style="font-size:12px"></div><img src="https://www.grouplandmark.in/assets/visual/logo/loader.gif" width="64" height="64" /><br>Loading...</div>');
