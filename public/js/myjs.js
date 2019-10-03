@@ -40,10 +40,11 @@
   var loader = '<div class="wait justify-content-center text-center" style="display:none;width:69px;height:89px;padding:2px; margin:auto;">\
                 <img src="https://www.grouplandmark.in/assets/visual/logo/loader.gif" width="64" height="64" /><br>Loading...</div>';
 
-  var disclaimer = '<div style="font-size:13px; width:90%; margin: 0 auto;"><strong>*Disclaimer</strong> All orders are processed immediately after payment acceptance. Product will ship within the constraints on dates provided by you,\
+  var disclaimer = '<div style="font-size:13px; width:90%; margin: 0 auto;"><strong>*Disclaimer:</strong> All orders are processed immediately after payment acceptance. Product will ship within the constraints on dates provided by you,\
    pending approval by FillStorShip. If any change to your shipment order arises, we will contact you via email or phone. Shipping charges are calculated and displayed via our quote generator. Additional charges may apply.</div>';
  
- 
+  var stordisclaimer = '<div style="font-size:13px; width:90%; margin: 0 auto;"><strong>*Disclaimer:</strong> Storage fee quote based off of minimum charges for the number of pallets shown.Your cost may vary depending on your individual requirements.</div>';
+
   /***** Variables to stor quote numbers *****/
   var initialContent;
   var initialFooter;
@@ -914,7 +915,7 @@ $('.storModal').on('click', '#generate-storage-quote', function(e){
       console.log(result);
       quoteTotal = result;
       $(".modal-body").html('<div class="text-center justify-content-center"> <h2> Your quote is the following: $' + result + '</h2>\
-       </div><br><div class="wait justify-content-center text-center" style="display:none;width:69px;height:89px;padding:2px; margin:auto;">\
+       </div>' + stordisclaimer + '<br><div class="wait justify-content-center text-center" style="display:none;width:69px;height:89px;padding:2px; margin:auto;">\
        <img src="https://www.grouplandmark.in/assets/visual/logo/loader.gif" width="64" height="64" /><br>Loading...</div>' );
 
 
