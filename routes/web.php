@@ -87,6 +87,9 @@ Route::post('/submitupdateaddress', 'DashboardController@updateaddress');
 
 Route::get('/boltemplate', 'PDFController@index');
 
+Route::get('/checkout', 'AuthorizeController@index');
+Route::post('/checkout', 'AuthorizeController@chargeCreditCard');
+
 Route::get('/admin', function(){
     return 'You are an admin';
 })->middleware(['auth', 'auth.admin']);

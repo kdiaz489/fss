@@ -43,5 +43,10 @@ return [
             'tolerance' => env('STRIPE_WEBHOOK_TOLERANCE', 300),
         ],
     ],
+    'authorize' => [
+        'login' => env('AUTHORIZE_PAYMENT_API_LOGIN_ID'),
+        'key' => env('AUTHORIZE_PAYMENT_TRANSACTION_KEY')
+    ],
+    
 
 ];

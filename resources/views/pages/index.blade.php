@@ -10,6 +10,12 @@
         </div>
       </div>
 
+      <!-- Flash Alerts Begin -->
+
+      @include('partials.alerts')
+      
+      <!-- Flash Alerts Ends -->
+
       <div class="services-container container">
           <section id="process" class="process">
             <div class="container-fluid container-fluid-max">
