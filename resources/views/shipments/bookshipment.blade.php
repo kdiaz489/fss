@@ -639,8 +639,13 @@
 
              <div class="row justify-content-center">
                  <button type="submit" id="bookshipment" class="btn bg-denim text-white quote-btn">Book Shipment</button>
+                 <br>
              </div>
+            <div class="row justify-content-center" style="font-size:14px; width:35%; margin: 0 auto;">
+                <strong>*Disclaimer</strong>All orders are processed immediately after payment acceptance. Product will ship within the constraints on dates provided by you,
+                pending approval by FillStorShip. If any change to your shipment order arises, we will contact you via email or phone. Shipping charges are calculated and displayed via our quote generator. Additional charges may apply.
 
+            </div>
            
            @csrf
          </form>
