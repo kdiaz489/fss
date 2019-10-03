@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class PDFController extends Controller
 {
     public function index(){
-        $shipment = Shipment::find(147);
+        $shipment = Shipment::find(19);
         //dd($shipment->user_id);
         $pdf = PDF::loadView('pdf.invoice', ['shipment' => $shipment]);
         $fileName = 'testpdf';

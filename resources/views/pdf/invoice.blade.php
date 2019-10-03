@@ -6,9 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
   <!-- Styles -->
+  
   <link href="{{ asset('css/master.css') }}" rel="stylesheet">
   <link href="{{ asset('css/landingpage.css') }}" rel="stylesheet">
 
@@ -504,8 +505,8 @@
 <body>
   <div class="container">
     <div class="row">
-      <div class="col-xs-4 text-center">
-        <img src="{{asset('img/logo.png')}}" width="150px" height="auto">
+      <div class="col-xs-4 text-center mt-0">
+        <img src="file:///var/www/html/fillstorship/public/img/logo.png" width="110px" height="auto" style="margin-top:0px">
       </div>
       <div class="col-xs-4 text-center">
         <p class="p-0 my-0"><strong>Bill of Lading</strong></p>
@@ -1040,7 +1041,7 @@
           order, except as noted, every service to be performed hereunder shall be
           subject to all the terms and conditions of the Uniform Bill of Lading set
           forth in the National Motor Freight Classification 100-X and successive
-          iissues. The shipper or consignee hereby certifies that he is familiar with
+          issues. The shipper or consignee hereby certifies that he is familiar with
           all the terms and conditions of the said bill of lading and the said terms
           and conditions are hereby agreed to by the shipper and accepted.
         </p>
