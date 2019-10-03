@@ -39,6 +39,9 @@
 
   var loader = '<div class="wait justify-content-center text-center" style="display:none;width:69px;height:89px;padding:2px; margin:auto;">\
                 <img src="https://www.grouplandmark.in/assets/visual/logo/loader.gif" width="64" height="64" /><br>Loading...</div>';
+
+  var disclaimer = '<div style="font-size:13px; width:90%; margin: 0 auto;"><strong>*Disclaimer</strong> All orders are processed immediately after payment acceptance. Product will ship within the constraints on dates provided by you,\
+   pending approval by FillStorShip. If any change to your shipment order arises, we will contact you via email or phone. Shipping charges are calculated and displayed via our quote generator. Additional charges may apply.</div>';
  
  
   /***** Variables to stor quote numbers *****/
@@ -604,9 +607,10 @@ $('.presubmit').click(function(e) {
           data: $('.shipquote_form').serialize(),
           success: function(result) {
   
-            $('.modal-body').html('<h2 class="text-center">Your Quote: $' + result.tot_load_cost +  '</h2>' + '<br> <h5 class="text-center"> Total Mileage: ' 
+            $('.modal-body').html('<h2 class="text-center">Your Quote2: $' + result.tot_load_cost +  '</h2>' + '<br> <h5 class="text-center"> Total Mileage: ' 
             + result.mileage + ' mi</h5> <br> <h5 class="text-center"> Total Pallets: ' + $('#no_of_pallets').val() + '</h5> <br> <h5 class="text-center"> Total Weight: ' 
-            + $('#tot_load_wt').val() + ' lbs</h5><div class="wait justify-content-center text-center" style="display:none;width:69px;height:89px;padding:2px; margin:auto;"><img src="https://www.grouplandmark.in/assets/visual/logo/loader.gif" width="64" height="64" /><br>Loading...</div>');
+            + $('#tot_load_wt').val() + ' lbs</h5>'+ disclaimer +'<div class="wait justify-content-center text-center" style="display:none;width:69px;height:89px;padding:2px; margin:auto;">\
+            <div style="font-size:12px"></div><img src="https://www.grouplandmark.in/assets/visual/logo/loader.gif" width="64" height="64" /><br>Loading...</div>');
   
             quoteTotal = result.tot_load_cost;
            
