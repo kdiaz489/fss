@@ -36,6 +36,8 @@ class ShipmentBookingMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.contact.ship-booking-email')->subject('Shipment Request Submitted')->attachData($this->pdf->output(), "invoice.pdf");
+        return $this->markdown('emails.contact.ship-booking-email')->subject('Shipment Request Submitted')->attachData($this->pdf, 'name.pdf', [
+                    'mime' => 'application/pdf',
+                ]);
     }
 }
