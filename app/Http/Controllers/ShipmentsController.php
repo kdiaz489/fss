@@ -91,8 +91,8 @@ class ShipmentsController extends Controller
     }
 
     public function calcLength($width, $totItems, $length){
-        $multiplier;
-        $totLength;
+        $multiplier = 0;
+        $totLength = 0;
         if ($width <= 4.5) {
             if (($totItems >=1) && ($totItems<=2)) {
                 $multiplier = 1;
@@ -641,6 +641,42 @@ class ShipmentsController extends Controller
             $prod_desc = request('prod_value');
          
         }
+        if(request('orig_cont_name') == ''){
+            $orig_cont_name = 'N/A';
+        }
+        else{
+            $orig_cont_name = request('orig_cont_name');
+        }
+        if(request('orig_cont_phone') == ''){
+            $orig_cont_phone = 'N/A';
+        }
+        else{
+            $orig_cont_phone = request('orig_cont_phone');
+        }
+        if(request('orig_cont_email') == ''){
+            $orig_cont_name = 'N/A';
+        }
+        else{
+            $orig_cont_name = request('orig_cont_email');
+        }
+        if(request('dest_cont_name') == ''){
+            $dest_cont_name = 'N/A';
+        }
+        else{
+            $dest_cont_name = request('dest_cont_name');
+        }
+        if(request('dest_cont_phone') == ''){
+            $dest_cont_phone = 'N/A';
+        }
+        else{
+            $dest_cont_phone = request('dest_cont_phone');
+        }
+        if(request('dest_cont_email') == ''){
+            $dest_cont_name = 'N/A';
+        }
+        else{
+            $dest_cont_name = request('dest_cont_email');
+        }
         //Blank Input Handler ends here
 
 
@@ -813,10 +849,12 @@ class ShipmentsController extends Controller
         //return redirect('/ship')->with('success', 'Shipment Request Sent');
         //dd($palletGo, $charges);
         $emaildata = $request;
-
-        Mail::to('ship@fillstorship.com')->send(new ShipmentBookingMail($emaildata));
+        $shipmentid = $shipment->id;
+        $pdf_data = $shipment;
+        Mail::to('ship@fillstorship.com')->send(new ShipmentBookingMail($emaildata, $shipmentid));
         Mail::to(auth()->user()->email)->send(new CustomerShipmentBookingMail($emaildata));
-        return response()->json($charges);
+        return response()->json($shipmentid);
+        
     }
 
 

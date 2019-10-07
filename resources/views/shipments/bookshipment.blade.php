@@ -29,11 +29,11 @@
 
                     
                     @if(Auth::user()->credit == 'Approved')
-                        <input type="button" name="paycc" id="paycc" value="Book w/ Credit Card" class="btn btn-primary" disabled/>
-                        <input type="button" name="paywcredit" id="paywcredit" value="Book" class="btn btn-primary"/>
+                        <input type="button" name="paycc" id="paycc" value="Book w/ Credit Card" class="btn btn-primary text-white bg-denim"/>
+                        <input type="button" name="paywcredit" id="paywcredit" value="Book" class="btn btn-primary text-white bg-denim"/>
                     @elseif(Auth::user()->credit == 'Not Approved')
-                        <input type="button" name="paycc" id="paycc" value="Book w/ Credit Card" class="btn btn-primary" disabled/>
-                        <input type="button" name="creditApp" id="na_applycredit" value="Apply for Credit" class="btn btn-primary" />
+                        <input type="button" name="paycc" id="paycc" value="Book w/ Credit Card" class="btn btn-primary text-white bg-denim"/>
+                        <input type="button" name="creditApp" id="na_applycredit" value="Apply for Credit" class="btn btn-primary text-white bg-denim" />
                     @endif
                 </div>
               </div>

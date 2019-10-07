@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use net\authorize\api\contract\v1 as AnetAPI;
 use net\authorize\api\controller as AnetController;
+use App\User;
+use Auth;
 
 class AuthorizeController extends Controller
 {
@@ -25,10 +27,10 @@ class AuthorizeController extends Controller
 
         // Create the payment data for a credit card
         $creditCard = new AnetAPI\CreditCardType();
-        $creditCard->setCardNumber($request->cnumber);
+        $creditCard->setCardNumber($request->ccardnum);
         // $creditCard->setExpirationDate( "2038-12");
         $expiry = $request->card_expiry_year . '-' . $request->card_expiry_month;
-        $creditCard->setCardCode($request->ccode);
+        $creditCard->setCardCode($request->ccvv);
         $creditCard->setExpirationDate($expiry);
 
         // Add the payment data to a paymentType object
@@ -38,23 +40,24 @@ class AuthorizeController extends Controller
 
         // Create order information
         $order = new AnetAPI\OrderType();
-        $order->setInvoiceNumber("10101");
-        $order->setDescription("Golf Shirts");
+        $order->setInvoiceNumber($request->invoiceid);
+        $order->setDescription($request->prod_desc);
         // Set the customer's Bill To address
         $customerAddress = new AnetAPI\CustomerAddressType();
-        $customerAddress->setFirstName("Ellen");
-        $customerAddress->setLastName("Johnson");
-        $customerAddress->setCompany("Souveniropolis");
-        $customerAddress->setAddress("14 Main Street");
-        $customerAddress->setCity("Pecan Springs");
-        $customerAddress->setState("TX");
-        $customerAddress->setZip("44628");
+        $customerAddress->setFirstName($request->cname);
+        $customerAddress->setLastName($request->clastname);
+        $customerAddress->setCompany(auth()->user()->company_name);
+        $customerAddress->setAddress($request->cstreetaddress);
+        $customerAddress->setCity($request->ccity);
+        $customerAddress->setState($request->cstate);
+        $customerAddress->setZip($request->czip);
+
         $customerAddress->setCountry("USA");
         // Set the customer's identifying information
         $customerData = new AnetAPI\CustomerDataType();
         $customerData->setType("individual");
-        $customerData->setId("99999456654");
-        $customerData->setEmail("EllenJohnson@example.com");
+        $customerData->setId(auth()->user()->id);
+        $customerData->setEmail($request->cemail);
 
         // Create a customer shipping address This is the object that I added
         $customerShippingAddress = new AnetAPI\CustomerAddressType();
@@ -72,7 +75,9 @@ class AuthorizeController extends Controller
         $transactionRequestType = new AnetAPI\TransactionRequestType();
         $transactionRequestType->setShipTo($customerShippingAddress);
         $transactionRequestType->setTransactionType("authCaptureTransaction");
-        $transactionRequestType->setAmount($request->camount);
+        //$amount = (int)$request->quote;
+        $amount = 0.01;
+        $transactionRequestType->setAmount($amount);
         $transactionRequestType->setPayment($paymentOne);
         $transactionRequestType->setOrder($order);
         $transactionRequestType->setBillTo($customerAddress);
@@ -86,19 +91,34 @@ class AuthorizeController extends Controller
 
         // Create the controller and get the response
         $controller = new AnetController\CreateTransactionController($request);
-        $response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::SANDBOX);
+        $response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::PRODUCTION);
 
-        $message = "";
+        $message = "N/A";
+        $respcode = 200;
         if ($response != null) {
             $tresponse = $response->getTransactionResponse();
             if (($tresponse != null) && ($tresponse->getResponseCode() == "1")) {
-                $message = "Charge Credit Card AUTH CODE : " . $tresponse->getAuthCode() . "\n" . "Charge Credit Card TRANS ID  : " . $tresponse->getTransId() . "\n";
-            } else {
-                $message = "Charge Credit Card ERROR :  Invalid response\n";
+                $message = "Your payment to FillStorShip was successful. <br> Charge Credit Card Authorization Code : " . $tresponse->getAuthCode() . "\n" . "Charge Credit Card Transactio ID  : " . $tresponse->getTransId() . "\n";
+                $respcode = 200;
+            } 
+            elseif(($tresponse != null) && ($tresponse->getResponseCode() == "2")) {
+                $message = "Payment Error :  Your card was declined. Please try again.\n";
+                $respcode = 500;
             }
+            elseif(($tresponse != null) && ($tresponse->getResponseCode() == "3")) {
+                $message = "Payment Error :  There was an error with your submission. Please try again.\n";
+                $respcode = 500;
+            }
+            else {
+                $message = "Payment Error :  Action by FillStorShip is required. Please contact us at ship@fillstorship.com.\n";
+                $respcode = 500;
+            }            
+
         } else {
             $message = "Charge Credit Card Null response returned";
+            $respcode = 500;
         }
-        return redirect('/')->with('message',$message);
+
+        return response()->json(['message' => $message], $respcode);
     }
 }
