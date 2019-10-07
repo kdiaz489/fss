@@ -25,8 +25,8 @@ class ShipmentBookingMail extends Mailable
         $shipment = Shipment::find($id);
         $this->data = $data;
         //$this->pdf_data = $pdf_data;
-        $this->path = base_path('/var/www/html/fillstorship/public/temp/freightbill.pdf');
-        $this->pdf = PDF::loadView('pdf.invoice',  ['shipment' => $shipment])->save($this->path);
+        $this->path = base_path('public/temp/freightbill.pdf');
+        $this->pdf = PDF::loadView('pdf.invoice',  ['shipment' => $shipment])->save('freightbill.pdf');
     }
 
     /**
