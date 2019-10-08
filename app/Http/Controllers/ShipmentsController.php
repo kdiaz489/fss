@@ -85,9 +85,9 @@ class ShipmentsController extends Controller
         $shipment = Shipment::find($id);
         //dd($shipment->user_id);
         $pdf = PDF::loadView('pdf.invoice', ['shipment' => $shipment]);
-        //$pdf->save('test.pdf');
+        $pdf->save('test.pdf');
         $fileName = 'testpdf';
-        return $pdf->stream('billoflading'. '_' . $id . '.pdf')->save('test.pdf');
+        return $pdf->stream('billoflading'. '_' . $id . '.pdf');
         //return $pdf->download('document.pdf')
     }
 
