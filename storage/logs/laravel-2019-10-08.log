@@ -461,3 +461,24 @@ command: /usr/bin/xvfb-run -- /usr/local/bin/wkhtmltopdf-amd64 --lowquality \"C:
 #8 C:\\xampp\\htdocs\\FSS2\\public\\index.php(58): Symfony\\Component\\HttpFoundation\\Response->send()
 #9 {main}
 "} 
+[2019-10-08 11:47:50] local.ERROR: The exit status code '1' says something went wrong:
+stderr: "The system cannot find the path specified.
+"
+stdout: ""
+command: /usr/bin/xvfb-run -- /usr/local/bin/wkhtmltopdf-amd64 --lowquality "C:\Users\Matco\AppData\Local\Temp\knp_snappy5d9cd9d6689942.15976657.html" "C:\Users\Matco\AppData\Local\Temp\knp_snappy5d9cd9d6695da7.42831305.pdf". {"userId":55,"exception":"[object] (RuntimeException(code: 1): The exit status code '1' says something went wrong:
+stderr: \"The system cannot find the path specified.
+\"
+stdout: \"\"
+command: /usr/bin/xvfb-run -- /usr/local/bin/wkhtmltopdf-amd64 --lowquality \"C:\\Users\\Matco\\AppData\\Local\\Temp\\knp_snappy5d9cd9d6689942.15976657.html\" \"C:\\Users\\Matco\\AppData\\Local\\Temp\\knp_snappy5d9cd9d6695da7.42831305.pdf\". at C:\\xampp\\htdocs\\FSS2\\vendor\\knplabs\\knp-snappy\\src\\Knp\\Snappy\\AbstractGenerator.php:378)
+[stacktrace]
+#0 C:\\xampp\\htdocs\\FSS2\\vendor\\knplabs\\knp-snappy\\src\\Knp\\Snappy\\AbstractGenerator.php(177): Knp\\Snappy\\AbstractGenerator->checkProcessStatus(1, '', 'The system cann...', '/usr/bin/xvfb-r...')
+#1 C:\\xampp\\htdocs\\FSS2\\vendor\\knplabs\\knp-snappy\\src\\Knp\\Snappy\\Pdf.php(63): Knp\\Snappy\\AbstractGenerator->generate(Array, 'C:\\\\Users\\\\Matco\\\\...', Array, false)
+#2 C:\\xampp\\htdocs\\FSS2\\vendor\\knplabs\\knp-snappy\\src\\Knp\\Snappy\\AbstractGenerator.php(221): Knp\\Snappy\\Pdf->generate(Array, 'C:\\\\Users\\\\Matco\\\\...', Array)
+#3 C:\\xampp\\htdocs\\FSS2\\vendor\\knplabs\\knp-snappy\\src\\Knp\\Snappy\\AbstractGenerator.php(242): Knp\\Snappy\\AbstractGenerator->getOutput(Array, Array)
+#4 C:\\xampp\\htdocs\\FSS2\\vendor\\barryvdh\\laravel-snappy\\src\\PdfWrapper.php(176): Knp\\Snappy\\AbstractGenerator->getOutputFromHtml('<!DOCTYPE html>...', Array)
+#5 C:\\xampp\\htdocs\\FSS2\\vendor\\barryvdh\\laravel-snappy\\src\\PdfWrapper.php(246): Barryvdh\\Snappy\\PdfWrapper->output()
+#6 C:\\xampp\\htdocs\\FSS2\\vendor\\symfony\\http-foundation\\StreamedResponse.php(114): Barryvdh\\Snappy\\PdfWrapper->Barryvdh\\Snappy\\{closure}()
+#7 C:\\xampp\\htdocs\\FSS2\\vendor\\symfony\\http-foundation\\Response.php(376): Symfony\\Component\\HttpFoundation\\StreamedResponse->sendContent()
+#8 C:\\xampp\\htdocs\\FSS2\\public\\index.php(58): Symfony\\Component\\HttpFoundation\\Response->send()
+#9 {main}
+"} 
