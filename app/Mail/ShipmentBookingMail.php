@@ -8,6 +8,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use PDF;
 use App\Shipment;
+use File;
 
 class ShipmentBookingMail extends Mailable
 {
@@ -25,8 +26,12 @@ class ShipmentBookingMail extends Mailable
         $shipment = Shipment::find($id);
         $this->data = $data;
         //$this->pdf_data = $pdf_data;
-        $this->path = base_path('public/temp/freightbill.pdf');
+        
         $this->pdf = PDF::loadView('pdf.invoice',  ['shipment' => $shipment])->setPaper('a4')->setTimeout(3600);
+        File::put('pdf.html',
+            view('pdf.invoice')->with(['shipment' => $shipment])->render()
+        );
+        $this->path = base_path('public/temp/pdf.html');
        // $this->pdf->save('freightbill.pdf');
     }
 
