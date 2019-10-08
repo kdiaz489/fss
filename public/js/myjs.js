@@ -88,7 +88,7 @@ $(document).ready(function () {
 
 
 
-    $('.modal').on('click', '.editusername', function (e) {
+    $('.editusername').on('click',function (e) {
 
         e.preventDefault();
         initialContent = $('.modal-content').html();
@@ -100,7 +100,7 @@ $(document).ready(function () {
     });
 
 
-    $('.modal').on('click', '.editemail', function (e) {
+    $('.editemail').on('click', function (e) {
 
         e.preventDefault();
         initialContent = $('.modal-content').html();
@@ -112,7 +112,7 @@ $(document).ready(function () {
     });
 
 
-    $('.modal').on('click', '.editpass', function (e) {
+    $('.editpass').on('click', function (e) {
 
         e.preventDefault();
         initialContent = $('.modal-content').html();
@@ -123,7 +123,7 @@ $(document).ready(function () {
 
     });
 
-    $('.modal').on('click', '.editcompanyname', function (e) {
+    $('.editcompanyname').on('click', function (e) {
 
         e.preventDefault();
         initialContent = $('.modal-content').html();
@@ -135,7 +135,7 @@ $(document).ready(function () {
     });
 
 
-    $('.modal').on('click', '.editcontact', function (e) {
+    $('.editcontact').on('click', function (e) {
 
         e.preventDefault();
         initialContent = $('.modal-content').html();
@@ -146,7 +146,7 @@ $(document).ready(function () {
 
     });
 
-    $('.modal').on('click', '.editaddress', function (e) {
+    $('.editaddress').on('click', function (e) {
 
         e.preventDefault();
         initialContent = $('.modal-content').html();
@@ -157,7 +157,7 @@ $(document).ready(function () {
 
     });
 
-    $('.modal').on('click', '.adduser', function (e) {
+    $('.adduser').on('click', function (e) {
 
         e.preventDefault();
         initialContent = $('.modal-content').html();
