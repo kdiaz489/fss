@@ -6,13 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <!-- Latest compiled and minified CSS -->
+  <!--
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+-->
   <!-- Styles -->
-  
+  <!--
   <link href="{{ asset('css/master.css') }}" rel="stylesheet">
   <link href="{{ asset('css/landingpage.css') }}" rel="stylesheet">
-
+-->
   <style>
     body {
       margin-bottom: 0px;
