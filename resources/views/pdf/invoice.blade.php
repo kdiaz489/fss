@@ -11,9 +11,8 @@
 
   <!-- Styles -->
   
-  <link href="{{ asset('css/master.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/landingpage.css') }}" rel="stylesheet">
-
+  <link href="http:///var/www/html/fillstorship/css/master.css" rel="stylesheet">
+  <link href="http:///var/www/html/fillstorship/css/landingpage.css" rel="stylesheet">
   <style>
     body {
       margin-bottom: 0px;
@@ -650,7 +649,7 @@
             <p><input type="checkbox" name="orig_liftgate" value="Yes">Liftgate</p>
             @endif
 
-            <p><input type="checkbox" name="orig_excl_use" value="Yes">Exclusive</p>
+	                <p><input type="checkbox" name="orig_excl_use" value="Yes">Exclusive</p>
 
           </div>
           <div class="col-xs-3 pl-2">
@@ -756,7 +755,7 @@
             <p><input type="checkbox" name="dest_inside_pickup" value="Yes">Inside Pickup</p>
             @endif
 
-            <p><input type="checkbox" name="dest_load_to_ride" value="Yes">Load to Ride</p>
+	                <p><input type="checkbox" name="dest_load_to_ride" value="Yes">Load to Ride</p>
 
           </div>
           <div class="col-xs-3 pl-2">
@@ -766,7 +765,7 @@
             <p><input type="checkbox" name="dest_liftgate" value="Yes">Liftgate</p>
             @endif
 
-            <p><input type="checkbox" name="dest_excl_use" value="Yes">Exclusive</p>
+	                <p><input type="checkbox" name="dest_excl_use" value="Yes">Exclusive</p>
 
           </div>
           <div class="col-xs-3 pl-2">
@@ -1087,3 +1086,5 @@
 </body>
 
 </html>
+
+

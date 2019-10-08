@@ -35,7 +35,7 @@ return [
     
     'pdf' => [
         'enabled' => true,
-        'binary'  => '/usr/bin/xvfb-run -- /usr/local/bin/wkhtmltopdf-amd64',
+        'binary'  => 'xvfb-run -- /usr/local/bin/wkhtmltopdf-amd64',
         'timeout' => false,
         'options' => [],
         'env'     => [],
