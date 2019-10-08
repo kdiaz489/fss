@@ -26,7 +26,8 @@ class ShipmentBookingMail extends Mailable
         $this->data = $data;
         //$this->pdf_data = $pdf_data;
         $this->path = base_path('public/temp/freightbill.pdf');
-        $this->pdf = PDF::loadView('pdf.invoice',  ['shipment' => $shipment])->save('freightbill.pdf');
+        $this->pdf = PDF::loadView('pdf.invoice',  ['shipment' => $shipment])->setPaper('a4')->setTimeout(3600);
+        $this->pdf->save('freightbill.pdf');
     }
 
     /**
@@ -36,9 +37,6 @@ class ShipmentBookingMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.contact.ship-booking-email')->subject('Shipment Request Submitted')->attach($this->path, [
-                            'as' => 'freightbill.pdf', 
-                            'mime' => 'application/pdf',
-                    ]);
+        return $this->markdown('emails.contact.ship-booking-email')->subject('Shipment Request Submitted');
     }
 }
