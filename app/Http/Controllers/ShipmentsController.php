@@ -406,7 +406,7 @@ class ShipmentsController extends Controller
         }
 
 
-        $distanceMeters = GoogleDistance::calculate($orig_address, $dest_address);
+        $distanceMeters = GoogleDistance::calculate($orig_address,$dest_address);
         $distanceMiles = ceil($distanceMeters/1609.344);
         $data['mileage'] = $distanceMiles;
 

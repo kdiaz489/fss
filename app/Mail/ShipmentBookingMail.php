@@ -27,11 +27,13 @@ class ShipmentBookingMail extends Mailable
         $this->data = $data;
         //$this->pdf_data = $pdf_data;
         
-        $this->pdf = PDF::loadView('pdf.invoice',  ['shipment' => $shipment])->setPaper('a4')->setTimeout(3600);
-        File::put('pdf.html',
+	$this->pdf = PDF::loadView('pdf.invoice',  ['shipment' => $shipment])->setPaper('a4')->setTimeout(3600);
+	/*
+        File::put('/temp/pdf.html',
             view('pdf.invoice')->with(['shipment' => $shipment])->render()
-        );
-        $this->path = base_path('public/temp/pdf.html');
+    );
+	 */
+        $this->path = base_path('/temp/pdf.html');
        // $this->pdf->save('freightbill.pdf');
     }
 
