@@ -118,11 +118,11 @@ class DashboardController extends Controller
         $storagework = $user->storagework->sortKeysDesc();
         $storage = $user->storage->sortKeysDesc();
         $kits = $user->kits;
-         $orders = $user->orders->sortKeysDesc();
+        $orders = $user->orders->sortKeysDesc();
         $basic_units = $user->basic_units;
         
         if($user->hasAnyRole('user')){
-            return view('dashboard')->with('shipments', $shipments)->with('orders', $orders)->with('basic_units', $basic_units)->with('kits', $kits)->with('storage', $storage)->with('storagework', $storagework);
+            return view('dashboard')->with('shipments', $shipments)->with('user', $user)->with('orders', $orders)->with('basic_units', $basic_units)->with('kits', $kits)->with('storage', $storage)->with('storagework', $storagework);
         }
         elseif($user->hasAnyRole('admin')){
             
@@ -141,6 +141,7 @@ class DashboardController extends Controller
             $units = Basic_Unit::orderBy('created_at', 'desc')->get();
             $orders = Order::orderBy('created_at', 'desc')->get();
             $inventory = Storage::orderBy('company')->get();
+            
             return view('admindashboard')->with('inventory', $inventory)->with('kits', $kits)->with('units', $units)->with('orders', $orders)->with('shipments', $shipments)->with('storagework', $storagework)->with('users', User::all());;
         }
     }

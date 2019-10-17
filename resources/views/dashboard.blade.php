@@ -424,8 +424,43 @@
                         -->
 
                     </div>
+
+
                     <div role="tabpanel" class="tab-pane" id="account">
                         <div class="container dashboard-container">
+
+                        
+
+                        @if($user->account_balance != null)
+                        <h1 class="display-4">Account Balance</h1>
+                        <br>
+                        <br>
+                        <table class="table">
+                            <tr>
+                                <th>User</th>
+                                <th>Company</th>
+                                <th>Remaining Balance</th>
+                                <th></th>
+                            </tr>
+                           
+                            <tr>
+                                <td>{{$user->name}}</td>
+                                <td>{{$user->company_name}}</td>
+                                <td>{{$user->account_balance}}</td>
+                                <td>
+                                    <div style="margin-left: 40%">
+                                        <a href="/makepayment/{{$user->id}}" class="float-left" style="margin-right:1%">
+                                            <button class="btn btn-link text-secondary btn-sm" type="button">Make a Payment</button>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                        </table>
+                        @else
+                        
+                        @endif
+
                             <h1 class="display-4">Account Settings</h1>
                             <br>
                             <br>

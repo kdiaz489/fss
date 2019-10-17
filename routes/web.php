@@ -122,6 +122,8 @@ Route::get('/boltemplate', 'PDFController@index');
 
 Route::get('/checkout', 'AuthorizeController@index');
 Route::post('/checkout', 'AuthorizeController@chargeCreditCard');
+Route::get('/makepayment/{id}', 'AuthorizeController@makepaymentform');
+Route::post('/makeapayment', 'AuthorizeController@makepayment');
 
 Route::get('/admin', function(){
     return 'You are an admin';

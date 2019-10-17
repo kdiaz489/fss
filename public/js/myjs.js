@@ -26,11 +26,14 @@ function emptyForm() {
 var appsuccess = '<div class="container app-success text-center justify-content-center" style="border: 1px solid #4BB543"> <p>Your submission to FillStorShip\
                    was successful. We will get back to you shortly.<br><br> <i class="fas fa-check-circle"></i></p> </div>';
 
+var shipcreditsucces =  '<div class="container app-success text-center justify-content-center" style="border: 1px solid #4BB543"> <p>Your submission to FillStorShip\
+                   was successful. Please check your account balance on your user dashboard. The amount listed will need to be covered upon completion of the load.<br><br> <i class="fas fa-check-circle"></i></p> </div>';
+
 var success = '<div class="container app-success text-center justify-content-center" style="border: 1px solid #4BB543"> <p>Your account update was successful.\
                 <br><br> <i class="fas fa-check-circle"></i></p> </div>';
 
 var errorModal = '<div class="container app-success text-center justify-content-center" style="border: 1px solid red"> <p>There was an error with your submssion.\
-  <br> Please make sure you filled in the form correctly or contact us. <br><br> <i class="fas fa-exclamation-circle"></i></p> </div>';
+                <br> Please make sure you filled in the form correctly or contact us. <br><br> <i class="fas fa-exclamation-circle"></i></p> </div>';
 
 var modalFooter = '<button type="button" id="storage-apply-credit" name="storage-quote-submit" class="btn btn-primary">Apply for Credit</button>';
 
@@ -655,7 +658,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'POST',
             url: '/submitshipment',
-            data: $('#final_book_shipment_form').serialize() + '&quote=' + quoteTotal,
+            data: $('#final_book_shipment_form').serialize() + '&quote=' + quoteTotal + '&payment_type=' + 'accbal',
         })
             .done(function (result) {
                 //sessionStorage.clear();
@@ -738,7 +741,7 @@ $(document).ready(function () {
       var a2 = $.ajax({
           type: 'POST',
           url: '/submitshipment',
-          data: $('#final_book_shipment_form').serialize() + '&quote=' + quoteTotal,
+          data: $('#final_book_shipment_form').serialize() + '&quote=' + quoteTotal + '&payment_type=' + 'creditcardpayment',
       });
       return a2;
     }
@@ -827,7 +830,7 @@ $(document).ready(function () {
         if ($("#final_book_shipment_form").valid()) {
             $.ajax({
                 type: 'POST',
-                url: '/appsuccesslyforshipcredit/submit',
+                url: '/applyforshipcredit/submit',
                 data: $('#credit-form').serialize() + '&quote=' + quoteTotal,
             })
                 .done(function (result) {
@@ -925,7 +928,7 @@ $(document).ready(function () {
 
 
                     $('.modal-footer').html('<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>\
-      <input type="button" name="creditApp" id="doCredit" value="Apply for Credit" class="btn btn-primary" />');
+                    <input type="button" name="creditApp" id="doCredit" value="Apply for Credit" class="btn btn-primary" />');
 
                     console.log('Storage Quote Submission was a success');
                     $('.storModal').modal('show');

@@ -579,6 +579,7 @@ class ShipmentsController extends Controller
 
     public function store(Request $request){
         $shipment = new Shipment();
+        $user = new User();
 
         //Generates user id that is stored
         if(Auth::guest() ){
@@ -586,7 +587,9 @@ class ShipmentsController extends Controller
 
         }
         else{
+            $user_id = auth()->user()->id;
             $shipment->user_id = auth()->user()->id;
+            $user = User::find($user_id);
         }
         //User id code ends here
 
@@ -852,6 +855,17 @@ class ShipmentsController extends Controller
         $emaildata = $request;
         $shipmentid = $shipment->id;
         $pdf_data = $shipment;
+        if(request('payment_type') != null && request('payment_type') == 'accbal'){
+            if($user->account_balance != null){
+                $user->account_balance += $shipment->tot_load_cost;
+                $user->save();
+            }
+            else{
+              $user->account_balance = $shipment->tot_load_cost;  
+              $user->save();
+            } 
+        }
+        
         Mail::to('ship@fillstorship.com')->send(new ShipmentBookingMail($emaildata, $shipmentid));
         Mail::to(auth()->user()->email)->send(new CustomerShipmentBookingMail($emaildata));
         return response()->json($shipmentid);
