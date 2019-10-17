@@ -446,7 +446,7 @@
                             <tr>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->company_name}}</td>
-                                <td>{{$user->account_balance}}</td>
+                                <td>{{'$' . $user->account_balance}}</td>
                                 <td>
                                     <div style="margin-left: 40%">
                                         <a href="/makepayment/{{$user->id}}" class="float-left" style="margin-right:1%">
