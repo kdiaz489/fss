@@ -75,8 +75,8 @@ class AuthorizeController extends Controller
         $transactionRequestType = new AnetAPI\TransactionRequestType();
         $transactionRequestType->setShipTo($customerShippingAddress);
         $transactionRequestType->setTransactionType("authCaptureTransaction");
-        //$amount = (int)$request->quote;
-        $amount = 0.01;
+        $amount = (int)$request->quote;
+        //$amount = 0.01;
         $transactionRequestType->setAmount($amount);
         $transactionRequestType->setPayment($paymentOne);
         $transactionRequestType->setOrder($order);
