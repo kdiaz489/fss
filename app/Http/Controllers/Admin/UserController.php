@@ -33,6 +33,13 @@ class UserController extends Controller
         return redirect('/dashboard#allusers')->with('success', 'User has been updated');
     }
 
+    public function creditupdate(Request $request, $id){
+        $user = User::find($id);
+        $user->credit = $request->credit_status;
+        $user->save();
+        return redirect('/dashboard#allusers')->with('success', $user->name . "'s credit status has been updated to: ". $user->credit . ".");
+    }
+
 
     public function destroy($id){
 

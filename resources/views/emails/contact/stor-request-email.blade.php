@@ -3,80 +3,37 @@
 <br>
 See request details below. 
 
-<strong>work id: </strong> {{$data['id']}}
+
+<strong>User iD: </strong> {{$data['user_id']}}
 <br>
 
-<strong>user id: </strong> {{$data['user_id']}}
+<strong>Company: </strong> {{$data['company']}}
 <br>
 
-<strong>pro no: </strong> {{$data['pro_no']}}
+<strong>Order Name: </strong> {{$data['name']}}
 <br>
 
-<strong>pu no: </strong> {{$data['pu_no']}}
+<strong>Order Type: </strong> {{$data['order_type']}}
 <br>
 
-<strong>po no: </strong> {{$data['po_no']}}
+<strong>Barcode: </strong> {{$data['barcode']}}
 <br>
 
-<strong>barcode: </strong> {{$data['barcode']}}
+<strong>Carton Quantity: </strong> {{$data['carton_qty']}}
 <br>
 
-<strong>sku: </strong> {{$data['sku']}}
+<strong>Case Quantity: </strong> {{$data['case_qty']}}
 <br>
 
-<strong>description: </strong> {{$data['description']}}
+<strong>Kit Quantity: </strong> {{$data['kit_qty']}}
 <br>
 
-<strong>inb carton: </strong> {{$data['inb_carton']}}
+<strong>Unit Quantity: </strong> {{$data['unit_qty']}}
 <br>
 
-<strong>inb case: </strong> {{$data['inb_case']}}
+<strong>Total Quantity: </strong> {{$data['tot_qty']}}
 <br>
 
-<strong>inb item: </strong> {{$data['inb_item']}}
-<br>
-
-<strong>inb total quantity: </strong> {{$data['inb_tot_qty']}}
-<br>
-
-<strong>out bound carton: </strong> {{$data['out_carton']}}
-<br>
-
-<strong>out bound case: </strong> {{$data['out_case']}}
-<br>
-
-<strong>outbound item: </strong> {{$data['out_item']}}
-<br>
-
-<strong>outbound total quantity: </strong> {{$data['out_tot_qty']}}
-<br>
-
-<strong>eliminate carton: </strong> {{$data['elim_carton']}}
-<br>
-
-<strong>eliminate case: </strong> {{$data['elim_case']}}
-<br>
-
-<strong>eliminate item: </strong> {{$data['elim_item']}}
-<br>
-
-<strong>eliminate total quantity: </strong> {{$data['elim_tot_qty']}}
-<br>
-
-<strong>building: </strong> {{$data['building']}}
-<br>
-
-<strong>row: </strong> {{$data['row_']}}
-<br>
-
-<strong>column: </strong> {{$data['column_']}}
-<br>
-
-<strong>created at: </strong> {{$data['created_at']}}
-<br>
-
-<strong>updated at: </strong> {{$data['updated_at']}}
-<br>
 
 Thanks,<br>
 {{ config('app.name') }}

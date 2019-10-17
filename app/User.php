@@ -61,6 +61,18 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\StorageWork');
     }
 
+    public function basic_units(){
+        return $this->hasMany('App\Basic_Unit');
+    }
+
+    public function kits(){
+        return $this->hasMany('App\Kit');
+    }
+
+    public function orders(){
+        return $this->hasMany('App\Order');
+    }
+
     public function roles(){
         return $this->belongsToMany('App\Role');
     }

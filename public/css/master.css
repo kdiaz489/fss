@@ -463,6 +463,11 @@ label.error {
     border-bottom: 1px solid black;
   }
 
+  .container-border-radius{
+    border: solid 1px #dee2e6;
+    border-radius: 10px;
+  }
+
   input[type=checkbox] {
     transform: scale(1);
 }

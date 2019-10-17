@@ -36,6 +36,9 @@
                     <a class="nav-link" href="#inventoryrequests" role="tab" data-toggle="tab">Inventory Requests</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="#inventoryitems" role="tab" data-toggle="tab">Product Inventory</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="#account" role="tab" data-toggle="tab">Account</a>
                 </li>
             </ul>
@@ -56,7 +59,7 @@
     <!-- Flash Alerts Ends -->
 
 </div>
-<div class="container-fluid">
+<div class="container-fluid dashboard-container">
 
 
     <div class="row justify-content-center">
@@ -85,7 +88,7 @@
                                     @if(count($shipments) > 0)
                                     <table class="table table-bordered">
                                         <tr>
-                                            <th>Edit</th>
+                                            <th>Edit Status</th>
                                             <th>Shipment Status</th>
                                             <th>Shipment Origin</th>
                                             <th>Shipment Destination</th>
@@ -163,7 +166,8 @@
                                                     <tr>
                                                         <th scope="col">Name</th>
                                                         <th scope="col">Email</th>
-                                                        <th scope="col">Roles</th>
+                                                        <th scope="col">Access</th>
+                                                        <th scope="col">Credit</th>
                                                         <th scope="col">Actions</th>
                                                     </tr>
                                                 </thead>
@@ -174,8 +178,20 @@
                                                         <td>{{$user->email}}</td>
                                                         <td>{{implode(', ', $user->roles()->pluck('name')->toArray())}}</td>
                                                         <td>
+                                                    <form action=" /user/credit/update/{{$user->id}}" method="POST">
+                                                        @csrf
+                                                        {{method_field('PUT')}}
+                                                        <select name="credit_status">
+                                                            <option value="" selected disabled>{{$user->credit}}</option>
+                                                            <option value="Approved">Approved</option>
+                                                            <option value="Not Approved">Not Approved</option>
+                                                        </select>
+                                                            <button type="submit" style=" margin-left: 1.25rem;" class="btn btn-link text-success btn-sm">Update</button>
+                                                        </form>
+                                                        </td>
+                                                        <td>
                                                         <a href="{{ route('admin.users.edit', $user->id) }}" class="float-left">
-                                                            <button class="btn btn-link text-primary btn-sm" type="button">Edit Roles</button>
+                                                            <button class="btn btn-link text-primary btn-sm" type="button">Edit Access</button>
                                                         </a>
                                                     <form action="{{route('admin.users.destroy', $user->id) }}" method="POST" class="float-left">
                                                         @csrf
@@ -199,6 +215,181 @@
 
                                 <div role="tabpanel" class="tab-pane fade" id="inventoryrequests">
                                     
+
+                    <h1 class="display-4">All Kits</h1>
+                        @if(count($kits) > 0)
+                        <table class="table">
+                            <tr>
+                                
+                                <th>Kit Name</th>
+                                <th>Kit Sku</th>
+                                <th>Price</th>
+                                <th>Description</th>
+                                <th>Units</th>
+                                <th>Submitted On</th>
+                                <th>Updated On</th>
+                                
+                                <th></th>
+
+                            </tr>
+                            @foreach($kits as $kit)
+                            <tr>
+                                <td>{{$kit->kit_name}}</td>
+                                <td>{{$kit->kit_sku}}</td>
+                                <td>{{$kit->kit_price}}</td>
+                                <td>{{$kit->kit_desc}}</td>
+                                <td>
+                                    @foreach ($kit->basic_units as $unit)
+                                    <a href="/viewbasicunit/{{$unit->id}}"><span class="badge badge-secondary">{{$unit->sku}}</span></a>
+                                        
+                                        
+                                    @endforeach
+                                </td>
+                                <td>{{$kit->created_at->format('H:i:s m/d/y')}}</td>
+                                <td>{{$kit->updated_at->format('H:i:s m/d/y')}}</td>
+
+                                <td>
+                                    <div style="margin-left: 30%">
+                                        <a href="/editkit/{{$kit->id}}" class="float-left" style="margin-right:1%">
+                                            <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
+                                        </a>
+                                        <a href="/viewkit/{{$kit->id}}" class="float-left" style="margin-right:1%">
+                                            <button class="btn btn-link text-denim btn-sm" type="button">View</button>
+                                        </a>
+                                        <form action="/removekit/{{$kit->id}}" method="POST" class="float-left">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit" class="btn btn-link text-danger btn-sm">Remove</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </table>
+
+                        @else
+                        <p>You have no kits in your inventory.</p>
+                        @endif
+
+
+                    <h1 class="display-4">All Units</h1>
+                        @if(count($units) > 0)
+                        <table class="table">
+                            <tr>
+                                
+                                <th>Unit Name</th>
+                                <th>Unit Sku</th>
+                                <th>Price</th>
+                                <th>Description</th>
+                                <th>Weight</th>
+                                <th>Submitted On</th>
+                                <th>Updated On</th>
+                                
+                                <th></th>
+
+                            </tr>
+                            @foreach($units as $unit)
+                            <tr>
+                                <td>{{$unit->unit_name}}</td>
+                                <td>{{$unit->sku}}</td>
+                                <td>{{$unit->price}}</td>
+                                <td>{{$unit->description}}</td>
+                                <td>{{$unit->weight}}</td>
+                                <td>{{$unit->created_at->format('H:i:s m/d/y')}}</td>
+                                <td>{{$unit->updated_at->format('H:i:s m/d/y')}}</td>
+
+                                <td>
+                                    <div style="margin-left: 30%">
+                                        <a href="/editbasicunit/{{$unit->id}}" class="float-left" style="margin-right:1%">
+                                            <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
+                                        </a>
+                                        <a href="/viewbasicunit/{{$unit->id}}" class="float-left" style="margin-right:1%">
+                                            <button class="btn btn-link text-denim btn-sm" type="button">View</button>
+                                        </a>
+                                        <form action="/removebasicunit/{{$unit->id}}" method="POST" class="float-left">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit" class="btn btn-link text-danger btn-sm">Remove</button>
+                                        </form>
+                                    </div>
+                                </td>
+
+
+                            </tr>
+                            @endforeach
+                        </table>
+
+                        @else
+                        <p>You have no kits in your inventory.</p>
+                        @endif
+
+                        <h1 class="display-4">All Order Requests</h1>
+
+                        @if(count($orders) > 0)
+                        <table class="table">
+                            <tr>
+                                <th>Order Type</th>
+                                <th>Submitted On</th>
+                                <th>Order Name</th>
+                                <th>Description</th>
+                                <th>Kits in Order</th>
+                                <th>Kit Quantity</th>
+                                <th>Units in Order</th>
+                                <th>Unit Quantity</th>
+                                <th></th>
+
+                            </tr>
+                            @foreach($orders as $order)
+                            <tr>
+                                <td>{{$order->order_type}}</td>
+                                <td>{{$order->created_at->format('H:i:s m/d/y')}}</td>
+                                <td>{{$order->name}}</td>
+                                <td>{{$order->description}}</td>
+                                <td>
+                                    @foreach ($order->kits as $kit)
+                                        <a href="/viewkit/{{$kit->id}}"><span class="badge badge-secondary">{{$kit->kit_sku}}</span></a>
+                                    @endforeach
+                                </td>
+                                <td>{{$order->kit_qty}}</td>
+                                <td>
+                                    @foreach ($order->basic_units as $unit)
+                                        
+                                        <a href="/viewbasicunit/{{$unit->id}}"><span class="badge badge-secondary">{{$unit->sku}}</span></a>
+                                    @endforeach
+                                </td>
+                                <td>{{$order->unit_qty}}</td>
+
+                                <td>
+                                    <div style="margin-left: 30%">
+                                        @if ($order->order_type == 'Transfer In Kits')
+                                        <a href="/editorder/kit/{{$order->id}}" class="float-left" style="margin-right:1%">
+                                            <button class="btn btn-link text-denim btn-sm" type="button" >Edit</button>
+                                        </a>
+                                        @elseif($order->order_type == 'Transfer In Units')
+                                        <a href="/editorder/unit/{{$order->id}}" class="float-left" style="margin-right:1%">
+                                            <button class="btn btn-link text-denim btn-sm" type="button" >Edit</button>
+                                        </a>
+                                        @endif
+                                        <a href="/vieworder/{{$order->id}}" class="float-left" style="margin-right:1%">
+                                            <button class="btn btn-link text-denim btn-sm" type="button" >View</button>
+                                        </a>
+                                        <form action="/order/remove/{{$order->id}}" method="POST" class="float-left">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit" class="btn btn-link text-danger btn-sm">Remove</button>
+                                        </form>
+                                    </div>
+                                </td>
+
+
+                            </tr>
+                            @endforeach
+                        </table>
+
+                        @else
+                        <p>You have no orders for your inventory.</p>
+                        @endif
+
                                     <div class="container dashboard-container" >
                                         <h1 class="display-4">Inventory Requests</h1>
                                         <br>
@@ -211,6 +402,7 @@
                                                 <th style="padding-left:60px; padding-right:60px;">Edit</th>
                                                 <th style="padding-left:60px; padding-right:60px;">Data</th>
                                                 <th>work_status</th>
+                                                <th>work_type</th>
                                                 <th>company</th>
                                                 <th>user_id</th>
                                                 <th>sku</th>
@@ -263,6 +455,7 @@
                                                     </td>
                                                 <td style="padding-right:40px;">Pro #: {{$item->pro_no}} <br> Pu #: {{$item->pu_no}} <br> Po #: {{$item->po_no}} <br> Barcode: {{$item->barcode}}</td>
                                                 <td>{{$item->work_status}}</td>
+                                                <td>{{$item->work_type}}</td>
                                                 <td>{{$item->company}}</td>
                                                 <td>{{$item->user_id}}</td>
                                                 <td>{{$item->sku}}</td>
@@ -296,7 +489,76 @@
                                             <p>You have no requests.</p>
                                         @endif
                                 </div>
-                            </div>  
+                                    <br>
+
+
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane fade" id="inventoryitems">
+                                    <div class="container dashboard-container">
+                                        <h1 class="display-4">All Inventory Items</h1>
+                                        <br>
+                                        
+                                        <br>
+
+                                        @if(count($inventory) > 0)
+                                        <table class="table table-bordered" style="display: block; overflow-x: auto; white-space: nowrap;">
+                                            <tr>
+                                                <th style="padding-left:60px; padding-right:60px;">Actions</th>
+                                                <th style="padding-left:60px; padding-right:60px;">Data</th>
+                                                <th>company</th>
+                                                <th>product id</th>
+                                                <th>user_id</th>
+                                                <th>sku</th>
+                                                <th>barcode</th>
+                                                <th>description</th>
+                                                <th>Carton Quantity</th>
+                                                <th>Case Quantity</th>
+                                                <th>Item Quantity</th>
+                                                <th>building</th>
+                                                <th>row_</th>
+                                                <th>col_</th>
+                                                <th>created_at</th>
+                                                <th>updated_at</th>
+                                                
+                                                
+                                            </tr>
+                                            @foreach($inventory as $product)
+                                            <tr>
+                                                <td class="text-center" style="font-size:14px;">
+                                                    <a href="/stor/product/edit/{{$product->id}}">
+                                                        <button href="" class="btn btn-link text-denim">Edit Product</button>
+                                                    </a>
+                                                </td>
+                                                <td style="padding-right:40px;">Pro #: {{$product->pro_no}} <br> Pu #: {{$product->pu_no}} <br> Po #: {{$product->po_no}} <br> Barcode: {{$product->barcode}}</td>
+                                                <td>{{ $product->company}}</td>
+                                                <td>{{ $product->id}}</td>
+                                                <td>{{ $product->user_id}}</td>
+                                                <td>{{ $product->sku}}</td>
+                                                <td>{{$product->barcode}}</td>
+                                                <td>{{ $product->description}}</td>
+                                                <td>{{ $product->carton_qty}}</td>
+                                                <td>{{ $product->case_qty}}</td>
+                                                <td>{{ $product->item_qty}}</td>
+                                                <td>{{ $product->building}}</td>
+                                                <td>{{ $product->row_}}</td>
+                                                <td>{{ $product->col_}}</td>
+                                                <td>{{ $product->created_at->format('H:i:s m/d/y')}}</td>
+                                                <td>{{ $product->updated_at->format('H:i:s m/d/y')}}</td>
+                                                
+
+
+
+
+                                                </tr>
+                                            @endforeach
+                                        </table>
+                                        @else
+                                            <p>You have no products.</p>
+                                        @endif
+                                </div>
+                            </div>
+
                             <div role="tabpanel" class="tab-pane fade" id="account">
                                 <div class="container dashboard-container">
                                         <h1 class="display-4">Account Settings</h1>

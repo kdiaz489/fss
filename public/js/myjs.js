@@ -57,6 +57,7 @@ var shipmentid;
 
 $(document).ready(function () {
 
+ 
     $(document).ajaxStart(function () {
         $(".wait").css("display", "block");
     });
@@ -82,6 +83,9 @@ $(document).ready(function () {
     /**** Code for Dash board tabs ends ****/
 
 
+   $('.select_kit_skus').select2({
+        placeholder: 'Click to select'
+    });
 
 
     /**** Code for updating account info begins ****/

@@ -3,8 +3,8 @@
 @section('content')
 <div class="container" style="margin-top:2%; width:30%">
     <h1 class="display-4 text-center">Add to Inventory</h1>
-<form action="/stor/submitinventory" method="POST" id="submit-inventory" class="bg-whitewash" >
-<div class="container" style=" padding: 4%; width:90%">
+<form action="/stor/submitinventory" method="POST" id="submit-inventory" class="container-border-radius mt-5" >
+<div class="container " style=" padding: 4%; width:90%">
 
     <div class="form-row justify-content-center">
         <div class="col-6">
@@ -59,7 +59,7 @@
     <div class="form-row justify-content-center my-3">
 
             @csrf
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Add</button>
 
     
     </div>

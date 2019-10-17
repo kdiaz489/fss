@@ -1,9 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+
+<div class="container  mt-5" style="width:40%">
+    <h1 class=" display-4 text-center">Transfer Out Inventory</h1>
+</div>
+
 <div class="container" style="margin-top:2%; width:30%">
-    <h1 class=" display-5 text-center">Transfer Out Inventory</h1>
-<form action="/stor/submittransout" method="POST" class="bg-whitewash">
+<form action="/stor/submittransout" method="POST" class="container-border-radius">
     <div class="container" style=" margin-top: 5%; padding:4%; width:90%">
 
         <div class="form-row">

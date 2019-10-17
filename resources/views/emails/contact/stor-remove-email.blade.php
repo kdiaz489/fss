@@ -1,5 +1,5 @@
 @component('mail::message')
-# There has been a Storage Work Order Update.
+# A Storage Work Order for {{$data['company']}} had been cancelled.
 <br>
 See details below. 
 

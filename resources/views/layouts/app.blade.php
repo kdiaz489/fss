@@ -11,6 +11,9 @@
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="{{asset('js/app.js')}}"></script>
+    <script src="{{asset('js/myjs.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
     
 
     <!-- Favicon -->
@@ -31,6 +34,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/master.css') }}" rel="stylesheet">
     <link href="{{ asset('css/landingpage.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -40,10 +44,11 @@
             @yield('content')
         @include('inc.footer')
 
-    <script src="{{asset('js/app.js')}}"></script>
-    <script src="{{asset('js/myjs.js')}}"></script>
+
 
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+
+    
 </body>
 </html>

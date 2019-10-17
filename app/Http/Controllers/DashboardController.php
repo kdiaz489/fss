@@ -7,6 +7,10 @@ use App\User;
 use DB;
 use App\StorageWork;
 use App\Shipment;
+use App\Storage;
+use App\Kit;
+use App\Basic_Unit;
+use App\Order;
 
 class DashboardController extends Controller
 {
@@ -113,20 +117,31 @@ class DashboardController extends Controller
         $shipments = $user->shipments->sortKeysDesc();
         $storagework = $user->storagework->sortKeysDesc();
         $storage = $user->storage->sortKeysDesc();
+        $kits = $user->kits;
+         $orders = $user->orders->sortKeysDesc();
+        $basic_units = $user->basic_units;
         
         if($user->hasAnyRole('user')){
-            return view('dashboard')->with('shipments', $shipments)->with('storage', $storage)->with('storagework', $storagework);
+            return view('dashboard')->with('shipments', $shipments)->with('orders', $orders)->with('basic_units', $basic_units)->with('kits', $kits)->with('storage', $storage)->with('storagework', $storagework);
         }
         elseif($user->hasAnyRole('admin')){
             
             //DB version
+            $inventory = DB::select('SELECT * FROM stor_tbl');
             $storagework = DB::select('SELECT * FROM stor_wk_tbl');
             $shipments = DB::select('SELECT * FROM ship_wk_tbl');
+            $kits = DB::select('SELECT * FROM kit_tbl');
+            $units = DB::select('SELECT * FROM basic_unit_tbl');
+            $orders = DB::select('SELECT * FROM orders');
             //Eloquent Version
             //$posts = Post::orderBy('title', 'desc')->get();
-            $storagework = StorageWork::orderBy('created_at', 'desc')->paginate(10);
-            $shipments = Shipment::orderBy('created_at', 'desc')->paginate(10);
-            return view('admindashboard')->with('shipments', $user->shipments)->with('shipments', $shipments)->with('storagework', $storagework)->with('users', User::all());;
+            $storagework = StorageWork::orderBy('created_at', 'desc')->get();
+            $shipments = Shipment::orderBy('created_at', 'desc')->get();
+            $kits = Kit::orderBy('created_at', 'desc')->get();
+            $units = Basic_Unit::orderBy('created_at', 'desc')->get();
+            $orders = Order::orderBy('created_at', 'desc')->get();
+            $inventory = Storage::orderBy('company')->get();
+            return view('admindashboard')->with('inventory', $inventory)->with('kits', $kits)->with('units', $units)->with('orders', $orders)->with('shipments', $shipments)->with('storagework', $storagework)->with('users', User::all());;
         }
     }
 }

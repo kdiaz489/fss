@@ -636,10 +636,10 @@ class ShipmentsController extends Controller
          
         }
         if(request('prod_value') == '' || request('prod_value') == ' '){
-            $prod_desc = 'N/A';
+            $prod_value = 'N/A';
         }
         else{
-            $prod_desc = request('prod_value');
+            $prod_value = request('prod_value');
          
         }
         if(request('orig_cont_name') == ''){
@@ -655,10 +655,10 @@ class ShipmentsController extends Controller
             $orig_cont_phone = request('orig_cont_phone');
         }
         if(request('orig_cont_email') == ''){
-            $orig_cont_name = 'N/A';
+            $orig_cont_email = 'N/A';
         }
         else{
-            $orig_cont_name = request('orig_cont_email');
+            $orig_cont_email = request('orig_cont_email');
         }
         if(request('dest_cont_name') == ''){
             $dest_cont_name = 'N/A';
@@ -673,10 +673,10 @@ class ShipmentsController extends Controller
             $dest_cont_phone = request('dest_cont_phone');
         }
         if(request('dest_cont_email') == ''){
-            $dest_cont_name = 'N/A';
+            $dest_cont_email = 'N/A';
         }
         else{
-            $dest_cont_name = request('dest_cont_email');
+            $dest_cont_email = request('dest_cont_email');
         }
         //Blank Input Handler ends here
 
@@ -693,9 +693,9 @@ class ShipmentsController extends Controller
         $shipment->orig_city =request('orig_city');
         $shipment->orig_zip =request('orig_zip');
         $shipment->orig_state =request('orig_state');
-        $shipment->orig_cont_name =request('orig_cont_name');
-        $shipment->orig_cont_phone =request('orig_cont_phone');
-        $shipment->orig_cont_email =request('orig_cont_email');
+        $shipment->orig_cont_name = $orig_cont_name;
+        $shipment->orig_cont_phone =$orig_cont_phone;
+        $shipment->orig_cont_email =$orig_cont_email;
         $shipment->orig_pickup_date =request('orig_pickup_date');
         $shipment->orig_type =request('orig_type');
         $shipment->orig_dock =request('orig_dock');
@@ -710,9 +710,9 @@ class ShipmentsController extends Controller
         $shipment->dest_city =request('dest_city');
         $shipment->dest_zip =request('dest_zip');
         $shipment->dest_state =request('dest_state');
-        $shipment->dest_cont_name =request('dest_cont_name');
-        $shipment->dest_cont_phone=request('dest_cont_phone');
-        $shipment->dest_cont_email =request('dest_cont_email');
+        $shipment->dest_cont_name =$dest_cont_name;
+        $shipment->dest_cont_phone=$dest_cont_phone;
+        $shipment->dest_cont_email =$dest_cont_email;
         $shipment->dest_pickup_date =request('dest_pickup_date');
         $shipment->dest_type =request('dest_type');
         $shipment->dest_frklft =request('dest_frklft');
@@ -723,7 +723,7 @@ class ShipmentsController extends Controller
         $shipment->dest_notes =$dest_notes;
         $shipment->prod_type =request('prod_type');
         $shipment->prod_desc = $prod_desc;
-        $shipment->prod_value =request('prod_value');
+        $shipment->prod_value =$prod_value;
         $shipment->prod_hazard =request('prod_hazard');
         $shipment->prod_stackable =request('prod_stackable');
         $shipment->no_of_pallets =request('no_of_pallets');

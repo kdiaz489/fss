@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class StorRequestMail extends Mailable
+class StorRemoveMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -30,6 +30,6 @@ class StorRequestMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.contact.stor-request-email')->subject('Storage Order Request');
+        return $this->markdown('emails.contact.stor-remove-email')->subject('Inventory Removal Request');
     }
 }

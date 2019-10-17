@@ -73,7 +73,7 @@ class RegisterController extends Controller
             'state' => $data['state_address'],
             'zip' => $data['zip_address'],
             'email' => $data['email'],
-            'discount' => 0.30,
+            'discount' => 0.0,
             'credit' => 'Not Approved',
             'password' => Hash::make($data['password']),
         ]);

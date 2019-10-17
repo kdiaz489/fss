@@ -50,8 +50,12 @@ Route::get('/stor/{id}', 'StorageWorkController@show');
 Route::delete('/stor/{id}', 'StorageWorkController@destroy');
 Route::post('/stor/submittransout', 'StorageWorkController@storeTransOutInventory');
 Route::post('/stor/submitinventory', 'StorageWorkController@store');
-Route::put('/stor/cancel/{id}', 'StorageWorkController@cancelrequest');
+Route::put('/stor/remove/{id}', 'StorageWorkController@removeinventory');
 Route::post('/stor/calc', 'StorageController@calc');
+
+Route::get('/stor/user/show/{id}', 'StorageController@show');
+Route::get('/stor/product/edit/{id}', 'StorageController@edit')->middleware(['auth', 'auth.admin']);
+Route::put('/stor/product/update/{id}', 'StorageController@update')->middleware(['auth', 'auth.admin']);
 
 
 
@@ -64,6 +68,35 @@ Route::post('/fil/submitrequest', 'FulfillmentRequestsController@store');
 Route::get('/contact', 'ContactFormController@create');
 Route::post('/contact', 'ContactFormController@store');
 
+Route::get('/basicunit', 'BasicUnitsController@create');
+Route::post('/basicunit', 'BasicUnitsController@store');
+Route::get('/viewbasicunit/{id}', 'BasicUnitsController@show');
+Route::delete('/removebasicunit/{id}', 'BasicUnitsController@destroy');
+Route::get('/editbasicunit/{id}', 'BasicUnitsController@edit');
+Route::put('/updatebasicunit/{id}', 'BasicUnitsController@update');
+
+Route::get('/createkit', 'KitsController@create');
+Route::get('/viewkit/{id}', 'KitsController@show');
+Route::post('createkit', 'KitsController@store');
+Route::delete('/removekit/{id}', 'KitsController@destroy');
+Route::get('/editkit/{id}', 'KitsController@edit');
+Route::put('/editkit/{id}', 'KitsController@update');
+
+
+Route::get('/transinkit', 'OrdersController@create');
+Route::get('/vieworder/{id}', 'OrdersController@show');
+Route::get('/transoutkit', 'OrdersController@create_transout_kit');
+Route::get('/transoutunit', 'OrdersController@create_transout_unit');
+Route::post('/transinkit', 'OrdersController@store');
+Route::post('/transoutkit', 'OrdersController@store_transout_kit');
+Route::post('/transoutunit', 'OrdersController@store_transout_unit');
+Route::delete('/order/remove/{id}', 'OrdersController@destroy');
+Route::get('/editorder/kit/{id}', 'OrdersController@edit');
+Route::put('/updateorder/kit/{id}', 'OrdersController@update');
+Route::get('/transinunit', 'OrdersController@create_unit_order');
+Route::post('/transinunit', 'OrdersController@store_unit_order');
+Route::get('/editorder/unit/{id}', 'OrdersController@edit_unit_order');
+Route::put('/updateorder/unit/{id}', 'OrdersController@update_unit_order');
 
 
 Route::resource('posts', 'PostsController');
@@ -99,8 +132,9 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
     Route::resource('/users', 'UserController', ['except' => ['show', 'create', 'store']]);
     Route::get('/impersonate/user/{id}', 'ImpersonateController@index')->name('impersonate');
 
-});
 
+});
+Route::put('/user/credit/update/{id}', 'Admin\UserController@creditupdate');
 Route::get('/Admin/impersonate/destroy', 'Admin\ImpersonateController@destroy')->name('admin.impersonate.destroy');
 
 Auth::routes();

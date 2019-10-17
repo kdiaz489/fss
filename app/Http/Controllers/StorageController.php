@@ -32,7 +32,104 @@ class StorageController extends Controller
     public function show($id)
     {
         $storage = Storage::find($id);
-        return view('storage.show')->with('storage', $storage);
+        return view('storage.showuserinventory')->with('storage', $storage);
+    }
+
+    public function edit($id){
+        $product = Storage::find($id);
+        return view('admin.storage.editproduct')->with('product', $product);
+    }
+
+    public function update(Request $request, $id){
+        $product = Storage::find($id);
+        if($request->pro_no != '' || $request->pro_no != NULL){
+            $product->pro_no = $request->pro_no;    
+        }
+        else{
+            $product->pro_no = ' ';
+        }
+
+        if($request->pu_no != '' || $request->pu_no != NULL){
+            $product->pu_no= $request->pu_no;    
+        }
+        else{
+            $product->pu_no = ' ';
+        }
+
+        if($request->po_no != '' || $request->po_no != NULL){
+            $product->po_no= $request->po_no;    
+        }
+        else{
+            $product->po_no = ' ';
+        }
+
+        if($request->sku != '' || $request->sku != NULL){
+           $product->sku = $request->sku;    
+        }
+        else{
+            $product->sku = ' ';
+        }
+
+        if($request->barcode != '' || $request->barcode != NULL){
+           $product->barcode = $request->barcode;    
+        }
+        else{
+            $product->sku = ' ';
+        }
+
+        if($request->description != '' || $request->description != NULL){
+           $product->description = $request->description;    
+        }
+        else{
+            $product->description = ' ';
+        }
+             
+        if($request->carton_qty != '' || $request->carton_qty != NULL){
+           $product->carton_qty = $request->carton_qty;    
+        }
+        else{
+            $product->carton_qty = ' ';
+        }
+        
+        if($request->case_qty != '' || $request->case_qty != NULL){
+           $product->case_qty = $request->case_qty;   
+        }
+        else{
+            $product->case_qty = ' ';
+        }     
+        
+        if($request->item_qty != '' || $request->item_qty != NULL){
+           $product->item_qty = $request->item_qty; 
+        }
+        else{
+            $product->item_qty = ' ';
+        } 
+
+        if($request->building != '' || $request->building != NULL){
+           $product->building = $request->building; 
+        }
+        else{
+            $product->building = ' ';
+        }    
+        
+        if($request->row_ != '' || $request->row_ != NULL){
+           $product->row_ = $request->row_;
+        }
+        else{
+            $product->row_ = ' ';
+        }
+
+        if($request->col_ != '' || $request->col_ != NULL){
+           $product->col_ = $request->col_;
+        }
+        else{
+            $product->col_ = ' ';
+        }
+                
+        $product->save();
+
+        return redirect('/dashboard')->with('success', 'Success. Details for product ID# ' . $product->id . ' have been updated.');
+
     }
 
     public function destroy($id)
@@ -41,6 +138,7 @@ class StorageController extends Controller
         $storage->delete();
         return redirect('/dashboard')->with('success', 'Inventory Request Cancelled');
     }
+
 
     public function findRate($numPallets){
         $rate=0;
@@ -135,7 +233,6 @@ class StorageController extends Controller
 
 
         //return redirect('/ship')->with('success', 'Shipment Request Sent');
-        //dd($palletGo, $charges);
         //Mail::to('ship@fillstorship.com')->send(new StorRequestMail($emaildata));
         //Mail::to(auth()->user()->email)->send(new CustomerStorRequestMail($emaildata));
         return redirect('/dashboard')->with('success', 'Storage Request Sent');
