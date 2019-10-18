@@ -104,7 +104,7 @@ Route::resource('posts', 'PostsController');
 Auth::routes(['verify' =>true]);
 
 // The part that is commented out allows us to force the user to verify their email address
-Route::get('/dashboard', 'DashboardController@index')/*->middleware('verified')*/;
+Route::get('/dashboard', 'DashboardController@index')->middleware('verified');
 Route::get('/updateusername', 'DashboardController@getupdateusername');
 Route::get('/updateemail', 'DashboardController@getupdateemail');
 Route::get('/updatepass', 'DashboardController@getupdatepass');
