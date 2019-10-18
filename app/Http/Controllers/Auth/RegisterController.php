@@ -75,6 +75,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'discount' => 0.0,
             'credit' => 'Not Approved',
+            'account_balance' => '0.0',
             'password' => Hash::make($data['password']),
         ]);
 

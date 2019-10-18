@@ -431,7 +431,7 @@
 
                         
 
-                        @if($user->account_balance != null)
+                        
                         <h1 class="display-4">Account Balance</h1>
                         <br>
                         <br>
@@ -457,9 +457,7 @@
                             </tr>
                             
                         </table>
-                        @else
-                        
-                        @endif
+                       
 
                             <h1 class="display-4">Account Settings</h1>
                             <br>
