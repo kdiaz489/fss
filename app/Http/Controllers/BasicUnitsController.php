@@ -126,8 +126,10 @@ class BasicUnitsController extends Controller
     {
         //
         $basic_unit = Basic_Unit::find($id);
+        $basic_unit->orders()->detach();
+        $basic_unit->cases()->detach();
         $basic_unit->delete();
-        return redirect('/dashboard#inventoryrequests')->with('success', 'You have successfully deleted product');
+        return back()->with('success', 'You have successfully deleted product');
 
     }
 }

@@ -99,17 +99,17 @@
 
                         <div class=" col-lg-4 col-12">
                             <label>Contact Name</label>
-                            <input type="text" class="form-control form-control-sm required" id="orig_cont_name" name="orig_cont_name" placeholder="Name">
+                            <input type="text" class="form-control form-control-sm" id="orig_cont_name" name="orig_cont_name" placeholder="Name">
                         </div>
 
                         <div class=" col-lg-4 col-12">
                             <label> Contact E-mail</label>
-                            <input type="email" class="form-control form-control-sm required" id="orig_cont_email" name="orig_cont_email" placeholder="E-mail">
+                            <input type="email" class="form-control form-control-sm" id="orig_cont_email" name="orig_cont_email" placeholder="E-mail">
                         </div>
 
                         <div class=" col-lg-4 col-12">
                             <label>Contact Phone</label>
-                            <input type="text" class="form-control form-control-sm required" id="orig_cont_phone" name="orig_cont_phone" placeholder="Phone Number">
+                            <input type="text" class="form-control form-control-sm" id="orig_cont_phone" name="orig_cont_phone" placeholder="Phone Number">
                         </div>
 
                     </div>
@@ -307,17 +307,17 @@
             
                                     <div class="col-lg-4 col-12">
                                         <label>Contact Name</label>
-                                        <input type="text" class="form-control form-control-sm required" id="dest_cont_name" name="dest_cont_name" placeholder="Name">
+                                        <input type="text" class="form-control form-control-sm" id="dest_cont_name" name="dest_cont_name" placeholder="Name">
                                     </div>
             
                                     <div class="col-lg-4 col-12">
                                         <label> Contact E-mail</label>
-                                        <input type="email" class="form-control form-control-sm required" id="dest_cont_email" name="dest_cont_email" placeholder="E-mail">
+                                        <input type="email" class="form-control form-control-sm" id="dest_cont_email" name="dest_cont_email" placeholder="E-mail">
                                     </div>
             
                                     <div class="col-lg-4 col-12">
                                         <label>Contact Phone</label>
-                                        <input type="text" class="form-control form-control-sm required" id="dest_cont_phone" name="dest_cont_phone" placeholder="Phone Number">
+                                        <input type="text" class="form-control form-control-sm" id="dest_cont_phone" name="dest_cont_phone" placeholder="Phone Number">
                                     </div>
             
                                 </div>

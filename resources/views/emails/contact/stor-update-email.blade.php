@@ -1,5 +1,7 @@
 @component('mail::message')
-# There has been a Storage Work Order Update.
+# There has been an update on your Inventory Request.
+<br>
+Order Status: {{$data['status']}}
 <br>
 See details below. 
 

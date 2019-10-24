@@ -139,7 +139,9 @@
                                                 style="margin-right:1%">
                                                 <button class="btn btn-link btn-sm" type="button">View</button>
                                             </a>
-
+                                            <a href="/pdf/{{$shipment->id}}" class="float-left" style="margin-right:1%">
+                                                <button class="btn btn-link text-denim btn-sm" type="button">Export PDF</button>
+                                            </a>
                                             <form action="/ship/{{$shipment->id}}" method="POST" class="float-left">
                                                 @method('DELETE')
                                                 @csrf
@@ -175,6 +177,7 @@
                                         <th scope="col">Name</th>
                                         <th scope="col">Email</th>
                                         <th scope="col">Access</th>
+                                        <th cole="col"> Account Balance</th>
                                         <th scope="col">Credit</th>
                                         <th scope="col">Actions</th>
                                     </tr>
@@ -185,6 +188,16 @@
                                         <td>{{$user->name}}</td>
                                         <td>{{$user->email}}</td>
                                         <td>{{implode(', ', $user->roles()->pluck('name')->toArray())}}</td>
+                                                                                <td>
+                                            <form action="/user/accbal/update/{{$user->id}}" method="POST">
+                                                @csrf
+                                                {{method_field('PUT')}}
+                                                <input type="text" name="accbal" class="text-center" style="width:40%" value="{{$user->account_balance}}">
+                                                <button type="submit" style=" margin-left: 1.25rem;"
+                                                    class="btn btn-link text-success btn-sm">Update</button>
+                                            </form>
+                                        </td>
+                                        <td>
                                         <td>
                                             <form action=" /user/credit/update/{{$user->id}}" method="POST">
                                                 @csrf
@@ -227,6 +240,94 @@
 
                     <div role="tabpanel" class="tab-pane fade" id="inventoryrequests">
 
+
+                        <h1 class="display-4">All Order Requests</h1>
+
+                        @if(count($orders) > 0)
+                        <table class="table">
+                            <tr>
+                                <th>Status</th>
+                                <th>Order Type</th>
+                                <th>Submitted On</th>
+                                <th>Order Name</th>
+                                <th>Description</th>
+                                <th>Kits in Order</th>
+                                <th>Kit Quantity</th>
+                                <th>Units in Order</th>
+                                <th>Unit Quantity</th>
+                                <th></th>
+
+                            </tr>
+                            @foreach($orders as $order)
+                            <tr>
+                                <td>
+                                        <form action=" /order/update/{{$order->id}}" method="POST">
+                                            @csrf
+                                            {{method_field('PUT')}}
+                                            <select name="status" id="" class="">
+                                                <option value="" selected disabled>Choose</option>
+                                                <option value="Completed">Completed</option>
+                                                <option value="In Progress">In Progress</option>
+                                                <option value="Cancelled">Cancelled</option>
+                                            </select>
+
+                                            <button type="submit" style=" margin-left: 1.25rem;"
+                                                class="btn btn-link btn-sm">Update</button>
+                                        </form>
+                                </td>
+                                <td>{{$order->order_type}}</td>
+                                <td>{{$order->created_at->format('H:i:s m/d/y')}}</td>
+                                <td>{{$order->name}}</td>
+                                <td>{{$order->description}}</td>
+                                <td>
+                                    @foreach ($order->kits as $kit)
+                                    <a href="/viewkit/{{$kit->id}}"><span
+                                            class="badge badge-secondary">{{$kit->kit_sku}}</span></a>
+                                    @endforeach
+                                </td>
+                                <td>{{$order->kit_qty}}</td>
+                                <td>
+                                    @foreach ($order->basic_units as $unit)
+
+                                    <a href="/viewbasicunit/{{$unit->id}}"><span
+                                            class="badge badge-secondary">{{$unit->sku}}</span></a>
+                                    @endforeach
+                                </td>
+                                <td>{{$order->unit_qty}}</td>
+
+                                <td>
+                                    <div style="margin-left: 30%">
+                                        @if ($order->order_type == 'Transfer In Kits')
+                                        <a href="/editorder/kit/{{$order->id}}" class="float-left"
+                                            style="margin-right:1%">
+                                            <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
+                                        </a>
+                                        @elseif($order->order_type == 'Transfer In Units')
+                                        <a href="/editorder/unit/{{$order->id}}" class="float-left"
+                                            style="margin-right:1%">
+                                            <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
+                                        </a>
+                                        @endif
+                                        <a href="/vieworder/{{$order->id}}" class="float-left" style="margin-right:1%">
+                                            <button class="btn btn-link text-denim btn-sm" type="button">View</button>
+                                        </a>
+                                        <form action="/order/remove/{{$order->id}}" method="POST" class="float-left">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit"
+                                                class="btn btn-link text-danger btn-sm">Remove</button>
+                                        </form>
+                                    </div>
+                                </td>
+
+
+                            </tr>
+                            @endforeach
+                        </table>
+
+                        @else
+                        <p>You have no orders for your inventory.</p>
+                        @endif
 
                         <h1 class="display-4">All Kits</h1>
                         @if(count($kits) > 0)
@@ -340,77 +441,6 @@
                         <p>You have no kits in your inventory.</p>
                         @endif
 
-                        <h1 class="display-4">All Order Requests</h1>
-
-                        @if(count($orders) > 0)
-                        <table class="table">
-                            <tr>
-                                <th>Order Type</th>
-                                <th>Submitted On</th>
-                                <th>Order Name</th>
-                                <th>Description</th>
-                                <th>Kits in Order</th>
-                                <th>Kit Quantity</th>
-                                <th>Units in Order</th>
-                                <th>Unit Quantity</th>
-                                <th></th>
-
-                            </tr>
-                            @foreach($orders as $order)
-                            <tr>
-                                <td>{{$order->order_type}}</td>
-                                <td>{{$order->created_at->format('H:i:s m/d/y')}}</td>
-                                <td>{{$order->name}}</td>
-                                <td>{{$order->description}}</td>
-                                <td>
-                                    @foreach ($order->kits as $kit)
-                                    <a href="/viewkit/{{$kit->id}}"><span
-                                            class="badge badge-secondary">{{$kit->kit_sku}}</span></a>
-                                    @endforeach
-                                </td>
-                                <td>{{$order->kit_qty}}</td>
-                                <td>
-                                    @foreach ($order->basic_units as $unit)
-
-                                    <a href="/viewbasicunit/{{$unit->id}}"><span
-                                            class="badge badge-secondary">{{$unit->sku}}</span></a>
-                                    @endforeach
-                                </td>
-                                <td>{{$order->unit_qty}}</td>
-
-                                <td>
-                                    <div style="margin-left: 30%">
-                                        @if ($order->order_type == 'Transfer In Kits')
-                                        <a href="/editorder/kit/{{$order->id}}" class="float-left"
-                                            style="margin-right:1%">
-                                            <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
-                                        </a>
-                                        @elseif($order->order_type == 'Transfer In Units')
-                                        <a href="/editorder/unit/{{$order->id}}" class="float-left"
-                                            style="margin-right:1%">
-                                            <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
-                                        </a>
-                                        @endif
-                                        <a href="/vieworder/{{$order->id}}" class="float-left" style="margin-right:1%">
-                                            <button class="btn btn-link text-denim btn-sm" type="button">View</button>
-                                        </a>
-                                        <form action="/order/remove/{{$order->id}}" method="POST" class="float-left">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button type="submit"
-                                                class="btn btn-link text-danger btn-sm">Remove</button>
-                                        </form>
-                                    </div>
-                                </td>
-
-
-                            </tr>
-                            @endforeach
-                        </table>
-
-                        @else
-                        <p>You have no orders for your inventory.</p>
-                        @endif
                         <!--
                                     <div class="container dashboard-container" >
                                         <h1 class="display-4">Inventory Requests</h1>

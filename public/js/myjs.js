@@ -91,6 +91,10 @@ $(document).ready(function () {
     });
 
 
+
+
+
+
     /**** Code for updating account info begins ****/
 
 
@@ -589,6 +593,13 @@ $(document).ready(function () {
                     });
                 });
         }
+        else{
+
+            $('html, body').animate({
+                scrollTop: ($('.error:visible').offset().top - 300)
+            }, 2000);
+        }
+        
 
 
     });
@@ -646,6 +657,13 @@ $(document).ready(function () {
                 });
 
         }
+        else{
+
+            $('html, body').animate({
+                scrollTop: ($('.error:visible').offset().top - 300)
+            }, 1000);
+        }
+        
     });
 
 

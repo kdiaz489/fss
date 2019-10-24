@@ -53,32 +53,6 @@
             </tr>
 
             <tr>
-                <th scope="row">Carton Quantity</th>
-                <td>{{$order->carton_qty}}</td>
-            </tr>
-
-            <tr>
-                <th scope="row">Case Quantity</th>
-                <td>{{$order->case_qty}}</td>
-            </tr>
-
-            <tr>
-                <th scope="row">Kit Quantity</th>
-                <td>{{$order->kit_qty}}</td>
-            </tr>
-
-
-            <tr>
-                <th scope="row">Kits in Order</th>
-                <td>
-                    @foreach ($order->kits as $kit)
-                    <a href="/viewkit/{{$kit->id}}"><span
-                            class="badge badge-secondary">{{'Kit Sku: ' . $kit->kit_sku}}</span></a>
-                    @endforeach
-                </td>
-            </tr>
-
-            <tr>
                 <th scope="row">Unit Quantity</th>
                 <td>{{$order->unit_qty}}</td>
             </tr>
@@ -102,6 +76,41 @@
                 </td>
             </tr>
 
+            <tr>
+                <th scope="row">Kit Quantity</th>
+                <td>{{$order->kit_qty}}</td>
+            </tr>
+
+
+            <tr>
+                <th scope="row">Kits in Order</th>
+                <td>
+                    @foreach ($order->kits as $kit)
+                    <a href="/viewkit/{{$kit->id}}"><span
+                            class="badge badge-secondary">{{'Kit Sku: ' . $kit->kit_sku}}</span></a>
+                    @endforeach
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row">Case Quantity</th>
+                <td>{{$order->case_qty}}</td>
+            </tr>
+
+            <tr>
+                <th scope="row">Cases in Order</th>
+                <td>
+                    @foreach ($order->cases as $case)
+                    <a href="/viewcase/{{$case->id}}"><span
+                            class="badge badge-secondary">{{'Case Sku: ' . $case->sku}}</span></a>
+                    @endforeach
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row">Carton Quantity</th>
+                <td>{{$order->carton_qty}}</td>
+            </tr>
         </tbody>
     </table>
 

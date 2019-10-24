@@ -130,6 +130,7 @@
                         <div class="dropdown-menu bg-whitewash" aria-labelledby="btnGroupDrop1">
                             <a class="dropdown-item" href="/transinunit">Units</a>
                             <a class="dropdown-item" href="/transinkit">Kits</a>
+                            <a class="dropdown-item" href="/transincase">Cases</a>
                         </div>
                     </div>
 
@@ -138,27 +139,153 @@
                         <button id="btnGroupDrop1" type="button" class="btn bg-frenchblue text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Transfer Out
                         </button>
-                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <div class="dropdown-menu bg-whitewash" aria-labelledby="btnGroupDrop1">
                             <a class="dropdown-item" href="/transoutunit">Units</a>
                             <a class="dropdown-item" href="/transoutkit">Kits</a>
+                            <a class="dropdown-item" href="/transoutcase">Cases</a>
                         </div>
                     </div>
 
-                        <a href="/basicunit" class="btn btn-primary bg-denim float-right"><i class="fas fa-plus"></i> Add Unit</a>
-                        <a href="/createkit" class="btn btn-primary bg-denim float-right mr-2"><i class="fas fa-plus"></i> Add Kit</a>
-                        
+
+                    <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn bg-denim text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-plus"></i> Add
+                        </button>
+                        <div class="dropdown-menu bg-whitewash" aria-labelledby="btnGroupDrop1">
+                            <a class="dropdown-item" href="/basicunit">Units</a>
+                            <a class="dropdown-item" href="/createkit">Kits</a>
+                            <a class="dropdown-item" href="/createcase">Cases</a>
+                        </div>
+                    </div>
+
                         <br>
                         <br>
 
+                        <h1 class="display-4">Orders</h1>
+
+                        @if(count($orders) > 0)
+                        <table class="table">
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Order Type</th>
+                                <th>Submitted On</th>
+                                <th>Order Name</th>
+                                <th>Description</th>
+                                
+                                
+                                
+                                <th>Unit Quantity</th>
+                                <th></th>
+
+                            </tr>
+                            @foreach($orders as $order)
+                            <tr>
+                                <td>{{str_pad($order->id, 6, '0', STR_PAD_LEFT)}}</td>
+                                <td>{{$order->order_type}}</td>
+                                <td>{{$order->created_at->format('H:i:s m/d/y')}}</td>
+                                <td>{{$order->name}}</td>
+                                <td>{{$order->description}}</td>
+                                <td>{{$order->unit_qty}}</td>
+
+                                <td>
+                                    <div style="margin-left: 10%">
+                                        
+                                        <a href="/vieworder/{{$order->id}}" class="float-left" style="margin-right:1%">
+                                            <button class="btn btn-link text-denim btn-sm" type="button" >View</button>
+                                        </a>
+                                        <form action="/order/remove/{{$order->id}}" method="POST" class="float-left">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit" class="btn btn-link text-danger btn-sm">Remove</button>
+                                        </form>
+                                    </div>
+                                </td>
+
+
+                            </tr>
+                            @endforeach
+                        </table>
+
+                        @else
+                        <p>You have no orders for your inventory.</p>
+                        @endif
+
+                    <h1 class="display-4">Cases</h1>
+
+                        @if(count($cases) > 0)
+                        <table class="table">
+                            <tr>
+                                
+                                <th>Case Name</th>
+                                <th>Case Sku</th>
+                                <th>Description</th>
+                                <th>Case Qty</th>
+                                <th>Carton Qty</th>
+                                <th>Pallet Qty</th>
+                                <th>Units in Case</th>
+                                <th>Submitted On</th>
+                                <th>Updated On</th>
+                                
+                                <th></th>
+
+                            </tr>
+                            @foreach($cases as $case)
+                            <tr>
+                                <td>{{$case->case_name}}</td>
+                                <td>{{$case->sku}}</td>
+                                <td>{{$case->description}}</td>
+                                <td>{{$case->case_qty}}</td>
+                                <td>{{$case->carton_qty}}</td>
+                                <td>{{$case->pallet_qty}}</td>
+                                
+                                <td>
+                                    @foreach ($case->basic_units as $unit)
+                                    <a href="/viewbasicunit/{{$unit->id}}"><span class="badge badge-secondary">{{$unit->sku}}</span></a>
+                                        
+                                        
+                                    @endforeach
+                                </td>
+                                <td>{{$case->created_at->format('H:i:s m/d/y')}}</td>
+                                <td>{{$case->updated_at->format('H:i:s m/d/y')}}</td>
+
+                                <td>
+                                    <div style="margin-left: 30%">
+                                        <a href="/editcase/{{$case->id}}" class="float-left" style="margin-right:1%">
+                                            <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
+                                        </a>
+                                        <a href="/viewcase/{{$case->id}}" class="float-left" style="margin-right:1%">
+                                            <button class="btn btn-link text-denim btn-sm" type="button">View</button>
+                                        </a>
+                                        
+                                        <form action="/removecase/{{$case->id}}" method="POST" class="float-left">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit" class="btn btn-link text-danger btn-sm">Remove</button>
+                                        </form>
+                                        
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </table>
+
+                        @else
+                        <p>You have no cases in your inventory.</p>
+                        @endif
+
+
                     <h1 class="display-4">Kits</h1>
+
                         @if(count($kits) > 0)
                         <table class="table">
                             <tr>
                                 
                                 <th>Kit Name</th>
                                 <th>Kit Sku</th>
-                                <th>Value</th>
                                 <th>Description</th>
+                                <th>Kit Qty</th>
+                                <th>Case Qty</th>
+                                <th>Cartson Qty</th>
                                 <th>Units</th>
                                 <th>Submitted On</th>
                                 <th>Updated On</th>
@@ -170,8 +297,11 @@
                             <tr>
                                 <td>{{$kit->kit_name}}</td>
                                 <td>{{$kit->kit_sku}}</td>
-                                <td>{{$kit->kit_price}}</td>
                                 <td>{{$kit->kit_desc}}</td>
+                                <td>{{$kit->kit_qty}}</td>
+                                <td>{{$kit->case_qty}}</td>
+                                <td>{{$kit->carton_qty}}</td>
+                                
                                 <td>
                                     @foreach ($kit->basic_units as $unit)
                                     <a href="/viewbasicunit/{{$unit->id}}"><span class="badge badge-secondary">{{$unit->sku}}</span></a>
@@ -207,8 +337,6 @@
                         <p>You have no kits in your inventory.</p>
                         @endif
 
-                        <br>
-                        <br>
 
                     <h1 class="display-4">Units</h1>
                         @if(count($basic_units) > 0)
@@ -217,11 +345,14 @@
                                 
                                 <th>Unit Name</th>
                                 <th>Unit Sku</th>
-                                <th>Value</th>
                                 <th>Description</th>
-                                <th>Weight</th>
-                                <th>Submitted On</th>
-                                <th>Updated On</th>
+                                <th>Loose Item Qty</th>
+                                <th>Kit Qty</th>
+                                <th>Case Qty</th>
+                                <th>Carton Qty</th>
+                                <th>Total Quantity</th>
+                                
+                                
                                 
                                 <th></th>
 
@@ -230,11 +361,16 @@
                             <tr>
                                 <td>{{$unit->unit_name}}</td>
                                 <td>{{$unit->sku}}</td>
-                                <td>{{$unit->price}}</td>
-                                <td>{{$unit->description}}</td>
-                                <td>{{$unit->weight}}</td>
+                                <td>{{$unit->desc}}</td>
+                                <td>{{$unit->loose_item_qty}}</td>
+                                <td>{{$unit->kit_qty}}</td>
+                                <td>{{$unit->case_qty}}</td>
+                                <td>{{$unit->carton_qty}}</td>
+                                <td>{{$unit->total_qty}}</td>
+                                <!--
                                 <td>{{$unit->created_at->format('H:i:s m/d/y')}}</td>
                                 <td>{{$unit->updated_at->format('H:i:s m/d/y')}}</td>
+                                -->
 
                                 <td>
                                     <div style="margin-left: 30%">
@@ -265,82 +401,7 @@
                         <br>
                         <br>
 
-                        <h1 class="display-4">Orders</h1>
 
-                        @if(count($orders) > 0)
-                        <table class="table">
-                            <tr>
-                                <th>Order Type</th>
-                                <th>Submitted On</th>
-                                <th>Order Name</th>
-                                <th>Description</th>
-                                <th>Kits in Order</th>
-                                <th>Kit Quantity</th>
-                                <th>Units in Order</th>
-                                <th>Unit Quantity</th>
-                                <th></th>
-
-                            </tr>
-                            @foreach($orders as $order)
-                            <tr>
-                                <td>{{$order->order_type}}</td>
-                                <td>{{$order->created_at->format('H:i:s m/d/y')}}</td>
-                                <td>{{$order->name}}</td>
-                                <td>{{$order->description}}</td>
-                                <td>
-                                    @foreach ($order->kits as $kit)
-                                        <a href="/viewkit/{{$kit->id}}"><span class="badge badge-secondary">{{$kit->kit_sku}}</span></a>
-                                    @endforeach
-
-                                </td>
-                                <td>{{$order->kit_qty}}</td>
-                                <td>
-                                    @foreach ($order->basic_units as $unit)
-                                        
-                                        <a href="/viewbasicunit/{{$unit->id}}"><span class="badge badge-secondary">{{$unit->sku}}</span></a>
-                                    @endforeach
-
-                                    @foreach ($order->kits as $kit)
-                                    @if ($kit->basic_units != null)
-                                        @foreach($kit->basic_units as $unit)
-                                        <a href="/viewbasicunit/{{$unit->id}}"><span class="badge badge-secondary">{{$unit->sku}}</span></a>      
-                                        @endforeach  
-                                    @endif
-                                    @endforeach
-
-                                </td>
-                                <td>{{$order->unit_qty}}</td>
-
-                                <td>
-                                    <div style="margin-left: 30%">
-                                        @if ($order->order_type == 'Transfer In Kits')
-                                        <a href="/editorder/kit/{{$order->id}}" class="float-left" style="margin-right:1%">
-                                            <button class="btn btn-link text-denim btn-sm" type="button" >Edit</button>
-                                        </a>
-                                        @elseif($order->order_type == 'Transfer In Units')
-                                        <a href="/editorder/unit/{{$order->id}}" class="float-left" style="margin-right:1%">
-                                            <button class="btn btn-link text-denim btn-sm" type="button" >Edit</button>
-                                        </a>
-                                        @endif
-                                        <a href="/vieworder/{{$order->id}}" class="float-left" style="margin-right:1%">
-                                            <button class="btn btn-link text-denim btn-sm" type="button" >View</button>
-                                        </a>
-                                        <form action="/order/remove/{{$order->id}}" method="POST" class="float-left">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button type="submit" class="btn btn-link text-danger btn-sm">Remove</button>
-                                        </form>
-                                    </div>
-                                </td>
-
-
-                            </tr>
-                            @endforeach
-                        </table>
-
-                        @else
-                        <p>You have no orders for your inventory.</p>
-                        @endif
                         <!--
                         <h1 class="display-4">Orders in Process</h1>
                         <br>

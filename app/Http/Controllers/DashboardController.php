@@ -120,9 +120,10 @@ class DashboardController extends Controller
         $kits = $user->kits;
         $orders = $user->orders->sortKeysDesc();
         $basic_units = $user->basic_units;
+        $cases = $user->cases->sortkeysDesc();
         
         if($user->hasAnyRole('user')){
-            return view('dashboard')->with('shipments', $shipments)->with('user', $user)->with('orders', $orders)->with('basic_units', $basic_units)->with('kits', $kits)->with('storage', $storage)->with('storagework', $storagework);
+            return view('dashboard')->with('shipments', $shipments)->with('cases', $cases)->with('user', $user)->with('orders', $orders)->with('basic_units', $basic_units)->with('kits', $kits)->with('storage', $storage)->with('storagework', $storagework);
         }
         elseif($user->hasAnyRole('admin')){
             

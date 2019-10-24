@@ -74,8 +74,6 @@ class KitsController extends Controller
      */
     public function show($id)
     {
-        //
-
         $kit = Kit::find($id);
         $user_id = $kit->user_id;
         $user = User::find($user_id);
@@ -144,7 +142,7 @@ class KitsController extends Controller
     {
         $kit = Kit::find($id);
 
-
+        $kit->detach();
         $kit->delete();
         return redirect('/dashboard#inventoryrequests')->with('success', 'Kit has been Removed.');
     }

@@ -97,6 +97,13 @@ Route::get('/transinunit', 'OrdersController@create_unit_order');
 Route::post('/transinunit', 'OrdersController@store_unit_order');
 Route::get('/editorder/unit/{id}', 'OrdersController@edit_unit_order');
 Route::put('/updateorder/unit/{id}', 'OrdersController@update_unit_order');
+Route::post('dynamic-field/insert', 'OrdersController@insert')->name('dynamic-field.insert');
+Route::post('/transoutunit', 'OrdersController@store_transout_unit');
+Route::get('/transincase', 'OrdersController@create_transin_case');
+Route::post('/transincase', 'OrdersController@store_transin_case');
+Route::get('/transoutcase', 'OrdersController@create_transout_case');
+Route::post('/transoutcase', 'OrdersController@store_transout_case');
+Route::put('/order/update/{id}', 'OrdersController@updatestatus');
 
 
 Route::resource('posts', 'PostsController');
@@ -125,6 +132,14 @@ Route::post('/checkout', 'AuthorizeController@chargeCreditCard');
 Route::get('/makepayment/{id}', 'AuthorizeController@makepaymentform');
 Route::post('/makeapayment', 'AuthorizeController@makepayment');
 
+Route::get('/createcase', 'CasesController@create');
+Route::get('/viewcase/{id}', 'CasesController@show');
+Route::post('/createcase', 'CasesController@store');
+Route::get('editcase/{id}', 'CasesController@edit');
+Route::put('/updatecase/{id}', 'CasesController@update');
+Route::delete('/removecase/{id}', 'CasesController@destroy');
+
+
 Route::get('/admin', function(){
     return 'You are an admin';
 })->middleware(['auth', 'auth.admin']);
@@ -137,6 +152,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
 
 });
 Route::put('/user/credit/update/{id}', 'Admin\UserController@creditupdate');
+Route::put('/user/accbal/update/{id}', 'Admin\UserController@accountbalanceupdate');
 Route::get('/Admin/impersonate/destroy', 'Admin\ImpersonateController@destroy')->name('admin.impersonate.destroy');
 
 Auth::routes();

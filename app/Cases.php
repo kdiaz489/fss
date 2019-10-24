@@ -3,9 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-class Basic_Unit extends Model
-{
-    protected $table = 'basic_unit_tbl';
+class Cases extends Model{
+    protected $table = 'cases';
 
     public $primaryKey = 'id';
 
@@ -16,12 +15,12 @@ class Basic_Unit extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function kits(){
-        return $this->belongsToMany('App\Kit')->withTimestamps();
+    public function basic_units(){
+        return $this->belongsToMany('App\Basic_Unit')->withPivot('quantity')->withTimestamps();
     }
 
-    public function cases(){
-        return $this->belongsToMany('App\Cases')->withPivot('quantity')->withTimestamps();
+    public function kits(){
+        return $this->belongsToMany('App\Kit')->withTimestamps();
     }
 
     public function orders(){

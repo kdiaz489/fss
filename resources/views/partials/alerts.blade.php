@@ -19,3 +19,11 @@
     </div>
     
 @endif
+
+@if(session('error'))
+    
+    <div class=" alert alert-warning text-center" role="alert">
+        {{session('error')}}
+    </div>
+    
+@endif

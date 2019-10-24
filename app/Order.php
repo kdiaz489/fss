@@ -23,7 +23,10 @@ class Order extends Model
         return $this->belongsToMany('App\Kit')->withTimestamps();
     }
 
+    public function cases(){
+        return $this->belongsToMany('App\Cases')->withPivot('quantity')->withTimestamps();
+    }
     public function basic_units(){
-       return $this->belongsToMany('App\Basic_Unit')->withTimestamps();
+       return $this->belongsToMany('App\Basic_Unit')->withPivot('quantity')->withTimestamps();
     }
 }

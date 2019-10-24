@@ -41,6 +41,30 @@
                   <td>{{$basic_unit->description}}</td>
               </tr>
 
+              <tr>
+                  <th scope="row">Weight</th>
+                  <td>{{$basic_unit->weight}}</td>
+              </tr>
+
+              <tr>
+                  <th scope="row">Loose Item Quantity</th>
+                  <td>{{$basic_unit->loose_item_qty}}</td>
+              </tr>
+
+              <tr>
+                  <th scope="row">Kit Qty</th>
+                  <td>{{$basic_unit->kit_qty}}</td>
+              </tr>
+
+              <tr>
+                  <th scope="row">Case Quantity</th>
+                  <td>{{$basic_unit->case_qty}}</td>
+              </tr>
+
+              <tr>
+                  <th scope="row">Carton Quantity</th>
+                  <td>{{$basic_unit->carton_qty}}</td>
+              </tr>
 
             </tbody>
           </table>
