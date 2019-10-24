@@ -9,7 +9,7 @@
 
     <!-- Flash Alerts Ends -->
 
-    <h1 class="display-4 text-center">Create Product</h1>
+    <h1 class="display-4 text-center">Create Unit</h1>
 
     
         <form action="/basicunit" method="POST">
@@ -42,7 +42,7 @@
             <div class="form-row justify-content-center mb-3">
 
                 <div class="col-md-3">
-                    <label for="price">Price</label>
+                    <label for="price">Value</label>
                     <input type="text" name="price" class="form-control form-control-sm" value="{{ old('price')}}" placeholder="$ USD">
 
                 </div>

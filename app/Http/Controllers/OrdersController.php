@@ -64,15 +64,6 @@ class OrdersController extends Controller
             $unit_qty = $request->unit_qty;
             $total_units = 0;
 
-            for($y = 0; $y < count($unit_qty); $y++){
-                $unit = Basic_Unit::find($units[$y]);
-                if($unit_qty[$y] > $unit->loose_item_qty ){
-                    return response()->json([
-                        'error'  => 'Quantity input greater than quantity at hand. Please provide valid value.'
-                    ]);
-            }
-        }
-
             for($i = 0; $i < count($units); $i++){
                 $total_units += $unit_qty[$i];
                 $data = array(

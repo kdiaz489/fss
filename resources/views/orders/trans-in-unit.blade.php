@@ -45,7 +45,7 @@
                                 <table class="table table-bordered table-striped" id="user_table">
                                     <thead>
                                         <tr>
-                                            <th width="35%">Unit Sk</th>
+                                            <th width="35%">Unit Sku</th>
                                             <th width="35%">Quantity</th>
                                             <th width="30%">Action</th>
                                         </tr>
@@ -126,12 +126,14 @@
                     {
                         if(data.error)
                         {
+                            /*
                             var error_html = '';
                             for(var count = 0; count < data.error.length; count++)
                             {
                                 error_html += '<p>'+data.error[count]+'</p>';
                             }
-                            $('#result').html('<div class="alert alert-danger text-center">'+error_html+'</div>');
+                            */
+                            $('#result').html('<div class="alert alert-danger text-center">'+data.error+'</div>');
                         }
                         else
                         {
