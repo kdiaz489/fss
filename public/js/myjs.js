@@ -597,7 +597,7 @@ $(document).ready(function () {
 
             $('html, body').animate({
                 scrollTop: ($('.error:visible').offset().top - 300)
-            }, 2000);
+            }, 1000);
         }
         
 
