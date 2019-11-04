@@ -7,6 +7,7 @@ use App\Kit;
 use App\Basic_Unit;
 use App\User;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
 
 class KitsController extends Controller
 {
@@ -31,7 +32,7 @@ class KitsController extends Controller
         $user = User::find($user_id);
         $basic_units =  $user->basic_units->sortKeysDesc();
         $kits = $user->kits;
-        return view('orders.create-kit')->with('basic_units', $basic_units)->with('kits', $kits);
+        return view('orders.create-kit')->with('units', $basic_units)->with('kits', $kits);
     }
 
     /**
@@ -43,27 +44,76 @@ class KitsController extends Controller
     public function store(Request $request)
     {
 
-         $request->validate([
-            
-            'kit_sku'=> ['required',
-                        Rule::unique('kit_tbl')->where(function ($query){
-                            return $query->where('user_id', auth()->user()->id);
-                        })],
-            'kit_price' => 'nullable',
-            'kit_name' => 'required',
-            'kit_desc' => 'nullable',
-            
-        ]);       
+        if ($request->ajax()) {
 
-        $kit = new Kit();
-        $kit->kit_name = $request->kit_name;
-        $kit->user_id = auth()->user()->id;
-        $kit->kit_price = $request->kit_price;
-        $kit->kit_sku = $request->kit_sku;
-        $kit->kit_desc = $request->kit_desc;
-        $kit->save();
-        $kit->basic_units()->sync($request->units);
-        return redirect('/createkit')->with('success', 'Kit has been created.');
+
+            /**
+             * Establishes rules for form
+             * Items, item quantity and pallet quantity are required
+             * If rules are not met, json error is returned to the form
+             */
+
+            
+            $rules = array(
+                'items.*'  => 'required',
+                'item_qty.*'  => 'required',
+                'type.*' => 'required',
+                
+            );
+
+            $error = Validator::make($request->all(), $rules);
+            if ($error->fails()) {
+                return response()->json([
+                    'error'  => $error->errors()->all()
+                ]);
+            }
+
+
+            /**
+             * If request passes validation, Pallet object is initiated and attributes are set
+             */
+            $kit = new Kit();
+            $kit->kit_name = $request->kit_name;
+            $kit->user_id = auth()->user()->id;
+            $kit->company = auth()->user()->company_name;
+            $kit->sku = $request->sku;
+            $kit->description = $request->desc;
+            $kit->save();
+
+
+            /**
+             * 
+             * Form arrays are saved into local variables
+             * 
+             */
+            $items = $request->items;
+            $types = $request->type;
+            $item_qty = $request->item_qty;
+
+
+            /**
+             * Conditional statements check for the type of items that were submitted to the form
+             * Checks for Unit, Kit, Case, if condition is met then create an object based on the item type and attached to the $pallet
+             */
+            for ($i = 0; $i < count($types); $i++) {
+                if ($types[$i] == 'Unit') { 
+                    /*
+                    $data = array(
+                        'basic__unit_id' => $items[$i],
+                        'quantity' => $item_qty[$i]
+                    );
+                    $unit_data[] = $data;
+                    */
+                    $kit->basic_units()->attach(['basic__unit_id' => $items[$i]], ['quantity' => $item_qty[$i]]);
+
+
+                 }
+            }
+            return response()->json([
+                'success'  => 'Kit submitted successfully.'
+            ]);
+        }
+
     }
 
     /**
@@ -97,7 +147,7 @@ class KitsController extends Controller
         $user = User::find($user_id);
         $basic_units = $user->basic_units->sortKeysDesc();
        
-        return view('orders.edit-kit')->with('kit', $kit)->with('basic_units', $basic_units);
+        return view('orders.edit-kit')->with('kit', $kit)->with('units', $basic_units);
     }
 
     /**
@@ -142,8 +192,8 @@ class KitsController extends Controller
     {
         $kit = Kit::find($id);
 
-        $kit->detach();
+        $kit->basic_units()->detach();
         $kit->delete();
-        return redirect('/dashboard#inventoryrequests')->with('success', 'Kit has been Removed.');
+        return redirect()->back()->with('success', 'Kit has been removed.');
     }
 }

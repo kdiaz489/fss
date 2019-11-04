@@ -17,11 +17,15 @@ class Basic_Unit extends Model
     }
 
     public function kits(){
-        return $this->belongsToMany('App\Kit')->withTimestamps();
+        return $this->belongsToMany('App\Kit')->withPivot('quantity')->withTimestamps();
     }
 
     public function cases(){
         return $this->belongsToMany('App\Cases')->withPivot('quantity')->withTimestamps();
+    }
+
+    public function pallets(){
+        return $this->belongsToMany('App\Pallet')->withPivot('quantity')->withTimestamps();
     }
 
     public function orders(){

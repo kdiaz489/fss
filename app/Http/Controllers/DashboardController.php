@@ -11,6 +11,8 @@ use App\Storage;
 use App\Kit;
 use App\Basic_Unit;
 use App\Order;
+use App\Pallet;
+use App\Cases;
 
 class DashboardController extends Controller
 {
@@ -35,7 +37,7 @@ class DashboardController extends Controller
         $user = User::find($user_id);
         $user->user_name = request('username');
         $user->save();
-        return redirect('/dashboard#account')->with('success', 'Updated User Name');
+        return redirect()->back()->with('success', 'Updated User Name');
     }
 
     public function updateemail(){
@@ -43,7 +45,7 @@ class DashboardController extends Controller
         $user = User::find($user_id);
         $user->email = request('email');
         $user->save();
-        return redirect('/dashboard#account')->with('success', 'Updated Username');
+        return redirect()->back()->with('success', 'Updated Username');
     }
 
     public function updatecompanyname(){
@@ -51,7 +53,7 @@ class DashboardController extends Controller
         $user = User::find($user_id);
         $user->company_name = request('company-name');
         $user->save();
-        return redirect('/dashboard#account')->with('success', 'Updated Company Name');
+        return redirect()->back()->with('success', 'Updated Company Name');
     }
 
     public function updatecontactname(){
@@ -59,7 +61,7 @@ class DashboardController extends Controller
         $user = User::find($user_id);
         $user->name = request('contact-name');
         $user->save();
-        return redirect('/dashboard#account')->with('success', 'Updated Contact Name');
+        return redirect()->back()->with('success', 'Updated Contact Name');
     }
 
     public function updateaddress(){
@@ -70,7 +72,7 @@ class DashboardController extends Controller
         $user->state = request('state');
         $user->zip = request('zip');
         $user->save();
-        return redirect('/dashboard#account')->with('success', 'Updated Company Address');
+        return redirect()->back()->with('success', 'Updated Company Address');
     }
 
     public function getadduser(){
@@ -106,11 +108,53 @@ class DashboardController extends Controller
 
         return view('dashboard.editaddress');
     }
+     
+    public function getuserdashinventory(){
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+        $kits = $user->kits;
+        $orders = $user->orders->sortKeysDesc();
+        $basic_units = $user->basic_units->sortKeysDesc();
+        $cases = $user->cases->sortkeysDesc();
+        $pallets = $user->pallets->sortkeysdesc();
+        return view('userdash.dash-inventory')->with('pallets', $pallets)->with('cases', $cases)->with('orders', $orders)->with('basic_units', $basic_units)->with('kits', $kits);
+    }
+
+    public function getuserdashaccount(){
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+        return view('userdash.dash-account')->with('user', $user);
+    }
+
+    public function getadminusers(){
+
+        return view('admindash.dash-all-user')->with('users', User::all());
+    }
+
+    public function getadminaccount(){
+
+        return view('admindash.dash-account');
+    }
+
+    public function getadmininventory(){
+
+        $units = DB::select('SELECT * FROM basic_unit_tbl');
+        $kits = DB::select('SELECT * FROM kit_tbl');
+        $cases = DB::select('SELECT * FROM cases');
+        $pallets = DB::select('SELECT * FROM pallets');
+        $orders = DB::select('SELECT * FROM orders');
+
+        $units = Basic_Unit::orderBy('created_at', 'desc')->get();
+        $kits = Kit::orderBy('created_at', 'desc')->get();
+        $cases = Cases::orderBy('created_at', 'desc')->get();
+        $pallets = Pallet::orderBy('created_at', 'desc')->get();
+        $orders = Order::orderBy('created_at', 'desc')->get();
+
+        return view('admindash.dash-all-inventory')->with('units', $units)->with('kits', $kits)->with('cases', $cases)->with('pallets', $pallets)->with('orders', $orders);
+    }
 
     public function index()
     {
-
-
 
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
@@ -121,9 +165,10 @@ class DashboardController extends Controller
         $orders = $user->orders->sortKeysDesc();
         $basic_units = $user->basic_units;
         $cases = $user->cases->sortkeysDesc();
-        
+        $pallets = $user->pallets->sortkeysdesc();
+
         if($user->hasAnyRole('user')){
-            return view('dashboard')->with('shipments', $shipments)->with('cases', $cases)->with('user', $user)->with('orders', $orders)->with('basic_units', $basic_units)->with('kits', $kits)->with('storage', $storage)->with('storagework', $storagework);
+            return view('userdash.dash-shipments')->with('shipments', $shipments);
         }
         elseif($user->hasAnyRole('admin')){
             
@@ -143,7 +188,7 @@ class DashboardController extends Controller
             $orders = Order::orderBy('created_at', 'desc')->get();
             $inventory = Storage::orderBy('company')->get();
             
-            return view('admindashboard')->with('inventory', $inventory)->with('kits', $kits)->with('units', $units)->with('orders', $orders)->with('shipments', $shipments)->with('storagework', $storagework)->with('users', User::all());;
+            return view('admindash.dash-all-ship')->with('shipments', $shipments);
         }
     }
 }

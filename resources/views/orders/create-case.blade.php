@@ -19,6 +19,12 @@
         </div>
         
     </div>
+        <div class="form-row justify-content-center">
+        <div class="col-md-8">
+            @csrf <a onclick="history.back()" class="btn btn-link text-frenchblue px-0" ><i class="fas fa-long-arrow-alt-left"></i> Go Back</a>
+        </div>
+        
+    </div>
     
     <div class="form-row justify-content-center mb-4">
         <div class="col-md-4">
@@ -48,6 +54,7 @@
                 <thead>
                     <tr>
                         <th width="35%">Unit Sku</th>
+                        <th width="30%">Type</th>
                         <th width="35%">Quantity</th>
                         <th width="30%">Action</th>
                     </tr>
@@ -57,11 +64,10 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="2" align="right">&nbsp;</td>
+                        <td colspan="3" align="right">&nbsp;</td>
                         <td>
-                            @csrf
-                            <a onclick="history.back()" class="btn btn-link text-frenchblue" ><i class="fas fa-long-arrow-alt-left"></i> Go Back</a>
-                            <input type="submit" name="save" id="save" class="btn btn-primary bg-denim btn-sm" value="Submit">
+                        
+                        <input type="submit" name="save" id="save" class="btn btn-link text-denim" value="Submit">
                         </td>
                     </tr>
                 </tfoot>
@@ -82,10 +88,12 @@
 
         function dynamic_field(number){
             html = '<tr>';
-            html += '<td><select name="units[]" class="form-control form-control-sm select_kit_skus" multiple="multiple" placeholder="Click to Select Kits">'
-            html += '@if (count($units) > 0) @foreach ($units as $unit)<option value="{{$unit->id}}">{{$unit->sku . ' - ' . $unit->unit_name}}</option>@endforeach @else<option value="" disabled>No Kits Available</option> @endif </select>'
-            html += '</td>';
-            html += '<td><input type="text" name="unit_qty[]" class="form-control" /></td>';
+            html += '<td><select name="items[]" class="form-control form-control-sm select_kit_skus" multiple="multiple" placeholder="Click to Select Kits">'
+            html += '@if (count($units) > 0) @foreach ($units as $unit)<option value="{{$unit->id}}">{{$unit->sku . ' - ' . $unit->unit_name}}</option>@endforeach @else<option value="" disabled>No Kits Available</option> @endif '
+            html += '@if (count($kits) > 0) @foreach ($kits as $kit)<option value="{{$kit->id}}">{{$kit->sku . ' - ' . $kit->kit_name}}</option>@endforeach @else<option value="" disabled>No Kits Available</option> @endif '
+            html += '</select></td>';
+            html += '<td><select name="types[]" id="type" class="form-control form-control-sm"><option value="Kit">Kit</option><option value="Unit">Unit</option></select></td>'
+            html += '<td><input type="text" name="item_qty[]" class="form-control" /></td>';
             if(number > 1)
             {
                 html += '<td><button type="button" name="remove" id="" class="btn btn-link text-danger remove">Remove</button></td></tr>';
@@ -94,7 +102,7 @@
             }
             else
             {   
-                html += '<td><button type="button" name="add" id="add" class="btn btn-link text-success">Add</button></td></tr>';
+                html += '<td><button type="button" name="add" id="add" class="btn btn-link text-success add">Add</button></td></tr>';
                 $('.form_inventory').html(html);
             }
             $('.select_kit_skus').select2({

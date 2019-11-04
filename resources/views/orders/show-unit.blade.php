@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container" style="margin-top: 2%">
-    <a href="/dashboard#inventoryrequests" class="btn btn-link text-frenchblue" style="margin-right:2%"><i class="fas fa-long-arrow-alt-left"></i> Go Back</a>
+    <a onclick="history.back()" class="btn btn-link text-frenchblue" style="margin-right:2%"><i class="fas fa-long-arrow-alt-left"></i> Go Back</a>
 
     <br>
     <br>
@@ -64,6 +64,11 @@
               <tr>
                   <th scope="row">Carton Quantity</th>
                   <td>{{$basic_unit->carton_qty}}</td>
+              </tr>
+
+              <tr>
+                  <th scope="row">Pallet Quantity</th>
+                  <td>{{$basic_unit->pallet_qty}}</td>
               </tr>
 
             </tbody>

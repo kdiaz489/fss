@@ -19,6 +19,10 @@
                                         <span class="" id="result"></span>
                                     </div>
                                 </div>
+
+                                <div class="form-row px-0">
+                                    <a onclick="history.back()" class="btn btn-link text-frenchblue" style="margin-right:2%"><i class="fas fa-long-arrow-alt-left"></i> Go Back</a>
+                                </div>
                                 
 
                                 <div class="form-row justify-content-center mb-4">
@@ -62,7 +66,8 @@
                                         <tr>
                                             <td colspan="2" align="right">&nbsp;</td>
                                             <td>
-
+                                                @csrf
+                                                <input type="submit" name="save" id="save" class="btn btn-primary bg-denim btn-sm" value="Submit">
                                             </td>
                                         </tr>
                                     </tfoot>
@@ -80,7 +85,7 @@
         var count = 1;
         dynamic_field(count);
 
-
+/*
         function dynamic_field(number){
             html = '<tr>';
             html += '<td><select name="cases[]" class="form-control form-control-sm select_kit_skus" multiple="multiple" placeholder="Click to Select Kits">'
@@ -102,6 +107,31 @@
             $('.select_kit_skus').select2({
                 placeholder: 'Click to select',
                 maximumSelectionLength: 1
+            });
+        }
+        */
+
+        function dynamic_field(number){
+            html = '<tr>';
+            html += '<td><select name="cases[]" class="form-control form-control-sm select_skus">'
+            html += '@if (count($cases) > 0) @foreach ($cases as $case)<option value="{{$case->id}}">{{$case->sku . ' - ' . $case->case_name}}</option>@endforeach @else<option value="" disabled>No Pallets Available</option> @endif </select>'
+            html += '</td>';
+            html += '<td><input type="text" name="case_qty[]" class="form-control" /></td>';
+            if(number > 1)
+            {
+                html += '<td><button type="button" name="remove" id="" class="btn btn-link text-danger remove">Remove</button></td></tr>';
+                
+                $('.form_inventory').append(html);
+            }
+            else
+            {   
+                html += '<td>\
+                        <button type="button" name="add" id="add" class="btn btn-link text-success">Add</button>\
+                        </td></tr>';
+                $('.form_inventory').html(html);
+            }
+            $('.select_skus').select2({
+                placeholder: 'Click to select cases'
             });
         }
 

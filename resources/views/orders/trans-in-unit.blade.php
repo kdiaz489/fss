@@ -16,6 +16,10 @@
                             <form id="dynamic_form" method="POST">
                                 <span class="" id="result"></span>
 
+                                <div class="form-row px-0">
+                                    <a onclick="history.back()" class="btn btn-link text-frenchblue" style="margin-right:2%"><i class="fas fa-long-arrow-alt-left"></i> Go Back</a>
+                                </div>
+
                                 <div class="form-row justify-content-center mb-4">
                                     <div class="col-md-6">
                                         <label for="unit_name">Order Name</label>
@@ -57,7 +61,8 @@
                                         <tr>
                                             <td colspan="2" align="right">&nbsp;</td>
                                             <td>
-                                                
+                                                @csrf
+                                                <input type="submit" name="save" id="save" class="btn btn-primary bg-denim btn-sm" value="Submit">
                                             </td>
                                         </tr>
                                     </tfoot>
@@ -74,7 +79,7 @@
         var count = 1;
         dynamic_field(count);
 
-
+        /*
         function dynamic_field(number){
             html = '<tr>';
             html += '<td><select name="units[]" class="form-control form-control-sm select_kit_skus" multiple="multiple" placeholder="Click to Select Kits">'
@@ -98,6 +103,32 @@
                 maximumSelectionLength: 1
             });
         }
+        */
+
+
+        function dynamic_field(number){
+            html = '<tr>';
+            html += '<td><select name="units[]" class="form-control form-control-sm select_skus">'
+            html += '@if (count($units) > 0) @foreach ($units as $unit)<option value="{{$unit->id}}">{{$unit->sku . ' - ' . $unit->unit_name}}</option>@endforeach @else<option value="" disabled>No Unit Available</option> @endif </select>'
+            html += '</td>';
+            html += '<td><input type="text" name="unit_qty[]" class="form-control" /></td>';
+            if(number > 1)
+            {
+                html += '<td><button type="button" name="remove" id="" class="btn btn-link text-danger remove">Remove</button></td></tr>';
+                
+                $('.form_inventory').append(html);
+            }
+            else
+            {   
+                html += '<td>\
+                        <button type="button" name="add" id="add" class="btn btn-link text-success">Add</button>\
+                        </td></tr>';
+                $('.form_inventory').html(html);
+            }
+            $('.select_skus').select2({
+                placeholder: 'Click to select cases'
+            });
+        }
 
 
 
@@ -115,7 +146,7 @@
         $('#dynamic_form').on('submit', function(event){
                 event.preventDefault();
                 $.ajax({
-                    url:'{{ route("dynamic-field.insert") }}',
+                    url:'/transinunit',
                     method:'post',
                     data:$(this).serialize(),
                     dataType:'json',
@@ -137,7 +168,7 @@
                         }
                         else
                         {
-                            dynamic_field(1);
+                            //dynamic_field(1);
                             $('#result').html('<div class="alert alert-success text-center">'+data.success+'</div>');
 
                         }

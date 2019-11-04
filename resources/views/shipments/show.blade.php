@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container" style="margin-top: 2%">
-    <a href="/dashboard" class="btn btn-outline-secondary">Go Back</a>
+    <a onclick="history.back()" class="btn btn-outline-secondary">Go Back</a>
 
     <br>
     <br>

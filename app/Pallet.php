@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Kit extends Model
+class Pallet extends Model
 {
-    protected $table = 'kit_tbl';
+    protected $table = 'pallets';
 
     public $primaryKey = 'id';
 
@@ -21,15 +21,16 @@ class Kit extends Model
         return $this->belongsToMany('App\Basic_Unit')->withPivot('quantity')->withTimestamps();
     }
 
-    public function cases(){
-        return $this->belongsToMany('App\Cases')->withPivot('quantity')->withTimestamps();
+    public function kits(){
+        return $this->belongsToMany('App\Kit')->withPivot('quantity')->withTimestamps();
     }
 
-    public function pallets(){
-        return $this->belongsToMany('App\Pallet')->withPivot('quantity')->withTimestamps();
+    public function cases(){
+        return $this->belongsToMany('App\Cases')->withPivot('quantity')->withTimeStamps();
     }
 
     public function orders(){
         return $this->belongsToMany('App\Order')->withPivot('quantity')->withTimestamps();
     }
+
 }

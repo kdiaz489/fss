@@ -15,12 +15,15 @@ class Order extends Model
     public $timestamps = true;
 
     public function user(){
-        //Post has a relationship with a user and belongs to this user.
         return $this->belongsTo('App\User');
     }
 
+    public function pallets(){
+        return $this->belongsToMany('App\Pallet')->withPivot('quantity')->withTimestamps();
+    }
+
     public function kits(){
-        return $this->belongsToMany('App\Kit')->withTimestamps();
+        return $this->belongsToMany('App\Kit')->withPivot('quantity')->withTimestamps();
     }
 
     public function cases(){

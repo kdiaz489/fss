@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container" style="margin-top: 2%">
-    <a href="/dashboard#inventoryrequests" class="btn btn-link text-frenchblue" style="margin-right:2%"><i
+    <a onclick="history.back()" class="btn btn-link text-frenchblue" style="margin-right:2%"><i
             class="fas fa-long-arrow-alt-left"></i> Go Back</a>
 
     <br>
@@ -65,12 +65,23 @@
                             class="badge badge-secondary">{{'Unit Sku: ' . $unit->sku}}</span></a>
                     @endforeach
 
-                    @foreach ($order->kits as $kit)
-                        @if ($kit->basic_units != null)
-                            @foreach($kit->basic_units as $unit)
+                    @foreach ($order->pallets as $pallet)
+                        @if ($pallet->basic_units != null)
+                            @foreach($pallet->basic_units as $unit)
                                 <a href="/viewbasicunit/{{$unit->id}}"><span class="badge badge-secondary">{{'Unit Sku: ' . $unit->sku}}</span></a>
                             @endforeach
                         @endif
+
+                        @if ($pallet->cases != null)
+                            @foreach($pallet->cases as $case)
+                                @if ($case->basic_units != null)
+                                    @foreach ($case->basic_units as $unit)
+                                        <a href="/viewbasicunit/{{$unit->id}}"><span class="badge badge-secondary">{{'Unit Sku: ' . $unit->sku}}</span></a>
+                                    @endforeach
+                                @endif
+                            @endforeach
+                        @endif
+
                     @endforeach
 
                 </td>
@@ -87,7 +98,7 @@
                 <td>
                     @foreach ($order->kits as $kit)
                     <a href="/viewkit/{{$kit->id}}"><span
-                            class="badge badge-secondary">{{'Kit Sku: ' . $kit->kit_sku}}</span></a>
+                            class="badge badge-secondary">{{'Kit Sku: ' . $kit->sku}}</span></a>
                     @endforeach
                 </td>
             </tr>
@@ -100,17 +111,38 @@
             <tr>
                 <th scope="row">Cases in Order</th>
                 <td>
-                    @foreach ($order->cases as $case)
-                    <a href="/viewcase/{{$case->id}}"><span
-                            class="badge badge-secondary">{{'Case Sku: ' . $case->sku}}</span></a>
+                    @foreach ($order->pallets as $pallet)
+                        @if ($pallet->cases != null)
+                            @foreach ($pallet->cases as $case)
+                                <a href="/viewcase/{{$case->id}}"><span
+                                        class="badge badge-secondary">{{'Case Sku: ' . $case->sku}}</span></a>
+                            @endforeach
+                        @endif
                     @endforeach
                 </td>
             </tr>
 
             <tr>
-                <th scope="row">Carton Quantity</th>
-                <td>{{$order->carton_qty}}</td>
+                <th scope="row">Pallet Quantity</th>
+                <td>{{$order->pallet_qty}}</td>
             </tr>
+
+            <tr>
+                <th scope="row">Pallets in Order</th>
+                <td>
+                    @if ($order->pallets != null)
+
+                        @foreach ($order->pallets as $pallet)
+
+                                <a href="/viewpallet/{{$pallet->id}}"><span
+                                        class="badge badge-secondary">{{'Pallet Sku: ' . $pallet->sku}}</span></a>
+                            
+                        @endforeach
+                        
+                    @endif
+                </td>
+            </tr>
+
         </tbody>
     </table>
 

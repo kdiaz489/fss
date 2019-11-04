@@ -541,7 +541,7 @@ class ShipmentsController extends Controller
     {
         $shipment = Shipment::find($id);
         $shipment->delete();
-        return redirect('/dashboard')->with('success', 'Shipment Request Cancelled');
+        return redirect()->back()->with('success', 'Shipment request has been cancelled.');
     }
 
     public function edit($id){
@@ -562,7 +562,7 @@ class ShipmentsController extends Controller
         //dd($useremail);
         Mail::to($useremail)->send(new ShipUpdateMail($shipment));
         Mail::to('ship@fillstorship.com')->send(new ShipUpdateMail($shipment));
-        return redirect('/dashboard#allshipments')->with('success', 'Shipment has been updated');
+        return redirect()->back()->with('success', 'Shipment has been updated');
     }
 
     public function cancelrequest(Request $request, $id){
@@ -574,7 +574,7 @@ class ShipmentsController extends Controller
         $useremail = $useremail->email;
         Mail::to($useremail)->send(new ShipUpdateMail($shipment));
         Mail::to('ship@fillstorship.com')->send(new ShipUpdateMail($shipment));
-        return redirect('/dashboard#allshipments')->with('success', 'Shipment has been updated');
+        return redirect()->back()->with('success', 'Shipment has been updated');
     }
 
     public function store(Request $request){

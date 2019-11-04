@@ -4,8 +4,7 @@
 
 <div class="container mt-5">
 
-    <h1 class="display-4 text-center mb-4">Build your Kit</h1>
-    
+    <h1 class="display-4 text-center mb-4">Edit your Pallet</h1>
     
     <!-- Flash Alerts Begin -->
 
@@ -13,43 +12,43 @@
 
     <!-- Flash Alerts Ends -->
 
-    <form action="/createkit" id="createpallet" method="POST">
+    <form action="/editpallet/{{$pallet->id}}" id="editpallet" method="POST">
+    {{method_field('PUT')}}
     <div class="form-row justify-content-center">
         <div class="col-md-8">
             <span class="text-center" id="result"></span>
-
-        </div>
-        
-    </div>
-
-    <div class="form-row justify-content-center">
-        <div class="col-md-8">
-            <button type="button" onclick="history.back()" class="btn btn-link text-gunmetal p-0"><i class="fas fa-long-arrow-alt-left"></i> Go Back</button>
-            <br>
-            <br>
         </div>
         
     </div>
     
+    <div class="form-row justify-content-center">
+        <div class="col-md-8">
+            <button type="button" onclick="history.back()" class="btn btn-link text-gunmetal p-0"><i class="fas fa-long-arrow-alt-left"></i> Back</button>
+            <br>
+            <br>
+        </div>
+        
+    </div>
+
     <div class="form-row justify-content-center mb-4">
         <div class="col-md-4">
-            <label for="pallet_name">Kit Name</label>
-            <input type="text" name="kit_name" class="form-control form-control-sm" placeholder="Name" value="{{$kit->kit_name}}">
-            
+            <label for="pallet_name">Pallet Name</label>
+            <input type="text" name="pallet_name" class="form-control form-control-sm" value="{{$pallet->pallet_name}}" placeholder="Name">
+            <div style="font-weight: 700; color:red">{{$errors->first('pallet_name')}}</div>
         </div>
 
         <div class="col-md-4">
-            <label for="sku">Kit Sku</label>
-            <input type="text" name="sku" class="form-control form-control-sm"  placeholder="Sku #" value="{{$kit->sku}}">
+            <label for="sku">Pallet Sku</label>
+            <input type="text" name="sku" class="form-control form-control-sm" value="{{$pallet->sku}}" placeholder="Sku #">
+            <div style="font-weight: 700; color:red">{{$errors->first('sku')}}</div>
         </div>
-
-
     </div>
 
     <div class="form-row justify-content-center mb-4">
         <div class="col-md-8">
             <label for="desc">Description</label>
-            <textarea name="desc" id="" cols="30" rows="3" class="form-control form-control-sm" placeholder="Description Here">{{$kit->description}}</textarea>
+            <textarea name="desc" id="" cols="30" rows="3" class="form-control form-control-sm" placeholder="Description Here">{{$pallet->description}}</textarea>
+            <div style="font-weight: 700; color:red">{{$errors->first('desc')}}</div>
         </div>
     </div>
 
@@ -58,10 +57,11 @@
             <table class="table table-bordered table-striped" id="user_table">
                 <thead>
                     <tr>
-                        <th width="30%">Select Items</th>
-                        <th width="30%">Item Type</th>
+                        <th width="25%">Item Sku</th>
+                        <th width="25%">Type</th>
                         <th width="20%">Quantity</th>
-                        <th width="20%">Action</th>
+                        <th width="30%"></th>
+                        
                     </tr>
                 </thead>
                 <tbody class="form_inventory">
@@ -72,8 +72,7 @@
                         <td colspan="3" align="right">&nbsp;</td>
                         <td>
                             @csrf
-                        <input type="submit" name="save" id="save" class="btn btn-link text-denim" value="Submit">
-                        
+                            <input type="submit" name="save" id="save" class="btn btn-link text-denim" value="Submit">
                         </td>
                     </tr>
                 </tfoot>
@@ -94,6 +93,7 @@
         function dynamic_field(number){
             html = '<tr>';
             html += '<td><select name="items[] class="form-control form-control-sm select_skus">'
+            html += '@if (count($cases) > 0) <optgroup label="Cases"> @foreach ($cases as $case)<option value="{{$case->id}}">{{$case->sku . ' - ' . $case->case_name}}</option>@endforeach </optgroup> @else<option value="" disabled>No Cases Available</option> @endif '
             html += '@if (count($units) > 0) <optgroup label="Units"> @foreach ($units as $unit)<option value="{{$unit->id}}">{{$unit->sku . ' - ' . $unit->unit_name}}</option>@endforeach </optgroup> @else<option value="" disabled>No Units Available</option> @endif '
             html += '</select></td>';
             html += '<td> <select type="text" name="type[]" class="form-control form-control-sm" placeholder="Item Type"><option value="n/a" selected disabled>Choose</option><option value="Unit">Unit</option><option value="Case">Case</option></select></td>'
@@ -110,7 +110,6 @@
                         </td></tr>';
                 $('.form_inventory').html(html);
             }
-            $('.select_skus').select2().val({!! json_encode($kit->basic_units()->allRelatedIds() ) !!}).trigger('change');
             $('.select_skus').select2({
                 placeholder: 'Click to select cases'
             });
@@ -165,5 +164,3 @@
 </script>
 
 @endsection
-
-

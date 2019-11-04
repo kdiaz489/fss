@@ -12,70 +12,148 @@
 
     <!-- Flash Alerts Ends -->
 
-    <form action="/transinkit" method="POST">
+    <form action="/transinkit" id="trans_in_kit" method="POST">
+    <div class="form-row justify-content-center">
+        <div class="col-md-8">
+            <span class="text-center" id="result"></span>
+        </div>
+        
+    </div>
+
+    <div class="form-row justify-content-center mb-4">
+        <div class="col-md-8">
+            <a onclick="history.back()" class="btn btn-link text-frenchblue px-0" ><i class="fas fa-long-arrow-alt-left"></i> Back</a>
+        </div>
+    </div>
     
     <div class="form-row justify-content-center mb-4">
-        <div class="col-md-3">
-            <label for="transin_kit_name">Order Name</label>
-            <input type="text" name="transin_kit_name" class="form-control" placeholder="Name">
-            <div style="font-weight: 700; color:red">{{$errors->first('transin_kit_name')}}</div>
+        <div class="col-md-4">
+            <label for="name">Order Name</label>
+            <input type="text" name="name" class="form-control form-control-sm" placeholder="Name">
         </div>
 
-        <div class="col-md-3">
-            <label for="transin_kit_qty">Kit Quantity</label>
-            <input type="text" name="transin_kit_qty" class="form-control" placeholder="Quantity">
-            <div style="font-weight: 700; color:red">{{$errors->first('transin_kit_qty')}}</div>
+        <div class="col-md-4">
+            <label for="sku">Order Sku</label>
+            <input type="text" name="sku" class="form-control form-control-sm"  placeholder="Sku #">
         </div>
-
-        <div class="col-md-3">
-            <label for="transin_kit_barcode">Barcode</label>
-            <input type="text" name="transin_kit_barcode" class="form-control" placeholder="Barcode">
-            <div style="font-weight: 700; color:red">{{$errors->first('transin_kit_barcode')}}</div>
-        </div>
+        
     </div>
 
     <div class="form-row justify-content-center mb-4">
-        <div class="col-md-3">
-            <label for="transin_kit_desc">Description</label>
-            <textarea name="transin_kit_desc" id="" cols="30" rows="1" class="form-control" placeholder="Description Here"></textarea>
-            <div style="font-weight: 700; color:red">{{$errors->first('transin_kit_desc')}}</div>
+        <div class="col-md-8">
+            <label for="desc">Description</label>
+            <textarea name="desc" id="" cols="30" rows="3" class="form-control form-control-sm" placeholder="Description Here"></textarea>
         </div>
-
-
-        <div class="col-md-3">
-            <label for="transin_kit_unit_qty">Unit Quantity</label>
-            <input type="text" name="transin_kit_unit_qty" class="form-control" placeholder="Units Qty">
-            <div style="font-weight: 700; color:red">{{$errors->first('transin_kit_unit_qty')}}</div>
-        </div>
+        <input type="hidden" name="order_type" value="Transfer In Kits">
     </div>
-
 
     <div class="form-row justify-content-center mb-4">
-        <div class="col-md-9 justify-content-center">
+        <div class="col-md-8 justify-content-center">
+            <table class="table table-bordered table-striped" id="user_table">
+                <thead>
+                    <tr>
+                        <th width="30%">Kit Sku</th>
+                        <th width="30%">Quantity</th>
+                        <th width="30%">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="form_inventory">
 
-            <label>Select Skus</label>
-            <br>
-            <select name="kits[]" class="form-control form-control-sm select_kit_skus" multiple="multiple" placeholder="Click to Select Kits">
-                @if (count($kits) > 0)
-                    @foreach ($kits as $kit)
-                        <option value="{{$kit->id}}">{{$kit->kit_sku . ' - ' . $kit->kit_name}}</option>
-                    @endforeach
-                @else
-                    <option value="" disabled>No Kits Available</option>
-                @endif
-            </select>
-
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2" align="right">&nbsp;</td>
+                        <td>
+                            @csrf 
+                            <input type="submit" name="save" id="save" class="btn btn-link text-denim" value="Submit">
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
         </div>
     </div>
 
-    <div class="form-row justify-content-center mb-5">
-        <a href="/dashboard#inventoryrequests" class="btn btn-link text-frenchblue" style="margin-right:2%"><i class="fas fa-long-arrow-alt-left"></i> Go Back</a>
-        <button type="submit" class="btn btn-primary">Create</button>
-    </div>
-
-    @csrf
     </form>
 
 </div>
 
+<script>
+    $(document).ready(function(){
+        var count = 1;
+        dynamic_field(count);
+
+
+        function dynamic_field(number){
+            html = '<tr>';
+            html += '<td><select name="kits[]" class="form-control form-control-sm select_skus">'
+            html += '@if (count($kits) > 0) @foreach ($kits as $kit)<option value="{{$kit->id}}">{{$kit->sku . ' - ' . $kit->kit_name}}</option>@endforeach @else<option value="" disabled>No Kits Available</option> @endif </select>'
+            html += '</td>';
+            html += '<td><input type="text" name="kit_qty[]" class="form-control" /></td>';
+            if(number > 1)
+            {
+                html += '<td><button type="button" name="remove" id="" class="btn btn-link text-danger remove">Remove</button></td></tr>';
+                
+                $('.form_inventory').append(html);
+            }
+            else
+            {   
+                html += '<td>\
+                        <button type="button" name="add" id="add" class="btn btn-link text-success">Add</button>\
+                        </td></tr>';
+                $('.form_inventory').html(html);
+            }
+            $('.select_skus').select2({
+                placeholder: 'Click to select cases'
+            });
+        }
+
+
+
+        $(document).on('click', '#add', function(){
+        count++;
+        dynamic_field(count);
+        });
+
+        $(document).on('click', '.remove', function(){
+        count--;
+        $(this).closest("tr").remove();
+        });
+
+
+        $('#trans_in_kit').on('submit', function(event){
+                event.preventDefault();
+                $.ajax({
+                    url:'/transinkit',
+                    method:'post',
+                    data:$(this).serialize(),
+                    dataType:'json',
+                    beforeSend:function(){
+                        $('#save').attr('disabled','disabled');
+                    },
+                    success:function(data)
+                    {
+                        if(data.error)
+                        {
+                            var error_html = '';
+                            for(var count = 0; count < data.error.length; count++)
+                            {
+                                error_html += '<p>'+data.error[count]+'</p>';
+                            }
+                            $('#result').html('<div class="alert alert-danger">'+error_html+'</div>');
+                        }
+                        else
+                        {
+                            dynamic_field(1);
+                            $('#result').html('<div class="alert alert-success">'+data.success+'</div>');
+
+                        }
+                        $('#save').attr('disabled', false);
+                    }
+                })
+            });
+        });
+
+</script>
+
 @endsection
+

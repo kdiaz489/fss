@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container" style="margin-top: 2%">
-    <a href="/dashboard#inventoryrequests" class="btn btn-link text-frenchblue" style="margin-right:2%"><i class="fas fa-long-arrow-alt-left"></i> Go Back</a>
+    <a onclick="history.back()" class="btn btn-link text-frenchblue" style="margin-right:2%"><i class="fas fa-long-arrow-alt-left"></i> Go Back</a>
 
     <br>
     <br>
@@ -38,18 +38,8 @@
               </tr>
 
               <tr>
-                  <th scope="row">Case Quantity</th>
-                  <td>{{$case->case_qty}}</td>
-              </tr>
-
-              <tr>
-                  <th scope="row">Carton Quantity</th>
-                  <td>{{$case->carton_qty}}</td>
-              </tr>
-
-              <tr>
-                  <th scope="row">Pallet Quantity</th>
-                  <td>{{$case->description}}</td>
+                  <th scope="row">Unit Quantity</th>
+                  <td>{{$case->basic_unit_qty}}</td>
               </tr>
 
                 <tr>
@@ -61,6 +51,37 @@
                   </td>
               </tr>
 
+              <tr>
+                  <th scope="row">Kit Quantity</th>
+                  <td>{{$case->kit_qty}}</td>
+              </tr>
+
+                <tr>
+                  <th scope="row">Kits in Case</th>
+                  <td>
+                      @if ($case->kits->all() != null)
+                        @foreach ($case->kits->all() as $kit)
+                                <a href="/viewkit/{{$kit->id}}"><span class="badge badge-secondary">{{'sku: ' . $kit->sku . ' qty: ' . $kit->pivot->quantity}}</span></a>
+                        @endforeach 
+                      @endif
+
+                  </td>
+              </tr>
+
+              <tr>
+                  <th scope="row">Case Quantity</th>
+                  <td>{{$case->case_qty}}</td>
+              </tr>
+
+              <tr>
+                  <th scope="row">Carton Quantity</th>
+                  <td>{{$case->carton_qty}}</td>
+              </tr>
+
+              <tr>
+                  <th scope="row">Pallet Quantity</th>
+                  <td>{{$case->pallet_qty}}</td>
+              </tr>
 
             </tbody>
           </table>

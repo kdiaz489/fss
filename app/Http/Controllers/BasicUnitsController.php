@@ -105,7 +105,6 @@ class BasicUnitsController extends Controller
 
         $basic_unit = Basic_Unit::find($id);
         $basic_unit->sku = $request->sku;
-        $basic_unit->user_id = auth()->user()->id;
         $basic_unit->price = $request->price;
         $basic_unit->unit_name = $request->name;
         $basic_unit->description = $request->desc;
@@ -129,7 +128,7 @@ class BasicUnitsController extends Controller
         $basic_unit->orders()->detach();
         $basic_unit->cases()->detach();
         $basic_unit->delete();
-        return back()->with('success', 'You have successfully deleted product');
+        return redirect()->back()->with('success', 'You have successfully deleted product');
 
     }
 }

@@ -131,6 +131,7 @@
                             <a class="dropdown-item" href="/transinunit">Units</a>
                             <a class="dropdown-item" href="/transinkit">Kits</a>
                             <a class="dropdown-item" href="/transincase">Cases</a>
+                            <a class="dropdown-item" href="/transinpallet">Pallets</a>
                         </div>
                     </div>
 
@@ -143,18 +144,20 @@
                             <a class="dropdown-item" href="/transoutunit">Units</a>
                             <a class="dropdown-item" href="/transoutkit">Kits</a>
                             <a class="dropdown-item" href="/transoutcase">Cases</a>
+                            <a class="dropdown-item" href="/transoutpallet">Pallets</a>
                         </div>
                     </div>
 
 
                     <div class="btn-group" role="group">
                         <button id="btnGroupDrop1" type="button" class="btn bg-denim text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-plus"></i> Add
+                        <i class="fas fa-plus"></i> Create
                         </button>
                         <div class="dropdown-menu bg-whitewash" aria-labelledby="btnGroupDrop1">
                             <a class="dropdown-item" href="/basicunit">Units</a>
                             <a class="dropdown-item" href="/createkit">Kits</a>
                             <a class="dropdown-item" href="/createcase">Cases</a>
+                            <a class="dropdown-item" href="/createpallet">Pallet</a>
                         </div>
                     </div>
 
@@ -171,10 +174,7 @@
                                 <th>Submitted On</th>
                                 <th>Order Name</th>
                                 <th>Description</th>
-                                
-                                
-                                
-                                <th>Unit Quantity</th>
+                                <th>Total Unit Quantity</th>
                                 <th></th>
 
                             </tr>
@@ -210,6 +210,71 @@
                         <p>You have no orders for your inventory.</p>
                         @endif
 
+                    <h1 class="display-4">Pallets</h1>
+
+                        @if(count($pallets) > 0)
+                        <table class="table">
+                            <tr>
+                                
+                                <th>Pallet Name</th>
+                                <th>Sku</th>
+                                <th>Description</th>
+                                <th>Case Qty</th>
+                                <th>Carton Qty</th>
+                                <th>Pallet Qty</th>
+                                <th>Cases per Pallet</th>
+                                <th>Submitted On</th>
+                                <th>Updated On</th>
+                                
+                                <th></th>
+
+                            </tr>
+                            @foreach($pallets as $pallet)
+                            <tr>
+                                <td>{{$pallet->pallet_name}}</td>
+                                <td>{{$pallet->sku}}</td>
+                                <td>{{$pallet->description}}</td>
+                                <td>{{$pallet->case_qty}}</td>
+                                <td>{{$pallet->carton_qty}}</td>
+                                <td>{{$pallet->pallet_qty}}</td>
+                                
+                                <td>
+                                    @foreach ($pallet->cases as $case)
+                                    <a href="/viewbasicunit/{{$case->id}}"><span class="badge badge-secondary">{{'sku: ' . $case->sku . ' qty: ' . $case->pivot->quantity}}</span></a>
+                                        
+                                        
+                                    @endforeach
+                                </td>
+                                <td>{{$pallet->created_at->format('H:i:s m/d/y')}}</td>
+                                <td>{{$pallet->updated_at->format('H:i:s m/d/y')}}</td>
+
+                                <td>
+                                    <div style="margin-left: 30%">
+                                    
+                                        <a href="/editpallet/{{$pallet->id}}" class="float-left" style="margin-right:1%">
+                                            <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
+                                        </a>
+                                    
+                                        <a href="/viewpallet/{{$pallet->id}}" class="float-left" style="margin-right:1%">
+                                            <button class="btn btn-link text-denim btn-sm" type="button">View</button>
+                                        </a>
+                                        
+                                        <form action="/removepallet/{{$pallet->id}}" method="POST" class="float-left">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit" class="btn btn-link text-danger btn-sm">Remove</button>
+                                        </form>
+                                        
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </table>
+
+                        @else
+                        <p>You have no pallets in your inventory.</p>
+                        @endif
+
                     <h1 class="display-4">Cases</h1>
 
                         @if(count($cases) > 0)
@@ -240,7 +305,7 @@
                                 
                                 <td>
                                     @foreach ($case->basic_units as $unit)
-                                    <a href="/viewbasicunit/{{$unit->id}}"><span class="badge badge-secondary">{{$unit->sku}}</span></a>
+                                    <a href="/viewbasicunit/{{$unit->id}}"><span class="badge badge-secondary">{{'sku: ' . $unit->sku . ' qty: ' . $unit->pivot->quantity}}</span></a>
                                         
                                         
                                     @endforeach
@@ -250,9 +315,11 @@
 
                                 <td>
                                     <div style="margin-left: 30%">
+                                    
                                         <a href="/editcase/{{$case->id}}" class="float-left" style="margin-right:1%">
                                             <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
                                         </a>
+                                    
                                         <a href="/viewcase/{{$case->id}}" class="float-left" style="margin-right:1%">
                                             <button class="btn btn-link text-denim btn-sm" type="button">View</button>
                                         </a>

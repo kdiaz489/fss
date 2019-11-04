@@ -120,7 +120,7 @@
 
                         
                         <div class="col-lg-6 col-12">
-                            <label>Pickup Date</Label>
+                            <label>Pickup Date <span style="color:orange">* </span></Label>
                             <input type="date" class="form-control form-control-sm required" id="orig_pickup_date" name="orig_pickup_date">
                         </div>
 
@@ -328,7 +328,7 @@
             
                                     
                                     <div class="col-lg-6 col-12">
-                                        <label>Delivery Date</Label>
+                                        <label>Delivery Date <span style="color:orange">* </span></Label>
                                         <input type="date" class="form-control form-control-sm required" id="dest_pickup_date" name="dest_pickup_date">
                                     </div>
             
