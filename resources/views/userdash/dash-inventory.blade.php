@@ -117,7 +117,7 @@
                         @if ($order->status != 'Completed')
 
                         <tr class="">
-                            <td><button type="button" class="btn text-denim accordion-toggle" data-toggle="collapse" data-target="#details{{$order->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
+                            <td><button type="button" class="btn text-denim toggle-{{$order->id}}" id="toggle-details{{$order->id}}" data-toggle="collapse" data-target="#details{{$order->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
                             <td>
                                 <a href="/vieworder/{{$order->id}}">
                                     <button class="btn btn-link text-denim btn-sm px-0 "
@@ -148,10 +148,15 @@
                                 @foreach ($order->basic_units->all() as $unit)
                                     
                                     <tr class="bg-whitewash">
-                                    <td colspan="1" class="py-0 border-0 text-center"><div  id="details{{$order->id}}" class="accordion-body details collapse" ><i class="fas fa-angle-right text-gunmetal"></i></div></td>
-                                    <td colspan="3" class="py-0 border-0 text-center"><div  id="details{{$order->id}}" class="accordion-body details collapse" >{{$unit->unit_name}}</div></td>
-                                    <td colspan="3" class="py-0 border-0 text-center"><div  id="details{{$order->id}}" class="accordion-body details collapse" >Quantity: {{$unit->pivot->quantity}}</div></td>
-                                    <td colspan="3" class="py-0 border-0 text-center"><div  id="details{{$order->id}}" class="accordion-body details collapse" ><a href="/viewbasicunit/{{$unit->id}}" class="text-success">View</a></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ><i class="fas fa-angle-right text-gunmetal"></i></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse px-0" >{{$unit->unit_name}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapsepy-0" >Quantity: {{$unit->pivot->quantity}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapsepy-0" ><a href="/viewbasicunit/{{$unit->id}}" class="text-success">View</a></div></td>
+                                    
+                                    
                                     </tr>
                                 @endforeach
                             @endif
@@ -159,10 +164,13 @@
                             @if($order->kits->all())
                                 @foreach ($order->kits->all() as $kit)
                                     <tr class="bg-whitewash">
-                                    <td colspan="3" class="py-0 border-0 text-center"><div  id="details{{$order->id}}" class="accordion-body details collapse" ><i class="fas fa-angle-right text-gunmetal"></i></div></td>
-                                    <td colspan="3" class="py-0 border-0 text-center"><div  id="details{{$order->id}}" class="accordion-body details collapse" >{{$kit->kit_name}}</div></td>
-                                    <td colspan="3" class="py-0 border-0 text-center"><div  id="details{{$order->id}}" class="accordion-body details collapse" >Quantity: {{$kit->pivot->quantity}}</div></td>
-                                    <td colspan="3" class="py-0 border-0 text-center"><div  id="details{{$order->id}}" class="accordion-body details collapse" ><a href="/viewkit/{{$kit->id}}" class="text-success">View</a></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ><i class="fas fa-angle-right text-gunmetal"></i></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse text-wrap" >{{$kit->kit_name}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse text-wrap" >Quantity: {{$kit->pivot->quantity}}</div></td>
+                                    <td class="py-0 border-0 "><div  id="details{{$order->id}}" class="accordion-body details collapse" ><a href="/viewkit/{{$kit->id}}" class="text-success">View</a></div></td>
                                     </tr>
                                 @endforeach
                             @endif
@@ -171,10 +179,13 @@
                             @if($order->cases->all())
                                 @foreach ($order->cases->all() as $case)
                                     <tr class="bg-whitewash">
-                                    <td colspan="3" class="py-0 border-0 text-center"><div  id="details{{$order->id}}" class="accordion-body details collapse" ><i class="fas fa-angle-right text-gunmetal"></i></div></td>
-                                    <td colspan="3" class="py-0 border-0 text-center"><div  id="details{{$order->id}}" class="accordion-body details collapse" >{{$case->case_name}}</div></td>
-                                    <td colspan="3" class="py-0 border-0 text-center"><div  id="details{{$order->id}}" class="accordion-body details collapse" >Quantity: {{$case->pivot->quantity}}</div></td>
-                                    <td colspan="3" class="py-0 border-0 text-center"><div  id="details{{$order->id}}" class="accordion-body details collapse" ><a href="/viewcase/{{$case->id}}" class="text-success">View</a></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ><i class="fas fa-angle-right text-gunmetal"></i></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse " >{{$case->case_name}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" >Quantity: {{$case->pivot->quantity}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ><a href="/viewcase/{{$case->id}}" class="text-success">View</a></div></td>
                                     </tr>
                                 @endforeach
                             @endif
@@ -182,10 +193,13 @@
                             @if($order->pallets->all())
                                 @foreach ($order->pallets->all() as $pallet)
                                     <tr class="bg-whitewash">
-                                    <td colspan="3" class="py-0 border-0 text-center"><div  id="details{{$order->id}}" class="accordion-body details collapse" ><i class="fas fa-angle-right text-gunmetal"></i></div></td>
-                                    <td colspan="3" class="py-0 border-0 text-center"><div  id="details{{$order->id}}" class="accordion-body details collapse" >{{$pallet->pallet_name}}</div></td>
-                                    <td colspan="3" class="py-0 border-0 text-center"><div  id="details{{$order->id}}" class="accordion-body details collapse" >Quantity: {{$pallet->pivot->quantity}}</div></td>
-                                    <td colspan="3" class="py-0 border-0 text-center"><div  id="details{{$order->id}}" class="accordion-body details collapse" ><a href="/viewpallet/{{$pallet->id}}" class="text-success">View</a></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ><i class="fas fa-angle-right text-gunmetal"></i></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" >{{$pallet->pallet_name}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" >Quantity: {{$pallet->pivot->quantity}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ><a href="/viewpallet/{{$pallet->id}}" class="text-success">View</a></div></td>
                                 @endforeach
                             @endif
 
@@ -377,7 +391,7 @@
                             <th>Carton Qty</th>
                             <th>Case Qty</th>
                             <th>Kit Qty</th>
-                            <th>Unit Qty</th>
+                            <th>Total Qty</th>
                             <th></th>
 
                         </tr>
@@ -437,19 +451,27 @@
 
 $('td').on('show.bs.collapse', function () {
     $(this).addClass('p-2');
-    $('.accordion-toggle').empty();
-    $('.accordion-toggle').append('<i class="fas fa-minus"></i>');
-    $('.accordion-toggle').removeClass('text-denim');
-    $('.accordion-toggle').addClass('text-danger');
+    var toggle = $(this).children().attr('id');
+    $('#toggle-' + toggle).empty();
+    $('#toggle-' + toggle).append('<i class="fas fa-minus"></i>');
+    $('#toggle-' + toggle).removeClass('text-denim');
+    $('#toggle-' + toggle).addClass('text-danger');
+    
 });
+
+
+
 
 $('td').on('hide.bs.collapse', function () {
     $(this).removeClass('p-2');
-    $('.accordion-toggle').empty();
-    $('.accordion-toggle').append('<i class="fas fa-plus"></i>');
-    $('.accordion-toggle').removeClass('text-danger');
-    $('.accordion-toggle').addClass('text-denim');
-})
+    var toggle = $(this).children().attr('id');
+    $('#toggle-' + toggle).empty();
+    $('#toggle-' + toggle).append('<i class="fas fa-plus"></i>');
+    $('#toggle-' + toggle).removeClass('text-danger');
+    $('#toggle-' + toggle).addClass('text-denim');
+    
+});
+
 
 
 
