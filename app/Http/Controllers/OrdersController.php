@@ -10,6 +10,7 @@ use App\Cases;
 use App\Basic_Unit;
 use App\OrderHistory;
 use App\Pallet;
+use App\OrderNumber;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\StorUpdateMail;
 use App\Mail\StorRequestMail;
@@ -54,6 +55,15 @@ class OrdersController extends Controller
                 ]);
             }
             $order = new Order();
+            $ordernumber = new OrderNumber();
+            $ordernumber->save();
+            $ordernumber->fss_id = $ordernumber->id + 100;
+            $ordernumber->user_id = auth()->user()->id;
+            $order->orderid = $ordernumber->fss_id;
+            $order->ordernumber_id = $ordernumber->id;
+            $ordernumber->save();
+
+
             $unit = new Basic_Unit();
             $order->name = $request->unit_name;
             $order->user_id = auth()->user()->id;
@@ -107,6 +117,12 @@ class OrdersController extends Controller
                 ]);
             }
             $order = new Order();
+            $ordernumber = new OrderNumber();
+            $ordernumber->save();
+            $ordernumber->fss_id = $ordernumber->id + 100;
+            $ordernumber->user_id = auth()->user()->id;
+            $order->orderid = $ordernumber->fss_id;
+            $ordernumber->save();
             $unit = new Basic_Unit();
             $order->name = $request->unit_name;
             $order->user_id = auth()->user()->id;
@@ -251,6 +267,8 @@ class OrdersController extends Controller
              * 
              */
             $order = new Order();
+            $order->save();
+            
             $order->name = $request->case_name;
             $order->user_id = auth()->user()->id;
             $order->company = auth()->user()->company_name;
@@ -308,6 +326,7 @@ class OrdersController extends Controller
             $order->unit_qty = $total_units;
 
             $order->save();
+            
             $order->kits()->attach($kit_data);
 
             Mail::to('ship@fillstorship.com')->send(new StorRequestMail($order));
@@ -1408,7 +1427,9 @@ class OrdersController extends Controller
         }
 
         $order->pallets()->detach();
-        
+        $order_history = Order::find($id);
+        $order_history = $order_history->toArray();
+        OrderHistory::insert($order_history);
         $order->delete();
         Mail::to($useremail)->send(new StorUpdateMail($order));
         Mail::to('ship@fillstorship.com')->send(new StorUpdateMail($order));
@@ -1428,8 +1449,6 @@ class OrdersController extends Controller
         $order->cases()->detach();
         $order->kits()->detach();
         $order->basic_units()->detach();
-        $order_history = $order->toArray();
-        OrderHistory::insert($order_history);
         $order->delete();
         return redirect()->back()->with('success', 'Order has been Removed.');
     }

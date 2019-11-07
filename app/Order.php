@@ -17,6 +17,10 @@ class Order extends Model
     public function user(){
         return $this->belongsTo('App\User');
     }
+    
+    public function ordernumber(){
+        return $this->belongsTo('App\OrderNumber')->withTimestamps();
+    }
 
     public function pallets(){
         return $this->belongsToMany('App\Pallet')->withPivot('quantity')->withTimestamps();

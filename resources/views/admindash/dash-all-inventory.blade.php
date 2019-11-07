@@ -61,6 +61,7 @@
                         @if(count($orders) > 0)
                         <table class="table">
                             <tr>
+                                <th>Order ID</th>
                                 <th>Update Status</th>
                                 <th>Current Status</th>
                                 <th>Order Type</th>
@@ -75,6 +76,7 @@
 
                             </tr>
                             @foreach($orders as $order)
+                            <td>{{str_pad($order->orderid, 6, '0', STR_PAD_LEFT)}}</td>
                             <tr>
                                 <td>
                                         <form action=" /order/update/{{$order->id}}" method="POST">

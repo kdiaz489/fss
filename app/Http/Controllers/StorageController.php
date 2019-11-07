@@ -185,7 +185,7 @@ class StorageController extends Controller
         $ratePerPallet = $this->findRate($numPallets);
 
         $storageTotal = $sqftTotal * $ratePerPallet;
-        if($duration > 1){
+        if($duration >= 1){
             $storageTotal = bcdiv(($storageTotal * $duration),1,2);
         }
         return response()->json($storageTotal);
