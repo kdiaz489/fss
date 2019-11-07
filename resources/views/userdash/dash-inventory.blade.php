@@ -150,11 +150,11 @@
                                     <tr class="bg-whitewash">
                                     <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
                                     <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ><i class="fas fa-angle-right text-gunmetal"></i></div></td>
-                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse px-0" >{{$unit->unit_name}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" >{{$unit->unit_name}}</div></td>
                                     <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
                                     <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
-                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapsepy-0" >Quantity: {{$unit->pivot->quantity}}</div></td>
-                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapsepy-0" ><a href="/viewbasicunit/{{$unit->id}}" class="text-success">View</a></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" >Quantity: {{$unit->pivot->quantity}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ><a href="/viewbasicunit/{{$unit->id}}" class="text-success">View</a></div></td>
                                     
                                     
                                     </tr>
