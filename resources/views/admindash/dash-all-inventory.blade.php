@@ -76,8 +76,9 @@
 
                             </tr>
                             @foreach($orders as $order)
-                            <td>{{str_pad($order->orderid, 6, '0', STR_PAD_LEFT)}}</td>
+                            
                             <tr>
+                                <td>{{str_pad($order->orderid, 6, '0', STR_PAD_LEFT)}}</td>
                                 <td>
                                         <form action=" /order/update/{{$order->id}}" method="POST">
                                             @csrf

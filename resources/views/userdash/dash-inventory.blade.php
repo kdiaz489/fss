@@ -110,13 +110,13 @@
                             <th>Status</th>
                             <th>Submitted On</th>
                             <th>Updated On</th>
-                            <th colspan="0"></th>
+                            <th></th>
 
                         </tr>
                         @foreach($orders as $order)
                         @if ($order->status != 'Completed')
 
-                        <tr class="">
+                        <tr>
                             <td><button type="button" class="btn text-denim toggle-{{$order->id}}" id="toggle-details{{$order->id}}" data-toggle="collapse" data-target="#details{{$order->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
                             <td>
                                 <a href="/vieworder/{{$order->id}}">
@@ -149,7 +149,7 @@
                                     
                                     <tr class="bg-whitewash">
                                     <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
-                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ><i class="fas fa-angle-right text-gunmetal"></i> {{$unit->unit_name}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse text-wrap" ><i class="fas fa-angle-right text-gunmetal"></i> {{$unit->unit_name}}</div></td>
                                     <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" >Quantity: {{$unit->pivot->quantity}}</div></td>
                                     <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
                                     <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
@@ -375,7 +375,7 @@
                                     
                                     <tr class="bg-whitewash">
                                     <td class="py-0 border-0"><div  id="details{{$case->id}}" class="details collapse" ></div></td>
-                                    <td class="py-0 border-0"><div  id="details{{$case->id}}" class="details collapse" ><i class="fas fa-angle-right text-gunmetal"></i>  {{$unit->unit_name}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$case->id}}" class="details collapse"><i class="fas fa-angle-right text-gunmetal"></i>  {{$unit->unit_name}}</div></td>
                                     <td class="py-0 border-0"><div  id="details{{$case->id}}" class="details collapse" >Quantity: {{$unit->pivot->quantity}}</div></td>
                                     <td class="py-0 border-0"><div  id="details{{$case->id}}" class="details collapse" ></div></td>
                                     <td class="py-0 border-0"><div  id="details{{$case->id}}" class="details collapse" ></div></td>
