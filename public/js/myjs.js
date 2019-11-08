@@ -68,7 +68,7 @@ $(document).ready(function () {
         $(".wait").css("display", "none");
     });
 
-    /*
+    
     $('td').on('show.bs.collapse', function () {
         $(this).addClass('p-2');
         var toggle = $(this).children().attr('id');
@@ -91,7 +91,7 @@ $(document).ready(function () {
         $('#toggle-' + toggle).addClass('text-denim');
         
     });
-*/
+
 
     /****  Code for Dash board tabs begins ****/
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {

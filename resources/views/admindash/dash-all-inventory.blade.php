@@ -83,8 +83,9 @@
                                             <select name="status" id="" class="">
                                                 <option value="" selected disabled>Choose</option>
                                                 <option value="Completed">Completed</option>
+                                                <option value="Approved">Approved</option>
                                                 <option value="In Progress">In Progress</option>
-                                                <option value="Cancelled">Cancelled</option>
+                                                <option value="Rejected">Rejected</option>
                                             </select>
 
                                             <button type="submit" style=" margin-left: 1.25rem;"
