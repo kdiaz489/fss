@@ -418,7 +418,7 @@
                     <table class="table">
                         <tr>
                             <th></th>    
-                            <th>Case Name</th>
+                            <th>Kit Name</th>
                             <th>Sku</th>
                             <th>Description</th>
                             <th>Pallet Qty</th>
@@ -558,28 +558,7 @@
 
 <script>
 
-$('td').on('show.bs.collapse', function () {
-    $(this).addClass('p-2');
-    var toggle = $(this).children().attr('id');
-    $('#toggle-' + toggle).empty();
-    $('#toggle-' + toggle).append('<i class="fas fa-minus"></i>');
-    $('#toggle-' + toggle).removeClass('text-denim');
-    $('#toggle-' + toggle).addClass('text-danger');
-    
-});
 
-
-
-
-$('td').on('hide.bs.collapse', function () {
-    $(this).removeClass('p-2');
-    var toggle = $(this).children().attr('id');
-    $('#toggle-' + toggle).empty();
-    $('#toggle-' + toggle).append('<i class="fas fa-plus"></i>');
-    $('#toggle-' + toggle).removeClass('text-danger');
-    $('#toggle-' + toggle).addClass('text-denim');
-    
-});
 
 
 

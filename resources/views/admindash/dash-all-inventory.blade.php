@@ -61,24 +61,21 @@
                         @if(count($orders) > 0)
                         <table class="table">
                             <tr>
+                                <th></th>
+                                <th>Update</th>
                                 <th>Order ID</th>
-                                <th>Update Status</th>
-                                <th>Current Status</th>
-                                <th>Order Type</th>
-                                <th>Submitted On</th>
-                                <th>Order Name</th>
-                                <th>Description</th>
-                                <th>Kits in Order</th>
-                                <th>Kit Quantity</th>
-                                <th>Units in Order</th>
-                                <th>Unit Quantity</th>
+                                <th>Company</th>
+                                <th>Status</th>
+                                <th>Type</th>
+                                <th>Submitted</th>
                                 <th></th>
 
                             </tr>
                             @foreach($orders as $order)
                             
                             <tr>
-                                <td>{{str_pad($order->orderid, 6, '0', STR_PAD_LEFT)}}</td>
+                                <td><button type="button" class="btn text-denim toggle-{{$order->id}}" id="toggle-details{{$order->id}}" data-toggle="collapse" data-target="#details{{$order->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
+
                                 <td>
                                         <form action=" /order/update/{{$order->id}}" method="POST">
                                             @csrf
@@ -94,29 +91,16 @@
                                                 class="btn btn-link btn-sm">Update</button>
                                         </form>
                                 </td>
+                                <td>{{str_pad($order->orderid, 6, '0', STR_PAD_LEFT)}}</td>
+                                <td>{{$order->company}}</td>
                                 <td>{{$order->status}}</td>
                                 <td>{{$order->order_type}}</td>
                                 <td>{{$order->created_at->format('H:i:s m/d/y')}}</td>
-                                <td>{{$order->name}}</td>
-                                <td>{{$order->description}}</td>
-                                <td>
-                                    @foreach ($order->kits as $kit)
-                                    <a href="/viewkit/{{$kit->id}}"><span
-                                            class="badge badge-secondary">{{$kit->kit_sku}}</span></a>
-                                    @endforeach
-                                </td>
-                                <td>{{$order->kit_qty}}</td>
-                                <td>
-                                    @foreach ($order->basic_units as $unit)
-
-                                    <a href="/viewbasicunit/{{$unit->id}}"><span
-                                            class="badge badge-secondary">{{$unit->sku}}</span></a>
-                                    @endforeach
-                                </td>
-                                <td>{{$order->unit_qty}}</td>
-
+                                
+                                
                                 <td>
                                     <div style="margin-left: 30%">
+                                    <!--
                                         @if ($order->order_type == 'Transfer In Kits')
                                         <a href="/editorder/kit/{{$order->id}}" class="float-left"
                                             style="margin-right:1%">
@@ -128,10 +112,11 @@
                                             <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
                                         </a>
                                         @endif
+                                        -->
                                         <a href="/vieworder/{{$order->id}}" class="float-left" style="margin-right:1%">
                                             <button class="btn btn-link text-denim btn-sm" type="button">View</button>
                                         </a>
-                                        <form action="/order/remove/{{$order->id}}" method="POST" class="float-left">
+                                        <form action="/order/remove/{{$order->id}}" method="POST" class="float-left" >
                                             @method('DELETE')
                                             @csrf
                                             <button type="submit"
@@ -139,9 +124,71 @@
                                         </form>
                                     </div>
                                 </td>
-
-
                             </tr>
+
+                            @if($order->basic_units->all())
+                                @foreach ($order->basic_units->all() as $unit)
+                                    
+                                    <tr class="bg-whitewash">
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse text-wrap" ><i class="fas fa-angle-right text-gunmetal"></i> {{$unit->unit_name}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" >Quantity: {{$unit->pivot->quantity}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 px-5 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ><a class="btn btn-link text-success float-left" href="/viewbasicunit/{{$unit->id}}">View</a></div></td>
+                                    
+                                    
+                                    </tr>
+                                @endforeach
+                            @endif
+
+                            @if($order->kits->all())
+                                @foreach ($order->kits->all() as $kit)
+                                    <tr class="bg-whitewash">
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ><i class="fas fa-angle-right text-gunmetal"></i>  {{$kit->kit_name}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" >Quantity: {{$kit->pivot->quantity}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 px-5 border-0 "><div  id="details{{$order->id}}" class="accordion-body details collapse" ><a href="/viewkit/{{$kit->id}}" class="btn btn-link text-success">View</a></div></td>
+                                    </tr>
+                                @endforeach
+                            @endif
+
+
+                            @if($order->cases->all())
+                                @foreach ($order->cases->all() as $case)
+                                    <tr class="bg-whitewash">
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ><i class="fas fa-angle-right text-gunmetal"></i>  {{$case->case_name}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" >Quantity: {{$case->pivot->quantity}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 px-5 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ><a href="/viewcase/{{$case->id}}" class="btn btn-link text-success">View</a></div></td>
+                                    </tr>
+                                @endforeach
+                            @endif
+
+                            @if($order->pallets->all())
+                                @foreach ($order->pallets->all() as $pallet)
+                                    <tr class="bg-whitewash">
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ><i class="fas fa-angle-right text-gunmetal"></i>  {{$pallet->pallet_name}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" >Quantity: {{$pallet->pivot->quantity}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 px-5 border-0"><div  id="details{{$order->id}}" class="accordion-body details collapse" ><a href="/viewpallet/{{$pallet->id}}" class="btn btn-link text-success">View</a></div></td>
+                                @endforeach
+                            @endif
+
                             @endforeach
                         </table>
 
@@ -154,37 +201,29 @@
                         @if(count($pallets) > 0)
                         <table class="table">
                             <tr>
-
+                                <th></th>
                                 <th>Pallet Name</th>
                                 <th>Sku</th>
                                 <th>Description</th>
-                                <th>Case Qty</th>
-                                <th>Carton Qty</th>
                                 <th>Pallet Qty</th>
-                                <th>Cases in Pallet</th>
-                                
-
+                                <th>Carton Qty</th>
+                                <th>Case Qty</th>
+                                <th>Kit Qty</th>
+                                <th>Total Qty</th>
                                 <th></th>
 
                             </tr>
                             @foreach($pallets as $pallet)
                             <tr>
+                                <td><button type="button" class="btn text-denim toggle-{{$pallet->id}}" id="toggle-details{{$pallet->id}}" data-toggle="collapse" data-target="#details{{$pallet->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
                                 <td>{{$pallet->pallet_name}}</td>
                                 <td>{{$pallet->sku}}</td>
                                 <td>{{$pallet->description}}</td>
-                                <td>{{$pallet->case_qty}}</td>
+                                <td>{{$pallet->pallet_qty}}</td>                                
                                 <td>{{$pallet->carton_qty}}</td>
-                                <td>{{$pallet->pallet_qty}}</td>
-
-                                <td>
-                                    @foreach ($pallet->cases as $case)
-                                    <a href="/viewcase/{{$case->id}}"><span
-                                            class="badge badge-secondary">{{'sku: ' . $case->sku . ' qty: ' . $case->pivot->quantity}}</span></a>
-
-
-                                    @endforeach
-                                </td>
-                                
+                                <td>{{$pallet->case_qty}}</td>
+                                <td>{{$pallet->kit_qty}}</td>
+                                <td>{{$pallet->total_qty}}</td>
                                 <!--
                                 <td>{{$pallet->created_at->format('H:i:s m/d/y')}}</td>
                                 <td>{{$pallet->updated_at->format('H:i:s m/d/y')}}</td>
@@ -212,6 +251,62 @@
                                     </div>
                                 </td>
                             </tr>
+
+                            @if($pallet->basic_units->all())
+                                @foreach ($pallet->basic_units->all() as $unit)
+                                    
+                                    <tr class="bg-whitewash">
+                                    <td class="py-0 border-0"><div  id="details{{$pallet->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$pallet->id}}" class="accordion-body details collapse" ><i class="fas fa-angle-right text-gunmetal"></i>  {{$unit->unit_name}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$pallet->id}}" class="accordion-body details collapse" >Quantity: {{$unit->pivot->quantity}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$pallet->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$pallet->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$pallet->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$pallet->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$pallet->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$pallet->id}}" class="accordion-body details collapse" ></div></td>
+                                    
+                                    <td class="py-0 px-5 border-0"><div  id="details{{$pallet->id}}" class="accordion-body details collapse" ><a href="/viewbasicunit/{{$unit->id}}" class="btn btn-link text-success">View</a></div></td>
+                                    </tr>
+                                @endforeach
+                            @endif
+
+                            @if($pallet->kits->all())
+                                @foreach ($pallet->kits->all() as $kit)
+                                    <tr class="bg-whitewash">
+                                    <td class="py-0 border-0"><div  id="details{{$pallet->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$pallet->id}}" class="accordion-body details collapse" ><i class="fas fa-angle-right text-gunmetal"></i>  {{$kit->kit_name}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$pallet->id}}" class="accordion-body details collapse" >Quantity: {{$kit->pivot->quantity}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$pallet->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$pallet->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$pallet->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0 "><div  id="details{{$pallet->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$pallet->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$pallet->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 px-5 border-0"><div  id="details{{$pallet->id}}" class="accordion-body details collapse" ><a href="/viewkit/{{$kit->id}}" class="btn btn-link text-success">View</a></div></td>
+                                    </tr>
+                                @endforeach
+                            @endif
+
+
+                            @if($pallet->cases->all())
+                                @foreach ($pallet->cases->all() as $case)
+                                    <tr class="bg-whitewash">
+                                    <td class="py-0 border-0"><div  id="details{{$pallet->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$pallet->id}}" class="accordion-body details collapse" ><i class="fas fa-angle-right text-gunmetal"></i>  {{$case->case_name}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$pallet->id}}" class="accordion-body details collapse " >Quantity: {{$case->pivot->quantity}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$pallet->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$pallet->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$pallet->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$pallet->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$pallet->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$pallet->id}}" class="accordion-body details collapse" ></div></td>
+                                    <td class="py-0 px-5 border-0"><div  id="details{{$pallet->id}}" class="accordion-body details collapse" ><a href="/viewcase/{{$case->id}}" class="btn btn-link text-success">View</a></div></td>
+                                    </tr>
+                                @endforeach
+                            @endif
+
+
                             @endforeach
                         </table>
 
@@ -223,35 +318,28 @@
                         @if(count($cases) > 0)
                         <table class="table">
                             <tr>
-
+                                <th></th>
                                 <th>Case Name</th>
-                                <th>Case Sku</th>
+                                <th>Sku</th>
                                 <th>Description</th>
-                                <th>Case Qty</th>
-                                <th>Carton Qty</th>
                                 <th>Pallet Qty</th>
-                                <th>Units in Case</th>
+                                <th>Carton Qty</th>
+                                <th>Kit Qty</th>
+                                <th>Total Qty</th>
 
                                 <th></th>
 
                             </tr>
                             @foreach($cases as $case)
                             <tr>
+                                <td><button type="button" class="btn text-denim toggle-{{$case->id}}" id="toggle-details{{$case->id}}" data-toggle="collapse" data-target="#details{{$case->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
                                 <td>{{$case->case_name}}</td>
                                 <td>{{$case->sku}}</td>
                                 <td>{{$case->description}}</td>
-                                <td>{{$case->case_qty}}</td>
-                                <td>{{$case->carton_qty}}</td>
                                 <td>{{$case->pallet_qty}}</td>
-                                <td>
-                                    @foreach ($case->basic_units as $unit)
-                                    <a href="/viewbasicunit/{{$unit->id}}"><span
-                                            class="badge badge-secondary">{{'sku: ' . $unit->sku . ' qty: ' . $unit->pivot->quantity}}</span></a>
-
-
-                                    @endforeach
-                                </td>
-
+                                <td>{{$case->carton_qty}}</td>
+                                <td>{{$case->kit_qty}}</td>
+                                <td>{{$case->total_qty}}</td>
                                 <td>
                                     <div style="margin-left: 30%">
                                         <a href="/editcase/{{$case->id}}" class="float-left" style="margin-right:1%">
@@ -269,6 +357,42 @@
                                     </div>
                                 </td>
                             </tr>
+
+                            @if($case->basic_units->all())
+                                @foreach ($case->basic_units->all() as $unit)
+                                    
+                                    <tr class="bg-whitewash">
+                                    <td class="py-0 border-0"><div  id="details{{$case->id}}" class="details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$case->id}}" class="details collapse"><i class="fas fa-angle-right text-gunmetal"></i>  {{$unit->unit_name}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$case->id}}" class="details collapse" >Quantity: {{$unit->pivot->quantity}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$case->id}}" class="details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$case->id}}" class="details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$case->id}}" class="details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$case->id}}" class="details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$case->id}}" class="details collapse" ></div></td>
+                                    <td class="py-0 px-5 border-0"><div  id="details{{$case->id}}" class="details collapse" ><a href="/viewbasicunit/{{$unit->id}}" class="btn btn-link text-success">View</a></div></td>
+                                    
+                                    
+                                    </tr>
+                                @endforeach
+                            @endif
+
+                            @if($case->kits->all())
+                                @foreach ($case->kits->all() as $kit)
+                                    <tr class="bg-whitewash">
+                                    <td class="py-0 border-0"><div  id="details{{$case->id}}" class="details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$case->id}}" class="details collapse" ><i class="fas fa-angle-right text-gunmetal"></i>  {{$kit->kit_name}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$case->id}}" class="details collapse" >Quantity: {{$kit->pivot->quantity}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$case->id}}" class="details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$case->id}}" class="details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$case->id}}" class="details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$case->id}}" class="details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$case->id}}" class="details collapse" ></div></td>
+                                    <td class="py-0 px-5 border-0"><div  id="details{{$case->id}}" class="details collapse" ><a href="/viewkit/{{$kit->id}}" class="btn btn-link text-success">View</a></div></td>
+                                    </tr>
+                                @endforeach
+                            @endif
+
                             @endforeach
                         </table>
 
@@ -279,33 +403,28 @@
                         <h1 class="display-4">All Kits</h1>
                         @if(count($kits) > 0)
                         <table class="table">
-                            <tr>
-
-                                <th>Kit Name</th>
-                                <th>Kit Sku</th>
+                            <tr colspan="12">
+                                <th></th>
+                                <th>Name</th>
+                                <th>Sku</th>
                                 <th>Description</th>
-                                <th>Case Qty</th>
                                 <th>Pallet Qty</th>
-                                <th>Units in Case</th>
-
+                                <th>Carton Qty</th>
+                                <th>Case Qty</th>
+                                <th>Total Qty</th>
                                 <th></th>
 
                             </tr>
                             @foreach($kits as $kit)
                             <tr>
+                                <td><button type="button" class="btn text-denim toggle-{{$kit->id}}" id="toggle-details{{$kit->id}}" data-toggle="collapse" data-target="#details{{$kit->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
                                 <td>{{$kit->kit_name}}</td>
                                 <td>{{$kit->sku}}</td>
                                 <td>{{$kit->description}}</td>
-                                <td>{{$kit->case_qty}}</td>
                                 <td>{{$kit->pallet_qty}}</td>
-                                <td>
-                                    @foreach ($kit->basic_units as $unit)
-                                    <a href="/viewbasicunit/{{$unit->id}}"><span
-                                            class="badge badge-secondary">{{'sku: ' . $unit->sku . ' qty: ' . $unit->pivot->quantity}}</span></a>
-
-
-                                    @endforeach
-                                </td>
+                                <td>{{$kit->carton_qty}}</td>
+                                <td>{{$kit->case_qty}}</td>
+                                <td>{{$kit->total_qty}}</td>
 
                                 <td>
                                     <div style="margin-left: 30%">
@@ -324,6 +443,25 @@
                                     </div>
                                 </td>
                             </tr>
+
+                            @if($kit->basic_units->all())
+                                @foreach ($kit->basic_units->all() as $unit)
+                                    
+                                    <tr class="bg-whitewash">
+                                    <td class="py-0 border-0"><div  id="details{{$kit->id}}" class="details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$kit->id}}" class="details collapse" ><i class="fas fa-angle-right text-gunmetal"></i>  {{$unit->unit_name}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$kit->id}}" class="details collapse" >Quantity: {{$unit->pivot->quantity}}</div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$kit->id}}" class="details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$kit->id}}" class="details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$kit->id}}" class="details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$kit->id}}" class="details collapse" ></div></td>
+                                    <td class="py-0 border-0"><div  id="details{{$kit->id}}" class="details collapse" ></div></td>
+                                    <td class="py-0 px-5 border-0"><div  id="details{{$kit->id}}" class="details collapse" ><a href="/viewbasicunit/{{$unit->id}}" class=" btn btn-link text-success">View</a></div></td>
+                                    
+                                    
+                                    </tr>
+                                @endforeach
+                            @endif
                             @endforeach
                         </table>
 

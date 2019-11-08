@@ -268,7 +268,16 @@ class OrdersController extends Controller
              */
             $order = new Order();
             $order->save();
+
             
+            $ordernumber = new OrderNumber();
+            $ordernumber->save();
+            $ordernumber->fss_id = $ordernumber->id + 100;
+            $ordernumber->user_id = auth()->user()->id;
+            $order->orderid = $ordernumber->fss_id;
+            $order->ordernumber_id = $ordernumber->id;
+            $ordernumber->save();
+
             $order->name = $request->case_name;
             $order->user_id = auth()->user()->id;
             $order->company = auth()->user()->company_name;
@@ -362,6 +371,13 @@ class OrdersController extends Controller
              * 
              */
             $order = new Order();
+            $ordernumber = new OrderNumber();
+            $ordernumber->save();
+            $ordernumber->fss_id = $ordernumber->id + 100;
+            $ordernumber->user_id = auth()->user()->id;
+            $order->orderid = $ordernumber->fss_id;
+            $order->ordernumber_id = $ordernumber->id;
+            $ordernumber->save();
             $order->name = $request->case_name;
             $order->user_id = auth()->user()->id;
             $order->company = auth()->user()->company_name;
@@ -460,6 +476,16 @@ class OrdersController extends Controller
              */
 
             $order = new Order();
+
+            
+            $ordernumber = new OrderNumber();
+            $ordernumber->save();
+            $ordernumber->fss_id = $ordernumber->id + 100;
+            $ordernumber->user_id = auth()->user()->id;
+            $order->orderid = $ordernumber->fss_id;
+            $order->ordernumber_id = $ordernumber->id;
+            $ordernumber->save();
+
             $order->name = $request->case_name;
             $order->user_id = auth()->user()->id;
             $order->company = auth()->user()->company_name;
@@ -578,6 +604,15 @@ class OrdersController extends Controller
              */
 
             $order = new Order();
+
+            $ordernumber = new OrderNumber();
+            $ordernumber->save();
+            $ordernumber->fss_id = $ordernumber->id + 100;
+            $ordernumber->user_id = auth()->user()->id;
+            $order->orderid = $ordernumber->fss_id;
+            $order->ordernumber_id = $ordernumber->id;
+            $ordernumber->save();
+
             $order->name = $request->case_name;
             $order->user_id = auth()->user()->id;
             $order->company = auth()->user()->company_name;
@@ -699,6 +734,15 @@ class OrdersController extends Controller
              * 
              */
             $order = new Order();
+
+            $ordernumber = new OrderNumber();
+            $ordernumber->save();
+            $ordernumber->fss_id = $ordernumber->id + 100;
+            $ordernumber->user_id = auth()->user()->id;
+            $order->orderid = $ordernumber->fss_id;
+            $order->ordernumber_id = $ordernumber->id;
+            $ordernumber->save();
+
             $order->name = $request->case_name;
             $order->user_id = auth()->user()->id;
             $order->company = auth()->user()->company_name;
@@ -842,6 +886,15 @@ class OrdersController extends Controller
              * 
              */
             $order = new Order();
+
+            $ordernumber = new OrderNumber();
+            $ordernumber->save();
+            $ordernumber->fss_id = $ordernumber->id + 100;
+            $ordernumber->user_id = auth()->user()->id;
+            $order->orderid = $ordernumber->fss_id;
+            $order->ordernumber_id = $ordernumber->id;
+            $ordernumber->save();
+
             $order->name = $request->name;
             $order->user_id = auth()->user()->id;
             $order->company = auth()->user()->company_name;
