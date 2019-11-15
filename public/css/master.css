@@ -503,6 +503,14 @@ input[type=checkbox] {
     text-align: center;
 }
 
+.select2-results__option{
+    font-size: 14px;
+}
+
+.select2-results__group{
+    font-size: 18px;
+}
+
 /*DESKTOP SPECIFIC CONDITIONS*/
 @media(min-width: 768px) {
 

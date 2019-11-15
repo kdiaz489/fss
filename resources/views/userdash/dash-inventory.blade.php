@@ -82,7 +82,7 @@
                         <tr>
                             <th></th>
                             <th>Order ID</th>
-                            <th>Customer ID</th>
+                            <th>Customer</th>
                             <th>Status</th>
                             <th>Submitted On</th>
                             <th>Updated On</th>
@@ -99,7 +99,7 @@
                                     <button class="btn btn-link text-denim btn-sm px-0 "
                                         type="button">{{str_pad($order->orderid, 6, '0', STR_PAD_LEFT)}}</button>
                                 </a></td>
-                            <td>{{$order->user_id}}</td>
+                            <td>{{$order->company}}</td>
                             <td>{{$order->status}}</td>
                             <td>{{$order->created_at->format('H:i:s m/d/y')}}</td>
                             <td>{{$order->updated_at->format('H:i:s m/d/y')}}</td>
@@ -211,11 +211,10 @@
                             <th></th>
                             <th>Sku</th>
                             <th>Description</th>
-                            
-                            <th>Carton Qty</th>
-                            <th>Case Qty</th>
-                            <th>Kit Qty</th>
-                            <th>Total Qty</th>
+                            <th>Cartons per Pallet</th>
+                            <th>Cases per Pallet</th>
+                            <th>Kits per Pallet</th>
+                            <th>Total # Pallets</th>
                             <th></th>
 
                         </tr>
@@ -339,10 +338,10 @@
                             
                             <th>Sku</th>
                             <th>Description</th>
-                            <th>Carton Qty</th>
-                            <th>Case Qty</th>
-                            <th>Kit Qty</th>
-                            <th>Total Qty</th>
+                            <th>Cases per Carton</th>
+                            <th>Kits per Carton</th>
+                            <th>Units per Carton</th>
+                            <th>Total # Cartons</th>
                             <th></th>
 
                         </tr>
@@ -352,10 +351,9 @@
                             
                             <td>{{$carton->sku}}</td>
                             <td>{{$carton->description}}</td>
-                            
-                            <td>{{$carton->carton_qty}}</td>
                             <td>{{$carton->case_qty}}</td>
                             <td>{{$carton->kit_qty}}</td>
+                            <td>{{$carton->basic_unit_qty}}</td>
                             <td>{{$carton->total_qty}}</td>
                             <td>
                                 <div style="margin-left: 30%">
@@ -448,11 +446,9 @@
                             
                             <th>Sku</th>
                             <th>Description</th>
-                            <th>Pallet Qty</th>
-                            <th>Carton Qty</th>
-                            
-                            <th>Kit Qty</th>
-                            <th>Total Qty</th>
+                            <th>Kits per Case</th>
+                            <th>Units per Case</th>
+                            <th>Total # Cases</th>
                             <th></th>
 
                         </tr>
@@ -461,10 +457,8 @@
                             <td><button type="button" class="btn text-denim toggle-{{$case->id}}" id="toggle-details{{$case->id}}" data-toggle="collapse" data-target="#details{{$case->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
                             <td>{{$case->sku}}</td>
                             <td>{{$case->description}}</td>
-                            <td>{{$case->pallet_qty}}</td>
-                            <td>{{$case->carton_qty}}</td>
-                            
                             <td>{{$case->kit_qty}}</td>
+                            <td>{{$case->}}</td>
                             <td>{{$case->total_qty}}</td>
                             <td>
                                 <div style="margin-left: 30%">
@@ -541,9 +535,8 @@
                             <th>Description</th>
                             <th>Pallet Qty</th>
                             <th>Carton Qty</th>
-                            <th>Case Qty</th>
-                            
-                            <th>Total Qty</th>
+                            <th>Units per Kit</th>
+                            <th>Total # Kits</th>
                             <th></th>
                         </tr>
                         @foreach($kits as $kit)
@@ -553,7 +546,7 @@
                             <td>{{$kit->description}}</td>
                             <td>{{$kit->pallet_qty}}</td>
                             <td>{{$kit->carton_qty}}</td>
-                            <td>{{$kit->case_qty}}</td>
+                            <td>{{$kit->basic_unit_qty}}</td>
                             
                             <td>{{$kit->total_qty}}</td>
                             <td>
@@ -618,7 +611,7 @@
                             <th>Carton Qty</th>
                             <th>Case Qty</th>
                             <th>Kit Qty</th>
-                            <th>Total Qty</th>
+                            <th>Total # Units</th>
                             <th></th>
 
                         </tr>
