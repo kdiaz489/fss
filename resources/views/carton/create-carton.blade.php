@@ -33,7 +33,7 @@
             <table class="table table-sm table-bordered table-striped" id="user_table">
                 <thead>
                     <tr>
-                        <th width="20%">Select Items</th>
+                        <th width="20%">Select Carton Items</th>
                         <th width="20%">Item Type</th>
                         <th width="20%">Qty per carton</th>
                         <th width="20%"></th>

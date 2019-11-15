@@ -86,10 +86,10 @@
                                 <table class="table table-bordered table-striped" id="user_table">
                                     <thead>
                                         <tr>
-                                            <th width="20%">Item Sku</th>
+                                            <th width="20%">Select Order Item</th>
                                             <th width="20%">Item Type</th>
                                             <th width="20%">Qty per order</th>
-                                            <th width="20%">Action</th>
+                                            <th width="20%"></th>
                                         </tr>
                                     </thead>
                                     <tbody class="form_inventory">

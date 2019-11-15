@@ -86,7 +86,7 @@
                                 <table class="table table-bordered table-striped" id="user_table">
                                     <thead>
                                         <tr>
-                                            <th width="20%">Item Sku</th>
+                                            <th width="20%">Select Order Items</th>
                                             <th width="20%">Item Type</th>
                                             <th width="20%">Qty per order</th>
                                             <th width="20%"></th>
