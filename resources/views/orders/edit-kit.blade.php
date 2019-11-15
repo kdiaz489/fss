@@ -4,7 +4,7 @@
 
 <div class="container mt-5">
 
-    <h1 class="display-4 text-center mb-4">Build your Kit</h1>
+    <h1 class="display-4 text-center mb-4">Edit your Kit</h1>
     
     
     <!-- Flash Alerts Begin -->
@@ -32,13 +32,8 @@
     </div>
     
     <div class="form-row justify-content-center mb-4">
-        <div class="col-md-4">
-            <label for="pallet_name">Kit Name</label>
-            <input type="text" name="kit_name" class="form-control form-control-sm" placeholder="Name" value="{{$kit->kit_name}}">
-            
-        </div>
 
-        <div class="col-md-4">
+        <div class="col-md-8">
             <label for="sku">Kit Sku</label>
             <input type="text" name="sku" class="form-control form-control-sm"  placeholder="Sku #" value="{{$kit->sku}}">
         </div>
@@ -100,13 +95,15 @@
             html += '<td><input type="text" name="item_qty[]" class="form-control form-control-sm" placeholder="Item Quantity" /></td>';
             if(number > 1)
             {
-                html += '<td><button type="button" name="remove" id="" class="btn btn-link text-danger remove">Remove</button></td></tr>';
+                html += '<td><button type="button" name="remove" id="" class="btn btn-danger btn-sm remove circle"><i class="fas fa-lg fa-minus"></i></button>\
+                        <button type="button" name="add" id="" class="btn btn-success btn-sm  add circle"><i class="fas fa-lg fa-plus"></i></button></td></tr>';
                 
                 $('.form_inventory').append(html);
             }
             else
             {   
-                html += '<td><button type="button" name="add" id="add" class="btn btn-link text-success add">Add</button> \
+                html += '<td><button type="button" name="remove" id="" class="btn btn-danger btn-sm remove circle"><i class="fas fa-lg fa-minus"></i></button>\
+                        <button type="button" name="add" id="" class="btn btn-success btn-sm  add circle"><i class="fas fa-lg fa-plus"></i></button> \
                         </td></tr>';
                 $('.form_inventory').html(html);
             }
@@ -118,14 +115,19 @@
 
 
 
-        $(document).on('click', '#add', function(){
-        count++;
-        dynamic_field(count);
+        $(document).on('click', '.add', function(){
+            count++;
+            dynamic_field(count);
         });
 
         $(document).on('click', '.remove', function(){
-        count--;
-        $(this).closest("tr").remove();
+            const table = document.getElementsByClassName('form_inventory');
+            const rownum = table[0].getElementsByTagName('TR').length;
+            
+            if(rownum != 1){
+                count--;
+                $(this).closest("tr").remove();
+            }
         });
 
 
