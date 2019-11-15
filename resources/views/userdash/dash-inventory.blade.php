@@ -446,6 +446,8 @@
                             
                             <th>Sku</th>
                             <th>Description</th>
+                            <th>Cases in Pallets</th>
+                            <th>Cases in Cartons</th>
                             <th>Kits per Case</th>
                             <th>Units per Case</th>
                             <th>Total # Cases</th>
@@ -457,6 +459,8 @@
                             <td><button type="button" class="btn text-denim toggle-{{$case->id}}" id="toggle-details{{$case->id}}" data-toggle="collapse" data-target="#details{{$case->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
                             <td>{{$case->sku}}</td>
                             <td>{{$case->description}}</td>
+                            <th>{{$case->pallet_qty}}</th>
+                            <th>{{$case->carton_qty}}</th>
                             <td>{{$case->kit_qty}}</td>
                             <td>{{$case->basic_unit_qty}}</td>
                             <td>{{$case->total_qty}}</td>
@@ -533,8 +537,8 @@
                             <th></th>
                             <th>Sku</th>
                             <th>Description</th>
-                            <th>Pallet Qty</th>
-                            <th>Carton Qty</th>
+                            <th>Kits in Pallets</th>
+                            <th>Kits in Cartons</th>
                             <th>Units per Kit</th>
                             <th>Total # Kits</th>
                             <th></th>
