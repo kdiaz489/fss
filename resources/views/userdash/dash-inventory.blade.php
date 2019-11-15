@@ -458,7 +458,7 @@
                             <td>{{$case->sku}}</td>
                             <td>{{$case->description}}</td>
                             <td>{{$case->kit_qty}}</td>
-                            <td>{{$case->}}</td>
+                            <td>{{$case->basic_unit_qty}}</td>
                             <td>{{$case->total_qty}}</td>
                             <td>
                                 <div style="margin-left: 30%">
