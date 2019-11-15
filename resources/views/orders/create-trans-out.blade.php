@@ -88,7 +88,7 @@
                                         <tr>
                                             <th width="20%">Item Sku</th>
                                             <th width="20%">Item Type</th>
-                                            <th width="20%">Quantity</th>
+                                            <th width="20%">Qty per order</th>
                                             <th width="20%">Action</th>
                                         </tr>
                                     </thead>
@@ -97,15 +97,16 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td colspan="3" align="right">&nbsp;</td>
-                                            <td>
-                                                @csrf
-                                                <input type="submit" name="save" id="save" class="btn btn-primary bg-denim btn-sm" value="Submit">
+                                            <td colspan="4" align="left">
+                                                <button type="button" name="add" id="" class="btn btn-success btn-sm add circle"><i class="fas fa-lg fa-plus"></i></button>
+                                                <small class="text-success">Add Item to Order</small>
                                             </td>
                                         </tr>
                                     </tfoot>
                                 </table>
                                 </div>
+                                @csrf
+                                <input type="submit" name="save" id="save" class="btn btn-primary bg-denim btn-sm" value="Submit Order">
                             </form>
                         
                     </div>
@@ -136,7 +137,8 @@
             {
                
                 html += '<td><button type="button" name="remove" id="" class="btn btn-danger btn-sm remove circle"><i class="fas fa-lg fa-minus"></i></button>\
-                        <button type="button" name="add" id="" class="btn btn-success btn-sm add circle"><i class="fas fa-lg fa-plus"></i></button></td></tr>';
+                        <small class="text-danger">Remove Item</small>\
+                        </td></tr>';
                 
                 $('.form_inventory').append(html);
             }
@@ -144,7 +146,7 @@
             {   
                 html += '<td>\
                         <button type="button" name="remove" id="" class="btn btn-danger btn-sm remove circle"><i class="fas fa-lg fa-minus"></i></button>\
-                        <button type="button" name="add" id="" class="btn btn-success btn-sm  add circle"><i class="fas fa-lg fa-plus"></i></button>\
+                        <small class="text-danger">Remove Item</small>\
                         </td></tr>';
                 $('.form_inventory').append(html);
             }

@@ -2,7 +2,7 @@
 
     <form action="/createpallet" id="createpallet" method="POST">
     <div class="form-row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-11">
             <span class="text-center" id="result"></span>
         </div>
     </div>
@@ -10,7 +10,7 @@
     
     <div class="form-row justify-content-center mb-4">
 
-        <div class="col-md-10">
+        <div class="col-md-11">
             <label for="sku">Pallet Sku</label>
             <input type="text" name="sku" class="form-control form-control-sm"  placeholder="Sku #">
             <div style="font-weight: 700; color:red">{{$errors->first('sku')}}</div>
@@ -19,7 +19,7 @@
     </div>
 
     <div class="form-row justify-content-center mb-4">
-        <div class="col-md-10">
+        <div class="col-md-11">
             <label for="desc">Description</label>
             <textarea name="desc" id="" cols="30" rows="3" class="form-control form-control-sm" placeholder="Description Here"></textarea>
             <div style="font-weight: 700; color:red">{{$errors->first('desc')}}</div>
@@ -27,15 +27,15 @@
     </div>
 
     <div class="form-row justify-content-center mb-4">
-        <div class="col-md-10 justify-content-center">
+        <div class="col-md-11 justify-content-center">
             <div class="table-responsive">
             <table class="table table-bordered table-striped" id="user_table">
                 <thead>
                     <tr>
                         <th width="20%">Select Pallet Items</th>
                         <th width="20%">Item Type</th>
-                        <th width="20%">Quantity</th>
-                        <th width="20%">Action</th>
+                        <th width="20%">Qty per pallet</th>
+                        <th width="20%"></th>
                     </tr>
                 </thead>
                 <tbody class="form_pallet">
@@ -43,16 +43,17 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="3" align="right">&nbsp;</td>
-                        <td>
-                            @csrf
-                        <input type="submit" name="save" id="save" class="btn btn-link text-denim" value="Submit">
-                        
+                        <td colspan="4" align="left">
+                            <button type="button" name="add" id="" class="btn btn-success btn-sm add-pallet-row circle"><i class="fas fa-lg fa-plus"></i></button>
+                            <small class="text-success">Add Item to Pallet</small>
                         </td>
                     </tr>
                 </tfoot>
             </table>
             </div>
+            @csrf
+            <input type="submit" name="save" id="save" class="btn bg-denim text-white" value="Add Pallet to Order">
+                        
         </div>
     </div>
 
@@ -80,7 +81,8 @@
             {
                
                 html += '<td><button type="button" name="remove" id="" class="btn btn-danger btn-sm remove-pallet-row circle"><i class="fas fa-lg fa-minus"></i></button>\
-                        <button type="button" name="add" id="" class="btn btn-success btn-sm add-pallet-row circle"><i class="fas fa-lg fa-plus"></i></button></td></tr>';
+                        <small class="text-danger">Remove Item</small>\
+                        </td></tr>';
                 
                 $('.form_pallet').append(html);
             }
@@ -88,7 +90,7 @@
             {   
                 html += '<td>\
                         <button type="button" name="remove" id="" class="btn btn-danger btn-sm remove-pallet-row circle"><i class="fas fa-lg fa-minus"></i></button>\
-                        <button type="button" name="add" id="" class="btn btn-success btn-sm add-pallet-row circle"><i class="fas fa-lg fa-plus"></i></button>\
+                        <small class="text-danger">Remove Item</small>\
                         </td></tr>';
                 $('.form_pallet').append(html);
             }
@@ -101,7 +103,7 @@
             $('.pallet-item-type').select2({
                 placeholder: 'Click to select cases',
                 minimumResultsForSearch: 1,
-                width: '175px'
+                width: '145px'
             });
         }
 

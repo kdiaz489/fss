@@ -35,8 +35,8 @@
                     <tr>
                         <th width="20%">Select Items</th>
                         <th width="20%">Item Type</th>
-                        <th width="20%">Quantity</th>
-                        <th width="20%">Action</th>
+                        <th width="20%">Qty per carton</th>
+                        <th width="20%"></th>
                     </tr>
                 </thead>
                 <tbody class="form_carton">
@@ -44,16 +44,16 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="3" align="right">&nbsp;</td>
-                        <td>
-                            @csrf
-                        <input type="submit" name="save" id="save" class="btn btn-link text-denim" value="Submit">
-                        
+                        <td colspan="4" align="left">
+                            <button type="button" name="add" id="" class="btn btn-success btn-sm add-carton-row circle"><i class="fas fa-lg fa-plus"></i></button>
+                            <small class="text-success">Add Item to Carton</small>
                         </td>
                     </tr>
                 </tfoot>
             </table>
             </div>
+            @csrf
+            <input type="submit" name="save" id="save" class="btn bg-denim text-white" value="Add Carton to Order">
         </div>
     </div>
 
@@ -81,7 +81,8 @@
             {
                
                 html += '<td><button type="button" name="remove" id="" class="btn btn-danger btn-sm remove-carton-row circle"><i class="fas fa-lg fa-minus"></i></button>\
-                        <button type="button" name="add" id="" class="btn btn-success btn-sm add-carton-row circle"><i class="fas fa-lg fa-plus"></i></button></td></tr>';
+                            <small class="text-danger">Remove Item</small>\
+                        </td></tr>';
                 
                 $('.form_carton').append(html);
             }
@@ -89,7 +90,7 @@
             {   
                 html += '<td>\
                         <button type="button" name="remove" id="" class="btn btn-danger btn-sm remove-carton-row circle"><i class="fas fa-lg fa-minus"></i></button>\
-                        <button type="button" name="add" id="" class="btn btn-success btn-sm add-carton-row circle"><i class="fas fa-lg fa-plus"></i></button>\
+                        <small class="text-danger">Remove Item</small>\
                         </td></tr>';
                 $('.form_carton').html(html);
             }
