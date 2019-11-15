@@ -146,7 +146,7 @@
                         <button type="button" name="remove" id="" class="btn btn-danger btn-sm remove circle"><i class="fas fa-lg fa-minus"></i></button>\
                         <button type="button" name="add" id="" class="btn btn-success btn-sm  add circle"><i class="fas fa-lg fa-plus"></i></button>\
                         </td></tr>';
-                $('.form_inventory').html(html);
+                $('.form_inventory').append(html);
             }
             $('.select_transin_skus').select2({
                 minimumResultsForSearch: 1,

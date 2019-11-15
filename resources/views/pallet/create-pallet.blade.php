@@ -90,7 +90,7 @@
                         <button type="button" name="remove" id="" class="btn btn-danger btn-sm remove-pallet-row circle"><i class="fas fa-lg fa-minus"></i></button>\
                         <button type="button" name="add" id="" class="btn btn-success btn-sm add-pallet-row circle"><i class="fas fa-lg fa-plus"></i></button>\
                         </td></tr>';
-                $('.form_pallet').html(html);
+                $('.form_pallet').append(html);
             }
             $('.select_pallet_skus').select2({
                 

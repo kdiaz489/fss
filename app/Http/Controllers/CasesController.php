@@ -94,7 +94,7 @@ class CasesController extends Controller
             }
             
             return response()->json([
-                'success'  => 'Order submitted successfully.'
+                'success'  => 'Case submitted successfully.'
             ]);
         }
     }
