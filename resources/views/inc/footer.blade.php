@@ -9,9 +9,9 @@
       <div class="col-6 col-md">
         <h5 class="text-gunmetal">Services</h5>
         <ul class="list-unstyled text-small">
-          <li><a class="text-muted" href="#">Fulfillment</a></li>
-          <li><a class="text-muted" href="#">Storage</a></li>
-          <li><a class="text-muted" href="#">Shipping</a></li>
+          <li><a class="text-muted" href="/fil">Fulfillment</a></li>
+          <li><a class="text-muted" href="/stor">Storage</a></li>
+          <li><a class="text-muted" href="/ship">Shipping</a></li>
 
         </ul>
       </div>
