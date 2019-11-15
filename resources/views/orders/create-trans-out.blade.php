@@ -179,6 +179,25 @@
             }
              
         });
+
+
+        $(document).on('click', '.editpallet', function(e){
+            e.preventDefault();
+            const palletid = this.id;
+            $('.modal-body').load('/editpallet/' + palletid, function(){
+                $('.modal').modal('show');
+            });
+            
+        });
+
+        $(document).on('click', '.editcarton', function(e){
+            e.preventDefault();
+            const cartonid = this.id;
+            $('.modal-body').load('/editcarton/' + cartonid, function(){
+                $('.modal').modal('show');
+            });
+              
+        });
           
 
         $(document).on('click', '.add', function(){

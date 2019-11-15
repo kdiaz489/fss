@@ -184,7 +184,7 @@
         });
           
 
-        $(document).on('click', '.editpallet', function(e){
+        $('.editpallet').on('click', function(e){
             e.preventDefault();
             const palletid = this.id;
             $('.modal-body').load('/editpallet/' + palletid, function(){
@@ -193,7 +193,7 @@
             
         });
 
-        $(document).on('click', '.editcarton', function(e){
+        $('.editcarton',).on('click', function(e){
             e.preventDefault();
             const cartonid = this.id;
             $('.modal-body').load('/editcarton/' + cartonid, function(){
