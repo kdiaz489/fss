@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Pallet extends Model
+class Carton extends Model
 {
-    protected $table = 'pallets';
+    protected $table = 'cartons';
 
     public $primaryKey = 'id';
 
@@ -26,15 +26,14 @@ class Pallet extends Model
     }
 
     public function cases(){
-        return $this->belongsToMany('App\Cases')->withPivot('quantity')->withTimeStamps();
+        return $this->belongsToMany('App\Cases')->withPivot('quantity')->withTimestamps();
     }
 
-    public function cartons(){
-        return $this->belongsToMany('App\Carton')->withPivot('quantity')->withTimeStamps();
+    public function pallets(){
+        return $this->belongsToMany('App\Pallet')->withPivot('quantity')->withTimestamps();
     }
 
     public function orders(){
         return $this->belongsToMany('App\Order')->withPivot('quantity')->withTimestamps();
     }
-
 }

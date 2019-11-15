@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\Pallet;
-use App\Cases;
+use App\Carton;
 use Illuminate\Support\Facades\Validator;
 
-class PalletsController extends Controller
+class CartonsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -29,11 +28,10 @@ class PalletsController extends Controller
     {
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
-        $cases = $user->cases->all();
-        $units = $user->basic_units->all();
+        $basic_units =  $user->basic_units->all();
         $kits = $user->kits->all();
-        $cartons = $user->cartons->all();
-        return view('pallet.create-pallet')->with('cartons', $cartons)->with('kits', $kits)->with('cases', $cases)->with('units', $units);
+        $cases = $user->cases->all();
+        return view('carton.create-carton')->with('units', $basic_units)->with('kits', $kits)->with('cases', $cases);
     }
 
     /**
@@ -70,13 +68,13 @@ class PalletsController extends Controller
             /**
              * If request passes validation, Pallet object is initiated and attributes are set
              */
-            $pallet = new Pallet();
-            $pallet->pallet_name = $request->pallet_name;
-            $pallet->user_id = auth()->user()->id;
-            $pallet->company = auth()->user()->company_name;
-            $pallet->sku = $request->sku;
-            $pallet->description = $request->desc;
-            $pallet->save();
+            $carton = new Carton();
+           
+            $carton->user_id = auth()->user()->id;
+            $carton->company = auth()->user()->company_name;
+            $carton->sku = $request->sku;
+            $carton->description = $request->desc;
+            $carton->save();
 
 
             /**
@@ -91,7 +89,7 @@ class PalletsController extends Controller
 
             /**
              * Conditional statements check for the type of items that were submitted to the form
-             * Checks for Unit, Kit, Case, if condition is met then create an object based on the item type and attached to the $pallet
+             * Checks for Unit, Kit, Case, if condition is met then create an object based on the item type and attached to the $carton
              */
             for ($i = 0; $i < count($types); $i++) {
                 if ($types[$i] == 'Unit') {
@@ -103,7 +101,7 @@ class PalletsController extends Controller
                     
                     $unit_data[] = $data;
                     */
-                    $pallet->basic_units()->attach(['basic__unit_id' => $items[$i]], ['quantity' => $item_qty[$i]]);
+                    $carton->basic_units()->attach(['basic__unit_id' => $items[$i]], ['quantity' => $item_qty[$i]]);
 
 
                  }
@@ -117,7 +115,7 @@ class PalletsController extends Controller
                     
                     $kit_data[] = $data;
                     */
-                    $pallet->kits()->attach(['kit_id' => $items[$i]], ['quantity' => $item_qty[$i]]);
+                    $carton->kits()->attach(['kit_id' => $items[$i]], ['quantity' => $item_qty[$i]]);
 
 
                  }
@@ -131,19 +129,7 @@ class PalletsController extends Controller
                     
                     $case_data[] = $data;
                     */
-                    $pallet->cases()->attach(['cases_id' => $items[$i]], ['quantity' => $item_qty[$i]]);
-                }
-
-                if ($types[$i] == 'Carton') {
-                    /*
-                    $data = array(
-                        'cases_id' => $items[$i],
-                        'quantity' => $item_qty[$i]
-                    );
-                    
-                    $case_data[] = $data;
-                    */
-                    $pallet->cartons()->attach(['carton_id' => $items[$i]], ['quantity' => $item_qty[$i]]);
+                    $carton->cases()->attach(['cases_id' => $items[$i]], ['quantity' => $item_qty[$i]]);
                 }
             }
 
@@ -163,9 +149,9 @@ class PalletsController extends Controller
              */
             
             return response()->json([
-                'success'  => 'Pallet submitted successfully.',
-                'id' => $pallet->id,
-                'sku' => $pallet->sku
+                'success'  => 'Carton submitted successfully.',
+                'id' => $carton->id,
+                'sku' => $carton->sku
             ]);
         }
     }
@@ -178,11 +164,11 @@ class PalletsController extends Controller
      */
     public function show($id)
     {
-        $pallet = Pallet::find($id);
-        $cases = $pallet->cases->all();
-        $kits = $pallet->kits->all();
-        $units = $pallet->basic_units->all();
-        return view('pallet.show-pallet')->with('pallet', $pallet)->with('cases', $cases)->with('kits', $kits)->with('units', $units);
+        $carton = Carton::find($id);
+        $cases = $carton->cases->all();
+        $kits = $carton->kits->all();
+        $units = $carton->basic_units->all();
+        return view('carton.show-carton')->with('carton', $carton)->with('cases', $cases)->with('kits', $kits)->with('units', $units);
     }
 
     /**
@@ -193,15 +179,13 @@ class PalletsController extends Controller
      */
     public function edit($id)
     {
-        $pallet = Pallet::find($id);
-        $user_id = $pallet->user_id;
+        $carton = Carton::find($id);
+        $user_id = $carton->user_id;
         $user = User::find($user_id);
-        $units = $user->basic_units->all();
+        $units =  $user->basic_units->all();
         $kits = $user->kits->all();
         $cases = $user->cases->all();
-        $cartons = $user->cartons->all();
-
-        return view('pallet.edit-pallet')->with('units', $units)->with('kits', $kits)->with('cases', $cases)->with('cartons', $cartons)->with('pallet', $pallet);
+        return view('carton.edit-carton')->with('carton', $carton)->with('units', $units)->with('cases', $cases)->with('kits', $kits);
     }
 
     /**
@@ -239,14 +223,13 @@ class PalletsController extends Controller
             /**
              * If request passes validation, Pallet object is initiated and attributes are set
              */
-            $pallet = Pallet::find($id);
-            $pallet->sku = $request->sku;
-            $pallet->description = $request->desc;
-            $pallet->save();
-            $pallet->basic_units()->detach();
-            $pallet->kits()->detach();
-            $pallet->cases()->detach();
-            $pallet->cartons()->detach();
+            $carton = Carton::find($id);
+            $carton->sku = $request->sku;
+            $carton->description = $request->desc;
+            $carton->save();
+            $carton->basic_units()->detach();
+            $carton->kits()->detach();
+            $carton->cases()->detach();
 
 
             /**
@@ -261,7 +244,7 @@ class PalletsController extends Controller
 
             /**
              * Conditional statements check for the type of items that were submitted to the form
-             * Checks for Unit, Kit, Case, if condition is met then create an object based on the item type and attached to the $pallet
+             * Checks for Unit, Kit, Case, if condition is met then create an object based on the item type and attached to the $carton
              */
             for ($i = 0; $i < count($types); $i++) {
                 if ($types[$i] == 'Unit') {
@@ -273,7 +256,7 @@ class PalletsController extends Controller
                     
                     $unit_data[] = $data;
                     */
-                    $pallet->basic_units()->attach(['basic__unit_id' => $items[$i]], ['quantity' => $item_qty[$i]]);
+                    $carton->basic_units()->attach(['basic__unit_id' => $items[$i]], ['quantity' => $item_qty[$i]]);
 
 
                  }
@@ -287,7 +270,7 @@ class PalletsController extends Controller
                     
                     $kit_data[] = $data;
                     */
-                    $pallet->kits()->attach(['kit_id' => $items[$i]], ['quantity' => $item_qty[$i]]);
+                    $carton->kits()->attach(['kit_id' => $items[$i]], ['quantity' => $item_qty[$i]]);
 
 
                  }
@@ -301,19 +284,7 @@ class PalletsController extends Controller
                     
                     $case_data[] = $data;
                     */
-                    $pallet->cases()->attach(['cases_id' => $items[$i]], ['quantity' => $item_qty[$i]]);
-                }
-
-                if ($types[$i] == 'Carton') {
-                    /*
-                    $data = array(
-                        'cases_id' => $items[$i],
-                        'quantity' => $item_qty[$i]
-                    );
-                    
-                    $case_data[] = $data;
-                    */
-                    $pallet->cartons()->attach(['carton_id' => $items[$i]], ['quantity' => $item_qty[$i]]);
+                    $carton->cases()->attach(['cases_id' => $items[$i]], ['quantity' => $item_qty[$i]]);
                 }
             }
 
@@ -333,9 +304,9 @@ class PalletsController extends Controller
              */
             
             return response()->json([
-                'success'  => 'Pallet updated successfully.',
-                'id' => $pallet->id,
-                'sku' => $pallet->sku
+                'success'  => 'Carton updated successfully.',
+                'id' => $carton->id,
+                'sku' => $carton->sku
             ]);
         }
     }
@@ -348,8 +319,8 @@ class PalletsController extends Controller
      */
     public function destroy($id)
     {
-        $pallet = Pallet::find($id);
-        $pallet->delete();
-        return redirect()->back()->with('success', 'You have successfully deleted pallet.');
+        $carton = Carton::find($id);
+        $carton->delete();
+        return redirect()->back()->with('success', 'You have successfully deleted carton.');
     }
 }

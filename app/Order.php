@@ -26,13 +26,17 @@ class Order extends Model
         return $this->belongsToMany('App\Pallet')->withPivot('quantity')->withTimestamps();
     }
 
+    public function cartons(){
+        return $this->belongsToMany('App\Carton')->withPivot('quantity')->withTimestamps();
+    }
+    public function cases(){
+        return $this->belongsToMany('App\Cases')->withPivot('quantity')->withTimestamps();
+    }
+
     public function kits(){
         return $this->belongsToMany('App\Kit')->withPivot('quantity')->withTimestamps();
     }
 
-    public function cases(){
-        return $this->belongsToMany('App\Cases')->withPivot('quantity')->withTimestamps();
-    }
     public function basic_units(){
        return $this->belongsToMany('App\Basic_Unit')->withPivot('quantity')->withTimestamps();
     }

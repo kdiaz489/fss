@@ -23,6 +23,10 @@ class Cases extends Model{
         return $this->belongsToMany('App\Kit')->withPivot('quantity')->withTimestamps();
     }
 
+    public function cartons(){
+        return $this->belongsToMany('App\Carton')->withPivot('quantity')->withTimestamps();
+    }
+
     public function pallets(){
         return $this->belongsToMany('App\Pallet')->withPivot('quantity')->withTimestamps();
     }

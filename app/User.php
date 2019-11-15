@@ -66,6 +66,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\Cases');
     }
 
+    public function cartons(){
+        // A user has many cases, a one to many relationship
+        return $this->hasMany('App\Carton');
+    }
+
     public function basic_units(){
         return $this->hasMany('App\Basic_Unit');
     }

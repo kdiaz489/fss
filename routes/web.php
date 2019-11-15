@@ -83,12 +83,20 @@ Route::get('/editkit/{id}', 'KitsController@edit');
 Route::put('/editkit/{id}', 'KitsController@update');
 
 
+Route::get('/createcarton', 'CartonsController@create');
+Route::post('/createcarton', 'CartonsController@store');
+Route::get('/viewcarton/{id}', 'CartonsController@show');
+Route::delete('/removecarton/{id}', 'CartonsController@destroy');
+Route::get('/editcarton/{id}', 'CartonsController@edit');
+Route::put('/updatecarton/{id}', 'CartonsController@update');
+
 Route::get('/createpallet', 'PalletsController@create');
 Route::post('/createpallet', 'PalletsController@store');
 Route::get('/viewpallet/{id}', 'PalletsController@show');
 Route::delete('/removepallet/{id}', 'PalletsController@destroy');
 Route::get('/editpallet/{id}', 'PalletsController@edit');
 Route::put('/updatepallet/{id}', 'PalletsController@update');
+
 
 Route::get('/transinkit', 'OrdersController@create');
 Route::get('/vieworder/{id}', 'OrdersController@show');
@@ -114,7 +122,10 @@ Route::post('/transoutpallet', 'OrdersController@store_transout_pallet');
 Route::get('/transinpallet', 'OrdersController@create_transin_pallet');
 Route::post('/transinpallet', 'OrdersController@store_transin_pallet');
 Route::put('/order/update/{id}', 'OrdersController@updatestatus');
-
+Route::get('/createtransin', 'OrdersController@create_transin_order');
+Route::post('/createtransin', 'OrdersController@store_transin_order');
+Route::get('/createtransout', 'OrdersController@create_transout_order');
+Route::post('/createtransout', 'OrdersController@store_transout_order');
 
 Route::resource('posts', 'PostsController');
 

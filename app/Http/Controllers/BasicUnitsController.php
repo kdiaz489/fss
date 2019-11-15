@@ -41,12 +41,10 @@ class BasicUnitsController extends Controller
         $request->validate([
             'sku'=> [ 'required',
                         Rule::unique('basic_unit_tbl')->where(function ($query){
-                        return $query->where('user_id', auth()->user()->id);
-            })],
-            'price' => 'nullable',
-            'name' => 'required',
-            'desc' => 'nullable',
-            'weight' => 'nullable'
+                        $query->where('user_id', auth()->user()->id);
+            })], 
+            
+            'desc' => 'required',
         ]);
 
         $unit = new Basic_Unit();
@@ -128,7 +126,7 @@ class BasicUnitsController extends Controller
         $basic_unit->orders()->detach();
         $basic_unit->cases()->detach();
         $basic_unit->delete();
-        return redirect()->back()->with('success', 'You have successfully deleted product');
+        return redirect()->back()->with('success', 'You have successfully deleted unit.');
 
     }
 }

@@ -111,7 +111,7 @@ $(document).ready(function () {
     /**** Code for Dash board tabs ends ****/
 
 
-   $('.select_kit_skus').select2({
+   $('.select_skus').select2({
         placeholder: 'Click to select'
     });
 
@@ -128,9 +128,11 @@ $(document).ready(function () {
 
         e.preventDefault();
         initialContent = $('.modal-content').html();
-        $(".modal-body").load('/updateusername');
-        $('.modal-footer').html('');
-        $('.modal').modal('show');
+        $(".modal-body").load('/updateusername', function(){
+            $('.modal-footer').html('');
+            $('.modal').modal('show');
+        });
+
 
 
     });
@@ -140,9 +142,11 @@ $(document).ready(function () {
 
         e.preventDefault();
         initialContent = $('.modal-content').html();
-        $(".modal-body").load('/updateemail');
-        $('.modal-footer').html('');
-        $('.modal').modal('show');
+        $(".modal-body").load('/updateemail', function(){
+            $('.modal-footer').html('');
+            $('.modal').modal('show');
+        });
+
 
 
     });
@@ -152,9 +156,11 @@ $(document).ready(function () {
 
         e.preventDefault();
         initialContent = $('.modal-content').html();
-        $(".modal-body").load('/updatepass');
-        $('.modal-footer').html('');
-        $('.modal').modal('show');
+        $(".modal-body").load('/updatepass', function(){
+            $('.modal-footer').html('');
+            $('.modal').modal('show');
+        });
+
 
 
     });
@@ -163,9 +169,11 @@ $(document).ready(function () {
 
         e.preventDefault();
         initialContent = $('.modal-content').html();
-        $(".modal-body").load('/updatecompanyname');
-        $('.modal-footer').html('');
-        $('.modal').modal('show');
+        $(".modal-body").load('/updatecompanyname', function(){
+            $('.modal-footer').html('');
+            $('.modal').modal('show');
+        });
+
 
 
     });
@@ -175,9 +183,11 @@ $(document).ready(function () {
 
         e.preventDefault();
         initialContent = $('.modal-content').html();
-        $(".modal-body").load('/updatecontactname');
-        $('.modal-footer').html('');
-        $('.modal').modal('show');
+        $(".modal-body").load('/updatecontactname', function(){
+            $('.modal-footer').html('');
+            $('.modal').modal('show');
+        });
+
 
 
     });
@@ -186,9 +196,11 @@ $(document).ready(function () {
 
         e.preventDefault();
         initialContent = $('.modal-content').html();
-        $(".modal-body").load('/updateaddress');
-        $('.modal-footer').html('');
-        $('.modal').modal('show');
+        $(".modal-body").load('/updateaddress', function(){
+            $('.modal-footer').html('');
+            $('.modal').modal('show');
+        });
+
 
 
     });
@@ -197,9 +209,11 @@ $(document).ready(function () {
 
         e.preventDefault();
         initialContent = $('.modal-content').html();
-        $(".modal-body").load('/adduser');
-        $('.modal-footer').html('');
-        $('.modal').modal('show');
+        $(".modal-body").load('/adduser', function(){
+            $('.modal-footer').html('');
+            $('.modal').modal('show');
+        });
+
 
 
     });

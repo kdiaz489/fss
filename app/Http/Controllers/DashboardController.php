@@ -8,11 +8,12 @@ use DB;
 use App\StorageWork;
 use App\Shipment;
 use App\Storage;
-use App\Kit;
 use App\Basic_Unit;
-use App\Order;
-use App\Pallet;
+use App\Kit;
 use App\Cases;
+use App\Carton;
+use App\Pallet;
+use App\Order;
 
 class DashboardController extends Controller
 {
@@ -113,11 +114,12 @@ class DashboardController extends Controller
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
         $kits = $user->kits;
-        $orders = $user->orders->sortKeysDesc();
-        $basic_units = $user->basic_units->sortKeysDesc();
-        $cases = $user->cases->sortkeysDesc();
-        $pallets = $user->pallets->sortkeysdesc();
-        return view('userdash.dash-inventory')->with('pallets', $pallets)->with('cases', $cases)->with('orders', $orders)->with('basic_units', $basic_units)->with('kits', $kits);
+        $orders = $user->orders->where('status', '=', 'Pending Approval')->sortByDesc('created_at');
+        $basic_units = $user->basic_units->sortByDesc('created_at');
+        $cases = $user->cases->sortByDesc('created_at');
+        $cartons = $user->cartons->sortByDesc('created_at');
+        $pallets = $user->pallets->sortByDesc('created_at');
+        return view('userdash.dash-inventory')->with('cartons', $cartons)->with('pallets', $pallets)->with('cases', $cases)->with('orders', $orders)->with('basic_units', $basic_units)->with('kits', $kits);
     }
 
     public function getuserdashaccount(){
@@ -137,20 +139,23 @@ class DashboardController extends Controller
     }
 
     public function getadmininventory(){
-
+        /*
         $units = DB::select('SELECT * FROM basic_unit_tbl');
         $kits = DB::select('SELECT * FROM kit_tbl');
         $cases = DB::select('SELECT * FROM cases');
+        $cartons = DB::select('SELECT * FROM cartons');
         $pallets = DB::select('SELECT * FROM pallets');
-        $orders = DB::select('SELECT * FROM orders');
+        $orders = DB::select('SELECT * FROM orders WHERE status = ?', ['Pending Approval']);
+        */
 
         $units = Basic_Unit::orderBy('created_at', 'desc')->get();
         $kits = Kit::orderBy('created_at', 'desc')->get();
         $cases = Cases::orderBy('created_at', 'desc')->get();
+        $cartons = Carton::orderBy('created_at', 'desc')->get();
         $pallets = Pallet::orderBy('created_at', 'desc')->get();
-        $orders = Order::orderBy('created_at', 'desc')->get();
+        $orders = Order::orderBy('created_at', 'desc')->get()->where('status', '=', 'Pending Approval');
 
-        return view('admindash.dash-all-inventory')->with('units', $units)->with('kits', $kits)->with('cases', $cases)->with('pallets', $pallets)->with('orders', $orders);
+        return view('admindash.dash-all-inventory')->with('units', $units)->with('kits', $kits)->with('cases', $cases)->with('cartons', $cartons)->with('pallets', $pallets)->with('orders', $orders);
     }
 
     public function index()

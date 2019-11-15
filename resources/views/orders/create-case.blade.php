@@ -21,19 +21,14 @@
     </div>
         <div class="form-row justify-content-center">
         <div class="col-md-8">
-            @csrf <a onclick="history.back()" class="btn btn-link text-frenchblue px-0" ><i class="fas fa-long-arrow-alt-left"></i> Go Back</a>
+            <a onclick="history.back()" class="btn btn-link text-frenchblue px-0" ><i class="fas fa-long-arrow-alt-left"></i> Go Back</a>
         </div>
         
     </div>
     
     <div class="form-row justify-content-center mb-4">
-        <div class="col-md-4">
-            <label for="case_name">Case Name</label>
-            <input type="text" name="case_name" class="form-control form-control-sm" value="{{ old('kit_name')}}" placeholder="Name">
-            <div style="font-weight: 700; color:red">{{$errors->first('case_name')}}</div>
-        </div>
 
-        <div class="col-md-4">
+        <div class="col-md-8">
             <label for="sku">Case Sku</label>
             <input type="text" name="sku" class="form-control form-control-sm" value="{{ old('sku')}}" placeholder="Sku #">
             <div style="font-weight: 700; color:red">{{$errors->first('sku')}}</div>
@@ -53,10 +48,10 @@
             <table class="table table-bordered table-striped" id="user_table">
                 <thead>
                     <tr>
-                        <th width="35%">Unit Sku</th>
-                        <th width="30%">Type</th>
-                        <th width="35%">Quantity</th>
-                        <th width="30%">Action</th>
+                        <th width="20%">Select Sku</th>
+                        <th width="20%">Type</th>
+                        <th width="20%">Quantity</th>
+                        <th width="20%">Action</th>
                     </tr>
                 </thead>
                 <tbody class="form_inventory">
@@ -88,38 +83,73 @@
 
         function dynamic_field(number){
             html = '<tr>';
-            html += '<td><select name="items[]" class="form-control form-control-sm select_kit_skus" multiple="multiple" placeholder="Click to Select Kits">'
-            html += '@if (count($units) > 0) @foreach ($units as $unit)<option value="{{$unit->id}}">{{$unit->sku . ' - ' . $unit->unit_name}}</option>@endforeach @else<option value="" disabled>No Kits Available</option> @endif '
-            html += '@if (count($kits) > 0) @foreach ($kits as $kit)<option value="{{$kit->id}}">{{$kit->sku . ' - ' . $kit->kit_name}}</option>@endforeach @else<option value="" disabled>No Kits Available</option> @endif '
+            html += '<td><select name="items[]" class="form-control form-control-sm select_case_skus">'
+            html += '<option value="none" disabled selected>Choose</option> ';
+            html += '@if (count($kits) > 0) <optgroup label="Kits"> @foreach ($kits as $kit) <option value="{{$kit->id}}">{{$kit->sku}}</option>@endforeach</optgroup>  @else<option value="" disabled>No Kits Available</option> @endif '
+            html += '@if (count($units) > 0) <optgroup label="Units"> @foreach ($units as $unit) <option value="{{$unit->id}}">{{$unit->sku}}</option>@endforeach</optgroup> @else<option value="" disabled>No Units Available</option> @endif '
+
             html += '</select></td>';
-            html += '<td><select name="types[]" id="type" class="form-control form-control-sm"><option value="Kit">Kit</option><option value="Unit">Unit</option></select></td>'
+            html += '<td><select name="types[]" id="" class="form-control form-control-sm type"><option value="none" disabled selected>Choose</option><option value="Kit">Kit</option><option value="Unit">Unit</option></select></td>'
             html += '<td><input type="text" name="item_qty[]" class="form-control" /></td>';
             if(number > 1)
             {
-                html += '<td><button type="button" name="remove" id="" class="btn btn-link text-danger remove">Remove</button></td></tr>';
+                html += '<td><button type="button" name="remove" id="" class="btn btn-danger btn-sm remove circle"><i class="fas fa-lg fa-minus"></i></button>\
+                        <button type="button" name="add" id="" class="btn btn-success btn-sm add circle"><i class="fas fa-lg fa-plus"></i></button></td></tr>';
                 
                 $('.form_inventory').append(html);
             }
             else
             {   
-                html += '<td><button type="button" name="add" id="add" class="btn btn-link text-success add">Add</button></td></tr>';
+                html += '<td><button type="button" name="remove" id="" class="btn btn-danger btn-sm remove circle"><i class="fas fa-lg fa-minus"></i></button>\
+                        <button type="button" name="add" id="" class="btn btn-success btn-sm add circle"><i class="fas fa-lg fa-plus"></i></button></td></tr>';
                 $('.form_inventory').html(html);
             }
-            $('.select_kit_skus').select2({
-                placeholder: 'Click to select'
+            $('.select_case_skus').select2({
+                
+                width: '175px'
+            });
+
+             $('.type').select2({
+                
+                width: '175px'
             });
         }
 
+        $(document).on('change', '.select_case_skus', function(){
+            var selected = $(':selected', this);
+            var label = selected.parent().attr('label');
+            console.log(label);
+            if(label == 'Pallets'){
+                selected.closest('tr').find('.type').val('Pallet').change();
+            }
+            if(label == 'Cartons'){
+                selected.closest('tr').find('.type').val('Carton').change();
+            }
+            else if(label == 'Cases'){
+                selected.closest('tr').find('.type').val('Case').change();
+            }
+            else if(label == 'Kits'){
+                selected.closest('tr').find('.type').val('Kit').change();
+            }
+            else if(label == 'Units'){
+                selected.closest('tr').find('.type').val('Unit').change();
+            }
+             
+        });
 
-
-        $(document).on('click', '#add', function(){
+        $(document).on('click', '.add', function(){
         count++;
         dynamic_field(count);
         });
 
         $(document).on('click', '.remove', function(){
-        count--;
-        $(this).closest("tr").remove();
+        const table = document.getElementsByClassName('form_inventory');
+        const rownum = table[0].getElementsByTagName('TR').length;
+        
+        if(rownum != 1){
+            count--;
+            $(this).closest("tr").remove();
+        }
         });
 
 

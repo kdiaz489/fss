@@ -194,6 +194,6 @@ class KitsController extends Controller
 
         $kit->basic_units()->detach();
         $kit->delete();
-        return redirect()->back()->with('success', 'Kit has been removed.');
+        return redirect()->back()->with('success', 'You have successfully deleted kit.');
     }
 }

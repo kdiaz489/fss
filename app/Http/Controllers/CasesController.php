@@ -201,6 +201,6 @@ class CasesController extends Controller
         $case->orders()->detach();
         $case->kits()->detach();
         $case->delete();
-        return redirect()->back()->with('success', 'Case has been Removed.');
+        return redirect()->back()->with('success', 'You have successfully deleted case.');
     }
 }

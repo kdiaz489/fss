@@ -121,6 +121,25 @@
                     @endforeach
                 </td>
             </tr>
+            
+            <tr>
+                <th scope="row">Carton Quantity</th>
+                <td>{{$order->carton_qty}}</td>
+            </tr>
+
+            <tr>
+                <th scope="row">Cartons in Order</th>
+                <td>
+                    
+                        @if ($order->cartibs != null)
+                            @foreach ($order->cartons as $carton)
+                                <a href="/viewcarton/{{$carton->id}}"><span
+                                        class="badge badge-secondary">{{'Sku: ' . $carton->sku}}</span></a>
+                            @endforeach
+                        @endif
+                    
+                </td>
+            </tr>
 
             <tr>
                 <th scope="row">Pallet Quantity</th>
