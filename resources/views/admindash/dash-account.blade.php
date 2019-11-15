@@ -119,7 +119,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <input type="password" style="border:none;"
-                                            value={{auth()->user()->password}} />
+                                            value={{ str_pad('#', strlen(auth()->user()->password)/2, "#", STR_PAD_LEFT)}}/>
                                     </div>
                                     <div class="col-lg-2">
                                         <a href="" class="editpass" id=""><i class="fas fa-pencil-alt"></i></a>
