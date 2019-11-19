@@ -20,7 +20,6 @@
                         <li class="nav-item"></li>
                         <li class="nav-item"></li>
     
-                   
                     <li class="nav-item dropdown p-0">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle text-white px-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
