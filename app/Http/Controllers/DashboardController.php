@@ -128,6 +128,13 @@ class DashboardController extends Controller
         return view('userdash.dash-account')->with('user', $user);
     }
 
+    public function getuserorders(){
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+        $orders = $user->orders->sortByDesc('created_at');
+        return view('userdash.dash-orders')->with('user', $user)->with('orders', $orders);
+    }
+
     public function getadminusers(){
 
         return view('admindash.dash-all-user')->with('users', User::all());

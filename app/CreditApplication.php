@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Shipment extends Model
+class CreditApplication extends Model
 {
-    protected $table = 'ship_wk_tbl';
+    protected $table = '';
 
     public $primaryKey = 'id';
     
