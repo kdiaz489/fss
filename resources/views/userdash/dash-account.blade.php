@@ -80,6 +80,44 @@
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <br>
+                    <h1 class="display-4">Account Balance</h1>
+                    <br>
+                    <br>
+                    <div class="container-fluid px-5" style="border: solid 1px #dee2e6; border-radius: 10px">
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <h2 class="mt-4">Balance Owed</h2>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <table class="table">
+                                <tr>
+                                    <th>User</th>
+                                    <th>Company</th>
+                                    <th>Remaining Balance</th>
+                                    <th></th>
+                                </tr>
+                            
+                                <tr>
+                                    <td>{{$user->name}}</td>
+                                    <td>{{$user->company_name}}</td>
+                                    <td>{{'$' . $user->account_balance}}</td>
+                                    <td>
+                                        <div style="margin-left: 40%">
+                                            <a href="/makepayment/{{$user->id}}" class="float-left" style="margin-right:1%">
+                                                <button class="btn btn-link text-denim btn-sm" type="button">Make a Payment</button>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                            </table>
+                        </div>
+
+                        <br><br>
+                
                             <h1 class="display-4">Account Settings</h1>
                             <br>
                             <br>

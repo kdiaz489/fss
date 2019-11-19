@@ -57,8 +57,7 @@
 
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <br>
-                    <br>
+                    
                     <div class="btn-group" role="group">
                         <button id="btnGroupDrop1" type="button" class="btn bg-denim text-white dropdown-toggle"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
