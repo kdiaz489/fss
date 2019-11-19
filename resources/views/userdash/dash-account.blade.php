@@ -29,13 +29,13 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs border-1" role="tablist">
             <li class="nav-item">
-                <a class="nav-link" href="#">Fulfillment</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/dashboard">Shipments</a>
+                <a class="nav-link" href="/dashboard/user/fulfillment">Fulfillment</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/dashboard/user/inventory">Storage</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/dashboard">Shipments</a>
             </li>
             <li class="nav-item">
                     <a class="nav-link" href="/dashboard/user/orders">Orders</a>
@@ -103,7 +103,7 @@
                                 <tr>
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->company_name}}</td>
-                                    <td>{{'$' . $user->account_balance}}</td>
+                                    <td>{{'$' . number_format($user->account_balance,2)}}</td>
                                     <td>
                                         <div style="margin-left: 40%">
                                             <a href="/makepayment/{{$user->id}}" class="float-left" style="margin-right:1%">

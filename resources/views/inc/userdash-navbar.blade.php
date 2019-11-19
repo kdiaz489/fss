@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-sm bg-denim shadow-sm" data-toggle="affix">
-    <div class="container">
+    <div class="container-fluid">
         <a class="navbar-brand text-white" href="{{ url('/') }}">
 
 
@@ -14,32 +14,11 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav nav-fill w-100 ">
 
-                <li class="nav-item">
-                    
-                    <div class="text-white">Pallets on Floor: </div>
-
-                    <div class="text-white">Orders Unfulfilled: </div>
-
-                    <div class="text-white">Orders Fulfilled: </div>
-                
-                  </li>
-
-                    <li class="nav-item">
-                        <div class="text-white">
-                            Incoming Orders Pending: 
-                        </div>
-                        <div class="text-white">
-                            Incoming Orders In Process:
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <div class="text-white">
-                            Outgoing Orders Pending:
-                        </div>
-                        <div class="text-white">
-                            Outgoing Orders In Process: 
-                        </div>
-                    </li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
 
                 @guest
                 <li class="nav-item">
@@ -51,29 +30,13 @@
                     </li>
                 @endif
             @else
-                <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                <li class="nav-item dropdown p-0">
+                    <a id="navbarDropdown" style="width:100%" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->name }} <span class="caret"></span>
                     </a>
 
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu w-100 mt-0" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/dashboard">Dashboard</a>
-
-                        @hasrole('admin')
-                            <a class="dropdown-item" href="{{route('admin.users.index')}}">Manage Users</a>
-                        @endhasrole
-
-                        @hasrole('admin')
-                        <a class="dropdown-item" href="/stor/admin">Stor Requests</a>
-                        @endhasrole
-
-                        @hasrole('admin')
-                        <a class="dropdown-item" href="/ship/admin">Shipments</a>
-                        @endhasrole
-
-                        @impersonate()
-                            <a class="dropdown-item" href="{{route('admin.impersonate.destroy')}}">End Impersonate</a>
-                        @endimpersonate
 
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();

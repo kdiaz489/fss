@@ -136,6 +136,7 @@ Route::get('/dashboard', 'DashboardController@index')->middleware('verified');
 Route::get('/dashboard/user/inventory', 'DashboardController@getuserdashinventory');
 Route::get('/dashboard/user/account', 'DashboardController@getuserdashaccount');
 Route::get('/dashboard/user/orders', 'DashboardController@getuserorders');
+Route::get('/dashboard/user/fulfillment', 'DashboardController@getuserdashfulfillment');
 
 Route::get('/dashboard/admin/users', 'DashboardController@getadminusers');
 Route::get('/dashboard/admin/inventory', 'DashboardController@getadmininventory');

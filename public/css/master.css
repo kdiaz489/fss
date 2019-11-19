@@ -514,6 +514,12 @@ input[type=checkbox] {
 /*DESKTOP SPECIFIC CONDITIONS*/
 @media(min-width: 768px) {
 
+    .show>.dropdown-menu {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      
+
     .jumbotron-fluid {
         height: 500px !important;
 

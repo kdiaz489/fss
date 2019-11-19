@@ -7,7 +7,7 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs border-1" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link" href="/dashboard/user/fulfillment">Fulfillment</a>
+                    <a class="nav-link active" href="/dashboard/user/fulfillment">Fulfillment</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/dashboard/user/inventory">Storage</a>
@@ -16,7 +16,7 @@
                     <a class="nav-link" href="/dashboard">Shipments</a>
                 </li>
                 <li class="nav-item">
-                        <a class="nav-link active" href="/dashboard/user/orders">Orders</a>
+                        <a class="nav-link" href="/dashboard/user/orders">Orders</a>
                     </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/dashboard/user/account">Account</a>
@@ -66,7 +66,7 @@
                     <br>
                     <br>
 
-                    <h1 class="display-4">Orders</h1>
+                    <h1 class="display-4">Fulfillment Orders</h1>
 
                     @if(count($orders) > 0)
                     <div class="table-responsive">

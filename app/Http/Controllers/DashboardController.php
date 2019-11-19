@@ -122,6 +122,14 @@ class DashboardController extends Controller
         return view('userdash.dash-inventory')->with('cartons', $cartons)->with('pallets', $pallets)->with('cases', $cases)->with('orders', $orders)->with('basic_units', $basic_units)->with('kits', $kits);
     }
 
+    public function getuserdashfulfillment(){
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+        $kits = $user->kits;
+        $orders = $user->orders->where('status', '=', 'Pending Approval')->sortByDesc('created_at');
+        return view('userdash.dash-fulfillment')->with('orders', $orders);
+    }
+
     public function getuserdashaccount(){
         $user_id = auth()->user()->id;
         $user = User::find($user_id);

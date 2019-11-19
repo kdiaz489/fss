@@ -6,23 +6,23 @@
     <div class="container dashboard-container pt-5">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs border-1" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Fulfillment</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="/dashboard">Shipments</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/dashboard/user/inventory">Storage</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/dashboard/user/orders">Orders</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/dashboard/user/account">Account</a>
-            </li>
-
-        </ul>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard/user/fulfillment">Fulfillment</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard/user/inventory">Storage</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/dashboard">Shipments</a>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link" href="/dashboard/user/orders">Orders</a>
+                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard/user/account">Account</a>
+                </li>
+    
+            </ul>
     </div>
 
 </div>
