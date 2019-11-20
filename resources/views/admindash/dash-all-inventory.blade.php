@@ -62,6 +62,7 @@
                 <!-- Tab panes -->
                 <div class="tab-content">
                         <h1 class="display-4">Product On Pallets</h1>
+                        <br>
 
                         @if(count($pallets) > 0)
                         <div class="table-responsive">

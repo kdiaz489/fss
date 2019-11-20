@@ -189,7 +189,7 @@ class DashboardController extends Controller
 
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
-        $shipments = $user->shipments->sortKeysDesc();
+        $shipments = $user->shipments->sortByDesc('created_at');
         $storagework = $user->storagework->sortKeysDesc();
         $storage = $user->storage->sortKeysDesc();
         $kits = $user->kits;

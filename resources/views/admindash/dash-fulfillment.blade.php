@@ -6,8 +6,8 @@
 <div class="container-fluid bg-whitewash ">
     <div class="container dashboard-container pt-5">
         <!-- Nav tabs -->
-        <ul class="nav nav-tabs border-1" role="tablist">
-                <ul class="nav nav-tabs border-1" role="tablist">
+        <ul class="nav nav-tabs border-1">
+                <ul class="nav nav-tabs border-1">
                         <li class="nav-item">
                             <a class="nav-link active" href="/dashboard/admin/fulfillment">Fulfillment</a>
                         </li>
@@ -65,13 +65,14 @@
                 <div class="tab-content">
 
                         <h1 class="display-4">All Fulfillment Requests</h1>
+                        <br>
 
                         @if(count($orders) > 0)
                         <div class="table-responsive">
                         <table class="table">
                             <tr>
                                 <th></th>
-                                <th>Update</th>
+                                <th>Update Status</th>
                                 <th>Order ID</th>
                                 <th>Company</th>
                                 <th>Status</th>
@@ -86,10 +87,10 @@
                                 <td><button type="button" class="btn text-denim toggle-{{$order->id}}" id="toggle-details{{$order->id}}" data-toggle="collapse" data-target="#details{{$order->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
 
                                 <td>
-                                        <form action=" /order/update/{{$order->id}}" method="POST">
+                                        <form action="/order/update/{{$order->id}}" method="POST">
                                             @csrf
                                             {{method_field('PUT')}}
-                                            <select name="status" id="" class="">
+                                            <select name="status" id="" class="form-control form-control-sm p-0 m-0">
                                                 <option value="" selected disabled>Choose</option>
                                                 <option value="Completed">Completed</option>
                                                 <option value="Approved">Approved</option>
@@ -97,8 +98,8 @@
                                                 <option value="Rejected">Rejected</option>
                                             </select>
 
-                                            <button type="submit" style=" margin-left: 1.25rem;"
-                                                class="btn btn-link btn-sm">Update</button>
+                                            <button type="submit"
+                                                class="btn btn-link btn-sm float-left">Update</button>
                                         </form>
                                 </td>
                                 <td>{{str_pad($order->orderid, 6, '0', STR_PAD_LEFT)}}</td>

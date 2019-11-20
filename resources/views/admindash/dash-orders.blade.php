@@ -65,6 +65,7 @@
                 <div class="tab-content">
 
                         <h1 class="display-4">All Order Requests</h1>
+                        <br>
 
                         @if(count($orders) > 0)
                         <div class="table-responsive">
@@ -86,10 +87,10 @@
                                 <td><button type="button" class="btn text-denim toggle-{{$order->id}}" id="toggle-details{{$order->id}}" data-toggle="collapse" data-target="#details{{$order->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
 
                                 <td>
-                                        <form action=" /order/update/{{$order->id}}" method="POST">
+                                        <form action="/order/update/{{$order->id}}" method="POST">
                                             @csrf
                                             {{method_field('PUT')}}
-                                            <select name="status" id="" class="">
+                                            <select name="status" id="" class=" form-control form-control-sm">
                                                 <option value="" selected disabled>Choose</option>
                                                 <option value="Completed">Completed</option>
                                                 <option value="Approved">Approved</option>

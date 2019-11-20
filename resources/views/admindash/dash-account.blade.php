@@ -84,7 +84,6 @@
                         <div class="container dashboard-container">
                             <h1 class="display-4">Account Settings</h1>
                             <br>
-                            <br>
                             <div class="container-fluid px-5" style="border: solid 1px #dee2e6; border-radius: 10px">
                                 <div class="row">
                                     <div class="col-lg-4">
