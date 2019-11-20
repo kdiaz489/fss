@@ -153,6 +153,17 @@ class DashboardController extends Controller
         return view('admindash.dash-account');
     }
 
+    public function getadminfulfillment(){
+
+        $orders = Order::orderBy('created_at', 'desc')->get()->where('status', '=', 'Pending Approval');
+        return view('admindash.dash-fulfillment')->with('orders', $orders);
+    }
+
+    public function getadminorders(){
+        $orders = Order::orderBy('created_at', 'desc')->get()->where('status', '=', 'Pending Approval');
+        return view('admindash.dash-orders')->with('orders', $orders);
+    }
+
     public function getadmininventory(){
         /*
         $units = DB::select('SELECT * FROM basic_unit_tbl');
@@ -168,9 +179,9 @@ class DashboardController extends Controller
         $cases = Cases::orderBy('created_at', 'desc')->get();
         $cartons = Carton::orderBy('created_at', 'desc')->get();
         $pallets = Pallet::orderBy('created_at', 'desc')->get();
-        $orders = Order::orderBy('created_at', 'desc')->get()->where('status', '=', 'Pending Approval');
+        //$orders = Order::orderBy('created_at', 'desc')->get()->where('status', '=', 'Pending Approval');
 
-        return view('admindash.dash-all-inventory')->with('units', $units)->with('kits', $kits)->with('cases', $cases)->with('cartons', $cartons)->with('pallets', $pallets)->with('orders', $orders);
+        return view('admindash.dash-all-inventory')->with('basic_units', $units)->with('kits', $kits)->with('cases', $cases)->with('cartons', $cartons)->with('pallets', $pallets);
     }
 
     public function index()

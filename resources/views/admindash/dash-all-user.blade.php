@@ -7,19 +7,26 @@
     <div class="container dashboard-container pt-5">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs border-1" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link" href="/dashboard">Shipments</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="/dashboard/admin/users">Manage Users</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/dashboard/admin/inventory">Inventory Requests</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/dashboard/admin/account">Account</a>
-            </li>
-        </ul>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard/admin/fulfillment">Fulfillment</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard/admin/inventory">Storage</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">Shipments</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/dashboard/admin/users">Manage Users</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard/admin/orders">Orders</a>
+                </li>
+    
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard/admin/account">Account</a>
+                </li>
+            </ul>
     </div>
 
 </div>
@@ -83,7 +90,7 @@
                                             <form action="/user/accbal/update/{{$user->id}}" method="POST">
                                                 @csrf
                                                 {{method_field('PUT')}}
-                                                <input type="text" name="accbal" class="text-center" style="width:40%" value="{{$user->account_balance}}">
+                                                <input type="text" name="accbal" class="text-center" style="width:40%" value="{{number_format($user->account_balance,2)}}">
                                                 <button type="submit" style=" margin-left: 1.25rem;"
                                                     class="btn btn-link text-success btn-sm">Update</button>
                                             </form>

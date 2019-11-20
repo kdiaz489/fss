@@ -513,11 +513,12 @@ input[type=checkbox] {
 
 /*DESKTOP SPECIFIC CONDITIONS*/
 @media(min-width: 768px) {
-
+    /* Only use to center drop down menu
     .show>.dropdown-menu {
-        left: 50%;
-        transform: translateX(-50%);
+        left: 75%;
+        transform: translateX(-75%);
       }
+      */
       
 
     .jumbotron-fluid {

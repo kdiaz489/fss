@@ -139,6 +139,8 @@ Route::get('/dashboard/user/orders', 'DashboardController@getuserorders');
 Route::get('/dashboard/user/fulfillment', 'DashboardController@getuserdashfulfillment');
 
 Route::get('/dashboard/admin/users', 'DashboardController@getadminusers');
+Route::get('/dashboard/admin/fulfillment', 'DashboardController@getadminfulfillment');
+Route::get('/dashboard/admin/orders', 'DashboardController@getadminorders');
 Route::get('/dashboard/admin/inventory', 'DashboardController@getadmininventory');
 Route::get('/dashboard/admin/account', 'DashboardController@getadminaccount');
 

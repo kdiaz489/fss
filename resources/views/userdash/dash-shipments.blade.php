@@ -68,40 +68,61 @@
                         <br>
                         <br>
                         @if(count($shipments) > 0)
-                        <table class="table">
-                            <tr>
-                                <th>Shipment Destination</th>
-                                <th>Submitted On</th>
-                                <th>Status</th>
-                                <th></th>
-                            </tr>
-                            @foreach($shipments as $shipment)
-                            <tr>
-                                <td>{{$shipment->dest_company}}</td>
-                                <td>{{$shipment->created_at->format('H:i:s m/d/y')}}</td>
-                                <td>{{$shipment->work_status}}</td>
-                                <td>
-                                    <div style="margin-left: 40%">
-                                        <a href="/ship/{{$shipment->id}}" class="float-left" style="margin-right:1%">
-                                            <button class="btn btn-link text-secondary btn-sm"
-                                                type="button">View</button>
-                                        </a>
-                                        <a href="/pdf/{{$shipment->id}}" class="float-left" style="margin-right:1%">
-                                            <button class="btn btn-link text-denim btn-sm" type="button">Export
-                                                PDF</button>
-                                        </a>
-                                        <form action="/ship/cancel/{{$shipment->id}}" method="POST" class="float-left">
-                                            @method('PUT')
-                                            @csrf
+                        <div class="table-responsive">
 
-                                            <button type="submit"
-                                                class="btn btn-link text-danger btn-sm">Cancel</button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </table>
+                        
+                            <table class="table">
+                                <tr>
+                                    <th>Order #</th>
+                                    <th>Booked On</th>
+                                    <th>Status</th>
+                                    <th>Org Info</th>
+                                    <th>Dest Info</th>
+                                    <th>Pick Date</th>
+                                    <th>Delivery Date</th>
+                                    <th>Contact Name</th>
+                                    <th>Contact Email</th>
+                                    <th>Contact Phone</th>
+                                    <th>Dock</th>
+                                    <th>Fork Lift</th>
+                                    <th></th>
+                                </tr>
+                                @foreach($shipments as $shipment)
+                                <tr>
+                                    <td>{{str_pad($shipment->id, 6, '0', STR_PAD_LEFT)}}</td>
+                                    <td>{{$shipment->created_at->format('H:i:s m/d/y')}}</td>
+                                    <td>{{$shipment->work_status}}</td>
+                                    <td>{{$shipment->orig_company}}</td>
+                                    <td>{{$shipment->dest_company}}</td>
+                                    <td>{{$shipment->orig_pickup_date}}</td>
+                                    <td>{{$shipment->dest_pickup_date}}</td>
+                                    <td>{{$shipment->dest_cont_name}}</td>
+                                    <td>{{$shipment->dest_cont_email}}</td>
+                                    <td>{{$shipment->dest_cont_phone}}</td>
+                                    <td>{{$shipment->dest_dock}}</td>
+                                    <td>{{$shipment->dest_frklft}}</td>
+                                    <td>
+                                        <div style="margin-left: 40%">
+                                            <a href="/ship/{{$shipment->id}}" class="float-left" style="margin-right:1%">
+                                                <button class="btn btn-link text-secondary btn-sm"
+                                                    type="button">View</button>
+                                            </a>
+                                            <a href="/pdf/{{$shipment->id}}" class="float-left" style="margin-right:1%">
+                                                <button class="btn btn-link text-denim btn-sm" type="button">PDF</button>
+                                            </a>
+                                            <form action="/ship/cancel/{{$shipment->id}}" method="POST" class="float-left">
+                                                @method('PUT')
+                                                @csrf
+
+                                                <button type="submit"
+                                                    class="btn btn-link text-danger btn-sm">Cancel</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </table>
+                        </div>
                         @else
                         <p>You have no pending shipments.</p>
                         @endif

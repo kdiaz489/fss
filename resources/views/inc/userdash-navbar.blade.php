@@ -22,14 +22,14 @@
     
                    
                     <li class="nav-item dropdown p-0">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle text-white px-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle text-white px-0 w-75 text-wrap text-break" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
     
-                        <div class="dropdown-menu w-100 mt-0 text-center" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/dashboard">Dashboard</a>
+                        <div class="dropdown-menu w-75 mt-0 text-center" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item px-0" href="/dashboard">Dashboard</a>
     
-                            <a class="dropdown-item" href="{{ route('logout') }}"
+                            <a class="dropdown-item px-0" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
