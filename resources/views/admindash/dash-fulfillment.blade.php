@@ -7,7 +7,6 @@
     <div class="container dashboard-container pt-5">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs border-1">
-                <ul class="nav nav-tabs border-1">
                         <li class="nav-item">
                             <a class="nav-link active" href="/dashboard/admin/fulfillment">Fulfillment</a>
                         </li>
@@ -27,7 +26,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/dashboard/admin/account">Account</a>
                         </li>
-                    </ul>
+                    
         </ul>
     </div>
 
