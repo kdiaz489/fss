@@ -17,39 +17,50 @@ use App\Order;
 
 class DashboardController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+    public function index()
+    {
 
-    public function updateusername(){
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
-        $user->user_name = request('username');
+        $shipments = $user->shipments->sortByDesc('created_at');
+
+        if($user->hasAnyRole('user')){
+            return view('userdash.dash-shipments')->with('shipments', $shipments);
+        }
+        elseif($user->hasAnyRole('admin')){
+            
+            //DB version
+            $shipments = DB::select('SELECT * FROM ship_wk_tbl');
+            $shipments = Shipment::orderBy('created_at', 'desc')->get();
+            
+            return view('admindash.dash-all-ship')->with('shipments', $shipments);
+        }
+    }
+
+
+    public function updateusername(Request $request){
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+        $user->user_name = $request->username;
         $user->save();
         return redirect()->back()->with('success', 'Updated User Name');
     }
 
-    public function updateemail(){
+    public function updateemail(Request $request){
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
-        $user->email = request('email');
+        $user->email = $request->email;
         $user->save();
         return redirect()->back()->with('success', 'Updated Username');
     }
 
-    public function updatecompanyname(){
+    public function updatecompanyname(Request $request){
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
         $user->company_name = request('company-name');
@@ -57,7 +68,7 @@ class DashboardController extends Controller
         return redirect()->back()->with('success', 'Updated Company Name');
     }
 
-    public function updatecontactname(){
+    public function updatecontactname(Request $request){
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
         $user->name = request('contact-name');
@@ -65,7 +76,7 @@ class DashboardController extends Controller
         return redirect()->back()->with('success', 'Updated Contact Name');
     }
 
-    public function updateaddress(){
+    public function updateaddress(Request $request){
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
         $user->street_address = request('street-address');
@@ -113,20 +124,19 @@ class DashboardController extends Controller
     public function getuserdashinventory(){
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
-        $kits = $user->kits;
-        $orders = $user->orders->where('status', '=', 'Pending Approval')->sortByDesc('created_at');
         $basic_units = $user->basic_units->sortByDesc('created_at');
+        $kits = $user->kits->sortByDesc('created_at');
         $cases = $user->cases->sortByDesc('created_at');
         $cartons = $user->cartons->sortByDesc('created_at');
         $pallets = $user->pallets->sortByDesc('created_at');
-        return view('userdash.dash-inventory')->with('cartons', $cartons)->with('pallets', $pallets)->with('cases', $cases)->with('orders', $orders)->with('basic_units', $basic_units)->with('kits', $kits);
+        return view('userdash.dash-inventory')->with('cartons', $cartons)->with('pallets', $pallets)->with('cases', $cases)->with('basic_units', $basic_units)->with('kits', $kits);
     }
 
     public function getuserdashfulfillment(){
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
         $kits = $user->kits;
-        $orders = $user->orders->where('status', '=', 'Pending Approval')->sortByDesc('created_at');
+        $orders = $user->orders->where('order_type', '=', 'Fulfill Items')->where('status', '=', 'Pending Approval')->sortByDesc('created_at');
         return view('userdash.dash-fulfillment')->with('orders', $orders);
     }
 
@@ -139,9 +149,11 @@ class DashboardController extends Controller
     public function getuserorders(){
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
-        $orders = $user->orders->sortByDesc('created_at');
+        $orders = $user->orders->where('order_type', '!=', 'Fulfill Items')->where('status', '=', 'Pending Approval')->sortByDesc('created_at');
         return view('userdash.dash-orders')->with('user', $user)->with('orders', $orders);
     }
+
+
 
     public function getadminusers(){
 
@@ -155,7 +167,7 @@ class DashboardController extends Controller
 
     public function getadminfulfillment(){
 
-        $orders = Order::orderBy('created_at', 'desc')->get()->where('status', '=', 'Pending Approval');
+        $orders = Order::orderBy('created_at', 'desc')->where('order_type', '=', 'Fulfill Items')->where('status', '=', 'Pending Approval')->get();
         return view('admindash.dash-fulfillment')->with('orders', $orders);
     }
 
@@ -184,42 +196,5 @@ class DashboardController extends Controller
         return view('admindash.dash-all-inventory')->with('basic_units', $units)->with('kits', $kits)->with('cases', $cases)->with('cartons', $cartons)->with('pallets', $pallets);
     }
 
-    public function index()
-    {
 
-        $user_id = auth()->user()->id;
-        $user = User::find($user_id);
-        $shipments = $user->shipments->sortByDesc('created_at');
-        $storagework = $user->storagework->sortKeysDesc();
-        $storage = $user->storage->sortKeysDesc();
-        $kits = $user->kits;
-        $orders = $user->orders->sortKeysDesc();
-        $basic_units = $user->basic_units;
-        $cases = $user->cases->sortkeysDesc();
-        $pallets = $user->pallets->sortkeysdesc();
-
-        if($user->hasAnyRole('user')){
-            return view('userdash.dash-shipments')->with('shipments', $shipments);
-        }
-        elseif($user->hasAnyRole('admin')){
-            
-            //DB version
-            $inventory = DB::select('SELECT * FROM stor_tbl');
-            $storagework = DB::select('SELECT * FROM stor_wk_tbl');
-            $shipments = DB::select('SELECT * FROM ship_wk_tbl');
-            $kits = DB::select('SELECT * FROM kit_tbl');
-            $units = DB::select('SELECT * FROM basic_unit_tbl');
-            $orders = DB::select('SELECT * FROM orders');
-            //Eloquent Version
-            //$posts = Post::orderBy('title', 'desc')->get();
-            $storagework = StorageWork::orderBy('created_at', 'desc')->get();
-            $shipments = Shipment::orderBy('created_at', 'desc')->get();
-            $kits = Kit::orderBy('created_at', 'desc')->get();
-            $units = Basic_Unit::orderBy('created_at', 'desc')->get();
-            $orders = Order::orderBy('created_at', 'desc')->get();
-            $inventory = Storage::orderBy('company')->get();
-            
-            return view('admindash.dash-all-ship')->with('shipments', $shipments);
-        }
-    }
 }

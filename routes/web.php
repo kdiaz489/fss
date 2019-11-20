@@ -98,34 +98,15 @@ Route::get('/editpallet/{id}', 'PalletsController@edit');
 Route::put('/updatepallet/{id}', 'PalletsController@update');
 
 
-Route::get('/transinkit', 'OrdersController@create');
 Route::get('/vieworder/{id}', 'OrdersController@show');
-Route::get('/transoutkit', 'OrdersController@create_transout_kit');
-Route::get('/transoutunit', 'OrdersController@create_transout_unit');
-Route::post('/transinkit', 'OrdersController@store_transin_kit');
-Route::post('/transoutkit', 'OrdersController@store_transout_kit');
-Route::post('/transoutunit', 'OrdersController@store_transout_unit');
 Route::delete('/order/remove/{id}', 'OrdersController@destroy');
-Route::get('/editorder/kit/{id}', 'OrdersController@edit');
-Route::put('/updateorder/kit/{id}', 'OrdersController@update');
-Route::get('/transinunit', 'OrdersController@create_unit_order');
-Route::post('/transinunit', 'OrdersController@store_transin_unit');
-Route::get('/editorder/unit/{id}', 'OrdersController@edit_unit_order');
-Route::put('/updateorder/unit/{id}', 'OrdersController@update_unit_order');
-Route::post('/transoutunit', 'OrdersController@store_transout_unit');
-Route::get('/transincase', 'OrdersController@create_transin_case');
-Route::post('/transincase', 'OrdersController@store_transin_case');
-Route::get('/transoutcase', 'OrdersController@create_transout_case');
-Route::post('/transoutcase', 'OrdersController@store_transout_case');
-Route::get('/transoutpallet', 'OrdersController@create_transout_pallet');
-Route::post('/transoutpallet', 'OrdersController@store_transout_pallet');
-Route::get('/transinpallet', 'OrdersController@create_transin_pallet');
-Route::post('/transinpallet', 'OrdersController@store_transin_pallet');
 Route::put('/order/update/{id}', 'OrdersController@updatestatus');
 Route::get('/createtransin', 'OrdersController@create_transin_order');
 Route::post('/createtransin', 'OrdersController@store_transin_order');
 Route::get('/createtransout', 'OrdersController@create_transout_order');
 Route::post('/createtransout', 'OrdersController@store_transout_order');
+Route::get('/createfilorder', 'OrdersController@create_fil_order');
+Route::post('/createfilorder', 'OrdersController@store_fil_order');
 
 Route::resource('posts', 'PostsController');
 
@@ -137,6 +118,9 @@ Route::get('/dashboard/user/inventory', 'DashboardController@getuserdashinventor
 Route::get('/dashboard/user/account', 'DashboardController@getuserdashaccount');
 Route::get('/dashboard/user/orders', 'DashboardController@getuserorders');
 Route::get('/dashboard/user/fulfillment', 'DashboardController@getuserdashfulfillment');
+
+
+
 
 Route::get('/dashboard/admin/users', 'DashboardController@getadminusers');
 Route::get('/dashboard/admin/fulfillment', 'DashboardController@getadminfulfillment');

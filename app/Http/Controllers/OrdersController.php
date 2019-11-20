@@ -34,141 +34,6 @@ class OrdersController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-    function store_transin_unit(Request $request)
-    {
-        if ($request->ajax()) {
-            $rules = array(
-                'units.*'  => 'required',
-                'unit_qty.*'  => 'required'
-            );
-
-
-
-            $error = Validator::make($request->all(), $rules);
-            if ($error->fails()) {
-                return response()->json([
-                    'error'  => $error->errors()->all()
-                ]);
-            }
-            $order = new Order();
-            $ordernumber = new OrderNumber();
-            $ordernumber->save();
-            $ordernumber->fss_id = $ordernumber->id + 100;
-            $ordernumber->user_id = auth()->user()->id;
-            $order->orderid = $ordernumber->fss_id;
-            $order->ordernumber_id = $ordernumber->id;
-            $ordernumber->save();
-
-
-            $unit = new Basic_Unit();
-            $order->name = $request->unit_name;
-            $order->user_id = auth()->user()->id;
-            $order->company = auth()->user()->company_name;
-            $order->order_type = $request->order_type;
-            $order->barcode = $request->barcode;
-            $order->status = 'Pending';
-            $order->description = $request->unit_desc;
-
-
-            $units = $request->units;
-            $unit_qty = $request->unit_qty;
-            $total_units = 0;
-
-            for ($i = 0; $i < count($units); $i++) {
-                $total_units += $unit_qty[$i];
-                $data = array(
-                    'basic__unit_id' => $units[$i],
-                    'quantity'  => $unit_qty[$i]
-                );
-                $insert_data[] = $data;
-            }
-
-            $order->unit_qty = $total_units;
-            $order->tot_qty = $total_units;
-            $order->save();
-            $order->basic_units()->attach($insert_data);
-
-            Mail::to('ship@fillstorship.com')->send(new StorRequestMail($order));
-            //return response()->json($insert_data);
-            return response()->json([
-                'success'  => 'Order submitted successfully.'
-            ]);
-        }
-    }
-
-    function store_transout_unit(Request $request)
-    {
-        if ($request->ajax()) {
-            $rules = array(
-                'units.*'  => 'required',
-                'unit_qty.*'  => 'required'
-            );
-
-
-
-            $error = Validator::make($request->all(), $rules);
-            if ($error->fails()) {
-                return response()->json([
-                    'error'  => $error->errors()->all()
-                ]);
-            }
-            $order = new Order();
-            $ordernumber = new OrderNumber();
-            $ordernumber->save();
-            $ordernumber->fss_id = $ordernumber->id + 100;
-            $ordernumber->user_id = auth()->user()->id;
-            $order->orderid = $ordernumber->fss_id;
-            $ordernumber->save();
-            $unit = new Basic_Unit();
-            $order->name = $request->unit_name;
-            $order->user_id = auth()->user()->id;
-            $order->company = auth()->user()->company_name;
-            $order->order_type = $request->order_type;
-            $order->barcode = $request->barcode;
-            $order->status = 'Pending';
-            $order->description = $request->unit_desc;
-
-
-            $units = $request->units;
-            $unit_qty = $request->unit_qty;
-            $total_units = 0;
-
-            for ($y = 0; $y < count($unit_qty); $y++) {
-                $unit = Basic_Unit::find($units[$y]);
-                if ($unit_qty[$y] > $unit->loose_item_qty) {
-                    return response()->json([
-                        'error'  => 'Quantity input greater than quantity at hand. Please provide valid value.'
-                    ]);
-                }
-            }
-
-            for ($i = 0; $i < count($units); $i++) {
-                $total_units += $unit_qty[$i];
-                $data = array(
-                    'basic__unit_id' => $units[$i],
-                    'quantity'  => $unit_qty[$i]
-                );
-                $insert_data[] = $data;
-            }
-
-            $order->unit_qty = $total_units;
-            $order->tot_qty = $total_units;
-            $order->save();
-            $order->basic_units()->attach($insert_data);
-
-            Mail::to('ship@fillstorship.com')->send(new StorRequestMail($order));
-            return response()->json([
-                'success'  => 'Order submitted successfully.'
-            ]);
-        }
-    }
-
     public function hasCases($obj, $type_str)
     {
         return $obj->cases()
@@ -226,538 +91,19 @@ class OrdersController extends Controller
         return view('orders.create-trans-out')->with('pallets', $pallets)->with('cartons', $cartons)->with('cases', $cases)->with('kits', $kits)->with('units', $units);
     }
 
-    public function create_unit_order()
-    {
+    public function create_fil_order(){
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
-        $units = $user->basic_units->sortKeysDesc();
-        return view('orders.trans-in-unit')->with('units', $units);
-    }
-
-    public function create_transout_unit()
-    {
-        $user_id = auth()->user()->id;
-        $user = User::find($user_id);
-        $units = $user->basic_units->sortKeysDesc();
-        return view('orders.trans-out-unit')->with('units', $units);
-    }
-
-    public function create_transin_case()
-    {
-        $user_id = auth()->user()->id;
-        $user = User::find($user_id);
-        $cases = $user->cases->sortKeysDesc();
-        return view('orders.trans-in-case')->with('cases', $cases);
-    }
-
-    public function create_transout_case()
-    {
-        $user_id = auth()->user()->id;
-        $user = User::find($user_id);
-        $cases = $user->cases->sortKeysDesc();
-        return view('orders.trans-out-case')->with('cases', $cases);
-    }
-
-    public function create_transout_kit()
-    {
-        $user_id = auth()->user()->id;
-        $user = User::find($user_id);
-        $kits = $user->kits->sortKeysDesc();
-        return view('orders.trans-out-kit')->with('kits', $kits);
-    }
-
-    public function create_transin_pallet()
-    {
-        $user_id = auth()->user()->id;
-        $user = User::find($user_id);
-        $units = $user->basic_units->sortkeysDesc();
-        $cases = $user->cases->sortkeysDesc();
-        $pallets = $user->pallets->sortkeysDesc();
-        return view('pallet.trans-in-pallet')->with('pallets', $pallets)->with('cases', $cases);
-    }
-
-    public function create_transout_pallet()
-    {
-        $user_id = auth()->user()->id;
-        $user = User::find($user_id);
-        $cases = $user->cases->sortkeysDesc();
-        $pallets = $user->pallets->sortkeysDesc();
-        return view('pallet.trans-out-pallet')->with('pallets', $pallets)->with('cases', $cases);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store_transin_kit(Request $request)
-    {
-        /**
-         * Establishes rules for form input
-         * If fields are not filled in, will return json error message
-         */
-        if ($request->ajax()) {
-            $rules = array(
-                'kits.*'  => 'required',
-                'kit_qty.*'  => 'required'
-            );
-
-            $error = Validator::make($request->all(), $rules);
-            if ($error->fails()) {
-                return response()->json([
-                    'error'  => $error->errors()->all()
-                ]);
-            }
-
-            /**
-             * 
-             * Creates instance of Order object
-             * Sets order property for this instance
-             * 
-             */
-            $order = new Order();
-            $order->save();
-
-
-            $ordernumber = new OrderNumber();
-            $ordernumber->save();
-            $ordernumber->fss_id = $ordernumber->id + 100;
-            $ordernumber->user_id = auth()->user()->id;
-            $order->orderid = $ordernumber->fss_id;
-            $order->ordernumber_id = $ordernumber->id;
-            $ordernumber->save();
-
-            $order->name = $request->case_name;
-            $order->user_id = auth()->user()->id;
-            $order->company = auth()->user()->company_name;
-            $order->order_type = $request->order_type;
-            $order->barcode = $request->barcode;
-            $order->status = 'Pending Approval';
-            $order->description = $request->desc;
-
-
-            /**
-             * 
-             * Creates variables to store input array from the kit input (array of kit ids) and kit quantity
-             * Creates variables for object totals -> kits, and units
-             * 
-             */
-            $kits = $request->kits;
-            $kit_qty = $request->kit_qty;
-            $total_kits = 0;
-            $total_units = 0;
-
-
-            /**
-             * 
-             * Code that loops through kits in array.
-             * 
-             * Loops through Units per kit if not False and updates total_units
-             * 
-             */
-            for ($i = 0; $i < count($kits); $i++) {
-                $total_kits += $kit_qty[$i];
-                $kit = Kit::find($kits[$i]);
-
-                $data = array(
-                    'kit_id' => $kits[$i],
-                    'quantity'  => $kit_qty[$i]
-                );
-                $kit_data[] = $data;
-
-                if ($kit->basic_units->all()) {
-                    $units = $kit->basic_units->all();
-                    foreach ($units as $unit) {
-                        $total_units += $unit->pivot->quantity *  $kit_qty[$i];
-                    }
-                }
-            }
-
-
-            /**
-             * 
-             * Sets up Order() kit qty, unit qty
-             * Saves Order() object to database and attaches pallets to order
-             * 
-             */
-            $order->kit_qty = $total_kits;
-            $order->unit_qty = $total_units;
-
-            $order->save();
-
-            $order->kits()->attach($kit_data);
-
-            Mail::to('ship@fillstorship.com')->send(new StorRequestMail($order));
-            return response()->json([
-                'success'  => 'Order submitted successfully.'
-            ]);
-        }
-    }
-
-    public function store_transout_kit(Request $request)
-    {
-        /**
-         * Establishes rules for form input
-         * If fields are not filled in, will return json error message
-         */
-        if ($request->ajax()) {
-            $rules = array(
-                'kits.*'  => 'required',
-                'kit_qty.*'  => 'required'
-            );
-
-            $error = Validator::make($request->all(), $rules);
-            if ($error->fails()) {
-                return response()->json([
-                    'error'  => $error->errors()->all()
-                ]);
-            }
-
-            /**
-             * 
-             * Creates instance of Order object
-             * Sets order property for this instance
-             * 
-             */
-            $order = new Order();
-            $ordernumber = new OrderNumber();
-            $ordernumber->save();
-            $ordernumber->fss_id = $ordernumber->id + 100;
-            $ordernumber->user_id = auth()->user()->id;
-            $order->orderid = $ordernumber->fss_id;
-            $order->ordernumber_id = $ordernumber->id;
-            $ordernumber->save();
-            $order->name = $request->case_name;
-            $order->user_id = auth()->user()->id;
-            $order->company = auth()->user()->company_name;
-            $order->order_type = $request->order_type;
-            $order->barcode = $request->barcode;
-            $order->status = 'Pending Approval';
-            $order->description = $request->desc;
-
-
-            /**
-             * 
-             * Creates variables to store input array from the kit input (array of kit ids) and kit quantity
-             * Creates variables for object totals -> kits, and units
-             * 
-             */
-            $kits = $request->kits;
-            $kit_qty = $request->kit_qty;
-            $total_kits = 0;
-            $total_units = 0;
-
-
-            /**
-             * 
-             * Code that loops through kits in array.
-             * 
-             * Loops through Units per kit if not False and updates total_units
-             * 
-             */
-            for ($i = 0; $i < count($kits); $i++) {
-                $total_kits += $kit_qty[$i];
-                $kit = Kit::find($kits[$i]);
-
-                $data = array(
-                    'kit_id' => $kits[$i],
-                    'quantity'  => $kit_qty[$i]
-                );
-                $kit_data[] = $data;
-
-                if ($kit->basic_units->all()) {
-                    $units = $kit->basic_units->all();
-                    foreach ($units as $unit) {
-                        $total_units += $unit->pivot->quantity *  $kit_qty[$i];
-                    }
-                }
-            }
-
-
-            /**
-             * 
-             * Sets up Order() kit qty, unit qty
-             * Saves Order() object to database and attaches pallets to order
-             * 
-             */
-            $order->kit_qty = $total_kits;
-            $order->unit_qty = $total_units;
-
-            $order->save();
-            $order->kits()->attach($kit_data);
-
-            Mail::to('ship@fillstorship.com')->send(new StorRequestMail($order));
-            return response()->json([
-                'success'  => 'Order submitted successfully.'
-            ]);
-        }
-    }
-
-    public function store_transin_case(Request $request)
-    {
-
-        /**
-         * 
-         *  Establishes rules to check when form is submitted to controller
-         *  If input does not pass rules, returns user to the Transfer In Case page to complete form with correct information
-         * 
-         */
-
-        if ($request->ajax()) {
-            $rules = array(
-                'cases.*'  => 'required',
-                'case_qty.*'  => 'required'
-            );
-
-
-
-            $error = Validator::make($request->all(), $rules);
-            if ($error->fails()) {
-                return response()->json([
-                    'error'  => $error->errors()->all()
-                ]);
-            }
-
-            /**
-             * 
-             * Creates Order object. Sets up attributes for the object
-             * 
-             */
-
-            $order = new Order();
-
-
-            $ordernumber = new OrderNumber();
-            $ordernumber->save();
-            $ordernumber->fss_id = $ordernumber->id + 100;
-            $ordernumber->user_id = auth()->user()->id;
-            $order->orderid = $ordernumber->fss_id;
-            $order->ordernumber_id = $ordernumber->id;
-            $ordernumber->save();
-
-            $order->name = $request->case_name;
-            $order->user_id = auth()->user()->id;
-            $order->company = auth()->user()->company_name;
-            $order->order_type = $request->order_type;
-            $order->barcode = $request->barcode;
-            $order->status = 'Pending';
-            $order->description = $request->desc;
-
-
-
-            /**
-             * 
-             * Creates variables for input arrays from Transfer In Form
-             * Also sets up counters for total # of cases, units and kits
-             * 
-             */
-            $cases = $request->cases;
-            $case_qty = $request->case_qty;
-            $total_cases = 0;
-            $total_units = 0;
-            $total_kits = 0;
-
-
-            /**
-             * 
-             * Logic for processing Transfer In Order
-             * Goes through each case and checks for relationship with Kits or look Units
-             * Creates array of Case Id's and quantitys to attach to order later
-             * 
-             */
-
-            for ($i = 0; $i < count($cases); $i++) {
-                $total_cases += $case_qty[$i];
-                $case = Cases::find($cases[$i]);
-
-                if ($case->basic_units->all()) {
-
-                    foreach ($case->basic_units->all() as $unit) {
-                        $total_units += $unit->pivot->quantity * $case_qty[$i];
-                    }
-                }
-
-                if ($case->kits->all()) {
-                    foreach ($case->kits->all() as $kit) {
-                        $total_kits += $kit->pivot->quantity * $case_qty[$i];
-                    }
-                    foreach ($kit->basic_units->all() as $unit) {
-                        $total_units += $unit->pivot->quantity * $kit->pivot->quantity * $case_qty[$i];
-                    }
-                }
-
-
-                $data = array(
-                    'cases_id' => $cases[$i],
-                    'quantity'  => $case_qty[$i]
-                );
-                $insert_data[] = $data;
-            }
-
-
-            /**
-             * 
-             * Updates Order attributes such as unit quantity, kit quantity, case quantity.
-             * Saves order and attaches array of Case ID's
-             * 
-             */
-            $order->unit_qty = $total_units;
-            $order->kit_qty = $total_kits;
-            $order->case_qty = $total_cases;
-
-            $order->save();
-            $order->cases()->attach($insert_data);
-
-
-
-            /**
-             * 
-             * Sends email to FSS and returns response to user
-             * 
-             */
-            Mail::to('ship@fillstorship.com')->send(new StorRequestMail($order));
-            return response()->json([
-                'success'  => 'Order submitted successfully.'
-            ]);
-        }
-    }
-
-
-    public function store_transout_case(Request $request)
-    {
-
-        /**
-         * 
-         *  Establishes rules to check when form is submitted to controller
-         *  If input does not pass rules, returns user to the Transfer Out Case page to complete form with correct information
-         * 
-         */
-
-        if ($request->ajax()) {
-            $rules = array(
-                'cases.*'  => 'required',
-                'case_qty.*'  => 'required'
-            );
-
-            $error = Validator::make($request->all(), $rules);
-            if ($error->fails()) {
-                return response()->json([
-                    'error'  => $error->errors()->all()
-                ]);
-            }
-
-            /**
-             * 
-             * Creates Order object. Sets up attributes for the object
-             * 
-             */
-
-            $order = new Order();
-
-            $ordernumber = new OrderNumber();
-            $ordernumber->save();
-            $ordernumber->fss_id = $ordernumber->id + 100;
-            $ordernumber->user_id = auth()->user()->id;
-            $order->orderid = $ordernumber->fss_id;
-            $order->ordernumber_id = $ordernumber->id;
-            $ordernumber->save();
-
-            $order->name = $request->case_name;
-            $order->user_id = auth()->user()->id;
-            $order->company = auth()->user()->company_name;
-            $order->order_type = $request->order_type;
-            $order->barcode = $request->barcode;
-            $order->status = 'Pending Approval';
-            $order->description = $request->desc;
-
-
-            /**
-             * 
-             * Creates variables for input arrays from Transfer In Form
-             * Also sets up counters for total # of cases, units and kits
-             * 
-             */
-            $cases = $request->cases;
-            $case_qty = $request->case_qty;
-            $total_cases = 0;
-            $total_kits = 0;
-            $total_units = 0;
-
-            for ($y = 0; $y < count($case_qty); $y++) {
-                $case = Cases::find($cases[$y]);
-                if ($case_qty[$y] > $case->case_qty) {
-                    return response()->json([
-                        'error'  => 'Quantity input greater than quantity at hand. Please provide valid value.'
-                    ]);
-                }
-            }
-
-
-            /**
-             * 
-             * Logic for processing Transfer In Order
-             * Goes through each case and checks for relationship with Kits or look Units
-             * Creates array of Case Id's and quantitys to attach to order later
-             * 
-             */
-
-            for ($i = 0; $i < count($cases); $i++) {
-                $total_cases += $case_qty[$i];
-                $case = Cases::find($cases[$i]);
-                $units = $case->basic_units->all();
-                if ($case->basic_units->all()) {
-                    foreach ($case->basic_units->all() as $unit) {
-                        $total_units += $unit->pivot->quantity * $case_qty[$i];
-                    }
-                }
-
-                if ($case->kits->all()) {
-                    foreach ($case->kits->all() as $kit) {
-                        $total_kits += $kit->pivot->quantity * $case_qty[$i];
-                    }
-                    foreach ($kit->basic_units->all() as $unit) {
-                        $total_units += $unit->pivot->quantity * $kit->pivot->quantity * $case_qty[$i];
-                    }
-                }
-
-
-                $data = array(
-                    'cases_id' => $cases[$i],
-                    'quantity'  => $case_qty[$i]
-                );
-                $insert_data[] = $data;
-            }
-
-
-            /**
-             * 
-             * Updates Order attributes such as unit quantity, kit quantity, case quantity.
-             * Saves order and attaches array of Case ID's
-             * 
-             */
-            $order->unit_qty = $total_units;
-            $order->case_qty = $total_cases;
-            $order->tot_qty = $total_units;
-            $order->save();
-            $order->cases()->attach($insert_data);
-
-
-            /**
-             * 
-             * Sends email to FSS and returns response to user
-             * 
-             */
-            Mail::to('ship@fillstorship.com')->send(new StorRequestMail($order));
-            return response()->json([
-                'success'  => 'Order submitted successfully.'
-            ]);
-        }
+        $units = $user->basic_units->sortByDesc('created_at');
+        $kits = $user->kits->sortByDesc('created_at');
+        $cases = $user->cases->sortByDesc('created_at');
+        $cartons = $user->cartons->sortByDesc('created_at');
+        $pallets = $user->pallets->sortByDesc('created_at');
+        return view('userdash.dash-fulfillment-order')->with('units', $units)->with('kits', $kits)->with('cases', $cases)->with('cartons', $cartons)->with('pallets', $pallets);
     }
 
     public function store_transin_order(Request $request)
     {
-
 
         /**
          * 
@@ -1022,7 +368,6 @@ class OrdersController extends Controller
                             foreach ($carton->kits->all() as $kit) {
                                 if ($kit->total_qty < $kit->pivot->quantity) {
                                     throw new \Exception('Quantity of kits in carton is greater than quantity at hand.');
-                                    
                                 }
                             }
                         }
@@ -1031,7 +376,6 @@ class OrdersController extends Controller
                             foreach ($carton->basic_units->all() as $unit) {
                                 if ($unit->total_qty < $unit->pivot->quantity) {
                                     throw new \Exception('Quantity of units in carton is greater than quantity at hand.');
-                                    
                                 }
                             }
                         }
@@ -1045,7 +389,6 @@ class OrdersController extends Controller
                         $case = Cases::find($items[$i]);
                         if ($case->total_qty < $item_qty[$i]) {
                             throw new \Exception('Quantity of cases in order is greater than quantity at hand.');
-                            
                         }
                         if ($case->kits->all()) {
                             foreach ($case->kits->all() as $kit) {
@@ -1072,7 +415,6 @@ class OrdersController extends Controller
                         $kit = Kit::find($items[$i]);
                         if ($kit->total_qty < $item_qty[$i]) {
                             throw new \Exception('Quantity of kits in order is greater than quantity at hand.');
-                            
                         }
                         $order->kits()->attach([['kit_id' => $items[$i], 'quantity' => $item_qty[$i]]]);
                     }
@@ -1117,9 +459,10 @@ class OrdersController extends Controller
         }
     }
 
-    public function store_transin_pallet(Request $request)
-    {
 
+
+    public function store_fil_order(Request $request)
+    {
         /**
          * 
          * Establishes rules for form input
@@ -1128,8 +471,9 @@ class OrdersController extends Controller
          */
         if ($request->ajax()) {
             $rules = array(
-                'pallets.*'  => 'required',
-                'pallet_qty.*'  => 'required'
+                'items.*'  => 'required',
+                'item_qty.*'  => 'required',
+                'type.*' => 'required'
             );
 
             $error = Validator::make($request->all(), $rules);
@@ -1145,291 +489,131 @@ class OrdersController extends Controller
              * Sets order property for this instance
              * 
              */
-            $order = new Order();
+            DB::beginTransaction();
+            try {
+                $order = new Order();
 
-            $ordernumber = new OrderNumber();
-            $ordernumber->save();
-            $ordernumber->fss_id = $ordernumber->id + 100;
-            $ordernumber->user_id = auth()->user()->id;
-            $order->orderid = $ordernumber->fss_id;
-            $order->ordernumber_id = $ordernumber->id;
-            $ordernumber->save();
-
-            $order->name = $request->case_name;
-            $order->user_id = auth()->user()->id;
-            $order->company = auth()->user()->company_name;
-            $order->order_type = $request->order_type;
-            $order->barcode = $request->barcode;
-            $order->status = 'Pending Approval';
-            $order->description = $request->desc;
+                $ordernumber = new OrderNumber();
+                $ordernumber->save();
+                $ordernumber->fss_id = $ordernumber->id + 100;
+                $ordernumber->user_id = auth()->user()->id;
+                $order->orderid = $ordernumber->fss_id;
+                $order->ordernumber_id = $ordernumber->id;
+                $ordernumber->save();
 
 
-            /**
-             * 
-             * Creates variables to store input array from the pallet input (array of pallet ids) and pallet quantity
-             * Creates variables for object totals -> pallets, cases (if applies), and units (if applies)
-             * 
-             */
-            $pallets = $request->pallets;
-            $pallet_qty = $request->pallet_qty;
-            $total_pallets = 0;
-            $total_cases = 0;
-            $total_units = 0;
-            $total_kits = 0;
+                $order->user_id = auth()->user()->id;
+                $order->company = auth()->user()->company_name;
+                $order->order_type = $request->order_type;
+                $order->cust_name = $request->custname;
+                $order->cust_order_no = $request->orderno;
+                $order->street_address = $request->address;
+                $order->city = $request->state;
+                $order->zip = $request->zip;
+                $order->status = 'Pending Approval';
+                $order->save();
 
 
-            /**
-             * 
-             * Code that loops through pallets in array.
-             * Loops through Cases per pallet if not False and updates total_cases
-             * Loops through Units per pallet if not False and updates total_units
-             * 
-             */
-            for ($i = 0; $i < count($pallets); $i++) {
-                $total_pallets += $pallet_qty[$i];
-                $pallet = Pallet::find($pallets[$i]);
+                /**
+                 * 
+                 * Creates variables to store input array from the pallet input (array of pallet ids) and pallet quantity
+                 * Creates variables for object totals -> pallets, cases (if applies), and units (if applies)
+                 * 
+                 */
+                $items = $request->items;
+                $item_qty = $request->item_qty;
+                $types = $request->type;
+                $total_items = 0;
+                $total_cases = 0;
+                $total_kits = 0;
+                $total_units = 0;
 
-                $data = array(
-                    'pallet_id' => $pallets[$i],
-                    'quantity'  => $pallet_qty[$i]
-                );
-                $pallet_data[] = $data;
 
-                if ($pallet->cases->all()) {
+                /**
+                 * 
+                 * Code that loops through pallets in array.
+                 * Loops through Cases per pallet if not False and updates total_cases
+                 * Loops through Units per pallet if not False and updates total_units
+                 * 
+                 */
+                for ($i = 0; $i < count($items); $i++) {
+                    $item_type = strval($types[$i]);
 
-                    foreach ($pallet->cases->all() as $case) {
-
-                        $total_cases += $case->pivot->quantity * $pallet_qty[$i];
-
-                        if ($case->basic_units->all()) {
-                            $units = $case->basic_units->all();
-                            foreach ($units as $unit) {
-                                $total_units += $unit->pivot->quantity * $case->pivot->quantity * $pallet_qty[$i];
-                            }
+                    if ($item_type == 'Case') {
+                        $total_items += $item_qty[$i];
+                        $total_cases += $item_qty[$i];
+                        $case = Cases::find($items[$i]);
+                        if ($case->total_qty < $item_qty[$i]) {
+                            throw new \Exception('Quantity of cases in order is greater than quantity at hand.');
                         }
-
                         if ($case->kits->all()) {
-
                             foreach ($case->kits->all() as $kit) {
-                                $total_kits += $kit->pivot->quantity * $case->pivot->quantity * $pallet_qty[$i];
-
-                                if ($kit->basic_units->all()) {
-                                    $units = $kit->basic_units->all();
-                                    foreach ($units as $unit) {
-                                        $total_units += $unit->pivot->quantity * $kit->pivot->quantity * $case->pivot->quantity * $pallet_qty[$i];
-                                    }
+                                if ($kit->total_qty < $kit->pivot->quantity) {
+                                    throw new \Exception('Quantity of kits in case is greater than quantity at hand.');
                                 }
                             }
                         }
-                    }
-                }
 
-                if ($pallet->kits->all()) {
-                    foreach ($pallet->kits->all() as $kit) {
-
-                        $total_kits += $kit->pivot->quantity * $pallet_qty[$i];
-
-                        if ($kit->basic_units->all()) {
-                            foreach ($kit->basic_units->all() as $unit) {
-                                $total_units += $unit->pivot->quantity * $kit->pivot->quantity * $pallet_qty[$i];
+                        if ($case->basic_units->all()) {
+                            foreach ($case->basic_units->all() as $unit) {
+                                if ($unit->total_qty < $unit->pivot->quantity) {
+                                    throw new \Exception('Quantity of units in case is greater than quantity at hand.');
+                                }
                             }
                         }
+
+                        $order->cases()->attach([['cases_id' => $items[$i], 'quantity' => $item_qty[$i]]]);
                     }
-                }
 
-                if ($pallet->basic_units->all()) {
-                    $units = $pallet->basic_units->all();
-                    foreach ($units as $unit) {
-                        $total_units += $unit->pivot->quantity *  $pallet_qty[$i];
+                    if ($item_type == 'Kit') {
+                        $total_items += $item_qty[$i];
+                        $total_kits += $item_qty[$i];
+                        $kit = Kit::find($items[$i]);
+                        if ($kit->total_qty < $item_qty[$i]) {
+                            throw new \Exception('Quantity of kits in order is greater than quantity at hand.');
+                        }
+                        $order->kits()->attach([['kit_id' => $items[$i], 'quantity' => $item_qty[$i]]]);
                     }
-                }
-            }
 
-
-            /**
-             * 
-             * Sets up Order() pallet qty, unit qty (if applies) and case qty (if applies)
-             * Saves Order() object to database and attaches pallets to order
-             * 
-             */
-            $order->pallet_qty = $total_pallets;
-            $order->unit_qty = $total_units;
-            $order->case_qty = $total_cases;
-            $order->kit_qty = $total_kits;
-
-            $order->save();
-            $order->pallets()->attach($pallet_data);
-
-            Mail::to('ship@fillstorship.com')->send(new StorRequestMail($order));
-            return response()->json([
-                'success'  => 'Order submitted successfully.'
-            ]);
-        }
-    }
-
-    public function store_transout_pallet(Request $request)
-    {
-
-
-        /**
-         * 
-         * Establishes rules for form input
-         * If fields are not filled in, will return json error message
-         * 
-         */
-
-        if ($request->ajax()) {
-            $rules = array(
-                'pallets.*'  => 'required',
-                'pallet_qty.*'  => 'required'
-            );
-
-            $error = Validator::make($request->all(), $rules);
-            if ($error->fails()) {
-                return response()->json([
-                    'error'  => $error->errors()->all()
-                ]);
-            }
-
-            /**
-             * 
-             * Creates instance of Order object
-             * Sets order property for this instance
-             * 
-             */
-            $order = new Order();
-
-            $ordernumber = new OrderNumber();
-            $ordernumber->save();
-            $ordernumber->fss_id = $ordernumber->id + 100;
-            $ordernumber->user_id = auth()->user()->id;
-            $order->orderid = $ordernumber->fss_id;
-            $order->ordernumber_id = $ordernumber->id;
-            $ordernumber->save();
-
-            $order->name = $request->name;
-            $order->user_id = auth()->user()->id;
-            $order->company = auth()->user()->company_name;
-            $order->order_type = $request->order_type;
-            $order->barcode = $request->barcode;
-            $order->status = 'Pending Approval';
-            $order->description = $request->desc;
+                    if ($item_type == 'Unit') {
+                        $total_items += $item_qty[$i];
+                        $total_units += $item_qty[$i];
+                        $unit = Basic_Unit::find($items[$i]);
+                        if ($unit->total_qty < $item_qty[$i]) {
+                            throw new \Exception('Quantity of units in order is greater than quantity at hand.');
+                        }
+                        $order->basic_units()->attach([['basic__unit_id' => $items[$i], 'quantity' => $item_qty[$i]]]);
+                    }
 
 
 
-            /**
-             * 
-             * Creates variables to store input array from the pallet input (array of pallet ids) and pallet quantity
-             * Creates variables for object totals -> pallets, cases (if applies), and units (if applies)
-             * 
-             */
-            $pallets = $request->pallets;
-            $pallet_qty = $request->pallet_qty;
-            $total_pallets = 0;
-            $total_cases = 0;
-            $total_units = 0;
-            $total_kits = 0;
 
-
-            for ($y = 0; $y < count($pallet_qty); $y++) {
-                $pallet = Pallet::find($pallets[$y]);
-                if ($pallet_qty[$y] > $pallet->pallet_qty) {
+                    /**
+                     * 
+                     * Sets up Order() pallet qty, unit qty (if applies) and case qty (if applies)
+                     * Saves Order() object to database and attaches pallets to order
+                     * 
+                     */
+                    
+                    $order->case_qty = $total_cases;
+                    $order->kit_qty = $total_kits;
+                    $order->unit_qty = $total_units;
+                    $order->save();
+                    DB::commit();
+                    Mail::to('ship@fillstorship.com')->send(new StorRequestMail($order));
                     return response()->json([
-                        'error'  => 'Quantity input greater than quantity at hand. Please provide valid value.'
+                        'success'  => 'Fulfillment order submitted successfully.'
                     ]);
                 }
+            } catch (\Exception $e) {
+                DB::rollBack();
+                return response()->json([
+                    'error'  => $e->getMessage()
+                ]);
             }
-
-            /**
-             * 
-             * Code that loops through pallets in array.
-             * Loops through Cases per pallet if not False and updates total_cases
-             * Loops through Units per pallet if not False and updates total_units
-             * 
-             */
-
-            for ($i = 0; $i < count($pallets); $i++) {
-                $total_pallets += $pallet_qty[$i];
-                $pallet = Pallet::find($pallets[$i]);
-
-                $data = array(
-                    'pallet_id' => $pallets[$i],
-                    'quantity'  => $pallet_qty[$i]
-                );
-                $pallet_data[] = $data;
-
-                if ($pallet->cases->all()) {
-
-                    $cases = $pallet->cases->all();
-
-                    foreach ($cases as $case) {
-
-                        $total_cases += $case->pivot->quantity * $pallet_qty[$i];
-
-                        if ($case->basic_units->all()) {
-                            $units = $case->basic_units->all();
-                            foreach ($units as $unit) {
-                                $total_units += $unit->pivot->quantity * $case->pivot->quantity * $pallet_qty[$i];
-                            }
-                        }
-
-                        if ($case->kits->all()) {
-                            $kits = $case->kits->all();
-                            foreach ($kits as $kit) {
-                                $total_kits += $kit->pivot->quantity * $case->pivot->quantity * $pallet_qty[$i];
-
-                                if ($kit->basic_units->all()) {
-                                    $units = $kit->basic_units->all();
-                                    foreach ($units as $unit) {
-                                        $total_units += $unit->pivot->quantity * $kit->pivot->quantity * $case->pivot->quantity * $pallet_qty[$i];
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if ($pallet->basic_units->all()) {
-                    $units = $pallet->basic_units->all();
-                    foreach ($units as $unit) {
-                        $total_units += $unit->pivot->quantity *  $pallet_qty[$i];
-                    }
-                }
-
-                if ($pallet->kits->all()) {
-                    $kits = $pallet->kits->all();
-                    foreach ($kits as $kit) {
-                        $total_kits += $kit->pivot->quantity * $pallet[$i];
-                        if ($kit->basic_units->all()) {
-                            $units = $kit->basic_units->all();
-                            foreach ($units as $unit) {
-                                $total_units += $unit->pivot->quantity * $kit->pivot->quantity * $pallet_qty[$i];
-                            }
-                        }
-                    }
-                }
-            }
-
-
-            /**
-             * 
-             * Sets up Order() pallet qty, unit qty (if applies) and case qty (if applies)
-             * Saves Order() object to database and attaches pallets to order
-             * 
-             */
-            $order->pallet_qty = $total_pallets;
-            $order->unit_qty = $total_units;
-            $order->case_qty = $total_cases;
-            $order->tot_qty = $total_units;
-            $order->save();
-            $order->pallets()->attach($pallet_data);
-
-            Mail::to('ship@fillstorship.com')->send(new StorRequestMail($order));
-            return response()->json([
-                'success'  => 'Order submitted successfully.'
-            ]);
         }
     }
+
 
     /**
      * Display the specified resource.
@@ -1451,23 +635,7 @@ class OrdersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
-        $order = Order::find($id);
-        $user_id = $order->user_id;
-        $user = User::find($user_id);
-        $kits = $user->kits->sortKeysDesc();
-        return view('orders.edit-order-kit')->with('order', $order)->with('kits', $kits);
-    }
-
-    public function edit_unit_order($id)
-    {
-        $order = Order::find($id);
-        $user_id = $order->user_id;
-        $user = User::find($user_id);
-        $units = $user->basic_units->sortKeysDesc();
-        return view('orders.edit-order-unit')->with('order', $order)->with('units', $units);
-    }
+    { }
 
     /**
      * Update the specified resource in storage.
@@ -1478,86 +646,7 @@ class OrdersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
         $order = Order::find($id);
-
-        $request->validate([
-            'transin_kit_name' => 'required',
-            'transin_kit_qty' => 'required',
-            'transin_kit_barcode' => 'nullable',
-            'transin_kit_desc' => 'nullable',
-            'transin_kit_qty' => 'required',
-            'kits' => 'required',
-        ]);
-
-        $order->name = $request->transin_kit_name;
-        $order->order_type = 'Transfer In Kits';
-        $order->barcode = $request->transin_kit_barcode;
-        $order->description = $request->transin_kit_desc;
-        $order->kit_qty = $request->transin_kit_qty;
-        $order->unit_qty = $request->transin_kit_unit_qty;
-        $kits_tot = $request->transin_kit_qty;
-        $unit_qty = $request->transin_kit_unit_qty;
-        $order->tot_qty = (int) $kits_tot * (int) $unit_qty;
-        $order->save();
-        $order->kits()->sync($request->kits);
-        Mail::to('ship@fillstorship.com')->send(new StorUpdateMail($order));
-        return redirect('/editorder/kit' . '/' . $id)->with('success', 'You have updated the following order: #' . $request->id);
-    }
-
-    public function update_unit_order(Request $request, $id)
-    {
-        if ($request->ajax()) {
-            $rules = array(
-                'units.*'  => 'required',
-                'unit_qty.*'  => 'required'
-            );
-
-
-
-            $error = Validator::make($request->all(), $rules);
-            if ($error->fails()) {
-                return response()->json([
-                    'error'  => $error->errors()->all()
-                ]);
-            }
-            $order = Order::find($id);
-            $user = User::find($order->user_id);
-            $user_email = $user->email;
-            $unit = new Basic_Unit();
-            $order->name = $request->unit_name;
-            $order->order_type = $request->order_type;
-            $order->barcode = $request->barcode;
-            //$order->status = 'Pending';
-            $order->description = $request->unit_desc;
-
-
-            $units = $request->units;
-            $unit_qty = $request->unit_qty;
-            $total_units = 0;
-
-            for ($i = 0; $i < count($units); $i++) {
-                $total_units += $unit_qty[$i];
-                $data = array(
-                    'basic__unit_id' => $units[$i],
-                    'quantity'  => $unit_qty[$i]
-                );
-                $insert_data[] = $data;
-            }
-
-            $order->unit_qty = $total_units;
-            $order->tot_qty = $total_units;
-            $order->save();
-            $order->basic_units()->detach();
-            $order->basic_units()->attach($insert_data);
-
-            Mail::to($user_email)->send(new StorUpdateMail($order));
-            Mail::to('ship@fillstorship.com')->send(new StorUpdateMail($order));
-            //return response()->json($insert_data);
-            return response()->json([
-                'success'  => 'Order submitted successfully.'
-            ]);
-        }
     }
 
     public function updatestatus(Request $request, $id)
