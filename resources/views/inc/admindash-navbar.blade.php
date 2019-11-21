@@ -21,11 +21,11 @@
                         <li class="nav-item"></li>
     
                     <li class="nav-item dropdown p-0">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle text-white px-0 w-75 text-wrap text-break m-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle text-white px-0 w-100 text-wrap text-break m-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
     
-                        <div class="dropdown-menu mt-0 text-center w-75" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu mt-0 text-center w-100" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item px-0" href="/dashboard">Dashboard</a>
     
                             <a class="dropdown-item px-0" href="{{ route('logout') }}"

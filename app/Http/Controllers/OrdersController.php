@@ -689,6 +689,27 @@ class OrdersController extends Controller
                                     $caseobj = Cases::find($case->pivot->cases_id);
                                     $caseobj->total_qty += $case->pivot->quantity * $carton->pivot->quantity * $pallet->pivot->quantity;
                                     $caseobj->save();
+                                    if ($this->hasKits($case, 'kit')) {
+                                        foreach ($carton->kits->all() as $kit) {
+                                            $kitobj = Kit::find($kit->pivot->kit_id);
+                                            $kitobj->total_qty += $kit->pivot->quantity * $case->pivot->quantity * $carton->pivot->quantity * $pallet->pivot->quantity;
+                                            $kitobj->save();
+                                            if ($this->hasUnits($kit, 'basic__unit')) {
+                                                foreach ($kit->basic_units->all() as $unit) {
+                                                    $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
+                                                    $unitobj->total_qty += $unit->pivot->quantity * $kit->pivot->quantity * $case->pivot->quantity * $carton->pivot->quantity * $pallet->pivot->quantity;
+                                                    $unitobj->save();
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if ($this->hasUnits($case, 'basic__unit')) {
+                                        foreach ($kit->basic_units->all() as $unit) {
+                                            $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
+                                            $unitobj->total_qty += $unit->pivot->quantity * $case->pivot->quantity * $pallet->pivot->quantity;
+                                            $unitobj->save();
+                                        }
+                                    }
                                 }
                             }
 
@@ -697,6 +718,13 @@ class OrdersController extends Controller
                                     $kitobj = Kit::find($kit->pivot->kit_id);
                                     $kitobj->total_qty += $kit->pivot->quantity * $carton->pivot->quantity * $pallet->pivot->quantity;
                                     $kitobj->save();
+                                    if ($this->hasUnits($kit, 'basic__unit')) {
+                                        foreach ($kit->basic_units->all() as $unit) {
+                                            $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
+                                            $unitobj->total_qty += $unit->pivot->quantity * $kit->pivot->quantity * $carton->pivot->quantity * $pallet->pivot->quantity;
+                                            $unitobj->save();
+                                        }
+                                    }
                                 }
                             }
                             if ($this->hasUnits($carton, 'basic__unit')) {
@@ -714,15 +742,42 @@ class OrdersController extends Controller
                             $caseobj = Cases::find($case->pivot->cases_id);
                             $caseobj->total_qty += $case->pivot->quantity * $pallet->pivot->quantity;
                             $caseobj->save();
+                            if ($this->hasKits($case, 'kit')) {
+                                foreach ($carton->kits->all() as $kit) {
+                                    $kitobj = Kit::find($kit->pivot->kit_id);
+                                    $kitobj->total_qty += $kit->pivot->quantity * $case->pivot->quantity * $pallet->pivot->quantity;
+                                    $kitobj->save();
+                                    if ($this->hasUnits($kit, 'basic__unit')) {
+                                        foreach ($kit->basic_units->all() as $unit) {
+                                            $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
+                                            $unitobj->total_qty += $unit->pivot->quantity * $kit->pivot->quantity * $case->pivot->quantity * $pallet->pivot->quantity;
+                                            $unitobj->save();
+                                        }
+                                    }
+                                }
+                            }
+                            if ($this->hasUnits($case, 'basic__unit')) {
+                                foreach ($kit->basic_units->all() as $unit) {
+                                    $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
+                                    $unitobj->total_qty += $unit->pivot->quantity * $case->pivot->quantity * $pallet->pivot->quantity;
+                                    $unitobj->save();
+                                }
+                            }
                         }
                     }
 
                     if ($this->hasKits($pallet, 'kit')) {
                         foreach ($pallet->kits->all() as $kit) {
                             $kitobj = Kit::find($kit->pivot->kit_id);
-
                             $kitobj->total_qty += $kit->pivot->quantity * $pallet->pivot->quantity;
                             $kitobj->save();
+                            if ($this->hasUnits($kit, 'basic__unit')) {
+                                foreach ($pallet->basic_units->all() as $unit) {
+                                    $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
+                                    $unitobj->total_qty += $unit->pivot->quantity * $kit->pivot->quantity * $pallet->pivot->quantity;
+                                    $unitobj->save();
+                                }
+                            }
                         }
                     }
                     if ($this->hasUnits($pallet, 'basic__unit')) {
@@ -740,11 +795,32 @@ class OrdersController extends Controller
             if ($this->hasCartons($order, 'carton')) {
                 foreach ($order->cartons->all() as $carton) {
 
-                    if ($this->hasCartons($carton, 'cases')) {
+                    if ($this->hasCases($carton, 'cases')) {
                         foreach ($carton->cases->all() as $case) {
                             $caseobj = Cases::find($case->pivot->cases_id);
                             $caseobj->total_qty += $case->pivot->quantity * $carton->pivot->quantity;
                             $caseobj->save();
+                            if ($this->hasKits($case, 'kit')) {
+                                foreach ($carton->kits->all() as $kit) {
+                                    $kitobj = Kit::find($kit->pivot->kit_id);
+                                    $kitobj->total_qty += $kit->pivot->quantity * $case->pivot->quantity * $carton->pivot->quantity;
+                                    $kitobj->save();
+                                    if ($this->hasUnits($kit, 'basic__unit')) {
+                                        foreach ($kit->basic_units->all() as $unit) {
+                                            $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
+                                            $unitobj->total_qty += $unit->pivot->quantity * $kit->pivot->quantity * $case->pivot->quantity * $carton->pivot->quantity;
+                                            $unitobj->save();
+                                        }
+                                    }
+                                }
+                            }
+                            if ($this->hasUnits($case, 'basic__unit')) {
+                                foreach ($kit->basic_units->all() as $unit) {
+                                    $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
+                                    $unitobj->total_qty += $unit->pivot->quantity * $case->pivot->quantity * $carton->pivot->quantity;
+                                    $unitobj->save();
+                                }
+                            }
                         }
                     }
 
@@ -753,6 +829,13 @@ class OrdersController extends Controller
                             $kitobj = Kit::find($kit->pivot->kit_id);
                             $kitobj->total_qty += $kit->pivot->quantity * $carton->pivot->quantity;
                             $kitobj->save();
+                            if ($this->hasUnits($kit, 'basic__unit')) {
+                                foreach ($kit->basic_units->all() as $unit) {
+                                    $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
+                                    $unitobj->total_qty += $unit->pivot->quantity * $kit->pivot->quantity * $carton->pivot->quantity;
+                                    $unitobj->save();
+                                }
+                            }
                         }
                     }
                     if ($this->hasUnits($carton, 'basic__unit')) {
@@ -771,6 +854,27 @@ class OrdersController extends Controller
                     $caseobj = Cases::find($case->pivot->cases_id);
                     $caseobj->total_qty += $case->pivot->quantity;
                     $caseobj->save();
+                    if ($this->hasKits($case, 'kit')) {
+                        foreach ($order->kits->all() as $kit) {
+                            $kitobj = Kit::find($kit->pivot->kit_id);
+                            $kitobj->total_qty += $kit->pivot->quantity * $case->pivot->quantity;
+                            $kitobj->save();
+                            if ($this->hasUnits($kit, 'basic__unit')) {
+                                foreach ($kit->basic_units->all() as $unit) {
+                                    $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
+                                    $unitobj->total_qty += $unit->pivot->quantity * $kit->pivot->quantity * $case->pivot->quantity;
+                                    $unitobj->save();
+                                }
+                            }
+                        }
+                    }
+                    if ($this->hasUnits($case, 'basic__unit')) {
+                        foreach ($kit->basic_units->all() as $unit) {
+                            $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
+                            $unitobj->total_qty += $unit->pivot->quantity * $case->pivot->quantity;
+                            $unitobj->save();
+                        }
+                    }
                 }
             }
 
@@ -779,6 +883,13 @@ class OrdersController extends Controller
                     $kitobj = Kit::find($kit->pivot->kit_id);
                     $kitobj->total_qty += $kit->pivot->quantity;
                     $kitobj->save();
+                    if ($this->hasUnits($kit, 'basic__unit')) {
+                        foreach ($kit->basic_units->all() as $unit) {
+                            $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
+                            $unitobj->total_qty += $unit->pivot->quantity * $kit->pivot->quantity;
+                            $unitobj->save();
+                        }
+                    }
                 }
             }
 
@@ -801,6 +912,27 @@ class OrdersController extends Controller
                                     $caseobj = Cases::find($case->pivot->cases_id);
                                     $caseobj->total_qty -= $case->pivot->quantity * $carton->pivot->quantity * $pallet->pivot->quantity;
                                     $caseobj->save();
+                                    if ($this->hasKits($case, 'kit')) {
+                                        foreach ($carton->kits->all() as $kit) {
+                                            $kitobj = Kit::find($kit->pivot->kit_id);
+                                            $kitobj->total_qty -= $kit->pivot->quantity * $case->pivot->quantity * $carton->pivot->quantity * $pallet->pivot->quantity;
+                                            $kitobj->save();
+                                            if ($this->hasUnits($kit, 'basic__unit')) {
+                                                foreach ($kit->basic_units->all() as $unit) {
+                                                    $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
+                                                    $unitobj->total_qty -= $unit->pivot->quantity * $kit->pivot->quantity * $case->pivot->quantity * $carton->pivot->quantity * $pallet->pivot->quantity;
+                                                    $unitobj->save();
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if ($this->hasUnits($case, 'basic__unit')) {
+                                        foreach ($kit->basic_units->all() as $unit) {
+                                            $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
+                                            $unitobj->total_qty -= $unit->pivot->quantity * $case->pivot->quantity * $pallet->pivot->quantity;
+                                            $unitobj->save();
+                                        }
+                                    }
                                 }
                             }
 
@@ -809,6 +941,13 @@ class OrdersController extends Controller
                                     $kitobj = Kit::find($kit->pivot->kit_id);
                                     $kitobj->total_qty -= $kit->pivot->quantity * $carton->pivot->quantity * $pallet->pivot->quantity;
                                     $kitobj->save();
+                                    if ($this->hasUnits($kit, 'basic__unit')) {
+                                        foreach ($kit->basic_units->all() as $unit) {
+                                            $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
+                                            $unitobj->total_qty -= $unit->pivot->quantity * $kit->pivot->quantity * $carton->pivot->quantity * $pallet->pivot->quantity;
+                                            $unitobj->save();
+                                        }
+                                    }
                                 }
                             }
                             if ($this->hasUnits($carton, 'basic__unit')) {
@@ -824,18 +963,44 @@ class OrdersController extends Controller
                     if ($this->hasCases($pallet, 'cases')) {
                         foreach ($pallet->cases->all() as $case) {
                             $caseobj = Cases::find($case->pivot->cases_id);
-
                             $caseobj->total_qty -= $case->pivot->quantity * $pallet->pivot->quantity;
                             $caseobj->save();
+                            if ($this->hasKits($case, 'kit')) {
+                                foreach ($carton->kits->all() as $kit) {
+                                    $kitobj = Kit::find($kit->pivot->kit_id);
+                                    $kitobj->total_qty -= $kit->pivot->quantity * $case->pivot->quantity * $pallet->pivot->quantity;
+                                    $kitobj->save();
+                                    if ($this->hasUnits($kit, 'basic__unit')) {
+                                        foreach ($kit->basic_units->all() as $unit) {
+                                            $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
+                                            $unitobj->total_qty -= $unit->pivot->quantity * $kit->pivot->quantity * $case->pivot->quantity * $pallet->pivot->quantity;
+                                            $unitobj->save();
+                                        }
+                                    }
+                                }
+                            }
+                            if ($this->hasUnits($case, 'basic__unit')) {
+                                foreach ($kit->basic_units->all() as $unit) {
+                                    $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
+                                    $unitobj->total_qty -= $unit->pivot->quantity * $case->pivot->quantity * $pallet->pivot->quantity;
+                                    $unitobj->save();
+                                }
+                            }
                         }
                     }
 
                     if ($this->hasKits($pallet, 'kit')) {
                         foreach ($pallet->kits->all() as $kit) {
                             $kitobj = Kit::find($kit->pivot->kit_id);
-
                             $kitobj->total_qty -= $kit->pivot->quantity * $pallet->pivot->quantity;
                             $kitobj->save();
+                            if ($this->hasUnits($kit, 'basic__unit')) {
+                                foreach ($pallet->basic_units->all() as $unit) {
+                                    $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
+                                    $unitobj->total_qty -= $unit->pivot->quantity * $kit->pivot->quantity * $pallet->pivot->quantity;
+                                    $unitobj->save();
+                                }
+                            }
                         }
                     }
                     if ($this->hasUnits($pallet, 'basic__unit')) {
@@ -858,6 +1023,27 @@ class OrdersController extends Controller
                             $caseobj = Cases::find($case->pivot->cases_id);
                             $caseobj->total_qty -= $case->pivot->quantity * $carton->pivot->quantity;
                             $caseobj->save();
+                            if ($this->hasKits($case, 'kit')) {
+                                foreach ($carton->kits->all() as $kit) {
+                                    $kitobj = Kit::find($kit->pivot->kit_id);
+                                    $kitobj->total_qty -= $kit->pivot->quantity * $case->pivot->quantity * $carton->pivot->quantity;
+                                    $kitobj->save();
+                                    if ($this->hasUnits($kit, 'basic__unit')) {
+                                        foreach ($kit->basic_units->all() as $unit) {
+                                            $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
+                                            $unitobj->total_qty -= $unit->pivot->quantity * $kit->pivot->quantity * $case->pivot->quantity * $carton->pivot->quantity;
+                                            $unitobj->save();
+                                        }
+                                    }
+                                }
+                            }
+                            if ($this->hasUnits($case, 'basic__unit')) {
+                                foreach ($kit->basic_units->all() as $unit) {
+                                    $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
+                                    $unitobj->total_qty -= $unit->pivot->quantity * $case->pivot->quantity * $carton->pivot->quantity;
+                                    $unitobj->save();
+                                }
+                            }
                         }
                     }
 
@@ -866,6 +1052,13 @@ class OrdersController extends Controller
                             $kitobj = Kit::find($kit->pivot->kit_id);
                             $kitobj->total_qty -= $kit->pivot->quantity * $carton->pivot->quantity;
                             $kitobj->save();
+                            if ($this->hasUnits($kit, 'basic__unit')) {
+                                foreach ($kit->basic_units->all() as $unit) {
+                                    $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
+                                    $unitobj->total_qty -= $unit->pivot->quantity * $kit->pivot->quantity * $carton->pivot->quantity;
+                                    $unitobj->save();
+                                }
+                            }
                         }
                     }
                     if ($this->hasUnits($carton, 'basic__unit')) {
@@ -884,6 +1077,27 @@ class OrdersController extends Controller
                     $caseobj = Cases::find($case->pivot->cases_id);
                     $caseobj->total_qty -= $case->pivot->quantity;
                     $caseobj->save();
+                    if ($this->hasKits($case, 'kit')) {
+                        foreach ($order->kits->all() as $kit) {
+                            $kitobj = Kit::find($kit->pivot->kit_id);
+                            $kitobj->total_qty -= $kit->pivot->quantity * $case->pivot->quantity;
+                            $kitobj->save();
+                            if ($this->hasUnits($kit, 'basic__unit')) {
+                                foreach ($kit->basic_units->all() as $unit) {
+                                    $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
+                                    $unitobj->total_qty -= $unit->pivot->quantity * $kit->pivot->quantity * $case->pivot->quantity;
+                                    $unitobj->save();
+                                }
+                            }
+                        }
+                    }
+                    if ($this->hasUnits($case, 'basic__unit')) {
+                        foreach ($kit->basic_units->all() as $unit) {
+                            $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
+                            $unitobj->total_qty -= $unit->pivot->quantity * $case->pivot->quantity;
+                            $unitobj->save();
+                        }
+                    }
                 }
             }
 
@@ -892,6 +1106,13 @@ class OrdersController extends Controller
                     $kitobj = Kit::find($kit->pivot->kit_id);
                     $kitobj->total_qty -= $kit->pivot->quantity;
                     $kitobj->save();
+                    if ($this->hasUnits($kit, 'basic__unit')) {
+                        foreach ($kit->basic_units->all() as $unit) {
+                            $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
+                            $unitobj->total_qty -= $unit->pivot->quantity * $kit->pivot->quantity;
+                            $unitobj->save();
+                        }
+                    }
                 }
             }
 
