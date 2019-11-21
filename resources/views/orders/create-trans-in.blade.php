@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.userdashboard')
 
 @section('content')
 
@@ -47,7 +47,7 @@
 
                                 <div class="form-row px-0" >
                                     <div class="col-md-12">
-                                        <button onclick="history.back()" class="btn btn-link text-gunmetal pl-0"><i class="fas fa-long-arrow-alt-left"></i> Back</button>
+                                        <a href="/dashboard/user/orders"  class="btn btn-link text-gunmetal pl-0"><i class="fas fa-long-arrow-alt-left"></i> Back</a>
                                         
                                         <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-link createpallet">

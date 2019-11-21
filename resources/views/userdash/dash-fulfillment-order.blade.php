@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.userdashboard')
 
 @section('content')
 
@@ -26,7 +26,7 @@
     </div>
 
     <div class="container w-75">
-        <form id="fil_order_form" action="/createfilorder" method="POST">
+        <form id="fil_order_form" action="" method="">
             <div class="form-row justify-content-center">
 
                 <div class="col-md-12">
@@ -36,8 +36,8 @@
 
             <div class="form-row px-0">
                 <div class="col-md-12">
-                    <button onclick="history.back()" class="btn btn-link text-gunmetal pl-0"><i
-                            class="fas fa-long-arrow-alt-left"></i> Back</button>
+                    <a href="/dashboard/user/fulfillment" class="btn btn-link text-gunmetal pl-0"><i
+                            class="fas fa-long-arrow-alt-left"></i> Back</a>
 
                 </div>
 

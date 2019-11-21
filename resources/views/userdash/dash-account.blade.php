@@ -27,21 +27,21 @@
 <div class="container-fluid bg-whitewash ">
     <div class="container dashboard-container pt-5">
         <!-- Nav tabs -->
-        <ul class="nav nav-tabs border-1" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link" href="/dashboard/user/fulfillment">Fulfillment</a>
+        <ul class="nav nav-tabs border-1 nav-pills with-arrow flex-column flex-sm-row text-center" role="tablist">
+            <li class="nav-item flex-sm-fill">
+                <a class="nav-link mr-sm-3 rounded-0" href="/dashboard/user/fulfillment">Fulfillment</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/dashboard/user/inventory">Storage</a>
+            <li class="nav-item flex-sm-fill">
+                <a class="nav-link mr-sm-3 rounded-0" href="/dashboard/user/inventory">Storage</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/dashboard">Shipments</a>
+            <li class="nav-item flex-sm-fill">
+                <a class="nav-link mr-sm-3 rounded-0" href="/dashboard">Shipments</a>
             </li>
-            <li class="nav-item">
-                    <a class="nav-link" href="/dashboard/user/orders">Orders</a>
+            <li class="nav-item flex-sm-fill">
+                    <a class="nav-link mr-sm-3 rounded-0" href="/dashboard/user/orders">Orders</a>
                 </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="/dashboard/user/account">Account</a>
+            <li class="nav-item flex-sm-fill">
+                <a class="nav-link mr-sm-3 rounded-0 active" href="/dashboard/user/account">Account</a>
             </li>
 
         </ul>
@@ -92,28 +92,32 @@
                         </div>
                         <br>
                         <br>
-                        <table class="table">
-                                <tr>
-                                    <th>User</th>
-                                    <th>Company</th>
-                                    <th>Remaining Balance</th>
-                                    <th></th>
-                                </tr>
-                            
-                                <tr>
-                                    <td>{{$user->name}}</td>
-                                    <td>{{$user->company_name}}</td>
-                                    <td>{{'$' . number_format($user->account_balance,2)}}</td>
-                                    <td>
-                                        <div style="margin-left: 40%">
-                                            <a href="/makepayment/{{$user->id}}" class="float-left" style="margin-right:1%">
-                                                <button class="btn btn-link text-denim btn-sm" type="button">Make a Payment</button>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
+                        <div class="table-responsive">
+
+                        
+                            <table class="table">
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Company</th>
+                                        <th>Remaining Balance</th>
+                                        <th></th>
+                                    </tr>
                                 
-                            </table>
+                                    <tr>
+                                        <td>{{$user->name}}</td>
+                                        <td>{{$user->company_name}}</td>
+                                        <td>{{'$' . number_format($user->account_balance,2)}}</td>
+                                        <td>
+                                            <div style="margin-left: 40%">
+                                                <a href="/makepayment/{{$user->id}}" class="float-left" style="margin-right:1%">
+                                                    <button class="btn btn-link text-denim btn-sm" type="button">Make a Payment</button>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    
+                                </table>
+                        </div>
                         </div>
 
                         <br><br>

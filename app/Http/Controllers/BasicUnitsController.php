@@ -26,7 +26,7 @@ class BasicUnitsController extends Controller
     public function create()
     {
         //
-        return view('orders.add-sku');
+        return view('orders.create-unit');
     }
 
     /**

@@ -84,8 +84,8 @@
 
 
             <div class="row justify-content-center mt-3">
-                <a onclick="history.back()" class="btn btn-link text-frenchblue"><i class="fas fa-long-arrow-alt-left"></i> Go Back</a>
-                <button type="submit" class="btn btn-primary bg-denim" name="cc-auth-submit" id="cc-auth-submit" >Submit Payment</button>
+                    <a href="/dashboard/user/account"  class="btn btn-link text-gunmetal pl-0"><i class="fas fa-long-arrow-alt-left"></i> Back</a>
+                    <button type="submit" class="btn btn-primary bg-denim" name="cc-auth-submit" id="cc-auth-submit" >Submit Payment</button>
             
             </div>
 

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.userdashboard')
 
 @section('content')
 
@@ -33,7 +33,7 @@
             </div>
 
             <div class="form-row justify-content-center">
-                <a onclick="history.back()" class="btn btn-link text-frenchblue" style="margin-right:2%"><i class="fas fa-long-arrow-alt-left"></i> Go Back</a>
+                <a href="/dashboard/user/inventory"  class="btn btn-link text-frenchblue" style="margin-right:2%"><i class="fas fa-long-arrow-alt-left"></i> Go Back</a>
                 <button type="submit" class="btn btn-primary">Create</button>
             </div>
             @csrf
