@@ -7,19 +7,19 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs border-1 nav-pills with-arrow flex-column flex-sm-row text-center" role="tablist">
             <li class="nav-item flex-sm-fill">
-                <a class="nav-link mr-sm-3 rounded-0" href="/dashboard/user/fulfillment">Fulfillment</a>
+                <a class="nav-link mr-sm-3 rounded" href="/dashboard/user/fulfillment">Fulfillment</a>
             </li>
             <li class="nav-item flex-sm-fill">
-                <a class="nav-link mr-sm-3 rounded-0" href="/dashboard/user/inventory">Storage</a>
+                <a class="nav-link mr-sm-3 rounded" href="/dashboard/user/inventory">Storage</a>
             </li>
             <li class="nav-item flex-sm-fill">
-                <a class="nav-link mr-sm-3 rounded-0 active" href="/dashboard">Shipments</a>
+                <a class="nav-link mr-sm-3 rounded active" href="/dashboard">Shipments</a>
             </li>
             <li class="nav-item flex-sm-fill">
-                    <a class="nav-link mr-sm-3 rounded-0" href="/dashboard/user/orders">Orders</a>
+                    <a class="nav-link mr-sm-3 rounded" href="/dashboard/user/orders">Orders</a>
                 </li>
             <li class="nav-item flex-sm-fill">
-                <a class="nav-link mr-sm-3 rounded-0" href="/dashboard/user/account">Account</a>
+                <a class="nav-link mr-sm-3 rounded" href="/dashboard/user/account">Account</a>
             </li>
 
         </ul>

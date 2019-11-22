@@ -90,9 +90,9 @@
                                             <form action="/user/accbal/update/{{$user->id}}" method="POST">
                                                 @csrf
                                                 {{method_field('PUT')}}
-                                                <input type="text" name="accbal" class="text-center" style="width:40%" value="{{number_format($user->account_balance,2)}}">
+                                                <input type="text" name="accbal" class="text-center form-control form-control-sm" style="width:40%" value="{{number_format($user->account_balance,2)}}">
                                                 <button type="submit" style=" margin-left: 1.25rem;"
-                                                    class="btn btn-link text-success btn-sm">Update</button>
+                                                    class="btn btn-link text-success btn-sm m-0"><small>Update</small></button>
                                             </form>
                                         </td>
                                         
@@ -106,7 +106,7 @@
                                                     <option value="Not Approved">Not Approved</option>
                                                 </select>
                                                 <button type="submit" style=" margin-left: 1.25rem;"
-                                                    class="btn btn-link text-success btn-sm">Update</button>
+                                                    class="btn btn-link text-success btn-sm m-0"><small>Update</small></button>
                                             </form>
                                         </td>
                                         <td>

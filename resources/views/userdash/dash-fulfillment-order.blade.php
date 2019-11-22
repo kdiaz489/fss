@@ -59,19 +59,19 @@
 
             <div class="form-row justify-content-center mb-4">
                 <div class="col-md-4">
-                    <label for="address">Purchaser Street Address</label>
-                    <input type="text" name="address" class="form-control" placeholder="Street Address">
+                    <label for="address">Street Address</label>
+                    <input type="text" name="address" class="form-control" placeholder="Purchaser street Address">
 
                 </div>
                 <div class="col-md-4">
-                    <label for="city">Purchaser City</label>
-                    <input type="text" name="city" class="form-control" placeholder="City">
+                    <label for="city">City</label>
+                    <input type="text" name="city" class="form-control" placeholder="Purchaser City">
 
                 </div>
 
                 <div class="col-md-4">
-                    <label for="zip">Purchaser Zip</label>
-                    <input type="text" name="zip" class="form-control" placeholder="Zip">
+                    <label for="zip">Zip</label>
+                    <input type="text" name="zip" class="form-control" placeholder="Purchaser Zip">
 
                 </div>
 
