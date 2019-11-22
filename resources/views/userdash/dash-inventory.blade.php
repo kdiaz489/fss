@@ -5,21 +5,21 @@
 <div class="container-fluid bg-whitewash ">
     <div class="container dashboard-container pt-5">
         <!-- Nav tabs -->
-        <ul class="nav nav-tabs border-1 nav-pills with-arrow flex-column flex-sm-row text-center" role="tablist">
-            <li class="nav-item flex-sm-fill">
-                <a class="nav-link mr-sm-3 rounded" href="/dashboard/user/fulfillment">Fulfillment</a>
+        <ul class="nav nav-tabs border-1 nav-pills with-arrow flex-column flex-sm-row d-flex text-center" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link mr-sm-2 rounded-0" href="/dashboard/user/fulfillment">Fulfillment</a>
             </li>
-            <li class="nav-item flex-sm-fill">
-                <a class="nav-link mr-sm-3 rounded active" href="/dashboard/user/inventory">Storage</a>
+            <li class="nav-item">
+                <a class="nav-link mr-sm-2 rounded-0 active" href="/dashboard/user/inventory">Storage</a>
             </li>
-            <li class="nav-item flex-sm-fill">
-                <a class="nav-link mr-sm-3 rounded" href="/dashboard">Shipments</a>
+            <li class="nav-item">
+                <a class="nav-link mr-sm-2 rounded-0" href="/dashboard">Shipments</a>
             </li>
-            <li class="nav-item flex-sm-fill">
-                    <a class="nav-link mr-sm-3 rounded" href="/dashboard/user/orders">Orders</a>
+            <li class="nav-item">
+                    <a class="nav-link mr-sm-2 rounded-0" href="/dashboard/user/orders">Orders</a>
                 </li>
-            <li class="nav-item flex-sm-fill">
-                <a class="nav-link mr-sm-3 rounded" href="/dashboard/user/account">Account</a>
+            <li class="nav-item">
+                <a class="nav-link mr-sm-2 rounded-0" href="/dashboard/user/account">Account</a>
             </li>
 
         </ul>
@@ -29,9 +29,6 @@
 
 
 <div class="container-fluid dashboard-container">
-    <div class="jumbotron bg-whitewash mt-5">
-        <h1 class="display-4 text-break text-center">Welcome to your Dashboard, {{ Auth::user()->name }}.</h1>
-    </div>
 
     <!-- Flash Alerts Begin -->
 
@@ -72,8 +69,7 @@
 
                     <br>
                     <br>
-
-                    <h1 class="display-4">Product On Pallets</h1>
+                    <p class="h1 font-weight-light">Product On Pallets</p>
 
                     @if(count($pallets) > 0)
                     <div class="table-responsive">
@@ -260,7 +256,7 @@
                     <p>You have 0 pallets.</p>
                     @endif
 
-                    <h1 class="display-4">Product In Cartons</h1>
+                    <p class="h1 font-weight-light">Product In Cartons</p>
 
                     @if(count($cartons) > 0)
                     <div class="table-responsive">
@@ -414,8 +410,7 @@
                     <p>You have 0 cartons.</p>
                     @endif
 
-
-                    <h1 class="display-4">Product In Cases</h1>
+                    <p class="h1 font-weight-light">Product In Cases</p>
 
                     @if(count($cases) > 0)
                     <div class="table-responsive">
@@ -536,8 +531,7 @@
                     <p>You have 0 cases.</p>
                     @endif
 
-
-                    <h1 class="display-4">Product In Kits</h1>
+                    <p class="h1 font-weight-light">Product In Kits</p>
 
                     @if(count($kits) > 0)
                     <div class="table-responsive">
@@ -627,8 +621,7 @@
                     @endif
 
 
-
-                    <h1 class="display-4">Units</h1>
+                    <p class="h1 font-weight-light">Units</p>
                     @if(count($basic_units) > 0)
                     <div class="table-responsive">
                     <table class="table">

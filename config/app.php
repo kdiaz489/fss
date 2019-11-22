@@ -174,10 +174,11 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-	Collective\Html\HtmlServiceProvider::class,
-	Unisharp\Ckeditor\ServiceProvider::class,
+	    Collective\Html\HtmlServiceProvider::class,
+	    Unisharp\Ckeditor\ServiceProvider::class,
         App\Providers\BladeExtrasServiceProvider::class,
         Barryvdh\Snappy\ServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class
         
  
     ],
@@ -236,6 +237,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
         'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         
 
     ],

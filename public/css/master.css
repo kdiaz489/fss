@@ -9,7 +9,7 @@ html {
 
 body {
     margin-bottom: 60px;
-    font-size: 18px;
+    font-size: 16px;
     font-family: 'Open Sans', sans-serif;
     line-height: 1.6em;
     /* Margin bottom by footer height */
@@ -546,6 +546,7 @@ input[type=checkbox] {
     display: block;
   }
 
+
 /*DESKTOP SPECIFIC CONDITIONS*/
 @media(min-width: 768px) {
     /* Only use to center drop down menu
@@ -554,10 +555,11 @@ input[type=checkbox] {
         transform: translateX(-75%);
       }
       */
+
       
       .navbar-nav .nav-link:focus,
       .navbar-nav .nav-link:hover {
-          background-color: white !important;
+          /*background-color: white !important;*/
           color: black !important;
       
       }      
@@ -568,7 +570,7 @@ input[type=checkbox] {
     }
 
     .dashboard-container {
-        max-width: 1700px;
+        max-width: 1600px;
     }
 
 

@@ -70,7 +70,7 @@ $(document).ready(function () {
 
     
     $('td').on('show.bs.collapse', function () {
-        $(this).addClass('p-2');
+        //$(this).addClass('p-2');
         var toggle = $(this).children().attr('id');
         $('#toggle-' + toggle).empty();
         $('#toggle-' + toggle).append('<i class="fas fa-minus"></i>');
@@ -83,7 +83,7 @@ $(document).ready(function () {
 
 
     $('td').on('hide.bs.collapse', function () {
-        $(this).removeClass('p-2');
+        //$(this).removeClass('p-2');
         var toggle = $(this).children().attr('id');
         $('#toggle-' + toggle).empty();
         $('#toggle-' + toggle).append('<i class="fas fa-plus"></i>');

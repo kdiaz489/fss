@@ -27,21 +27,21 @@
 <div class="container-fluid bg-whitewash ">
     <div class="container dashboard-container pt-5">
         <!-- Nav tabs -->
-        <ul class="nav nav-tabs border-1 nav-pills with-arrow flex-column flex-sm-row text-center" role="tablist">
-            <li class="nav-item flex-sm-fill">
-                <a class="nav-link mr-sm-3 rounded" href="/dashboard/user/fulfillment">Fulfillment</a>
+        <ul class="nav nav-tabs border-1 nav-pills with-arrow flex-column flex-sm-row d-flex text-center" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link mr-sm-2 rounded-0" href="/dashboard/user/fulfillment">Fulfillment</a>
             </li>
-            <li class="nav-item flex-sm-fill">
-                <a class="nav-link mr-sm-3 rounded" href="/dashboard/user/inventory">Storage</a>
+            <li class="nav-item">
+                <a class="nav-link mr-sm-2 rounded-0" href="/dashboard/user/inventory">Storage</a>
             </li>
-            <li class="nav-item flex-sm-fill">
-                <a class="nav-link mr-sm-3 rounded" href="/dashboard">Shipments</a>
+            <li class="nav-item">
+                <a class="nav-link mr-sm-2 rounded-0" href="/dashboard">Shipments</a>
             </li>
-            <li class="nav-item flex-sm-fill">
-                    <a class="nav-link mr-sm-3 rounded" href="/dashboard/user/orders">Orders</a>
+            <li class="nav-item">
+                    <a class="nav-link mr-sm-2 rounded-0" href="/dashboard/user/orders">Orders</a>
                 </li>
-            <li class="nav-item flex-sm-fill">
-                <a class="nav-link mr-sm-3 rounded active" href="/dashboard/user/account">Account</a>
+            <li class="nav-item">
+                <a class="nav-link mr-sm-2 rounded-0 active" href="/dashboard/user/account">Account</a>
             </li>
 
         </ul>
@@ -51,9 +51,6 @@
 
 
 <div class="container-fluid dashboard-container">
-    <div class="jumbotron bg-whitewash mt-5">
-        <h1 class="display-4 text-break text-center">Welcome to your Dashboard, {{ Auth::user()->name }}.</h1>
-    </div>
 
     <!-- Flash Alerts Begin -->
 
@@ -62,7 +59,7 @@
     <!-- Flash Alerts Ends -->
 
 </div>
-<div class="container-fluid dashboard-container">
+<div class="container" style="max-width:1200px">
 
 
     <div class="row justify-content-center">
@@ -80,21 +77,15 @@
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <br>
-                    <h1 class="display-4">Account Balance</h1>
-                    <br>
-                    <br>
-                    <div class="container-fluid px-5" style="border: solid 1px #dee2e6; border-radius: 10px">
-                        <br>
+                    <h1 class="h1 font-weight-light">Account Balance</h1>
+                    <div class="container-fluid px-5 py-3" style="border: solid 1px #dee2e6; border-radius: 10px">
                         <div class="row">
                             <div class="col-lg-4">
-                                <h2 class="mt-4">Balance Owed</h2>
+                                <h2 class="h2 font-weight-light">Balance Owed</h2>
                             </div>
                         </div>
-                        <br>
-                        <br>
-                        <div class="table-responsive">
 
-                        
+                        <div class="table-responsive">
                             <table class="table">
                                     <tr>
                                         <th>User</th>
@@ -120,19 +111,17 @@
                         </div>
                         </div>
 
-                        <br><br>
+                        <br>
                 
-                            <h1 class="display-4">Account Settings</h1>
-                            <br>
-                            <br>
-                            <div class="container-fluid px-5" style="border: solid 1px #dee2e6; border-radius: 10px">
+                            <h1 class="h1 font-weight-light">Account Settings</h1>
+                            <div class="container-fluid px-5 py-3" style="border: solid 1px #dee2e6; border-radius: 10px">
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <h2 class="mt-4">Profile</h2>
+                                        <h2 class="h2 font-weight-light">Profile</h2>
                                     </div>
                                 </div>
 
-                                <div class="row py-5 border-bottom">
+                                <div class="row py-3 border-top border-bottom">
                                     <div class="col-lg-4">
                                         <h5>Username:</h5>
                                     </div>
@@ -146,7 +135,7 @@
 
                                 </div>
 
-                                <div class="row py-5 border-bottom">
+                                <div class="row py-3 border-bottom">
                                     <div class="col-lg-4">
                                         <h5>E-Mail:</h5>
                                     </div>
@@ -159,7 +148,7 @@
 
                                 </div>
 
-                                <div class="row py-5 ">
+                                <div class="row py-3 ">
                                     <div class="col-lg-4">
                                         <h5>Password:</h5>
                                     </div>
@@ -174,14 +163,14 @@
                                 </div>
                             </div>
 
-                            <div class="container-fluid px-5 mt-4"
+                            <div class="container-fluid px-5 py-3 mt-4"
                                 style="border: solid 1px #dee2e6; border-radius: 10px">
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <h2 class="mt-4">Contact Info</h2>
+                                        <h2 class="h2 font-weight-light">Contact Info</h2>
                                     </div>
                                 </div>
-                                <div class="row py-5 border-bottom">
+                                <div class="row py-3 border-top border-bottom">
                                     <div class="col-lg-4">
                                         <h5>Company Name:</h5>
                                     </div>
@@ -195,7 +184,7 @@
 
                                 </div>
 
-                                <div class="row py-5 border-bottom">
+                                <div class="row py-3 border-bottom">
                                     <div class="col-lg-4">
                                         <h5>Contact Name:</h5>
                                     </div>
@@ -208,7 +197,7 @@
 
                                 </div>
 
-                                <div class="row py-5 ">
+                                <div class="row py-3 ">
                                     <div class="col-lg-4">
                                         <h5>Address:</h5>
                                     </div>

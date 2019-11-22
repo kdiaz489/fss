@@ -5,21 +5,21 @@
 <div class="container-fluid bg-whitewash ">
     <div class="container dashboard-container pt-5">
         <!-- Nav tabs -->
-        <ul class="nav nav-tabs border-1 nav-pills with-arrow flex-column flex-sm-row text-center" role="tablist">
-            <li class="nav-item flex-sm-fill">
-                <a class="nav-link mr-sm-3 rounded active" href="/dashboard/user/fulfillment">Fulfillment</a>
+        <ul class="nav nav-tabs border-1 nav-pills with-arrow flex-column flex-sm-row d-flex text-center" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link mr-sm-2 rounded-0 active" href="/dashboard/user/fulfillment">Fulfillment</a>
             </li>
-            <li class="nav-item flex-sm-fill">
-                <a class="nav-link mr-sm-3 rounded" href="/dashboard/user/inventory">Storage</a>
+            <li class="nav-item">
+                <a class="nav-link mr-sm-2 rounded-0" href="/dashboard/user/inventory">Storage</a>
             </li>
-            <li class="nav-item flex-sm-fill">
-                <a class="nav-link mr-sm-3 rounded" href="/dashboard">Shipments</a>
+            <li class="nav-item">
+                <a class="nav-link mr-sm-2 rounded-0" href="/dashboard">Shipments</a>
             </li>
-            <li class="nav-item flex-sm-fill">
-                    <a class="nav-link mr-sm-3 rounded" href="/dashboard/user/orders">Orders</a>
+            <li class="nav-item">
+                    <a class="nav-link mr-sm-2 rounded-0" href="/dashboard/user/orders">Orders</a>
                 </li>
-            <li class="nav-item flex-sm-fill">
-                <a class="nav-link mr-sm-3 rounded" href="/dashboard/user/account">Account</a>
+            <li class="nav-item">
+                <a class="nav-link mr-sm-2 rounded-0" href="/dashboard/user/account">Account</a>
             </li>
 
         </ul>
@@ -29,10 +29,6 @@
 
 
 <div class="container-fluid dashboard-container">
-    <div class="jumbotron bg-whitewash mt-5">
-        <h1 class="display-4 text-break text-center">Welcome to your Dashboard, {{ Auth::user()->name }}.</h1>
-    </div>
-
     <!-- Flash Alerts Begin -->
 
     @include('partials.alerts')
@@ -66,8 +62,7 @@
                     <br>
                     <br>
 
-                    <h1 class="display-4">Fulfillment Orders</h1>
-
+                    <p class="h1 font-weight-light">Fulfillment Orders</p>
                     @if(count($orders) > 0)
                     <div class="table-responsive">
                         <table class="table orders">
