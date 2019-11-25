@@ -55,10 +55,10 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Home</a>
+        <a href="/" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <a href="/contact" class="nav-link">Contact</a>
       </li>
     </ul>
 
@@ -97,20 +97,43 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
-          <li class="nav-item">
-            <a href="#" class="nav-link text-white">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Widgets
-              </p>
-            </a>
-          </li>
+
+               <li class="nav-item has-treeview">
+                  <a href="#" class="nav-link text-white">
+                    
+                    <i class="nav-icon fas fa-box-open"></i>
+                    <p>
+                      Fulfilment
+                      <i class="right fas fa-angle-left"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="#" class="nav-link text-white">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Fulfilment Orders</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link text-white">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Create Manual Order</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link text-white">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Upload CSV</p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link text-white">
-              <i class="nav-icon fas fa-chart-pie"></i>
+              <i class="nav-icon fas fa-warehouse"></i>
               <p>
-                Charts
+                Storage
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -118,13 +141,13 @@
               <li class="nav-item">
                 <a href="#" class="nav-link text-white">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>ChartJS</p>
+                  <p>Orders</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link text-white">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Flot</p>
+                  <p>Account</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -136,10 +159,39 @@
             </ul>
           </li>
           <li class="nav-item has-treeview">
+              <a href="#" class="nav-link text-white">
+                <i class="nav-icon fas fa-shipping-fast"></i>
+                <p>
+                  Shipments
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link text-white">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>General Elements</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link text-white">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Advanced Elements</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link text-white">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Editors</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          <li class="nav-item has-treeview">
             <a href="#" class="nav-link text-white">
               <i class="nav-icon fas fa-edit"></i>
               <p>
-                Forms
+                Orders
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -166,9 +218,10 @@
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link text-white">
-              <i class="nav-icon fas fa-table"></i>
+              
+              <i class="nav-icon fas fa-user-circle"></i>
               <p>
-                Tables
+                Account
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -217,7 +270,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
+              <li class="breadcrumb-item active">Dashboard</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -259,6 +312,7 @@
 <!-- jQuery 
 <script src="/assets/plugins/jquery/jquery.min.js"></script>
 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
