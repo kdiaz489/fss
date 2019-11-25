@@ -30,7 +30,7 @@
 
 
 
-    <!-- Styles -->
+    <!-- Custom Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/master.css') }}" rel="stylesheet">
     <link href="{{ asset('css/landingpage.css') }}" rel="stylesheet">

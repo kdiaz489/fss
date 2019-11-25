@@ -602,7 +602,7 @@ class OrdersController extends Controller
                     }
 
                     if ($item_type === 'Unit') {
-                        dd($items[$i]);
+                        //dd($items[$i]);
                         $total_items += $item_qty[$i];
                         $total_units += $item_qty[$i];
                         $unit = Basic_Unit::find($items[$i]);
