@@ -3,8 +3,24 @@
 @section('content')
 
 <div class="container mt-5">
+    <!-- Flash Alerts Begin -->
 
+    @include('partials.alerts')
+
+    <!-- Flash Alerts Ends -->
+    
     <h1 class="display-4 text-center mb-4">Create Fulfillment Order</h1>
+    <div class="container w-75">
+        <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="file" name="file" accept=".csv">
+                    <br>
+                    <button class="btn btn-success">Import User Data</button>
+            </form>
+            @yield('csv_data')
+    </div>
+
+
 
     <!-- Modal -->
     <div class="modal fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle"
@@ -38,6 +54,7 @@
                 <div class="col-md-12">
                     <a href="/dashboard/user/fulfillment" class="btn btn-link text-gunmetal pl-0"><i
                             class="fas fa-long-arrow-alt-left"></i> Back</a>
+                    
 
                 </div>
 

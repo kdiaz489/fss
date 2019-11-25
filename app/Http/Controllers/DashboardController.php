@@ -120,7 +120,12 @@ class DashboardController extends Controller
 
         return view('dashboard.editaddress');
     }
-     
+
+    public function getdashhome(){
+
+        return view('userdash.dash-home');
+    }
+
     public function getuserdashinventory(){
         $user_id = auth()->user()->id;
         $user = User::find($user_id);

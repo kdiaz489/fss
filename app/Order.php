@@ -14,6 +14,8 @@ class Order extends Model
     //Timestamp
     public $timestamps = true;
 
+    protected $fillable = ['cust_order_no'];
+
     public function user(){
         return $this->belongsTo('App\User');
     }

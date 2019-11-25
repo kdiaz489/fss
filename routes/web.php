@@ -119,7 +119,7 @@ Route::get('/dashboard/user/account', 'DashboardController@getuserdashaccount');
 Route::get('/dashboard/user/orders', 'DashboardController@getuserorders');
 Route::get('/dashboard/user/fulfillment', 'DashboardController@getuserdashfulfillment');
 
-
+Route::get('/dash/test', 'DashboardController@getdashhome');
 
 
 Route::get('/dashboard/admin/users', 'DashboardController@getadminusers');
@@ -155,6 +155,7 @@ Route::get('editcase/{id}', 'CasesController@edit');
 Route::put('/updatecase/{id}', 'CasesController@update');
 Route::delete('/removecase/{id}', 'CasesController@destroy');
 
+Route::post('csv_file/import', 'CsvFile@csv_import')->name('import');
 
 Route::get('/admin', function(){
     return 'You are an admin';
