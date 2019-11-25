@@ -766,7 +766,7 @@ class OrdersController extends Controller
                                 }
                             }
                             if ($this->hasUnits($case, 'cases')) {
-                                foreach ($kit->basic_units->all() as $unit) {
+                                foreach ($pallet->basic_units->all() as $unit) {
                                     $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
                                     $unitobj->total_qty += $unit->pivot->quantity * $case->pivot->quantity * $pallet->pivot->quantity;
                                     $unitobj->save();
