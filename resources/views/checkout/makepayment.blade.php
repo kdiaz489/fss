@@ -1,10 +1,18 @@
 @extends('layouts.userdashlte')
 
+@section('user-name')
+ {{auth()->user()->name}}   
+@endsection
+
+@section('breadcrumb')
+Pay Account Balance
+@endsection
+
 @section('content')
-<div class="flex-center position-ref full-height">
+
     
-    <div class="container mt-5">
-        <div class="col-12 col-lg-12">
+    <div class="container mt-3" style="max-width: 900px">
+        <div class="col-12 col-lg-12" >
             <!-- Flash Alerts Begin -->
 
             @include('partials.alerts')
@@ -12,7 +20,6 @@
             <!-- Flash Alerts Ends -->
         </div>
 
-        <h1 class="display-4 text-center mb-5">Account Balance - Make a Payment</h1>
         <form class="" id="" action="{{ url('/makeapayment') }}" method="POST">
             {{ csrf_field() }}
             <h3 class="text-center border bg-whitewash text-gunmetal">Payment Information</h3>
@@ -84,12 +91,11 @@
 
 
             <div class="row justify-content-center mt-3">
-                    <a href="/dashboard/user/account"  class="btn btn-link text-gunmetal pl-0"><i class="fas fa-long-arrow-alt-left"></i> Back</a>
-                    <button type="submit" class="btn btn-primary bg-denim" name="cc-auth-submit" id="cc-auth-submit" >Submit Payment</button>
+                    <button type="submit" class="btn btn-primary btn-sm bg-denim" name="cc-auth-submit" id="cc-auth-submit" >Submit Payment</button>
             
             </div>
 
         </form>
     </div>
-</div>
+
 @endsection

@@ -3,7 +3,7 @@
             <a class="navbar-brand text-white" href="{{ url('/') }}">
 
 
-              <img src="{{asset('img/fss-white.svg')}}" width="120px" height="100px">
+              <img src="{{asset('img/fss-white.svg')}}" width="80px" height="60px">
 
             </a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

@@ -4,6 +4,10 @@
  {{auth()->user()->name}}   
 @endsection
 
+@section('breadcrumb')
+Storage Orders
+@endsection
+
 @section('content')
 
 <div class="container-fluid dashboard-container">

@@ -4,6 +4,10 @@
 {{auth()->user()->name}}
 @endsection
 
+@section('breadcrumb')
+Create Kit
+@endsection
+
 @section('content')
 
 <div class="container mt-5">

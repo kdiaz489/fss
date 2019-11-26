@@ -4,7 +4,9 @@
  {{auth()->user()->name}}   
 @endsection
 
-
+@section('breadcrumb')
+Transfer Out
+@endsection
 
 @section('content')
 

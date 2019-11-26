@@ -4,6 +4,10 @@
  {{auth()->user()->name}}   
 @endsection
 
+@section('breadcrumb')
+Account
+@endsection
+
 @section('content')
 
 <!-- Modal -->
