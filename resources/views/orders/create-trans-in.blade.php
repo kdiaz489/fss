@@ -1,19 +1,18 @@
-@extends('layouts.userdashboard')
+@extends('layouts.userdashlte')
+
+@section('user-name')
+ {{auth()->user()->name}}   
+@endsection
 
 @section('content')
 
-<div class="container mt-5">
+<div class="container mt-5 ">
 
-    <h1 class="display-4 text-center mb-4">Create Transfer In Order</h1>
-    
     <!-- Flash Alerts Begin -->
 
     @include('partials.alerts')
 
     <!-- Flash Alerts Ends -->
-
-
-
 
         <!-- Modal -->
         <div class="modal fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
@@ -33,7 +32,8 @@
         </div>
         </div>
 
-                    <div class="container w-75">
+                    <div class="container w-75 border p-5" style="border-radius: 10px">
+                            <h1 class="font-weight-light text-center">Create Transfer In Order</h1>
                             <form id="trans_in_order_form" action="/createtransin" method="POST">
                                 <div class="form-row justify-content-center">
                                 
@@ -47,7 +47,6 @@
 
                                 <div class="form-row px-0" >
                                     <div class="col-md-12">
-                                        <a href="/dashboard/user/orders"  class="btn btn-link text-gunmetal pl-0"><i class="fas fa-long-arrow-alt-left"></i> Back</a>
                                         
                                         <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-link createpallet">
@@ -112,13 +111,12 @@
                     </div>
 
 </div>
+@endsection
 
-
+@section('scripts')
+    
 <script>
     
-
-
-
     $(document).ready(function(){
 
         var count = 1;
@@ -155,12 +153,14 @@
             }
             $('.select_transin_skus').select2({
                 minimumResultsForSearch: 1,
-                width: '175px'
+                width: '175px',
+                theme: 'bootstrap4'
             });
 
             $('.type').select2({
                 minimumResultsForSearch: 1,
-                width: '175px'
+                width: '175px',
+                theme: 'bootstrap4'
             });
         }
 

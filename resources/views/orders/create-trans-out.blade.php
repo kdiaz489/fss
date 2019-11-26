@@ -1,10 +1,15 @@
-@extends('layouts.userdashboard')
+@extends('layouts.userdashlte')
+
+@section('user-name')
+ {{auth()->user()->name}}   
+@endsection
+
+
 
 @section('content')
 
 <div class="container mt-5">
-
-    <h1 class="display-4 text-center mb-4">Create Transfer Out Order</h1>
+    
     
     <!-- Flash Alerts Begin -->
 
@@ -33,13 +38,11 @@
         </div>
         </div>
 
-                    <div class="container w-75">
+                    <div class="container w-75 border p-5" style="border-radius: 10px">
+                            <h1 class="font-weight-light text-center">Create Transfer Out Order</h1>
                             <form id="trans_out_order_form" action="/createtransin" method="POST">
                                 <div class="form-row justify-content-center">
-                                
-
-
-
+                            
                                     <div class="col-md-12">
                                         <span class="" id="order-result"></span>
                                     </div>
@@ -47,7 +50,6 @@
 
                                 <div class="form-row px-0" >
                                     <div class="col-md-12">
-                                        <a href="/dashboard/user/orders"  class="btn btn-link text-gunmetal pl-0"><i class="fas fa-long-arrow-alt-left"></i> Back</a>
                                         
                                         <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-link createpallet">
@@ -112,8 +114,9 @@
                     </div>
 
 </div>
+@endsection
 
-
+@section('scripts')
 <script>
     
     $(document).ready(function(){
@@ -152,12 +155,14 @@
             }
             $('.select_transin_skus').select2({
                 minimumResultsForSearch: 1,
-                width: '175px'
+                width: '175px',
+                theme: 'bootstrap4'
             });
 
             $('.type').select2({
                 minimumResultsForSearch: 1,
-                width: '175px'
+                width: '175px',
+                theme: 'bootstrap4'
             });
         }
 

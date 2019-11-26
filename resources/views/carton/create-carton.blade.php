@@ -173,7 +173,6 @@
                             html += '<td><select name="type[]" id="" class="form-control form-control-sm type"><option value="none" disabled >Choose</option><option value="Pallet">Pallet</option><option value="Carton" selected>Carton</option><option value="Case">Case</option><option value="Kit">Kit</option><option value="Unit">Unit</option></select></td>'
                             html += '<td><input type="text" name="item_qty[]" class="form-control" /></td>';
                             html += '<td><button type="button" name="remove" id="" class="btn btn-danger btn-sm remove circle"><i class="fas fa-lg fa-minus"></i></button>\
-                            <button type="button" name="add" id="" class="btn btn-success btn-sm add circle"><i class="fas fa-lg fa-plus"></i></button>\
                             <button type="button" name="editcarton" id="' + data.id + '" class="btn btn-secondary btn-sm editcarton circle"><i class="fas fa-edit fa-lg"></i></button></td></tr>';
 
                             $('.select_transin_skus').select2({

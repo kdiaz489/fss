@@ -1,4 +1,8 @@
-@extends('layouts.userdashboard')
+@extends('layouts.userdashlte')
+
+@section('user-name')
+ {{auth()->user()->name}}   
+@endsection
 
 @section('content')
 
@@ -9,7 +13,7 @@
 
     <!-- Flash Alerts Ends -->
     
-    <h1 class="display-4 text-center mb-4">Create Fulfillment Order</h1>
+    <!--
     <div class="container w-75">
         <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -19,6 +23,7 @@
             </form>
             @yield('csv_data')
     </div>
+-->
 
 
 
@@ -41,7 +46,8 @@
         </div>
     </div>
 
-    <div class="container w-75">
+    <div class="container w-75 border p-5" style="border-radius: 10px">
+        <h1 class="font-weight-light text-center">Create Fulfilment Order</h1>
         <form id="fil_order_form" action="" method="">
             <div class="form-row justify-content-center">
 
@@ -50,15 +56,6 @@
                 </div>
             </div>
 
-            <div class="form-row px-0">
-                <div class="col-md-12">
-                    <a href="/dashboard/user/fulfillment" class="btn btn-link text-gunmetal pl-0"><i
-                            class="fas fa-long-arrow-alt-left"></i> Back</a>
-                    
-
-                </div>
-
-            </div>
 
 
             <div class="form-row justify-content-center mb-4">
@@ -96,7 +93,7 @@
 
             </div>
             <div class="table-responsive">
-                <table class="table table-bordered table-striped" id="user_table">
+                <table class="table table-bordered" id="user_table">
                     <thead>
                         <tr>
                             <th width="20%">Select Order Item</th>
@@ -125,8 +122,9 @@
     </div>
 
 </div>
+@endsection
 
-
+@section('scripts')
 <script>
     $(document).ready(function(){
         var count = 1;
@@ -135,7 +133,7 @@
 
         function dynamic_field(number){
             html = '<tr>';
-            html += '<td><select name="items[]" class="form-control form-control-sm select_transin_skus">'
+            html += '<td><select name="items[]" class="form-control select_transin_skus">'
             html += '<option value="none" disabled selected>Choose</option>'
             html += '@if (count($pallets) > 0) <optgroup label="Pallets"> @foreach ($pallets as $pallet)<option class="option-sm" value="{{$pallet->id}}">{{$pallet->sku}}</option>@endforeach</optgroup> @else<option value="" disabled>No Pallets Available</option> @endif '
             html += '@if (count($cartons) > 0) <optgroup label="Cartons"> @foreach ($cartons as $carton)<option class="option-sm" value="{{$carton->id}}">{{$carton->sku}}</option>@endforeach</optgroup> @else<option value="" disabled>No Cartons Available</option> @endif '
@@ -161,15 +159,20 @@
                         <small class="text-danger">Remove Item</small>\
                         </td></tr>';
                 $('.form_inventory').append(html);
+
+
+
             }
             $('.select_transin_skus').select2({
                 minimumResultsForSearch: 1,
-                width: '175px'
+                width: '175px',
+                theme: 'bootstrap4'
             });
 
             $('.type').select2({
                 minimumResultsForSearch: 1,
-                width: '175px'
+                width: '175px',
+                theme: 'bootstrap4'
             });
         }
 

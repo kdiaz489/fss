@@ -1,41 +1,13 @@
-@extends('layouts.admindashboard')
+@extends('layouts.admindashlte')
+
+@section('user-name')
+ {{auth()->user()->name}}   
+@endsection
 
 @section('content')
 
 
-<div class="container-fluid bg-whitewash ">
-    <div class="container dashboard-container pt-5">
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs border-1" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link" href="/dashboard/admin/fulfillment">Fulfillment</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/dashboard/admin/inventory">Storage</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/dashboard">Shipments</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/dashboard/admin/users">Manage Users</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/dashboard/admin/orders">Orders</a>
-                </li>
-    
-                <li class="nav-item">
-                    <a class="nav-link" href="/dashboard/admin/account">Account</a>
-                </li>
-            </ul>
-    </div>
-
-</div>
-
-
 <div class="container-fluid dashboard-container">
-    <div class="jumbotron bg-whitewash mt-5">
-        <h1 class="display-4 text-break text-center">Admin Dashboard.</h1>
-    </div>
 
     <!-- Flash Alerts Begin -->
 
@@ -48,7 +20,7 @@
 
 
     <div class="row justify-content-center">
-        <div class="col-md-12 " style="padding-top: 2%">
+        <div class="col-md-12 ">
 
             @if (session('status'))
             <div class="alert alert-success" role="alert">
@@ -57,18 +29,9 @@
             @endif
 
             <div class="col-lg-12 col-12">
-
-
-                <!-- Tab panes -->
-                <div class="tab-content">
                         <div class="container dashboard-container">
-                            <h1 class="display-4">Manage Users</h1>
-                            <br>
-                            <p>*Feature under development</p>
-                            <button type="button" class="adduser btn btn-outline-secondary" data-toggle="modal"
-                                data-target="#editAdminModal" disabled>Add User</button>
-                            <br>
-                            <br>
+                            <h3 class="font-weight-light mb-3">Manage Users</h3>
+
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
@@ -132,8 +95,6 @@
                                 </tbody>
                             </table>
                         </div>
-                
-                </div>
             </div>
         </div>
     </div>

@@ -1,4 +1,8 @@
-@extends('layouts.userdashboard')
+@extends('layouts.userdashlte')
+
+@section('user-name')
+{{auth()->user()->name}}
+@endsection
 
 @section('content')
 
@@ -11,34 +15,35 @@
 
     <h1 class="display-4 text-center">Create Unit</h1>
 
-    
-        <form action="/basicunit" method="POST">
-            <div class="form-row justify-content-center mb-3">
 
-                <div class="col-md-6">
-                    <label for="sku">Sku</label>
-                    <input type="text" name="sku" class="form-control form-control-sm" value="{{ old('sku')}}" placeholder="Sku #">
-                    <div style="font-weight: 700; color:red">{{$errors->first('sku')}}</div>
-                </div>
+    <form action="/basicunit" method="POST">
+        <div class="form-row justify-content-center mb-3">
 
+            <div class="col-md-6">
+                <label for="sku">Sku</label>
+                <input type="text" name="sku" class="form-control form-control-sm" value="{{ old('sku')}}"
+                    placeholder="Sku #">
+                <div style="font-weight: 700; color:red">{{$errors->first('sku')}}</div>
             </div>
 
-            <div class="form-row justify-content-center mb-3">
-                <div class="col-md-6">
-                    <label for="desc">Description</label>
-                    <textarea name="desc" id="desc" cols="30" rows="3" class="form-control form-control-sm" value="{{ old('desc')}}" placeholder="Product Description"></textarea>
-                    <div style="font-weight: 700; color:red">{{$errors->first('desc')}}</div>
-                    
-                </div>
-            </div>
+        </div>
 
-            <div class="form-row justify-content-center">
-                <a href="/dashboard/user/inventory"  class="btn btn-link text-frenchblue" style="margin-right:2%"><i class="fas fa-long-arrow-alt-left"></i> Go Back</a>
-                <button type="submit" class="btn btn-primary">Create</button>
+        <div class="form-row justify-content-center mb-3">
+            <div class="col-md-6">
+                <label for="desc">Description</label>
+                <textarea name="desc" id="desc" cols="30" rows="3" class="form-control form-control-sm"
+                    value="{{ old('desc')}}" placeholder="Product Description"></textarea>
+                <div style="font-weight: 700; color:red">{{$errors->first('desc')}}</div>
+
             </div>
-            @csrf
-        </form>
-  
+        </div>
+
+        <div class="form-row justify-content-center">
+            <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+        @csrf
+    </form>
+
 </div>
 
 @endsection

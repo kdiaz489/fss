@@ -1,31 +1,10 @@
-@extends('layouts.userdashboard')
+@extends('layouts.userdashlte')
+
+@section('user-name')
+ {{auth()->user()->name}}   
+@endsection
 
 @section('content')
-
-<div class="container-fluid bg-whitewash ">
-    <div class="container dashboard-container pt-5">
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs border-1 nav-pills with-arrow flex-column flex-sm-row d-flex text-center" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link mr-sm-2 rounded-0" href="/dashboard/user/fulfillment">Fulfillment</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link mr-sm-2 rounded-0" href="/dashboard/user/inventory">Storage</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link mr-sm-2 rounded-0 active" href="/dashboard">Shipments</a>
-            </li>
-            <li class="nav-item">
-                    <a class="nav-link mr-sm-2 rounded-0" href="/dashboard/user/orders">Orders</a>
-                </li>
-            <li class="nav-item">
-                <a class="nav-link mr-sm-2 rounded-0" href="/dashboard/user/account">Account</a>
-            </li>
-
-        </ul>
-    </div>
-
-</div>
 
 
 <div class="container-fluid dashboard-container">
@@ -40,7 +19,7 @@
 
 
     <div class="row justify-content-center">
-        <div class="col-md-12 " style="padding-top: 2%">
+        <div class="col-md-12">
 
             @if (session('status'))
             <div class="alert alert-success" role="alert">
@@ -49,25 +28,19 @@
             @endif
 
             <div class="col-lg-12 col-12">
-
-
-                <!-- Tab panes -->
-                <div class="tab-content">
-                    <br>
-                    
                         <p class="h1 font-weight-light">Shipments</p>
 
-                        <br>
+                        <!--
                         <a href="/ship" class="btn btn-outline-secondary">Quick Quote</a>
                         <a href="/ship/book" class="btn btn-outline-secondary">Book Shipment</a>
+                        -->
 
-                        <br>
-                        <br>
                         @if(count($shipments) > 0)
                         <div class="table-responsive">
 
                         
-                            <table class="table">
+                            <table class="table shipments">
+                                <thead>
                                 <tr>
                                     <th>Order #</th>
                                     <th>Booked On</th>
@@ -81,8 +54,10 @@
                                     <th>Contact Phone</th>
                                     <th>Dock</th>
                                     <th>Fork Lift</th>
-                                    <th></th>
+                                    <th>Actions</th>
                                 </tr>
+                            </thead>
+                            <tbody>
                                 @foreach($shipments as $shipment)
                                 <tr>
                                     <td>{{str_pad($shipment->id, 6, '0', STR_PAD_LEFT)}}</td>
@@ -117,15 +92,30 @@
                                     </td>
                                 </tr>
                                 @endforeach
+                            </tbody>
                             </table>
                         </div>
                         @else
                         <p>You have no pending shipments.</p>
                         @endif
-                    
-                </div>
             </div>
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+        $(function () {
+          
+          $('.shipments').DataTable({
+            "paging": false,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+    });
+        });
+      </script>   
 @endsection

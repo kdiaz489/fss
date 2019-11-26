@@ -1,11 +1,15 @@
-@extends('layouts.userdashboard')
+@extends('layouts.userdashlte')
+
+@section('user-name')
+{{auth()->user()->name}}
+@endsection
 
 @section('content')
 
 <div class="container mt-5">
 
     <h1 class="display-4 text-center mb-4">Create your Case</h1>
-    
+
     <!-- Flash Alerts Begin -->
 
     @include('partials.alerts')
@@ -13,64 +17,62 @@
     <!-- Flash Alerts Ends -->
 
     <form action="/createcase" id="createcase" method="POST">
-    <div class="form-row justify-content-center">
-        <div class="col-md-8">
-            <span class="text-center" id="result"></span>
-        </div>
-        
-    </div>
         <div class="form-row justify-content-center">
-        <div class="col-md-8">
-            <a href="/dashboard/user/inventory" class="btn btn-link text-frenchblue px-0" ><i class="fas fa-long-arrow-alt-left"></i> Go Back</a>
+            <div class="col-md-8">
+                <span class="text-center" id="result"></span>
+            </div>
+
         </div>
-        
-    </div>
-    
-    <div class="form-row justify-content-center mb-4">
 
-        <div class="col-md-8">
-            <label for="sku">Case Sku</label>
-            <input type="text" name="sku" class="form-control form-control-sm" value="{{ old('sku')}}" placeholder="Sku #">
-            <div style="font-weight: 700; color:red">{{$errors->first('sku')}}</div>
+
+        <div class="form-row justify-content-center mb-4">
+
+            <div class="col-md-8">
+                <label for="sku">Case Sku</label>
+                <input type="text" name="sku" class="form-control form-control-sm" value="{{ old('sku')}}"
+                    placeholder="Sku #">
+                <div style="font-weight: 700; color:red">{{$errors->first('sku')}}</div>
+            </div>
         </div>
-    </div>
 
-    <div class="form-row justify-content-center mb-4">
-        <div class="col-md-8">
-            <label for="desc">Description</label>
-            <textarea name="desc" id="" cols="30" rows="3" class="form-control form-control-sm" placeholder="Description Here">{{ old('desc')}}</textarea>
-            <div style="font-weight: 700; color:red">{{$errors->first('desc')}}</div>
+        <div class="form-row justify-content-center mb-4">
+            <div class="col-md-8">
+                <label for="desc">Description</label>
+                <textarea name="desc" id="" cols="30" rows="3" class="form-control form-control-sm"
+                    placeholder="Description Here">{{ old('desc')}}</textarea>
+                <div style="font-weight: 700; color:red">{{$errors->first('desc')}}</div>
+            </div>
         </div>
-    </div>
 
-    <div class="form-row justify-content-center mb-4">
-        <div class="col-md-8 justify-content-center">
-            <table class="table table-bordered table-striped" id="user_table">
-                <thead>
-                    <tr>
-                        <th width="20%">Select Sku</th>
-                        <th width="20%">Type</th>
-                        <th width="20%">Quantity</th>
-                        <th width="20%">Action</th>
-                    </tr>
-                </thead>
-                <tbody class="form_inventory">
+        <div class="form-row justify-content-center mb-4">
+            <div class="col-md-8 justify-content-center">
+                <table class="table table-bordered table-striped" id="user_table">
+                    <thead>
+                        <tr>
+                            <th width="20%">Select Sku</th>
+                            <th width="20%">Type</th>
+                            <th width="20%">Quantity</th>
+                            <th width="20%">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="form_inventory">
 
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="3" align="right">&nbsp;</td>
-                        <td>
-                        
-                        <input type="submit" name="save" id="save" class="btn btn-link text-denim" value="Submit">
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3" align="right">&nbsp;</td>
+                            <td>
+
+                                <input type="submit" name="save" id="save" class="btn btn-link text-denim"
+                                    value="Submit">
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
         </div>
-    </div>
 
-    @csrf
+        @csrf
     </form>
 
 </div>
@@ -106,12 +108,14 @@
             }
             $('.select_case_skus').select2({
                 
-                width: '175px'
+                width: '175px',
+                theme: 'bootstrap4'
             });
 
              $('.type').select2({
                 
-                width: '175px'
+                width: '175px',
+                theme: 'bootstrap4'
             });
         }
 
@@ -189,4 +193,3 @@
 </script>
 
 @endsection
-

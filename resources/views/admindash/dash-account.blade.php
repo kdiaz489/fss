@@ -1,4 +1,8 @@
-@extends('layouts.admindashboard')
+@extends('layouts.admindashlte')
+
+@section('user-name')
+ {{auth()->user()->name}}   
+@endsection
 
 @section('content')
 
@@ -23,39 +27,7 @@
 </div>
 
 
-<div class="container-fluid bg-whitewash ">
-    <div class="container dashboard-container pt-5">
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs border-1" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link" href="/dashboard/admin/fulfillment">Fulfillment</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/dashboard/admin/inventory">Storage</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/dashboard">Shipments</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/dashboard/admin/users">Manage Users</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/dashboard/admin/orders">Orders</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link active" href="/dashboard/admin/account">Account</a>
-            </li>
-        </ul>
-    </div>
-
-</div>
-
-
 <div class="container-fluid dashboard-container">
-    <div class="jumbotron bg-whitewash mt-5">
-        <h1 class="display-4 text-break text-center">Admin Dashboard.</h1>
-    </div>
 
     <!-- Flash Alerts Begin -->
 
@@ -64,7 +36,7 @@
     <!-- Flash Alerts Ends -->
 
 </div>
-<div class="container-fluid dashboard-container">
+<div class="container-fluid dashboard-container mb-5">
 
 
     <div class="row justify-content-center">
@@ -78,16 +50,14 @@
 
             <div class="col-lg-12 col-12">
 
-
-                <!-- Tab panes -->
-                <div class="tab-content">
                         <div class="container dashboard-container">
-                            <h1 class="display-4">Account Settings</h1>
+                            <h3 class="font-weight-light">Account Settings</h3>
+
                             <br>
                             <div class="container-fluid px-5" style="border: solid 1px #dee2e6; border-radius: 10px">
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <h2 class="mt-4">Profile</h2>
+                                        <h4 class="mt-4">Profile</h4>
                                     </div>
                                 </div>
 
@@ -137,7 +107,7 @@
                                 style="border: solid 1px #dee2e6; border-radius: 10px">
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <h2 class="mt-4">Contact Info</h2>
+                                        <h4 class="mt-4">Contact Info</h4>
                                     </div>
                                 </div>
                                 <div class="row py-5 border-bottom">
@@ -182,7 +152,6 @@
                                 </div>
                             </div>
                         </div>
-                </div>
             </div>
         </div>
     </div>

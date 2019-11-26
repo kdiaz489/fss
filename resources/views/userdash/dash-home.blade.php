@@ -1,4 +1,4 @@
-@extends('layouts.admindash')
+@extends('layouts.userdashlte')
 
 @section('page-title')
 Test Dashboard for Admin

@@ -4,11 +4,11 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron-fluid jumbotron-fil">
         <div class="container">
-          <h1 class="display-3">Submit your Fulfillment Request.</h1>
+          <h1 class="font-weight-light">Submit your Fulfillment Request.</h1>
           <hr class="my-4" style="background-color:white">
           <p class="lead">Interested in having FillStorShip fulfill your orders? Submit a request below and we will begin the process with you as soon as possible.</p>
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-light btn-lg" id="open-storage-quote" data-toggle="modal" data-target="#modalCenterFil">
+          <button type="button" class="btn btn-light btn-sm" id="open-storage-quote" data-toggle="modal" data-target="#modalCenterFil">
             Fulfillment Request
           </button>
 

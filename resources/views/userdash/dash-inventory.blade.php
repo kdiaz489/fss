@@ -1,32 +1,10 @@
-@extends('layouts.userdashboard')
+@extends('layouts.userdashlte')
+
+@section('user-name')
+ {{auth()->user()->name}}   
+@endsection
 
 @section('content')
-
-<div class="container-fluid bg-whitewash ">
-    <div class="container dashboard-container pt-5">
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs border-1 nav-pills with-arrow flex-column flex-sm-row d-flex text-center" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link mr-sm-2 rounded-0" href="/dashboard/user/fulfillment">Fulfillment</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link mr-sm-2 rounded-0 active" href="/dashboard/user/inventory">Storage</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link mr-sm-2 rounded-0" href="/dashboard">Shipments</a>
-            </li>
-            <li class="nav-item">
-                    <a class="nav-link mr-sm-2 rounded-0" href="/dashboard/user/orders">Orders</a>
-                </li>
-            <li class="nav-item">
-                <a class="nav-link mr-sm-2 rounded-0" href="/dashboard/user/account">Account</a>
-            </li>
-
-        </ul>
-    </div>
-
-</div>
-
 
 <div class="container-fluid dashboard-container">
 
@@ -41,7 +19,7 @@
 
 
     <div class="row justify-content-center">
-        <div class="col-md-12 " style="padding-top: 2%">
+        <div class="col-md-12">
 
             @if (session('status'))
             <div class="alert alert-success" role="alert">
@@ -50,11 +28,7 @@
             @endif
 
             <div class="col-lg-12 col-12">
-
-
-                <!-- Tab panes -->
-                <div class="tab-content">
-                    
+                    <!--
                     <div class="btn-group" role="group">
                         <button id="btnGroupDrop1" type="button" class="btn bg-denim text-white dropdown-toggle"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -66,9 +40,8 @@
                             <a class="dropdown-item" href="/createcase">Cases</a>
                         </div>
                     </div>
+                -->
 
-                    <br>
-                    <br>
                     <p class="h1 font-weight-light">Product On Pallets</p>
 
                     @if(count($pallets) > 0)
@@ -675,13 +648,6 @@
                     @else
                     <p>You have 0 units.</p>
                     @endif
-
-                    <br>
-                    <br>
-
-
-
-                </div>
             </div>
         </div>
     </div>

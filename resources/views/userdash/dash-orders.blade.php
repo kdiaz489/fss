@@ -1,32 +1,10 @@
-@extends('layouts.userdashboard')
+@extends('layouts.userdashlte')
+
+@section('user-name')
+ {{auth()->user()->name}}   
+@endsection
 
 @section('content')
-
-<div class="container-fluid bg-whitewash ">
-    <div class="container dashboard-container pt-5">
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs border-1 nav-pills with-arrow flex-column flex-sm-row d-flex text-center" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link mr-sm-2 rounded-0" href="/dashboard/user/fulfillment">Fulfillment</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link mr-sm-2 rounded-0" href="/dashboard/user/inventory">Storage</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link mr-sm-2 rounded-0" href="/dashboard">Shipments</a>
-            </li>
-            <li class="nav-item">
-                    <a class="nav-link mr-sm-2 rounded-0 active" href="/dashboard/user/orders">Orders</a>
-                </li>
-            <li class="nav-item">
-                <a class="nav-link mr-sm-2 rounded-0" href="/dashboard/user/account">Account</a>
-            </li>
-
-        </ul>
-    </div>
-
-</div>
-
 
 <div class="container-fluid dashboard-container">
     <!-- Flash Alerts Begin -->
@@ -49,19 +27,12 @@
             @endif
 
             <div class="col-lg-12 col-12">
-
-
-                <!-- Tab panes -->
-                <div class="tab-content">
-                    <br>
-                    <br>
-
-
+                    <!--
                     <a href="/createtransin" class="btn btn-outline-secondary">Transfer In</a>
                     <a href="/createtransout" class="btn btn-secondary">Transfer Out</a>
                     <br>
                     <br>
-
+                    -->
                     <p class="h1 font-weight-light">Orders</p>
                     @if(count($orders) > 0)
                     <div class="table-responsive">
@@ -273,11 +244,10 @@
                     @else
                     <p>You have 0 pending orders.</p>
                     @endif
-
-                </div>
             </div>
         </div>
     </div>
 </div>
 
 @endsection
+

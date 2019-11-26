@@ -1,4 +1,4 @@
-@extends('layouts.userdashboard')
+@extends('layouts.userdashlte')
 
 @section('content')
 <div class="container" style="margin-top: 2%">

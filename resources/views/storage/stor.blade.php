@@ -4,11 +4,11 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron-fluid jumbotron-storage">
         <div class="container">
-          <h1 class="display-3">Get your storage quote today.</h1>
+          <h1 class="font-weight-light">Get your storage quote today.</h1>
           <hr class="my-4" style="background-color:white">
           <p class="lead">Need to store product at our facility? You can get an instant quote by filling out a form here on our site. Try it out today. Our price won't be matched.</p>
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-light btn-lg" id="open-storage-quote" data-toggle="modal" data-target="#modalCenter">
+          <button type="button" class="btn btn-light btn-sm" id="open-storage-quote" data-toggle="modal" data-target="#modalCenter">
             Instant Quote
           </button>
 
@@ -35,7 +35,7 @@
 
               <div class="col col-lg-6 col-12 align-self-center">
 
-                <h1 class="display-4"><strong>We store your inventory.</strong></h1>
+                <h1 class="font-weight-light"><strong>We store your inventory.</strong></h1>
                 <p class="stor-txt">
                   We have designed our warehousing services to maximize your company's profit. We own and operate all of our fulfillment centers and help you strategically split and manage your inventory to reduce shipping costs and time in transit.
                   We'd love the opportunity to be both your company warehouse and your growth partner.
@@ -58,7 +58,7 @@
           <div class="row justify-content-center">
 
               <div class="col col-lg-12 col-12 ">
-                <h1 class="display-4"><strong>Inventory Pricing</strong></h1>
+                <h1 class="font-weight-light"><strong>Inventory Pricing</strong></h1>
                 <p class="stor-txt">
                     FillStorShip's pricing is reflective of a total cost for a standard, storage request.
                     Standard fees for FillStorShip include receiving your inventory and warehousing your products.

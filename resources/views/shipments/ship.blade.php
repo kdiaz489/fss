@@ -5,7 +5,7 @@
 
 <div class="jumbotron-fluid jumbotron-ship">
   <div class="container">
-    <h1 class="display-3">Shipping Quote</h1>
+    <h1 class="font-weight-light">Shipping Quote</h1>
     <hr class="my-4" style="background-color:white">
     <p class="lead">We offer shipping services to the Southwestern region of the United States. Try out our shipping
       quote generator to find your cost for shipping with FillStorShip. </p>

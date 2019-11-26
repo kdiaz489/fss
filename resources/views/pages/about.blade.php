@@ -7,11 +7,11 @@
       </div>
 
 
-     <div class="container py-5" style="margin-top:2%">
+     <div class="container py-2" style="margin-top:2%">
 
        <div class="row justify-content-center">
          <div class="col-lg-6 col-12">
-           <h1 class="text-gunmetal display-3">About FillStorShip</h1>
+           <h1 class="text-gunmetal font-weight-light">About FillStorShip</h1>
 
          </div>
 
@@ -29,11 +29,11 @@
       </div>
 
 
-      <div class="container py-5" style="margin-top:2%">
+      <div class="container py-2" style="margin-top:2%">
 
         <div class="row justify-content-center">
           <div class="col-lg-6 col-12">
-            <h1 class="text-gunmetal display-3">What Makes us Unique?</h1>
+            <h1 class="text-gunmetal font-weight-light">What Makes us Unique?</h1>
 
           </div>
 
@@ -54,7 +54,7 @@
       <div class="container-fluid bg-whitewash py-5">
         <div class="container px-5">
           <div class="text-center py-5">
-            <h1 class="text-gunmetal display-4">Our Proud Customers</h1>
+            <h1 class="text-gunmetal font-weight-light">Our Customers</h1>
           </div>
             <div class="row" style="padding-top:2% ">
               <div class="col-lg-2 col-12 mb-4 text-center">

@@ -5,7 +5,7 @@
 
 <div class="jumbotron-fluid jumbotron-contact">
     <div class="container">
-        <h1 class="text-white display-3 text-break">Contact FillStorShip</h1>
+        <h1 class="text-white font-weight-light text-break">Contact FillStorShip</h1>
         <hr class="my-4" style="background-color:white">
 
     </div>

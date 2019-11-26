@@ -1,12 +1,16 @@
-@extends('layouts.userdashboard')
+@extends('layouts.userdashlte')
+
+@section('user-name')
+{{auth()->user()->name}}
+@endsection
 
 @section('content')
 
 <div class="container mt-5">
 
     <h1 class="display-4 text-center mb-4">Build your Kit</h1>
-    
-    
+
+
     <!-- Flash Alerts Begin -->
 
     @include('partials.alerts')
@@ -14,72 +18,66 @@
     <!-- Flash Alerts Ends -->
 
     <form action="/createkit" id="createkit" method="POST">
-    <div class="form-row justify-content-center">
-        <div class="col-md-8">
-            <span class="text-center" id="result"></span>
-
-        </div>
-        
-    </div>
-
-    <div class="form-row justify-content-center">
-        <div class="col-md-8">
-            <a href="/dashboard/user/inventory" class="btn btn-link text-frenchblue px-0" ><i class="fas fa-long-arrow-alt-left"></i> Go Back</a>
-            <br>
-            <br>
-        </div>
-        
-    </div>
-    
-    <div class="form-row justify-content-center mb-4">
-
-        <div class="col-md-8">
-            <label for="sku">Kit Sku</label>
-            <input type="text" name="sku" class="form-control form-control-sm"  placeholder="Sku #">
+        <div class="form-row justify-content-center">
+            <div class="col-md-8">
+                <span class="text-center" id="result"></span>
+            </div>
         </div>
 
 
-    </div>
+        <div class="form-row justify-content-center mb-4">
 
-    <div class="form-row justify-content-center mb-4">
-        <div class="col-md-8">
-            <label for="desc">Description</label>
-            <textarea name="desc" id="" cols="30" rows="3" class="form-control form-control-sm" placeholder="Description Here"></textarea>
+            <div class="col-md-8">
+                <label for="sku">Kit Sku</label>
+                <input type="text" name="sku" class="form-control form-control-sm" placeholder="Sku #">
+            </div>
+
+
         </div>
-    </div>
 
-    <div class="form-row justify-content-center mb-4">
-        <div class="col-md-8 justify-content-center">
-            <table class="table table-bordered table-striped" id="user_table">
-                <thead>
-                    <tr>
-                        <th width="20%">Select Items</th>
-                        <th width="20%">Item Type</th>
-                        <th width="20%">Quantity</th>
-                        <th width="20%">Action</th>
-                    </tr>
-                </thead>
-                <tbody class="form_inventory">
-
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="3" align="right">&nbsp;</td>
-                        <td>
-                            @csrf
-                        <input type="submit" name="save" id="save" class="btn btn-link text-denim" value="Submit">
-                        
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
+        <div class="form-row justify-content-center mb-4">
+            <div class="col-md-8">
+                <label for="desc">Description</label>
+                <textarea name="desc" id="" cols="30" rows="3" class="form-control form-control-sm"
+                    placeholder="Description Here"></textarea>
+            </div>
         </div>
-    </div>
+
+        <div class="form-row justify-content-center mb-4">
+            <div class="col-md-8 justify-content-center">
+                <table class="table table-bordered table-striped" id="user_table">
+                    <thead>
+                        <tr>
+                            <th width="20%">Select Items</th>
+                            <th width="20%">Item Type</th>
+                            <th width="20%">Quantity</th>
+                            <th width="20%">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="form_inventory">
+
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3" align="right">&nbsp;</td>
+                            <td>
+                                @csrf
+                                <input type="submit" name="save" id="save" class="btn btn-link text-denim"
+                                    value="Submit">
+
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
 
     </form>
 
 </div>
+@endsection
 
+@section('scripts')
 <script>
     $(document).ready(function(){
         var count = 1;
@@ -110,11 +108,13 @@
                 $('.form_inventory').html(html);
             }
             $('.select_kit_skus').select2({
-                width: '175px'
+                width: '175px',
+                theme: 'bootstrap4'
             });
 
             $('.type').select2({
-                width: '175px'
+                width: '175px',
+                theme: 'bootstrap4'
             });
         }
 
@@ -191,4 +191,3 @@
 </script>
 
 @endsection
-

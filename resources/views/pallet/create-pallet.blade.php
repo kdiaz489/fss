@@ -176,13 +176,19 @@
                             html += '<td><select name="type[]" id="" class="form-control form-control-sm type"><option value="none" disabled selected>Choose</option><option value="Pallet" selected>Pallet</option><option value="Carton">Carton</option><option value="Case">Case</option><option value="Kit">Kit</option><option value="Unit">Unit</option></select></td>'
                             html += '<td><input type="text" name="item_qty[]" class="form-control" /></td>';
                             html += '<td><button type="button" name="remove" id="" class="btn btn-danger btn-sm remove circle"><i class="fas fa-lg fa-minus"></i></button>\
-                            <button type="button" name="add" id="" class="btn btn-success btn-sm add circle"><i class="fas fa-lg fa-plus"></i></button>\
                             <button type="button" name="editpallet" id="' + data.id + '" class="btn btn-secondary btn-sm editpallet circle"><i class="fas fa-edit fa-lg"></i></button></td></tr>';
 
                             $('.type').select2({
                                 placeholder: 'Click to select cases',
                                 minimumResultsForSearch: 1,
-                                width: '175px'
+                                width: '175px',
+                                theme: 'bootstrap4'
+                            });
+                            $('.select_transin_skus').select2({
+                                placeholder: 'Click to select cases',
+                                minimumResultsForSearch: 1,
+                                width: '175px',
+                                theme: 'bootstrap4'
                             });
 
                             $('.form_inventory').append(html);  
@@ -196,5 +202,4 @@
         });
 
 </script>
-
 

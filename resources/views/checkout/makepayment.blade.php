@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.userdashlte')
 
 @section('content')
 <div class="flex-center position-ref full-height">

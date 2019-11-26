@@ -1,43 +1,14 @@
-@extends('layouts.admindashboard')
+@extends('layouts.admindashlte')
+
+@section('user-name')
+ {{auth()->user()->name}}   
+@endsection
 
 @section('content')
 
 
-<div class="container-fluid bg-whitewash ">
-    <div class="container dashboard-container pt-5">
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs border-1">
-                
-                        <li class="nav-item">
-                            <a class="nav-link" href="/dashboard/admin/fulfillment">Fulfillment</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/dashboard/admin/inventory">Storage</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/dashboard">Shipments</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/dashboard/admin/users">Manage Users</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="/dashboard/admin/orders">Orders</a>
-                        </li>
-            
-                        <li class="nav-item">
-                            <a class="nav-link" href="/dashboard/admin/account">Account</a>
-                        </li>
-                
-        </ul>
-    </div>
-
-</div>
-
-
 <div class="container-fluid dashboard-container">
-    <div class="jumbotron bg-whitewash mt-5">
-        <h1 class="display-4 text-break text-center">Admin Dashboard.</h1>
-    </div>
+
 
     <!-- Flash Alerts Begin -->
 
@@ -59,13 +30,8 @@
             @endif
 
             <div class="col-lg-12 col-12">
+                        <h3 class="font-weight-light">All Orders</h3>
 
-
-                <!-- Tab panes -->
-                <div class="tab-content">
-
-
-                        <h1 class="display-4">All Orders</h1>
 
                         @if(count($orders) > 0)
                         <div class="table-responsive">
@@ -295,8 +261,6 @@
                         @else
                         <p>You have no pending orders.</p>
                         @endif
-                    
-                </div>
             </div>
         </div>
     </div>

@@ -1,4 +1,8 @@
-@extends('layouts.userdashboard')
+@extends('layouts.userdashlte')
+
+@section('user-name')
+ {{auth()->user()->name}}   
+@endsection
 
 @section('content')
 
@@ -23,33 +27,6 @@
     </div>
 </div>
 
-
-<div class="container-fluid bg-whitewash ">
-    <div class="container dashboard-container pt-5">
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs border-1 nav-pills with-arrow flex-column flex-sm-row d-flex text-center" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link mr-sm-2 rounded-0" href="/dashboard/user/fulfillment">Fulfillment</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link mr-sm-2 rounded-0" href="/dashboard/user/inventory">Storage</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link mr-sm-2 rounded-0" href="/dashboard">Shipments</a>
-            </li>
-            <li class="nav-item">
-                    <a class="nav-link mr-sm-2 rounded-0" href="/dashboard/user/orders">Orders</a>
-                </li>
-            <li class="nav-item">
-                <a class="nav-link mr-sm-2 rounded-0 active" href="/dashboard/user/account">Account</a>
-            </li>
-
-        </ul>
-    </div>
-
-</div>
-
-
 <div class="container-fluid dashboard-container">
 
     <!-- Flash Alerts Begin -->
@@ -59,11 +36,12 @@
     <!-- Flash Alerts Ends -->
 
 </div>
-<div class="container" style="max-width:1200px">
+
+<div class="container mb-5" style="max-width:1200px">
 
 
     <div class="row justify-content-center">
-        <div class="col-md-12 " style="padding-top: 2%">
+        <div class="col-md-12 ">
 
             @if (session('status'))
             <div class="alert alert-success" role="alert">
@@ -72,10 +50,6 @@
             @endif
 
             <div class="col-lg-12 col-12">
-
-
-                <!-- Tab panes -->
-                <div class="tab-content">
                     <br>
                     <h1 class="h1 font-weight-light">Account Balance</h1>
                     <div class="container-fluid px-5 py-3" style="border: solid 1px #dee2e6; border-radius: 10px">
@@ -211,7 +185,6 @@
 
                                 </div>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>
