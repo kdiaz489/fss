@@ -20,7 +20,7 @@
           <div class="row justify-content-center">
 
               <div class="col col-lg-12 col-12">
-                <h1 class="display-4 text-center"><strong>Have you ever under or over-estimated a product launch?</strong></h1>
+                <h1 class="font-weight-light text-center"><strong>Have you ever under or over-estimated a product launch?</strong></h1>
                 <p class="stor-txt">
                 Going too low and running out is stressful and costly with rush deliveries, rushed manufacturing and unhappy customers.
                 Going too high would leave you with un-sold inventory, causing unbuilding kits or liquidating product at a loss.  You can put that scenario behind you …
@@ -35,10 +35,8 @@
       <div class="container-fluid bg-whitewash py-5">
         <div class="container">
           <div class="row justify-content-center">
-
               <div class="col col-lg-6 col-12 align-self-center">
-
-                <h1 class="display-4"><strong>Our Solution</strong></h1>
+                <h1 class="font-weight-light"><strong>Our Solution</strong></h1>
                 <p class="stor-txt">
                   FillStorShip offers turnkey solutions for your product. It’s in our name - Fulfillment, Storage and Shipping.
                   The big box models of distribution have changed. More and more small businesses are bringing their products to market quicker, more cost effective and direct to the consumer.
@@ -62,7 +60,7 @@
           <div class="row justify-content-center">
 
               <div class="col col-lg-12 col-12 ">
-                <h1 class="display-4 text-center"><strong>Kitting Assembly</strong></h1>
+                <h1 class="font-weight-light text-center"><strong>Kitting Assembly</strong></h1>
                 <p class="stor-txt">
                 The upfront costs to fulfill and assemble kits can be expensive. Why not absorb that cost after the product is sold? Fillstorship combines our experience in manufacturing and warehousing with E-commerce order
                 processing so your products and kits can be fulfilled during the E-commerce order process.
@@ -82,7 +80,7 @@
           <div class="row justify-content-center">
 
               <div class="col col-lg-12 col-12 ">
-                <h1 class="display-4 text-center" style="font-weight: 300;"><strong>How It Works</strong></h1>
+                <h1 class="font-weight-light text-center" style="font-weight: 300;"><strong>How It Works</strong></h1>
                 <p class="stor-txt">
                   We start by warehousing all the components that make up your complete product. This includes packaging, printed material, finished bulk product and items that would be included in the complete package.
                   Orders are received through your E-commerce driver and based on sales volume, we fulfill as needed, “On Demand” by pre-determined volumes that you can control.  The cost of fulfillment is billed after your products have been shipped.

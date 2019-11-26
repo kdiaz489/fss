@@ -65,10 +65,10 @@
           <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="/" class="nav-link">Home</a>
+          <a href="/" class="btn btn-link nav-link text-dark">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="/contact" class="nav-link">Contact</a>
+          <a href="/contact" class="btn btn-link nav-link text-dark">Contact</a>
         </li>
       </ul>
 
@@ -90,7 +90,7 @@
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
@@ -108,13 +108,13 @@
 
                 <li class="nav-item">
                   <a href="/createfilorder" class="nav-link text-white">
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="fas fa-angle-right nav-icon"></i>
                     <p>Create Manual Order</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="/dashboard/user/fulfillment" class="nav-link text-white">
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="fas fa-angle-right nav-icon"></i>
                     <p>Fulfillment Orders</p>
                   </a>
                 </li>
@@ -132,32 +132,32 @@
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="/dashboard/user/inventory" class="nav-link text-white">
-                    <i class="far fa-sm fa-circle nav-icon"></i>
+                    <i class="fas fa-angle-right nav-icon"></i>
                     <p>All Inventory</p>
                   </a>
                 </li>
 
                 <li class="nav-item">
                   <a href="/dashboard/user/orders" class="nav-link text-white">
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="fas fa-angle-right nav-icon"></i>
                     <p>Storage Orders</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="/basicunit" class="nav-link text-white">
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="fas fa-angle-right nav-icon"></i>
                     <p>Create Unit</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="/createkit" class="nav-link text-white">
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="fas fa-angle-right nav-icon"></i>
                     <p>Create Kit</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="/createcase" class="nav-link text-white">
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="fas fa-angle-right nav-icon"></i>
                     <p>Create Case</p>
                   </a>
                 </li>
@@ -175,19 +175,19 @@
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="/dashboard" class="nav-link text-white">
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="fas fa-angle-right nav-icon"></i>
                     <p>All Shipments</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="/ship" class="nav-link text-white">
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="fas fa-angle-right nav-icon"></i>
                     <p>Get Quote</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="/ship/book" class="nav-link text-white">
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="fas fa-angle-right nav-icon"></i>
                     <p>Book Shipment</p>
                   </a>
                 </li>
@@ -204,13 +204,13 @@
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="/createtransin" class="nav-link text-white">
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="fas fa-angle-right nav-icon"></i>
                     <p>Create Transfer In</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="/createtransout" class="nav-link text-white">
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="fas fa-angle-right nav-icon"></i>
                     <p>Create Transfer Out</p>
                   </a>
                 </li>
@@ -230,14 +230,14 @@
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="/dashboard/user/account" class="nav-link text-white">
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="fas fa-angle-right nav-icon"></i>
                     <p>Account Details</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link text-white" href="{{ route('logout') }}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="fas fa-angle-right nav-icon"></i>
                     {{ __('Logout') }}
                   </a>
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -293,10 +293,10 @@
     <!-- /.content-wrapper -->
     <footer class="main-footer bg-light">
 
-      <a href="/about" class="btn btn-link text-frenchblue">About</a>
-      <a href="/contact" class="btn btn-link text-frenchblue">Contact</a>
+      <a href="/about" class="btn btn-link">About</a>
+      <a href="/contact" class="btn btn-link">Contact</a>
       <div class="float-right d-none d-sm-inline-block">
-        2019
+        FillStorShip© 2019
       </div>
     </footer>
 

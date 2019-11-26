@@ -89,7 +89,7 @@
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
@@ -106,7 +106,7 @@
                   <ul class="nav nav-treeview">
                     <li class="nav-item">
                         <a href="/dashboard/admin/fulfillment" class="nav-link text-white">
-                            <i class="far fa-circle nav-icon"></i>
+                            <i class="fas fa-angle-right nav-icon"></i>
                             <p>Fulfillment Orders</p>
                         </a>
                     </li>
@@ -125,7 +125,7 @@
             <ul class="nav nav-treeview">
                 <li class="nav-item">
                     <a href="/dashboard/admin/inventory" class="nav-link text-white">
-                      <i class="far fa-circle nav-icon"></i>
+                    <i class="fas fa-angle-right nav-icon"></i>
                       <p>All Inventory</p>
                     </a>
                   </li>
@@ -143,7 +143,7 @@
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="/dashboard" class="nav-link text-white">
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="fas fa-angle-right nav-icon"></i>
                     <p>All Shipments</p>
                   </a>
                 </li>
@@ -160,7 +160,7 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                   <a href="/dashboard/admin/orders" class="nav-link text-white">
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="fas fa-angle-right nav-icon"></i>
                     <p>Storage Orders</p>
                   </a>
                 </li>
@@ -177,7 +177,7 @@
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
                     <a href="/dashboard/admin/users" class="nav-link text-white">
-                      <i class="far fa-circle nav-icon"></i>
+                        <i class="fas fa-angle-right nav-icon"></i>
                       <p>Manage Users</p>
                     </a>
                   </li>
@@ -195,7 +195,7 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="/dashboard/admin/account" class="nav-link text-white">
-                  <i class="far fa-circle nav-icon"></i>
+                    <i class="fas fa-angle-right nav-icon"></i>
                   <p>Account Details</p>
                 </a>
               </li>
@@ -203,7 +203,7 @@
                   <a class="nav-link text-white" href="{{ route('logout') }}"
                   onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
-                   <i class="far fa-circle nav-icon"></i>
+                   <i class="fas fa-angle-right nav-icon"></i>
                    {{ __('Logout') }}
                   </a>
               </li>
@@ -261,7 +261,7 @@
     <a href="/about" class="btn btn-link text-frenchblue">About</a>
     <a href="/contact" class="btn btn-link text-frenchblue">Contact</a>
     <div class="float-right d-none d-sm-inline-block">
-      2019
+        FillStorShip© 2019
     </div>
   </footer>
 

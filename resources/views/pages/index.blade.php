@@ -3,7 +3,7 @@
 @section('content')
     <div class="jumbotron-fluid jumbotron-home">
         <div class="container">
-          <h1 class="display-4 text-break">Welcome to FillStorShip</h1>
+          <h1 class="font-weight-light text-break">Welcome to FillStorShip</h1>
           <hr class="my-4" style="background-color:white">
           <p class="lead">Fillstorship combines our experience in manufacturing and warehousing with E-commerce order processing so your products and kits can be fulfilled during the E-commerce order process.
              The results are faster turn time to customer, reduced warehousing cost, reduced shrinkage loss, and less handling charges</p>
@@ -100,7 +100,7 @@
 
               <div class="col-12 col-md-6 d-flex align-items-center order-1 order-md-0">
                 <div class="left-text">
-                  <h1 class="font-weight-light">Fulfillment</h1>
+                  <h2 class="font-weight-light">Fulfillment</h2>
                   <p>FillStorShip warehouses all the components that make up your complete product.
                     Orders are received through your Ecommerce driver and based on sales volume, we fulfill as needed, “On Demand” by pre-determined volumes that you can control.
                     Warehousing, fulfillment and distribution are all wrapped up in detailed reports tracking inventory, sales trends and custom set alerts to advise when levels are low.
@@ -116,7 +116,7 @@
               </div>
               <div class="col-12 col-md-6 d-flex align-items-center order-3 bg-whitewash text-gunmetal">
                 <div class="right-text">
-                  <h1 class="font-weight-light">Storage</h1>
+                  <h2 class="font-weight-light">Storage</h2>
                   <p>FillStorShip provides optimal warehousing spaces that are modern, efficient, sanitation-certified and securely monitored for our customer’s inventory.</p>
                   <a class="btn bg-denim text-white" target="_blank" href="/stor" role="button">Read More</a>
                 </div>
@@ -124,7 +124,7 @@
 
               <div class="col-12 col-md-6 d-flex align-items-center order-5 order-md-3">
                 <div class="left-text">
-                  <h1 class="font-weight-light">Shipping</h1>
+                  <h2 class="font-weight-light">Shipping</h2>
                   <p>FillStorShip enables you to maximize efficiency, maintain visibility, and reduce cost. Our shipping coverage extends to the entire Southwestern U.S.
                   Products we ship for our customers include beauty care, wellness and healthcare, industrial supplies, pre-packaged food products, limited quantity hazardous materials, and much more.</p>
                   <a class="btn bg-denim text-white" target="_blank" href="/ship" role="button">Read More</a>

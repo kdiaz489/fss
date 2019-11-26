@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Validator;
 
 class PalletsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,6 +25,7 @@ class PalletsController extends Controller
     {
         //
     }
+
 
     /**
      * Show the form for creating a new resource.
