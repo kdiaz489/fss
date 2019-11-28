@@ -42,13 +42,13 @@ Fulfilment Orders
                         <table class="table" id="filorders">
                             <thead>
                                 <tr>
-                                    <th>Expand</th>
+                                    <th></th>
                                     <th>Order ID</th>
-                                    <th>Customer</th>
-                                    <th>Status</th>
                                     <th>Submitted On</th>
-                                    <th>Updated On</th>
-                                    <th>Actions</th>
+                                    <th>Customer</th>
+                                    <th>Payment</th>
+                                    <th>Status</th>
+                                    <th></th>
 
                                 </tr>
                             </thead>
@@ -65,13 +65,12 @@ Fulfilment Orders
                                     <a href="/vieworder/{{$order->id}}">
                                         <button class="btn btn-link text-denim btn-sm px-0 "
                                             type="button">{{str_pad($order->orderid, 6, '0', STR_PAD_LEFT)}}</button>
-                                    </a></td>
-                                <td>{{$order->company}}</td>
-                                <td>{{$order->status}}</td>
+                                    </a>
+                                </td>
                                 <td>{{$order->created_at->format('H:i:s m/d/y')}}</td>
-                                <td>{{$order->updated_at->format('H:i:s m/d/y')}}</td>
-
-
+                                <td>{{$order->company}}</td>
+                                <td></td>
+                                <td>{{$order->status}}</td>
                                 <td>
                                     <div style="margin-left: 10%">
 

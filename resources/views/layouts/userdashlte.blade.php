@@ -48,8 +48,6 @@
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <link href="{{ asset('css/landingpage.css') }}" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
-
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
 </head>
@@ -80,7 +78,7 @@
     <aside class="main-sidebar bg-denim elevation-4">
       <!-- Brand Logo -->
       <a href="#" class="brand-link justify-content-center">
-        <img src="{{asset('img/fss-white.svg')}}" alt="AdminLTE Logo" class="brand-image" width="100px" height="80px">
+        <img src="{{asset('img/fss-white.svg')}}" alt="AdminLTE Logo" class="brand-image" width="100px" height="80px" style="max-height:27px; width:auto">
         <span class="brand-text font-weight-light text-white">Dashboard</span>
       </a>
 
@@ -265,15 +263,13 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0 text-dark">
-                @yield('page-title')
-              </h1>
+                <ol class="breadcrumb float-sm-left">
+                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                    <li class="breadcrumb-item active">@yield('breadcrumb')</li>
+                  </ol>
             </div><!-- /.col -->
             <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                <li class="breadcrumb-item active">@yield('breadcrumb')</li>
-              </ol>
+
             </div><!-- /.col -->
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -311,9 +307,18 @@
   <!-- Custom JS -->
   <script src="{{asset('js/app.js')}}"></script>
   <script src="{{asset('js/myjs.js')}}"></script>
+  
   <!-- jQuery 
-<script src="/assets/plugins/jquery/jquery.min.js"></script>
+  <script src="/assets/plugins/jquery/jquery.min.js"></script>
+
 -->
+
+
+  <!-- Jquery Validator -->
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+
+
   <!-- jQuery UI 1.11.4 -->
   <script src="/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
   <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -349,6 +354,7 @@
   <script src="/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
   <!-- AdminLTE App -->
   <script src="/assets/dist/js/adminlte.js"></script>
+
 
 
   @yield('scripts')

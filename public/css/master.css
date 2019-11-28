@@ -182,13 +182,14 @@ body {
     background-color: white;
     padding-left: 3%;
     padding-right: 3%;
-
+    padding-top: 0;
+    padding-bottom: 0;
 
 }
 
 .navbar li {
     padding: 15px 15px;
-    font-size: 18px;
+    font-size: 15px;
 
 }
 

@@ -49,6 +49,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\Shipment');
     }
 
+    public function shipmentshistory(){
+        // A user has many posts, a one to many relationship
+        
+        return $this->hasMany('App\ShipHistory');
+    }
+
     public function storage(){
         // A user has many posts, a one to many relationship
         
