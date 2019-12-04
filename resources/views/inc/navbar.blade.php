@@ -49,18 +49,6 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="/dashboard">Dashboard</a>
 
-                            @hasrole('admin')
-                                <a class="dropdown-item" href="{{route('admin.users.index')}}">Manage Users</a>
-                            @endhasrole
-
-                            @hasrole('admin')
-                            <a class="dropdown-item" href="/stor/admin">Stor Requests</a>
-                            @endhasrole
-
-                            @hasrole('admin')
-                            <a class="dropdown-item" href="/ship/admin">Shipments</a>
-                            @endhasrole
-
                             @impersonate()
                                 <a class="dropdown-item" href="{{route('admin.impersonate.destroy')}}">End Impersonate</a>
                             @endimpersonate

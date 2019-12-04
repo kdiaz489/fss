@@ -80,6 +80,10 @@
     background: no-repeat center/cover;
   }
 
+  .container-transin{
+    width: 75% !important;
+  }
+
   .p-15 {
     padding: 15px;
   }
@@ -190,6 +194,12 @@
     margin:auto;
     width:80%;
     height: auto;
+  }
+  /* LARGE SCREENS */
+  @media(min-width: 768px) {
+    .container-transin, .container-transout{
+      width: 75% !important;
+    }
   }
 
   /* MEDIUM SCREENS */

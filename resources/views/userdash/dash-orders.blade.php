@@ -1,7 +1,187 @@
 @extends('layouts.userdashlte')
 
-@section('user-name')
-{{auth()->user()->name}}
+@section('main-sidebar')
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar bg-denim elevation-4">
+                <!-- Brand Logo -->
+                <a href="#" class="brand-link justify-content-center border-0">
+                  <img src="{{asset('img/fss-white.svg')}}" alt="AdminLTE Logo" class="brand-image" width="100px" height="80px" style="max-height:27px; width:auto">
+                  <span class="brand-text font-weight-light text-white">Dashboard</span>
+                </a>
+          
+                <!-- Sidebar -->
+                <div class="sidebar">
+          
+          
+                  <!-- Sidebar Menu -->
+                  <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
+                      <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+          
+          
+                      <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link text-white">
+          
+                          <i class="nav-icon fas fa-box-open"></i>
+                          <p>
+                            Fulfilment
+                            <i class="right fas fa-angle-left"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+          
+                          <li class="nav-item">
+                            <a href="/createfilorder" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Manual Order</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/dashboard/user/fulfillment" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Fulfillment Orders</p>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+          
+                      <li class="nav-item has-treeview menu-open">
+                        <a href="#" class="nav-link text-white shadow-sm" style="background-color: #3b679c">
+                          <i class="nav-icon fas fa-warehouse"></i>
+                          <p>
+                            Storage
+                            <i class="right fas fa-angle-left"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="/dashboard/user/inventory" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>All Inventory</p>
+                            </a>
+                          </li>
+          
+                          <li class="nav-item">
+                            <a href="/dashboard/user/orders" class="nav-link text-gunmetal bg-whitewash">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Storage Orders</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/basicunit" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Unit</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/createkit" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Kit</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/createcase" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Case</p>
+                            </a>
+                          </li>
+          
+                        </ul>
+                      </li>
+                      <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link text-white">
+                          <i class="nav-icon fas fa-shipping-fast"></i>
+                          <p>
+                            Shipments
+                            <i class="fas fa-angle-left right"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="/dashboard" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>All Shipments</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/ship" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Get Quote</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/ship/book" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Book Shipment</p>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link text-white">
+                          <i class="nav-icon fas fa-edit"></i>
+                          <p>
+                            Orders
+                            <i class="fas fa-angle-left right"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="/createtransin" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Transfer In</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/createtransout" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Transfer Out</p>
+                            </a>
+                          </li>
+          
+          
+                        </ul>
+                      </li>
+                      <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link text-white">
+          
+                          <i class="nav-icon fas fa-user-alt"></i>
+                          <p>
+                            {{auth()->user()->name}} 
+                            <i class="fas fa-angle-left right"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="/dashboard/user/account" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Account Details</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                          document.getElementById('logout-form').submit();">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              {{ __('Logout') }}
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                              @csrf
+                            </form>
+                          </li>
+          
+          
+                        </ul>
+                      </li>
+          
+          
+          
+                    </ul>
+                  </nav>
+                  <!-- /.sidebar-menu -->
+                </div>
+                <!-- /.sidebar -->
+              </aside>
 @endsection
 
 @section('breadcrumb')
@@ -40,36 +220,48 @@ Storage Orders
                 <p class="h1 font-weight-light">Active Orders</p>
                 @if(count($orders) > 0)
                 <div class="table-responsive">
-                    <table class="table orders">
+                    <table class="table table-sm orders">
                         <tr>
-                            <th></th>
-                            <th>Order ID</th>
-                            <th>Customer</th>
-                            <th>Status</th>
-                            <th>Submitted On</th>
-                            <th>Updated On</th>
-                            <th></th>
+                            <th width="10%"></th>
+                            <th width="10%">Order #</th>
+                            <th width="10%">Originator</th>
+                            <th width="10%">In Care Of</th>
+                            <th width="10%">PO #</th>
+                            <th width="10%">SO #</th>
+                            <th width="10%">Job #</th>
+                            <th width="10%">Carrier</th>
+                            <th width="10%">Carrier ID#</th>
+                            <th width="10%">Create Date</th>
+                            <th width="10%">Status</th>
+                            <th width="10%"></th>
 
                         </tr>
                         @foreach($orders as $order)
 
 
                         <tr>
-                            <td><button type="button" class="btn text-denim toggle-{{$order->id}}"
+                            <td>
+                                <button type="button" class="btn text-denim toggle-{{$order->id}}"
                                     id="toggle-details{{$order->id}}" data-toggle="collapse"
                                     data-target="#details{{$order->id}}" aria-expanded="false" aria-controls="details"
-                                    data-delay="0"><i class="fas fa-plus"></i></button></td>
+                                    data-delay="0"><i class="fas fa-plus"></i></button>
+                            </td>
                             <td>
                                 <a href="/vieworder/{{$order->id}}">
                                     <button class="btn btn-link text-denim btn-sm px-0 "
                                         type="button">{{str_pad($order->orderid, 6, '0', STR_PAD_LEFT)}}</button>
-                                </a></td>
-                            <td>{{$order->company}}</td>
-                            <td>{{$order->status}}</td>
+                                </a>
+                            </td>
+                            <td>{{$order->originator}}</td>
+                            <td>{{$order->in_care_of}}</td>
+                            <td>{{$order->po_num}}</td>
+                            <td>{{$order->so_num}}</td>
+                            <td>{{$order->job_num}}</td>
+                            <td>{{$order->carrier}}</td>
+                            <td>{{$order->carrier_id}}</td>
                             <td>{{$order->created_at->format('H:i:s m/d/y')}}</td>
-                            <td>{{$order->updated_at->format('H:i:s m/d/y')}}</td>
-
-
+                            <td>{{$order->status}}</td>
+                            
                             <td>
                                 <div style="margin-left: 10%">
 
@@ -92,14 +284,14 @@ Storage Orders
                             <td class="py-0 border-0"></td>
                             <td class="py-0 border-0" colspan="12">
                                 <div id="details{{$order->id}}" class="accordion-body details collapse">
-                                    <table class="table bg-whitewash">
+                                    <table class="table table-sm bg-whitewash">
                                         <thead>
                                             <tr>
-                                                <td>SKU</td>
-                                                <td>Description</td>
-                                                <td>Barcode</td>
-                                                <td>Container Type</td>
-                                                <td>Quantity</td>
+                                                <th width="10%">SKU</th>
+                                                <th width="10%">Description</th>
+                                                <th width="10%">Barcode</th>
+                                                <th width="10%">Container Type</th>
+                                                <th width="10%">Quantity</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -124,14 +316,14 @@ Storage Orders
                             <td class="py-0 border-0"></td>
                             <td class="py-0 border-0" colspan="12">
                                 <div id="details{{$order->id}}" class="accordion-body details collapse">
-                                    <table class="table bg-whitewash">
+                                    <table class="table table-sm bg-whitewash">
                                         <thead>
                                             <tr>
-                                                <td>SKU</td>
-                                                <td>Description</td>
-                                                <td>Barcode</td>
-                                                <td>Container Type</td>
-                                                <td>Quantity</td>
+                                                <th width="10%">SKU</th>
+                                                <th width="10%">Description</th>
+                                                <th width="10%">Barcode</th>
+                                                <th width="10%">Container Type</th>
+                                                <th width="10%">Quantity</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -157,14 +349,14 @@ Storage Orders
                             <td class="py-0 border-0"></td>
                             <td class="py-0 border-0" colspan="12">
                                 <div id="details{{$order->id}}" class="accordion-body details collapse">
-                                    <table class="table bg-whitewash">
+                                    <table class="table table-sm bg-whitewash">
                                         <thead>
                                             <tr>
-                                                <td>SKU</td>
-                                                <td>Description</td>
-                                                <td>Barcode</td>
-                                                <td>Container Type</td>
-                                                <td>Quantity</td>
+                                                <th width="10%">SKU</th>
+                                                <th width="10%">Description</th>
+                                                <th width="10%">Barcode</th>
+                                                <th width="10%">Container Type</th>
+                                                <th width="10%">Quantity</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -189,21 +381,21 @@ Storage Orders
                             <td class="py-0 border-0"></td>
                             <td class="py-0 border-0" colspan="12">
                                 <div id="details{{$order->id}}" class="accordion-body details collapse">
-                                    <table class="table bg-whitewash">
+                                    <table class="table table-sm bg-whitewash">
                                         <thead>
                                             <tr>
-                                                <td>SKU</td>
-                                                <td>Description</td>
-                                                <td>Barcode</td>
-                                                <td>Container Type</td>
-                                                <td>Quantity</td>
+                                                <th width="10%">SKU</th>
+                                                <th width="10%">Description</th>
+                                                <th width="10%">Barcode</th>
+                                                <th width="10%">Container Type</th>
+                                                <th width="10%">Quantity</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td>{{$carton->sku}}</td>
                                                 <td>{{$carton->description}}</td>
-                                                <td></td>
+                                                <td>{{$carton->barcode}}</td>
                                                 <td>Carton</td>
                                                 <td>{{$carton->pivot->quantity}}</td>
                                             </tr>
@@ -221,21 +413,21 @@ Storage Orders
                             <td class="py-0 border-0"></td>
                             <td class="py-0 border-0" colspan="12">
                                 <div id="details{{$order->id}}" class="accordion-body details collapse">
-                                    <table class="table bg-whitewash">
+                                    <table class="table table-sm bg-whitewash">
                                         <thead>
                                             <tr>
-                                                <td>SKU</td>
-                                                <td>Description</td>
-                                                <td>Barcode</td>
-                                                <td>Container Type</td>
-                                                <td>Quantity</td>
+                                                <th width="10%">SKU</th>
+                                                <th width="10%">Description</th>
+                                                <th width="10%">Barcode</th>
+                                                <th width="10%">Container Type</th>
+                                                <th width="10%">Quantity</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td>{{$pallet->sku}}</td>
                                                 <td>{{$pallet->description}}</td>
-                                                <td></td>
+                                                <td>{{$pallet->barcode}}</td>
                                                 <td>Pallet</td>
                                                 <td>{{$pallet->pivot->quantity}}</td>
                                             </tr>
@@ -263,34 +455,47 @@ Storage Orders
                 <p class="h1 font-weight-light">Order History</p>
                 @if(count($orderhistory) > 0)
                 <div class="table-responsive">
-                    <table class="table orders">
+                    <table class="table table-sm orders">
                         <tr>
-                            <th></th>
-                            <th>Order ID</th>
-                            <th>Customer</th>
-                            <th>Status</th>
-                            <th>Submitted On</th>
-                            <th>Updated On</th>
-                            <th></th>
+                            <th width="10%"></th>
+                            <th width="10%">Order #</th>
+                            <th width="10%">Originator</th>
+                            <th width="10%">In Care Of</th>
+                            <th width="10%">PO #</th>
+                            <th width="10%">SO #</th>
+                            <th width="10%">Job #</th>
+                            <th width="10%">Carrier</th>
+                            <th width="10%">Carrier ID#</th>
+                            <th width="10%">Create Date</th>
+                            <th width="10%">Status</th>
+                            <th width="10%"></th>
 
                         </tr>
                         @foreach($orderhistory as $order)
 
 
                         <tr>
-                            <td><button type="button" class="btn text-denim toggle-{{$order->id}}"
+                            <td>
+                                <button type="button" class="btn text-denim toggle-{{$order->id}}"
                                     id="toggle-details{{$order->id}}" data-toggle="collapse"
                                     data-target="#details{{$order->id}}" aria-expanded="false" aria-controls="details"
-                                    data-delay="0"><i class="fas fa-plus"></i></button></td>
+                                    data-delay="0"><i class="fas fa-plus"></i></button>
+                            </td>
                             <td>
                                 <a href="/vieworder/{{$order->id}}">
                                     <button class="btn btn-link text-denim btn-sm px-0 "
                                         type="button">{{str_pad($order->orderid, 6, '0', STR_PAD_LEFT)}}</button>
-                                </a></td>
-                            <td>{{$order->company}}</td>
-                            <td>{{$order->status}}</td>
+                                </a>
+                            </td>
+                            <td>{{$order->originator}}</td>
+                            <td>{{$order->in_care_of}}</td>
+                            <td>{{$order->po_num}}</td>
+                            <td>{{$order->so_num}}</td>
+                            <td>{{$order->job_num}}</td>
+                            <td>{{$order->carrier}}</td>
+                            <td>{{$order->carrier_id}}</td>
                             <td>{{$order->created_at->format('H:i:s m/d/y')}}</td>
-                            <td>{{$order->updated_at->format('H:i:s m/d/y')}}</td>
+                            <td>{{$order->status}}</td>
 
 
                             <td>
@@ -315,14 +520,14 @@ Storage Orders
                             <td class="py-0 border-0"></td>
                             <td class="py-0 border-0" colspan="12">
                                 <div id="details{{$order->id}}" class="accordion-body details collapse">
-                                    <table class="table bg-whitewash">
+                                    <table class="table table-sm bg-whitewash">
                                         <thead>
                                             <tr>
-                                                <td>SKU</td>
-                                                <td>Description</td>
-                                                <td>Barcode</td>
-                                                <td>Container Type</td>
-                                                <td>Quantity</td>
+                                                <th width="10%">SKU</th>
+                                                <th width="10%">Description</th>
+                                                <th width="10%">Barcode</th>
+                                                <th width="10%">Container Type</th>
+                                                <th width="10%">Quantity</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -347,14 +552,14 @@ Storage Orders
                             <td class="py-0 border-0"></td>
                             <td class="py-0 border-0" colspan="12">
                                 <div id="details{{$order->id}}" class="accordion-body details collapse">
-                                    <table class="table bg-whitewash">
+                                    <table class="table table-sm bg-whitewash">
                                         <thead>
                                             <tr>
-                                                <td>SKU</td>
-                                                <td>Description</td>
-                                                <td>Barcode</td>
-                                                <td>Container Type</td>
-                                                <td>Quantity</td>
+                                                <th width="10%">SKU</th>
+                                                <th width="10%">Description</th>
+                                                <th width="10%">Barcode</th>
+                                                <th width="10%">Container Type</th>
+                                                <th width="10%">Quantity</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -380,14 +585,14 @@ Storage Orders
                             <td class="py-0 border-0"></td>
                             <td class="py-0 border-0" colspan="12">
                                 <div id="details{{$order->id}}" class="accordion-body details collapse">
-                                    <table class="table bg-whitewash">
+                                    <table class="table table-sm bg-whitewash">
                                         <thead>
                                             <tr>
-                                                <td>SKU</td>
-                                                <td>Description</td>
-                                                <td>Barcode</td>
-                                                <td>Container Type</td>
-                                                <td>Quantity</td>
+                                                <th width="10%">SKU</th>
+                                                <th width="10%">Description</th>
+                                                <th width="10%">Barcode</th>
+                                                <th width="10%">Container Type</th>
+                                                <th width="10%">Quantity</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -412,14 +617,14 @@ Storage Orders
                             <td class="py-0 border-0"></td>
                             <td class="py-0 border-0" colspan="12">
                                 <div id="details{{$order->id}}" class="accordion-body details collapse">
-                                    <table class="table bg-whitewash">
+                                    <table class="table table-sm bg-whitewash">
                                         <thead>
                                             <tr>
-                                                <td>SKU</td>
-                                                <td>Description</td>
-                                                <td>Barcode</td>
-                                                <td>Container Type</td>
-                                                <td>Quantity</td>
+                                                <th width="10%">SKU</th>
+                                                <th width="10%">Description</th>
+                                                <th width="10%">Barcode</th>
+                                                <th width="10%">Container Type</th>
+                                                <th width="10%">Quantity</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -444,14 +649,14 @@ Storage Orders
                             <td class="py-0 border-0"></td>
                             <td class="py-0 border-0" colspan="12">
                                 <div id="details{{$order->id}}" class="accordion-body details collapse">
-                                    <table class="table bg-whitewash">
+                                    <table class="table table-sm bg-whitewash">
                                         <thead>
                                             <tr>
-                                                <td>SKU</td>
-                                                <td>Description</td>
-                                                <td>Barcode</td>
-                                                <td>Container Type</td>
-                                                <td>Quantity</td>
+                                                <th width="10%">SKU</th>
+                                                <th width="10%">Description</th>
+                                                <th width="10%">Barcode</th>
+                                                <th width="10%">Container Type</th>
+                                                <th width="10%">Quantity</th>
                                             </tr>
                                         </thead>
                                         <tbody>

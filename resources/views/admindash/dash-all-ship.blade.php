@@ -36,7 +36,7 @@
 
                     @if(count($shipments) > 0)
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table table-sm">
                             <tr>
                                 <th>Edit Status</th>
                                 <th>Order #</th>

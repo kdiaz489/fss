@@ -1,11 +1,20 @@
-@extends('layouts.app')
+@extends('layouts.admindashlte')
+
+@section('user-name')
+{{auth()->user()->name}}
+@endsection
 
 @section('content')
 <div class="container">
+    <!-- Flash Alerts Begin -->
+
+    @include('partials.alerts')
+
+    <!-- Flash Alerts Ends -->
     <div class="row justify-content-center">
         <div class="col-md-12" style="padding-top: 2%">
             <div class="card">
-            <div class="card-header">Manage {{$user->name}}</div>
+            <div class="card-header">Manage {{$user->name}} roles</div>
 
                 <div class="card-body">
                 <form action="{{route('admin.users.update',['user'=>$user->id])}}" method="POST">

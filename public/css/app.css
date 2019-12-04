@@ -245,6 +245,32 @@ label {
   margin-bottom: 0.5rem;
 }
 
+select.error {
+  border: 1px solid red;
+  font-weight: 300;
+  color: red;
+}
+
+input.error {
+  border: 1px solid red;
+  font-weight: 300;
+  color: red;
+}
+
+textarea.error {
+  border: 1px solid red;
+  font-weight: 300;
+  color: red;
+}
+
+label.error {
+  color: red;
+  font-size: .8rem;
+  display: block;
+  margin-top: 5px;
+}
+
+
 button {
   border-radius: 0;
 }

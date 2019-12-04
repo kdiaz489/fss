@@ -180,7 +180,8 @@ class DashboardController extends Controller
 
     public function getadminorders(){
         $orders = Order::orderBy('created_at', 'desc')->get()->where('status', '=', 'Pending Approval')->where('order_type', '!=', 'Fulfill Items');
-        return view('admindash.dash-orders')->with('orders', $orders);
+        $ordershistory = Order::orderBy('created_at', 'desc')->get()->where('status', '=', 'Completed')->where('order_type', '!=', 'Fulfill Items');
+        return view('admindash.dash-orders')->with('orders', $orders)->with('ordershistory', $ordershistory);
     }
 
     public function getadmininventory(){

@@ -16,7 +16,7 @@ class UserController extends Controller
 
     public function edit($id){
         if (Auth::user()->id == $id) {
-            return redirect()->route('admin.users.index')->with('warning', "You are not allowed to edit this user's roles. Please request more access by web master.");
+            return redirect('/dashboard/admin/users')->with('warning', "You are not allowed to edit this user's roles. Please request more access by web master.");
         }
         return view('admin.users.edit')->with(['user'=>User::find($id), 'roles' => Role::all()]);
 
@@ -30,7 +30,7 @@ class UserController extends Controller
         $user = User::find($id);
         $user->roles()->sync($request->roles);
         
-        return redirect()->back()->with('success', 'User has been updated');
+        return redirect()->back()->with('success', 'User roles have been updated.');
     }
 
     public function creditupdate(Request $request, $id){

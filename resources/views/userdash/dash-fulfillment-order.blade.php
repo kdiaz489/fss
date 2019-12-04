@@ -1,8 +1,190 @@
 @extends('layouts.userdashlte')
 
-@section('user-name')
- {{auth()->user()->name}}   
+
+@section('main-sidebar')
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar bg-denim elevation-4">
+                <!-- Brand Logo -->
+                <a href="#" class="brand-link justify-content-center border-0">
+                  <img src="{{asset('img/fss-white.svg')}}" alt="AdminLTE Logo" class="brand-image" width="100px" height="80px" style="max-height:27px; width:auto">
+                  <span class="brand-text font-weight-light text-white">Dashboard</span>
+                </a>
+          
+                <!-- Sidebar -->
+                <div class="sidebar">
+          
+          
+                  <!-- Sidebar Menu -->
+                  <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
+                      <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+          
+          
+                      <li class="nav-item has-treeview menu-open">
+                        <a href="#" class="nav-link text-white shadow-sm" style="background-color: #3b679c">
+          
+                          <i class="nav-icon fas fa-box-open"></i>
+                          <p>
+                            Fulfilment
+                            <i class="right fas fa-angle-left"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+          
+                          <li class="nav-item">
+                            <a href="/createfilorder" class="nav-link text-gunmetal bg-whitewash">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Manual Order</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/dashboard/user/fulfillment" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Fulfillment Orders</p>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+          
+                      <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link text-white">
+                          <i class="nav-icon fas fa-warehouse"></i>
+                          <p>
+                            Storage
+                            <i class="right fas fa-angle-left"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="/dashboard/user/inventory" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>All Inventory</p>
+                            </a>
+                          </li>
+          
+                          <li class="nav-item">
+                            <a href="/dashboard/user/orders" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Storage Orders</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/basicunit" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Unit</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/createkit" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Kit</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/createcase" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Case</p>
+                            </a>
+                          </li>
+          
+                        </ul>
+                      </li>
+                      <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link text-white">
+                          <i class="nav-icon fas fa-shipping-fast"></i>
+                          <p>
+                            Shipments
+                            <i class="fas fa-angle-left right"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="/dashboard" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>All Shipments</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/ship" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Get Quote</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/ship/book" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Book Shipment</p>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link text-white">
+                          <i class="nav-icon fas fa-edit"></i>
+                          <p>
+                            Orders
+                            <i class="fas fa-angle-left right"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="/createtransin" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Transfer In</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/createtransout" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Transfer Out</p>
+                            </a>
+                          </li>
+          
+          
+                        </ul>
+                      </li>
+                      <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link text-white">
+          
+                          <i class="nav-icon fas fa-user-alt"></i>
+                          <p>
+                            {{auth()->user()->name}} 
+                            <i class="fas fa-angle-left right"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="/dashboard/user/account" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Account Details</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                          document.getElementById('logout-form').submit();">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              {{ __('Logout') }}
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                              @csrf
+                            </form>
+                          </li>
+          
+          
+                        </ul>
+                      </li>
+          
+          
+          
+                    </ul>
+                  </nav>
+                  <!-- /.sidebar-menu -->
+                </div>
+                <!-- /.sidebar -->
+              </aside>
 @endsection
+
 
 @section('breadcrumb')
 Fulfilment Order
@@ -10,31 +192,18 @@ Fulfilment Order
 
 @section('content')
 
-<div class="container mt-5">
+<div class="container mt-5 ">
+
     <!-- Flash Alerts Begin -->
 
     @include('partials.alerts')
 
     <!-- Flash Alerts Ends -->
-    
-    <!--
-    <div class="container w-75">
-        <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <input type="file" name="file" accept=".csv">
-                    <br>
-                    <button class="btn btn-success">Import User Data</button>
-            </form>
-            @yield('csv_data')
-    </div>
--->
-
-
 
     <!-- Modal -->
-    <div class="modal fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle"
+    <div class="modal fade confirmModal" id="" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle"
         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalLongTitle"></h5>
@@ -43,16 +212,19 @@ Fulfilment Order
                     </button>
                 </div>
                 <div class="modal-body">
+                    <p>Are you sure you want to submit?</p>
                 </div>
                 <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary bg-denim confirm_submit">Confirm</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="container w-75 border p-5" style="border-radius: 10px">
-        <h1 class="font-weight-light text-center">Create Fulfilment Order</h1>
-        <form id="fil_order_form" action="" method="">
+    <div class="container container-transout mb-1">
+        <h1 class="font-weight-light text-center mb-5">Create Fulfillment Order</h1>
+        <form id="fulfill_order_form" action="/createtransout" method="POST">
             <div class="form-row justify-content-center">
 
                 <div class="col-md-12">
@@ -62,65 +234,145 @@ Fulfilment Order
 
 
 
-            <div class="form-row justify-content-center mb-4">
+            <div class="card">
+                <div class="card-header">
+                    1) Order Information
+                </div>
+                <div class="card-body">
+                    <div class="form-row justify-content-center mb-4">
+                            <div class="col-md-6">
+                                <label for="custname">Customer Name</label>
+                                <input type="text" name="custname" class="form-control required" placeholder="Customer Name">
+                            </div>
+        
+                            <div class="col-md-6">
+                                <label for="orderno">Order No</label>
+                                <input type="text" name="orderno" class="form-control required" placeholder="#">
+                            </div>
+                        </div>
+                        <div class="form-row justify-content-center mb-4">
+        
+                            <div class="col-md-12">
+                                <label for="address">Street Address</label>
+                                <input type="text" name="address" class="form-control" placeholder="Address">
+                            </div>
+        
 
-                <div class="col-md-6">
-                    <label for="custname">Customer Name</label>
-                    <input type="text" name="custname" class="form-control" placeholder="Name">
+                        </div>
+                        <div class="form-row justify-content-center mb-4">
+                            <div class="col-md-4">
+                                    <label for="sonum">City</label>
+                                    <input type="text" name="sonum" class="form-control" placeholder="City">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="state">State</label>
+                                    <input type="text" name="state" class="form-control" placeholder="State">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="zip">Zip</label>
+                                    <input type="text" name="zip" class="form-control" placeholder="Zip">
+                                </div>
+                        </div>
+
                 </div>
 
-                <div class="col-md-6">
-                    <label for="ordernum">Order #</label>
-                    <input type="text" name="ordernum" class="form-control" placeholder="Order Number">
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    2) Create Product Container
+                    <div class="float-right"><button class="btn btn-link add-container">Add Container</button></div>
+
+                </div>
+                <div class="card-body create-container">
+                    <div class="card card-container">
+                        <div class="card-header bg-white border-bottom-0 pt-1 pb-0 pl-0 pr-2">
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-row px-0 p-2 mb-1 order">
+
+                            <div class="col-md-4">
+                                <label for="container_type">Container Type</label>
+                                <select name="container_type[0][]" class="form-control container_type required">
+                                    <option value="">Choose</option>
+                                    <option value="Pallet">Palletize</option>
+                                    <option value="Carton">Cartonize</option>
+                                    <option value="Loose Items">Loose Items</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="container_barcode">Barcode</label>
+                                <input type="text" name="container_barcode[0][]" class="form-control container_barcode"
+                                    placeholder="Container Barcode">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="container_qty">Quantity</label>
+                                <input type="text" name="container_qty[0][]" class="form-control container_qty required" placeholder="Container Quantity">
+                            </div>
+                        </div>
+
+                        <div class="form-row px-0 p-2 container_items">
+
+                            <div class="col-md-12">
+
+                                <label> Select Products for Container</label>
+                                <div class="table-responsive">
+                                    <table class="table" id="container_table">
+                                        <thead style="display:none">
+                                            <tr>
+                                                <th>Select Order Items</th>
+                                                <th>Qty per order</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="form_inventory">
+                                            <tr>
+                                                <td  width="20%">
+                                                    <select name="items[0][]" class="form-control select_transout_skus required">
+                                                        <option value="">Choose Item</option>
+                                                        @if (count($cases) > 0) <optgroup label="Cases"> @foreach ($cases as $case) <option value="{{$case->sku}}">{{$case->sku}}</option> @endforeach</optgroup> @else<option value="" disabled>No Cases Available</option> @endif 
+                                                        @if (count($kits) > 0) <optgroup label="Kits"> @foreach ($kits as $kit) <option value="{{$kit->sku}}">{{$kit->sku}}</option> @endforeach</optgroup> @else<option value="" disabled>No Kits Available</option> @endif 
+                                                        @if (count($units) > 0) <optgroup label="Units"> @foreach ($units as $unit) <option value="{{$unit->sku}}">{{$unit->sku}}</option> @endforeach</optgroup> @else<option value="" disabled>No Units Available</option> @endif 
+    
+                                                    </select>
+                                                </td>
+
+                                                <td width="20%">
+                                                    <input type="text" name="item_qty[0][]" class="form-control required item_qty" placeholder="Quantity #"/>
+                                                </td>
+                                                <td width="20%"><button type="button" name="remove" id=""
+                                                        class="btn btn-danger btn-sm remove circle mr-1"><i
+                                                            class="fas fa-lg fa-minus"></i></button><small
+                                                        class="text-danger">Remove</small></td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="4" class="pb-0 links"><button type="button" name="add" id=""
+                                                        class="btn btn-success btn-sm add circle"><i
+                                                            class="fas fa-lg fa-plus"></i></button><small
+                                                        class="text-success ml-1">Add Product to Container</small>
+                                                </td>
+
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="form-row justify-content-center mb-4">
-                <div class="col-md-4">
-                    <label for="address">Street Address</label>
-                    <input type="text" name="address" class="form-control" placeholder="Purchaser street Address">
-
-                </div>
-                <div class="col-md-4">
-                    <label for="city">City</label>
-                    <input type="text" name="city" class="form-control" placeholder="Purchaser City">
-
-                </div>
-
-                <div class="col-md-4">
-                    <label for="zip">Zip</label>
-                    <input type="text" name="zip" class="form-control" placeholder="Purchaser Zip">
-
-                </div>
-
-                <input type="hidden" name="order_type" value="Fulfill Items">
-
+            <div class="container w-75 mb-3 mt-0" align="left">
+                @csrf
+                <button type="button" class="btn btn-primary bg-denim btn-sm" name ="save" id="save" data-toggle="modal" data-target=".confirmModal">Submit Order</button>
             </div>
-            <div class="table-responsive">
-                <table class="table table-bordered" id="user_table">
-                    <thead>
-                        <tr>
-                            <th width="20%">Select Order Item</th>
-                            <th width="20%">Item Type</th>
-                            <th width="20%">Qty per order</th>
-                            <th width="20%"></th>
-                        </tr>
-                    </thead>
-                    <tbody class="form_inventory">
-
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="4" align="left">
-                                <button type="button" name="add" id="" class="btn btn-success btn-sm add circle"><i class="fas fa-lg fa-plus"></i></button>
-                                <small class="text-success">Add Item to Order</small>
-                            </td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-            @csrf
-            <input type="submit" name="save" id="save" class="btn btn-primary bg-denim btn-sm" value="Submit Order">
         </form>
 
     </div>
@@ -129,66 +381,52 @@ Fulfilment Order
 @endsection
 
 @section('scripts')
+
 <script>
     $(document).ready(function(){
+
+
+
+        //var container = $('.create-container').html();
+        var container = $('.card-container').first().clone();
         var count = 1;
-        dynamic_field(count);
-
-
-        function dynamic_field(number){
-            html = '<tr>';
-            html += '<td><select name="items[]" class="form-control select_transin_skus">'
-            html += '<option value="none" disabled selected>Choose</option>'
-            html += '@if (count($pallets) > 0) <optgroup label="Pallets"> @foreach ($pallets as $pallet)<option class="option-sm" value="{{$pallet->id}}">{{$pallet->sku}}</option>@endforeach</optgroup> @else<option value="" disabled>No Pallets Available</option> @endif '
-            html += '@if (count($cartons) > 0) <optgroup label="Cartons"> @foreach ($cartons as $carton)<option class="option-sm" value="{{$carton->id}}">{{$carton->sku}}</option>@endforeach</optgroup> @else<option value="" disabled>No Cartons Available</option> @endif '
-            html += '@if (count($cases) > 0) <optgroup label="Cases"> @foreach ($cases as $case) @if($case->total_qty !=0) <option class="option-sm" value="{{$case->id}}">{{$case->sku}}</option>@endif @endforeach</optgroup> @else<option value="" disabled>No Cases Available</option> @endif '
-            html += '@if (count($kits) > 0) <optgroup label="Kits"> @foreach ($kits as $kit) @if($kit->total_qty !=0) <option class="option-sm" value="{{$kit->id}}">{{$kit->sku}}</option>@endif @endforeach</optgroup> @else<option value="" disabled>No Kits Available</option> @endif '
-            html += '@if (count($units) > 0) <optgroup label="Units"> @foreach ($units as $unit) @if($unit->total_qty !=0) <option class="option-sm" value="{{$unit->id}}">{{$unit->sku}}</option>@endif @endforeach</optgroup> @else<option value="" disabled>No Units Available</option> @endif '
-            html += '</select></td>'
-            html += '<td><select name="type[]" id="" class="form-control form-control-sm type"><option value="none" disabled selected>Choose</option><option value="Pallet">Pallet</option><option value="Carton">Carton</option><option value="Case">Case</option><option value="Kit">Kit</option><option value="Unit">Unit</option></select></td>'
-            html += '<td><input type="text" name="item_qty[]" class="form-control" /></td>';
-            if(number > 1)
-            {
-               
-                html += '<td><button type="button" name="remove" id="" class="btn btn-danger btn-sm remove circle"><i class="fas fa-lg fa-minus"></i></button>\
-                        <small class="text-danger">Remove Item</small>\
-                        </td></tr>';
-                
-                $('.form_inventory').append(html);
-            }
-            else
-            {   
-                html += '<td>\
-                        <button type="button" name="remove" id="" class="btn btn-danger btn-sm remove circle"><i class="fas fa-lg fa-minus"></i></button>\
-                        <small class="text-danger">Remove Item</small>\
-                        </td></tr>';
-                $('.form_inventory').append(html);
 
 
 
-            }
-            $('.select_transin_skus').select2({
-                minimumResultsForSearch: 1,
-                width: '175px',
-                theme: 'bootstrap4'
-            });
-
-            $('.type').select2({
-                minimumResultsForSearch: 1,
-                width: '175px',
-                theme: 'bootstrap4'
-            });
-        }
-
-        $(document).on('change', '.select_transin_skus', function(){
+        $(document).on('change', '.container_type', function(){
             var selected = $(':selected', this);
+            var value = selected.val();
             var label = selected.parent().attr('label');
-            if(label == 'Pallets'){
-                selected.closest('tr').find('.type').val('Pallet').change();
+           
+            if(value == 'Pallet'){
+                //selected.closest('tr').find('.type').val('Pallet').change();
+                var button = '<button type="button" id="add-carton" class="btn btn-secondary btn-sm circle add-carton ml-2">\
+                                <i class="fas fa-lg fa-plus"></i></button><small class="text-secondary ml-1">Add Carton to Pallet</small>';
+                selected.closest('.card-container').find('.add').closest('td').append(button);
+                if(selected.closest('.card-container').find('.container_qty').hasClass('required') == false){
+                    selected.closest('.card-container').find('.container_qty').addClass('required');
+                }
+
             }
-            if(label == 'Cartons'){
-                selected.closest('tr').find('.type').val('Carton').change();
+            
+            if(value == 'Carton'){
+                //selected.closest('tr').find('.type').val('Carton').change();
+                selected.closest('.card-container').find('.add-carton').remove();
+                selected.closest('.card-container').find('.text-secondary').remove();
+                if(selected.closest('.card-container').find('.container_qty').hasClass('required') == false){
+                    selected.closest('.card-container').find('.container_qty').addClass('required');
+                }
             }
+
+            if(value == 'Loose Items'){
+                //selected.closest('tr').find('.type').val('Carton').change();
+                selected.closest('.card-container').find('.add-carton').remove();
+                selected.closest('.card-container').find('.text-secondary').remove();
+                selected.closest('.card-container').find('.container_qty').removeClass('required');
+                selected.closest('.card-container').find('.text-secondary').remove();
+                
+            }
+            /*
             else if(label == 'Cases'){
                 selected.closest('tr').find('.type').val('Case').change();
             }
@@ -198,9 +436,10 @@ Fulfilment Order
             else if(label == 'Units'){
                 selected.closest('tr').find('.type').val('Unit').change();
             }
+            */
              
         });
-
+          
 
         $(document).on('click', '.editpallet', function(e){
             e.preventDefault();
@@ -208,6 +447,59 @@ Fulfilment Order
             $('.modal-body').load('/editpallet/' + palletid, function(){
                 $('.modal').modal('show');
             });
+            
+        });
+
+        $(document).on('click', '.add-carton', function(e){
+                e.preventDefault();
+                html = '<div class="bg-whitewash shadow-sm my-3 col-md-12 py-3 carton-container">'
+                html += '<div class="form-row"><div class="col-md-12"><button type="button" class="btn remove-carton float-right"> <i class="fas fa-times"></i></button></div></div>'
+                html += '<div class="form-row mb-3">'
+                html += '<div class="col-md-6"> <label for="carton_barcode">Carton Barcode</label><input type="text" name="carton_barcode[0][]" class="form-control carton_barcode" placeholder="container barcode"></div>\
+                            <div class="col-md-6"><label for="container_qty">Carton Quantity</label> <input type="text" name="carton_qty[0][]" class="form-control carton_qty required" placeholder="container quantity"></div></div>'
+                html += '<label> Select Products for Carton</label>'
+                html += '<div class="form-row">'
+                html += '<table class="table"><thead></thead><tbody><tr>';
+                html += '<td width="20%"><select name="carton_items[0][][]" class="form-control select_carton_skus required">'
+                html += '<option value="">Choose Item</option>'
+                html += '@if (count($cases) > 0) <optgroup label="Cases"> @foreach ($cases as $case) <option value="{{$case->sku}}">{{$case->sku}}</option> @endforeach</optgroup> @else<option value="" disabled>No Cases Available</option> @endif '
+                html += '@if (count($kits) > 0) <optgroup label="Kits"> @foreach ($kits as $kit) <option value="{{$kit->sku}}">{{$kit->sku}}</option> @endforeach</optgroup> @else<option value="" disabled>No Kits Available</option> @endif '
+                html += '@if (count($units) > 0) <optgroup label="Units"> @foreach ($units as $unit) <option value="{{$unit->sku}}">{{$unit->sku}}</option> @endforeach</optgroup> @else<option value="" disabled>No Units Available</option> @endif '
+                html += '</select></td>'
+                html += '<td width="20%"><input type="text" name="carton_item_qty[0][][]" class="form-control required carton_item_qty" placeholder="Quantity #"/></td>';
+                html += '<td width="20%"><button type="button" name="remove" id="" class="btn btn-danger btn-sm remove circle"><i class="fas fa-lg fa-minus"></i></button>\
+                    <small class="text-danger">Remove</small>\
+                    </td></tr>';
+                html += '<tfoot><tr> <td colspan="4" class="pb-0 links"><button type="button" name="add" id="" class="btn btn-success btn-sm add_carton_row circle">\
+                        <i class="fas fa-lg fa-plus"></i></button><small class="text-success ml-1">Add Product to Carton</small></td></tr> </tfoot>'
+                html += '</tbody></table></div></div>';
+                $(this).closest('div.container_items').append(html);
+
+            //$('.create-container').append(container);
+            
+            
+        });
+
+        $(document).on('click', '.add-container', function(e){
+            e.preventDefault();
+            $(container)
+            .clone()
+            .appendTo('div.create-container')
+            .find('input')
+            .attr('name', function(_, currentValue){
+                return currentValue.replace(/\d/, function(num){
+                    var tot_ele = ($('.card-container').length) - 1;
+                    return +num+ tot_ele;
+                });
+            });
+            $('.card-container:last').find('select')
+            .attr('name', function(_, currentValue){
+                return currentValue.replace(/\d/, function(num){
+                    var tot_ele = ($('.card-container').length) - 1;
+                    return +num+ tot_ele;
+                });
+            });
+            //$('.create-container').append(container);
             
         });
 
@@ -219,21 +511,66 @@ Fulfilment Order
             });
               
         });
-          
+
+        $(document).on('click', '.btn-tool', function(){
+        
+            $(this).closest('.card').remove();
+
+        });
+
+
+        $(document).on('click', '.remove-carton', function(){
+        
+        $(this).closest('.carton-container').remove();
+
+        });
 
         $(document).on('click', '.add', function(){
-            count++;
-            dynamic_field(count);
+        count++;
+        html = '<tr>';
+        html += '<td><select name="items['+count+'][]" class="form-control select_transout_skus required">'
+        html += '<option value="">Choose Item</option>'
+        html += '@if (count($cases) > 0) <optgroup label="Cases"> @foreach ($cases as $case) <option value="{{$case->sku}}">{{$case->sku}}</option> @endforeach</optgroup> @else<option value="" disabled>No Cases Available</option> @endif '
+        html += '@if (count($kits) > 0) <optgroup label="Kits"> @foreach ($kits as $kit) <option value="{{$kit->sku}}">{{$kit->sku}}</option> @endforeach</optgroup> @else<option value="" disabled>No Kits Available</option> @endif '
+        html += '@if (count($units) > 0) <optgroup label="Units"> @foreach ($units as $unit) <option value="{{$unit->sku}}">{{$unit->sku}}</option> @endforeach</optgroup> @else<option value="" disabled>No Units Available</option> @endif '
+        html += '</select></td>'
+        html += '<td><input type="text" name="item_qty['+count+'][]" class="form-control required item_qty" placeholder="Quantity #"/></td>';
+        html += '<td><button type="button" name="remove" id="" class="btn btn-danger btn-sm remove circle"><i class="fas fa-lg fa-minus"></i></button>\
+                    <small class="text-danger">Remove</small>\
+                    </td></tr>';
+        $(this).closest('table').append(html);
+
+        });
+
+        $(document).on('click', '.add_carton_row', function(){
+        count++;
+        html = '<tr>';
+        html += '<td><select name="carton_items['+count+'][][]" class="form-control select_carton_skus required">'
+        html += '<option value="">Choose Item</option>'
+        html += '@if (count($cases) > 0) <optgroup label="Cases"> @foreach ($cases as $case) <option value="{{$case->sku}}">{{$case->sku}}</option> @endforeach</optgroup> @else<option value="" disabled>No Cases Available</option> @endif '
+        html += '@if (count($kits) > 0) <optgroup label="Kits"> @foreach ($kits as $kit) <option value="{{$kit->sku}}">{{$kit->sku}}</option> @endforeach</optgroup> @else<option value="" disabled>No Kits Available</option> @endif '
+        html += '@if (count($units) > 0) <optgroup label="Units"> @foreach ($units as $unit) <option value="{{$unit->sku}}">{{$unit->sku}}</option> @endforeach</optgroup> @else<option value="" disabled>No Units Available</option> @endif '
+        html += '</select></td>'
+        html += '<td><input type="text" name="carton_item_qty['+count+'][][]" class="form-control required carton_item_qty" placeholder="Quantity #"/></td>';
+        html += '<td><button type="button" name="remove" id="" class="btn btn-danger btn-sm remove circle"><i class="fas fa-lg fa-minus"></i></button>\
+                    <small class="text-danger">Remove</small>\
+                    </td></tr>';
+        $(this).closest('table').append(html);
+
         });
 
         $(document).on('click', '.remove', function(){
-            const table = document.getElementsByClassName('form_inventory');
-            const rownum = table[0].getElementsByTagName('TR').length;
-            
-            if(rownum != 1){
-                count--;
-                $(this).closest("tr").remove();
-            }
+        //const table = document.getElementsByClassName('form_inventory');
+        //const rownum = table[0].getElementsByTagName('TR').length;
+        /*
+        if(rownum != 1){
+            count--;
+            $(this).closest("tr").remove();
+        }
+        });
+        */
+        count--;
+        $(this).closest("tr").remove();
         });
 
         $('.createpallet').on('click', function(e){
@@ -254,12 +591,33 @@ Fulfilment Order
         });
 
         
-        $('#fil_order_form').on('submit', function(event){
+        $('.confirm_submit').on('click', function(event){
                 event.preventDefault();
+                $('.confirmModal').modal("hide");
+                if($('#fulfill_order_form').valid()){
+                    $('#trans_out_order_form').find('.card-container').each(function(i,ele){
+                    $(ele).find('.container_type').attr('name', 'container_type['+i+'][]');
+                    $(ele).find('.container_barcode').attr('name', 'container_barcode['+i+'][]');
+                    $(ele).find('.container_qty').attr('name', 'container_qty['+i+'][]');
+                    $(ele).find('.select_transout_skus').attr('name', 'items['+i+'][]');
+                    $(ele).find('.item_qty').attr('name', 'item_qty['+i+'][]');
+                    
+                    $(this).find('.carton-container').each(function(y, ele2){
+                        $(ele2).find('.carton_barcode').attr('name', 'carton_barcode['+i+']['+y+']');
+                        $(ele2).find('.carton_qty').attr('name', 'carton_qty['+i+']['+y+']');
+                        $(ele2).find('.select_carton_skus').attr('name', 'carton_items['+i+']['+y+'][]');
+                        $(ele2).find('.carton_item_qty').attr('name', 'carton_item_qty['+i+']['+y+'][]');
+                    });
+                    
+
+                });
+                
+                
+                
                 $.ajax({
                     url:'/createfilorder',
                     method:'post',
-                    data:$(this).serialize(),
+                    data:$('#fulfill_order_form').serialize(),
                     dataType:'json',
                     beforeSend:function(){
                         $('#save').attr('disabled','disabled');
@@ -268,6 +626,11 @@ Fulfilment Order
                     {
                         if(data.error)
                         {
+                            var error_html = '';
+                            for(var count = 0; count < data.error.length; count++)
+                            {
+                                error_html += '<p>'+data.error[count]+'</p>';
+                            }
                             
                             $('#order-result').html('<div class="alert alert-danger text-center">'+data.error+'</div>');
                         }
@@ -279,7 +642,9 @@ Fulfilment Order
                         }
                         $('#save').attr('disabled', false);
                     }
-                })
+                });
+            }
+            
             }); 
             
         });

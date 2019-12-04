@@ -37,16 +37,16 @@
 
                         @if(count($orders) > 0)
                         <div class="table-responsive">
-                            <table class="table" id="filorders">
+                            <table class="table table-sm" id="filorders">
                                 <thead>
                                     <tr>
-                                        <th>Expand</th>
-                                        <th>Order ID</th>
-                                        <th>Customer</th>
-                                        <th>Status</th>
-                                        <th>Submitted On</th>
-                                        <th>Updated On</th>
-                                        <th>Actions</th>
+                                        <th width="20%">Expand</th>
+                                        <th width="20%">Order ID</th>
+                                        <th width="20%">Customer</th>
+                                        <th width="20%">Status</th>
+                                        <th width="20%">Submitted On</th>
+                                        <th width="20%">Updated On</th>
+                                        <th width="20%">Actions</th>
     
                                     </tr>
                                 </thead>
@@ -93,14 +93,14 @@
                                     <td class="py-0 border-0"></td>
                                     <td class="py-0 border-0" colspan="12">
                                         <div id="details{{$order->id}}" class="accordion-body details collapse">
-                                            <table class="table bg-whitewash">
+                                            <table class="table table-sm bg-whitewash">
                                                 <thead>
                                                     <tr>
-                                                        <td>SKU</td>
-                                                        <td>Description</td>
-                                                        <td>Barcode</td>
-                                                        <td>Container Type</td>
-                                                        <td>Quantity</td>
+                                                        <th width="20%">SKU</th>
+                                                        <th width="20%">Description</th>
+                                                        <th width="20%">Barcode</th>
+                                                        <th width="20%">Container Type</th>
+                                                        <th width="20%">Quantity</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -125,14 +125,14 @@
                                     <td class="py-0 border-0"></td>
                                     <td class="py-0 border-0" colspan="12">
                                         <div id="details{{$order->id}}" class="accordion-body details collapse">
-                                            <table class="table bg-whitewash">
+                                            <table class="table table-sm bg-whitewash">
                                                 <thead>
                                                     <tr>
-                                                        <td>SKU</td>
-                                                        <td>Description</td>
-                                                        <td>Barcode</td>
-                                                        <td>Container Type</td>
-                                                        <td>Quantity</td>
+                                                        <th width="20%">SKU</th>
+                                                        <th width="20%">Description</th>
+                                                        <th width="20%">Barcode</th>
+                                                        <th width="20%">Container Type</th>
+                                                        <th width="20%">Quantity</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -158,14 +158,14 @@
                                     <td class="py-0 border-0"></td>
                                     <td class="py-0 border-0" colspan="12">
                                         <div id="details{{$order->id}}" class="accordion-body details collapse">
-                                            <table class="table bg-whitewash">
+                                            <table class="table table-sm bg-whitewash">
                                                 <thead>
                                                     <tr>
-                                                        <td>SKU</td>
-                                                        <td>Description</td>
-                                                        <td>Barcode</td>
-                                                        <td>Container Type</td>
-                                                        <td>Quantity</td>
+                                                        <th width="20%">SKU</th>
+                                                        <th width="20%">Description</th>
+                                                        <th width="20%">Barcode</th>
+                                                        <th width="20%">Container Type</th>
+                                                        <th width="20%">Quantity</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -190,14 +190,14 @@
                                     <td class="py-0 border-0"></td>
                                     <td class="py-0 border-0" colspan="12">
                                         <div id="details{{$order->id}}" class="accordion-body details collapse">
-                                            <table class="table bg-whitewash">
+                                            <table class="table table-sm bg-whitewash">
                                                 <thead>
                                                     <tr>
-                                                        <td>SKU</td>
-                                                        <td>Description</td>
-                                                        <td>Barcode</td>
-                                                        <td>Container Type</td>
-                                                        <td>Quantity</td>
+                                                        <th width="20%">SKU</th>
+                                                        <th width="20%">Description</th>
+                                                        <th width="20%">Barcode</th>
+                                                        <th width="20%">Container Type</th>
+                                                        <th width="20%">Quantity</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -222,14 +222,14 @@
                                     <td class="py-0 border-0"></td>
                                     <td class="py-0 border-0" colspan="12">
                                         <div id="details{{$order->id}}" class="accordion-body details collapse">
-                                            <table class="table bg-whitewash">
+                                            <table class="table table-sm bg-whitewash">
                                                 <thead>
                                                     <tr>
-                                                        <td>SKU</td>
-                                                        <td>Description</td>
-                                                        <td>Barcode</td>
-                                                        <td>Container Type</td>
-                                                        <td>Quantity</td>
+                                                        <th width="20%">SKU</th>
+                                                        <th width="20%">Description</th>
+                                                        <th width="20%">Barcode</th>
+                                                        <th width="20%">Container Type</th>
+                                                        <th width="20%">Quantity</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>

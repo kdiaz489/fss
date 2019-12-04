@@ -36,23 +36,23 @@
 
                 @if(count($pallets) > 0)
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table table-sm">
                         <tr>
-                            <th></th>
-                            <th>Sku</th>
-                            <th>Description</th>
-                            <th>Cartons per Pallet</th>
-                            <th>Cases per Pallet</th>
-                            <th>Kits per Pallet</th>
-                            <th>Total # Pallets</th>
-                            <th></th>
+                            <th width="10%"></th>
+                            <th width="10%">Sku</th>
+                            <th width="10%">Description</th>
+                            <th width="10%">Cartons per Pallet</th>
+                            <th width="10%">Cases per Pallet</th>
+                            <th width="10%">Kits per Pallet</th>
+                            <th width="10%">Total # Pallets</th>
+                            <th width="10%"></th>
 
                         </tr>
                         @foreach($pallets as $pallet)
                         <tr>
                             <td><button type="button" class="btn text-denim toggle-{{$pallet->id}}"
-                                    id="toggle-details{{$pallet->id}}" data-toggle="collapse"
-                                    data-target="#details{{$pallet->id}}" aria-expanded="false" aria-controls="details"
+                                    id="toggle-details-pallet-{{$pallet->id}}" data-toggle="collapse"
+                                    data-target="#details-pallet-{{$pallet->id}}" aria-expanded="false" aria-controls="details"
                                     data-delay="0"><i class="fas fa-plus"></i></button></td>
 
                             <td>{{$pallet->sku}}</td>
@@ -90,15 +90,15 @@
                         <tr>
                             <td class="py-0 border-0"></td>
                             <td class="py-0 border-0" colspan="12">
-                                <div id="details{{$pallet->id}}" class="accordion-body details collapse">
-                                    <table class="table bg-whitewash">
+                                <div id="details-pallet-{{$pallet->id}}" class="accordion-body details collapse">
+                                    <table class="table table-sm bg-whitewash">
                                         <thead>
                                             <tr>
-                                                <td>SKU</td>
-                                                <td>Description</td>
-                                                <td>Barcode</td>
-                                                <td>Container Type</td>
-                                                <td>Quantity</td>
+                                                <th width="10%">SKU</th>
+                                                <th width="10%">Description</th>
+                                                <th width="10%">Barcode</th>
+                                                <th width="10%">Container Type</th>
+                                                <th width="10%">Quantity</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -123,15 +123,15 @@
                         <tr>
                             <td class="py-0 border-0"></td>
                             <td class="py-0 border-0" colspan="12">
-                                <div id="details{{$pallet->id}}" class="accordion-body details collapse">
-                                    <table class="table bg-whitewash">
+                                <div id="details-pallet-{{$pallet->id}}" class="accordion-body details collapse">
+                                    <table class="table table-sm bg-whitewash">
                                         <thead>
                                             <tr>
-                                                <td>SKU</td>
-                                                <td>Description</td>
-                                                <td>Barcode</td>
-                                                <td>Container Type</td>
-                                                <td>Quantity</td>
+                                                <th width="10%">SKU</th>
+                                                <th width="10%">Description</th>
+                                                <th width="10%">Barcode</th>
+                                                <th width="10%">Container Type</th>
+                                                <th width="10%">Quantity</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -155,15 +155,15 @@
                         <tr>
                             <td class="py-0 border-0"></td>
                             <td class="py-0 border-0" colspan="12">
-                                <div id="details{{$pallet->id}}" class="accordion-body details collapse">
-                                    <table class="table bg-whitewash">
+                                <div id="details-pallet-{{$pallet->id}}" class="accordion-body details collapse">
+                                    <table class="table table-sm bg-whitewash">
                                         <thead>
                                             <tr>
-                                                <td>SKU</td>
-                                                <td>Description</td>
-                                                <td>Barcode</td>
-                                                <td>Container Type</td>
-                                                <td>Quantity</td>
+                                                <th width="10%">SKU</th>
+                                                <th width="10%">Description</th>
+                                                <th width="10%">Barcode</th>
+                                                <th width="10%">Container Type</th>
+                                                <th width="10%">Quantity</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -188,15 +188,15 @@
                         <tr>
                             <td class="py-0 border-0"></td>
                             <td class="py-0 border-0" colspan="12">
-                                <div id="details{{$pallet->id}}" class="accordion-body details collapse">
-                                    <table class="table bg-whitewash">
+                                <div id="details-pallet-{{$pallet->id}}" class="accordion-body details collapse">
+                                    <table class="table table-sm bg-whitewash">
                                         <thead>
                                             <tr>
-                                                <td>SKU</td>
-                                                <td>Description</td>
-                                                <td>Barcode</td>
-                                                <td>Container Type</td>
-                                                <td>Quantity</td>
+                                                <th width="10%">SKU</th>
+                                                <th width="10%">Description</th>
+                                                <th width="10%">Barcode</th>
+                                                <th width="10%">Container Type</th>
+                                                <th width="10%">Quantity</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -226,24 +226,24 @@
 
                 @if(count($cartons) > 0)
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table table-sm">
                         <tr>
-                            <th></th>
+                            <th width="10%"></th>
 
-                            <th>Sku</th>
-                            <th>Description</th>
-                            <th>Cases per Carton</th>
-                            <th>Kits per Carton</th>
-                            <th>Units per Carton</th>
-                            <th>Total # Cartons</th>
-                            <th></th>
+                            <th width="10%">Sku</th>
+                            <th width="10%">Description</th>
+                            <th width="10%">Cases per Carton</th>
+                            <th width="10%">Kits per Carton</th>
+                            <th width="10%">Units per Carton</th>
+                            <th width="10%">Total # Cartons</th>
+                            <th width="10%"></th>
 
                         </tr>
                         @foreach($cartons as $carton)
                         <tr>
                             <td><button type="button" class="btn text-denim toggle-{{$carton->id}}"
-                                    id="toggle-details{{$carton->id}}" data-toggle="collapse"
-                                    data-target="#details{{$carton->id}}" aria-expanded="false" aria-controls="details"
+                                    id="toggle-details-carton-{{$carton->id}}" data-toggle="collapse"
+                                    data-target="#details-carton-{{$carton->id}}" aria-expanded="false" aria-controls="details"
                                     data-delay="0"><i class="fas fa-plus"></i></button></td>
 
                             <td>{{$carton->sku}}</td>
@@ -280,15 +280,15 @@
                         <tr>
                             <td class="py-0 border-0"></td>
                             <td class="py-0 border-0" colspan="12">
-                                <div id="details{{$carton->id}}" class="accordion-body details collapse">
-                                    <table class="table bg-whitewash">
+                                <div id="details-carton-{{$carton->id}}" class="accordion-body details collapse">
+                                    <table class="table table-sm bg-whitewash">
                                         <thead>
                                             <tr>
-                                                <td>SKU</td>
-                                                <td>Description</td>
-                                                <td>Barcode</td>
-                                                <td>Container Type</td>
-                                                <td>Quantity</td>
+                                                <th width="10%">SKU</th>
+                                                <th width="10%">Description</th>
+                                                <th width="10%">Barcode</th>
+                                                <th width="10%">Container Type</th>
+                                                <th width="10%">Quantity</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -312,15 +312,15 @@
                         <tr>
                             <td class="py-0 border-0"></td>
                             <td class="py-0 border-0" colspan="12">
-                                <div id="details{{$carton->id}}" class="accordion-body details collapse">
-                                    <table class="table bg-whitewash">
+                                <div id="details-carton-{{$carton->id}}" class="accordion-body details collapse">
+                                    <table class="table table-sm bg-whitewash">
                                         <thead>
                                             <tr>
-                                                <td>SKU</td>
-                                                <td>Description</td>
-                                                <td>Barcode</td>
-                                                <td>Container Type</td>
-                                                <td>Quantity</td>
+                                                <th width="10%">SKU</th>
+                                                <th width="10%">Description</th>
+                                                <th width="10%">Barcode</th>
+                                                <th width="10%">Container Type</th>
+                                                <th width="10%">Quantity</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -342,18 +342,18 @@
 
                         @if($carton->cases->all())
                         @foreach ($carton->cases->all() as $case)
-                        <tr class="bg-whitewash">
+                        <tr>
                             <td class="py-0 border-0"></td>
                             <td class="py-0 border-0" colspan="12">
-                                <div id="details{{$carton->id}}" class="accordion-body details collapse">
-                                    <table class="table">
+                                <div id="details-carton-{{$carton->id}}" class="accordion-body details collapse">
+                                    <table class="table table-sm bg-whitewash">
                                         <thead>
                                             <tr>
-                                                <td>SKU</td>
-                                                <td>Description</td>
-                                                <td>Barcode</td>
-                                                <td>Container Type</td>
-                                                <td>Quantity</td>
+                                                <th width="10%">SKU</th>
+                                                <th width="10%">Description</th>
+                                                <th width="10%">Barcode</th>
+                                                <th width="10%">Container Type</th>
+                                                <th width="10%">Quantity</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -384,30 +384,30 @@
 
                 @if(count($cases) > 0)
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table table-sm">
                         <tr>
-                            <th></th>
+                            <th width="10%"></th>
 
-                            <th>Sku</th>
-                            <th>Description</th>
-                            <th>Cases in Pallets</th>
-                            <th>Cases in Cartons</th>
-                            <th>Kits per Case</th>
-                            <th>Units per Case</th>
-                            <th>Total # Cases</th>
-                            <th></th>
+                            <th width="10%">Sku</th>
+                            <th width="10%">Description</th>
+                            <th width="10%">Cases in Pallets</th>
+                            <th width="10%">Cases in Cartons</th>
+                            <th width="10%">Kits per Case</th>
+                            <th width="10%">Units per Case</th>
+                            <th width="10%">Total # Cases</th>
+                            <th width="10%"></th>
 
                         </tr>
                         @foreach($cases as $case)
                         <tr>
                             <td><button type="button" class="btn text-denim toggle-{{$case->id}}"
-                                    id="toggle-details{{$case->id}}" data-toggle="collapse"
-                                    data-target="#details{{$case->id}}" aria-expanded="false" aria-controls="details"
+                                    id="toggle-details-case-{{$case->id}}" data-toggle="collapse"
+                                    data-target="#details-case-{{$case->id}}" aria-expanded="false" aria-controls="details"
                                     data-delay="0"><i class="fas fa-plus"></i></button></td>
                             <td>{{$case->sku}}</td>
                             <td>{{$case->description}}</td>
-                            <th>{{$case->pallet_qty}}</th>
-                            <th>{{$case->carton_qty}}</th>
+                            <td>{{$case->pallet_qty}}</td>
+                            <td>{{$case->carton_qty}}</td>
                             <td>{{$case->kit_qty}}</td>
                             <td>{{$case->basic_unit_qty}}</td>
                             <td>{{$case->total_qty}}</td>
@@ -439,15 +439,15 @@
                         <tr>
                             <td class="py-0 border-0"></td>
                             <td class="py-0 border-0" colspan="12">
-                                <div id="details{{$case->id}}" class="details collapse">
-                                    <table class="table bg-whitewash">
+                                <div id="details-case-{{$case->id}}" class="details collapse">
+                                    <table class="table table-sm bg-whitewash">
                                         <thead>
                                             <tr>
-                                                <td>SKU</td>
-                                                <td>Description</td>
-                                                <td>Barcode</td>
-                                                <td>Container Type</td>
-                                                <td>Qty</td>
+                                                <th width="10%">SKU</th>
+                                                <th width="10%">Description</th>
+                                                <th width="10%">Barcode</th>
+                                                <th width="10%">Container Type</th>
+                                                <th width="10%">Quantity</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -471,15 +471,15 @@
                         <tr>
                             <td class="py-0 border-0"></td>
                             <td class="py-0 border-0" colspan="12">
-                                <div id="details{{$case->id}}" class="details collapse">
-                                    <table class="table bg-whitewash">
+                                <div id="details-case-{{$case->id}}" class="details collapse">
+                                    <table class="table table-sm bg-whitewash">
                                         <thead>
                                             <tr>
-                                                <td>SKU</td>
-                                                <td>Description</td>
-                                                <td>Barcode</td>
-                                                <td>Container Type</td>
-                                                <td>Quantity</td>
+                                                <th width="10%">SKU</th>
+                                                <th width="10%">Description</th>
+                                                <th width="10%">Barcode</th>
+                                                <th width="10%">Container Type</th>
+                                                <th width="10%">Quantity</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -509,22 +509,22 @@
 
                 @if(count($kits) > 0)
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table table-sm">
                         <tr>
-                            <th></th>
-                            <th>Sku</th>
-                            <th>Description</th>
-                            <th>Kits in Pallets</th>
-                            <th>Kits in Cartons</th>
-                            <th>Units per Kit</th>
-                            <th>Total # Kits</th>
-                            <th></th>
+                            <th width="10%"></th>
+                            <th width="10%">Sku</th>
+                            <th width="10%">Description</th>
+                            <th width="10%">Kits in Pallets</th>
+                            <th width="10%">Kits in Cartons</th>
+                            <th width="10%">Units per Kit</th>
+                            <th width="10%">Total # Kits</th>
+                            <th width="10%"></th>
                         </tr>
                         @foreach($kits as $kit)
                         <tr>
                             <td><button type="button" class="btn text-denim toggle-{{$kit->id}}"
-                                    id="toggle-details{{$kit->id}}" data-toggle="collapse"
-                                    data-target="#details{{$kit->id}}" aria-expanded="false" aria-controls="details"
+                                    id="toggle-details-kit-{{$kit->id}}" data-toggle="collapse"
+                                    data-target="#details-kit-{{$kit->id}}" aria-expanded="false" aria-controls="details"
                                     data-delay="0"><i class="fas fa-plus"></i></button></td>
                             <td>{{$kit->sku}}</td>
                             <td>{{$kit->description}}</td>
@@ -561,15 +561,15 @@
                         <tr>
                             <td class="py-0 border-0"></td>
                             <td class="py-0 border-0" colspan="12">
-                                <div id="details{{$kit->id}}" class="details collapse">
-                                    <table class="table bg-whitewash">
+                                <div id="details-kit-{{$kit->id}}" class="details collapse">
+                                    <table class="table table-sm bg-whitewash">
                                         <thead>
                                             <tr>
-                                                <td>SKU</td>
-                                                <td>Description</td>
-                                                <td>Barcode</td>
-                                                <td>Container Type</td>
-                                                <td>Quantity</td>
+                                                <th width="10%">SKU</th>
+                                                <th width="10%">Description</th>
+                                                <th width="10%">Barcode</th>
+                                                <th width="10%">Container Type</th>
+                                                <th width="10%">Quantity</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -602,17 +602,17 @@
                 <h3 class="font-weight-light">Units</h3>
                 @if(count($basic_units) > 0)
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table table-sm">
                         <tr>
 
-                            <th>Sku</th>
-                            <th>Description</th>
-                            <th>Pallet Qty</th>
-                            <th>Carton Qty</th>
-                            <th>Case Qty</th>
-                            <th>Kit Qty</th>
-                            <th>Total Qty</th>
-                            <th></th>
+                            <th width="10%">Sku</th>
+                            <th width="10%">Description</th>
+                            <th width="10%">Pallet Qty</th>
+                            <th width="10%">Carton Qty</th>
+                            <th width="10%">Case Qty</th>
+                            <th width="10%">Kit Qty</th>
+                            <th width="10%">Total Qty</th>
+                            <th width="10%"></th>
 
                         </tr>
                         @foreach($basic_units as $unit)

@@ -84,11 +84,11 @@
                                                 <button type="submit"
                                                     class="btn btn-link text-danger btn-sm">Delete</button>
                                             </form>
-                                            <!---
+                                            
                                                     <a href="{{ route('admin.impersonate', $user->id) }}" class="float-left">
-                                                        <button class="btn btn-success btn-sm" type="button">Impersonate User</button>
+                                                        <button class="btn btn-link text-success btn-sm" type="button">Impersonate User</button>
                                                     </a>
-                                                    --->
+                                                    
                                         </td>
                                     </tr>
                                     @endforeach
