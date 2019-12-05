@@ -29,7 +29,7 @@ class DashboardController extends Controller
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
         $shipments = $user->shipments->where('work_status', '!=', 'Completed')->sortByDesc('created_at');
-        $shipmentshistory = $user->shipmentshistory->sortByDesc('created_at');
+        $shipmentshistory = $user->shipments->where('work_status', '=', 'Completed')->sortByDesc('created_at');
 
         if($user->hasAnyRole('user')){
             return view('userdash.dash-shipments')->with('shipments', $shipments)->with('shipmentshistory', $shipmentshistory);
@@ -37,10 +37,12 @@ class DashboardController extends Controller
         elseif($user->hasAnyRole('admin')){
             
             //DB version
-            $shipments = DB::select('SELECT * FROM ship_wk_tbl');
-            $shipments = Shipment::orderBy('created_at', 'desc')->get();
+            $allshipments = DB::select('SELECT * FROM ship_wk_tbl');
+            $allshipments = Shipment::orderBy('created_at', 'desc')->get();
+            $shipments = $allshipments->where('work_status', '!=', 'Completed');
+            $shipmentshistory = $allshipments->where('work_status', '=', 'Completed');
             
-            return view('admindash.dash-all-ship')->with('shipments', $shipments);
+            return view('admindash.dash-all-ship')->with('shipments', $shipments)->with('shipmentshistory', $shipmentshistory);
         }
     }
 

@@ -225,7 +225,7 @@ Shipments
                         <div class="table-responsive">
 
                         
-                            <table class="table shipments">
+                            <table class="table table-sm shipment-table">
                                 <thead>
                                 <tr>
                                     <th>Order #</th>
@@ -298,7 +298,7 @@ Shipments
                     <div class="table-responsive">
 
                     
-                        <table class="table shipments">
+                        <table class="table table-sm shipment-history shipments">
                             <thead>
                             <tr>
                                 <th>Order #</th>
@@ -362,20 +362,4 @@ Shipments
         </div>
     </div>
 </div>
-@endsection
-
-@section('scripts')
-<script>
-        $(function () {
-          
-          $('.shipments').DataTable({
-            "paging": false,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-    });
-        });
-      </script>   
 @endsection

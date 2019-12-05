@@ -73,6 +73,7 @@ class AuthorizeController extends Controller
         $customerData->setEmail($request->cemail);
 
         // Create a customer shipping address This is the object that I added
+        /*
         $customerShippingAddress = new AnetAPI\CustomerAddressType();
         $customerShippingAddress->setFirstName("James");
         $customerShippingAddress->setLastName("White");
@@ -82,11 +83,12 @@ class AuthorizeController extends Controller
         $customerShippingAddress->setState("NJ");
         $customerShippingAddress->setZip("08753");
         $customerShippingAddress->setCountry("USA");
+        */
 
          // Create a TransactionRequestType object and add the previous objects to it
         
         $transactionRequestType = new AnetAPI\TransactionRequestType();
-        $transactionRequestType->setShipTo($customerShippingAddress);
+        //$transactionRequestType->setShipTo($customerShippingAddress);
         $transactionRequestType->setTransactionType("authCaptureTransaction");
         $amount = (float)$request->amount;
         //$amount = 0.01;
