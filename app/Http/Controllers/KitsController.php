@@ -79,7 +79,6 @@ class KitsController extends Controller
              * If request passes validation, Pallet object is initiated and attributes are set
              */
             $kit = new Kit();
-            $kit->kit_name = $request->kit_name;
             $kit->user_id = auth()->user()->id;
             $kit->company = auth()->user()->company_name;
             $kit->sku = $request->sku;
@@ -101,7 +100,7 @@ class KitsController extends Controller
              * Conditional statements check for the type of items that were submitted to the form
              * Checks for Unit, Kit, Case, if condition is met then create an object based on the item type and attached to the $pallet
              */
-            for ($i = 0; $i < count($types); $i++) {
+            for ($i = 0; $i < count($item_qty); $i++) {
                 if ($types[$i] == 'Unit') { 
                     /*
                     $data = array(
@@ -110,6 +109,8 @@ class KitsController extends Controller
                     );
                     $unit_data[] = $data;
                     */
+                    $kit->kit_qty += $item_qty[$i];
+                    $kit->save();
                     $kit->basic_units()->attach(['basic__unit_id' => $items[$i]], ['quantity' => $item_qty[$i]]);
 
 

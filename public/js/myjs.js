@@ -60,7 +60,7 @@ var shipmentid;
 
 $(document).ready(function () {
 
-
+    /*
     $('.shipment-history').DataTable({
         "paging":   false,
         "info":     false
@@ -69,6 +69,7 @@ $(document).ready(function () {
         "paging":   false,
         "info":     false
     });
+    */
 
 
 

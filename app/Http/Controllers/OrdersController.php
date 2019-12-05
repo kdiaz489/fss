@@ -479,7 +479,7 @@ class OrdersController extends Controller
                         }
                         if($request->carton_items != NULL){
                             
-                            for($y = 0; $y < count($carton_barcode[$i]); $y++){
+                            for($y = 0; $y < count($carton_qty[$i]); $y++){
                                 $carton = new Carton();
                                 $total_cartons += $carton_qty[$i][$y];
                                 $carton->barcode = $carton_barcode[$i][$y];
@@ -1171,6 +1171,7 @@ class OrdersController extends Controller
                 foreach ($order->basic_units->all() as $unit) {
                     $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
                     $unitobj->total_qty += $unit->pivot->quantity;
+                    $unitobj->loose_item_qty += $unit->pivot->quantity;
                     $unitobj->save();
                 }
             }
@@ -1394,6 +1395,7 @@ class OrdersController extends Controller
                 foreach ($order->basic_units->all() as $unit) {
                     $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
                     $unitobj->total_qty -= $unit->pivot->quantity;
+                    $unitobj->loose_item_qty -= $unit->pivot->quantity;
                     $unitobj->save();
                 }
             }

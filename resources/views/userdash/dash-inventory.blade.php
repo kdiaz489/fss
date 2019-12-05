@@ -704,7 +704,7 @@ Inventory
                             <td>{{$kit->description}}</td>
                             <td></td>
                             <td>{{$kit->total_qty}}</td>
-                            <td></td>
+                            <td>{{$kit->kit_qty}}</td>
                             <td></td>
                             <td>
 

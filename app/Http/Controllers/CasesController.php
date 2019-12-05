@@ -80,6 +80,8 @@ class CasesController extends Controller
                         'quantity' => $item_qty[$i]
                     );
                     $unit_data[] = $data;
+                    $case->case_qty += $item_qty[$i];
+                    $case->save();
                     $case->basic_units()->attach($unit_data);
                 }
 
@@ -89,6 +91,8 @@ class CasesController extends Controller
                         'quantity' => $item_qty[$i]
                     );
                     $kit_data[] = $data;
+                    $case->case_qty += $item_qty[$i];
+                    $case->save();
                     $case->kits()->attach($kit_data);
                 }
             }
