@@ -231,16 +231,19 @@ Inventory
                     @if(count($pallets) > 0)
                     <div class="table-responsive">
                     <table class="table table-sm">
-                        <tr>
-                            <th></th>
-                            <th>Pallet Sku</th>
-                            <th>Date Received</th>
-                            <th>Quantity</th>
-                            <th>Location</th>
-                            <th>Notes</th>
-                            <th></th>
+                        <thead>
+                            <tr>
+                                    <th width="10%"></th>
+                                    <th width="10%">Pallet Sku</th>
+                                    <th width="10%">Date Received</th>
+                                    <th width="10%">Quantity</th>
+                                    <th width="10%">Location</th>
+                                    <th width="10%">Notes</th>
+                                    <th width="10%"></th>
+        
+                                </tr>
+                        </thead>
 
-                        </tr>
                         @foreach($pallets as $pallet)
                         <tr>
                             <td><button type="button" class="btn text-denim toggle-{{$pallet->id}}" id="toggle-details{{$pallet->id}}" data-toggle="collapse" data-target="#details{{$pallet->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
@@ -283,11 +286,11 @@ Inventory
                                                     <table class="table table-sm bg-whitewash">
                                                             <thead>
                                                                 <tr>
-                                                                    <td>SKU</td>
-                                                                    <td>Description</td>
-                                                                    <td>Barcode</td>
-                                                                    <td>Container Type</td>
-                                                                    <td>Quantity</td>
+                                                                    <th width="10%">SKU</th>
+                                                                    <th width="10%">Description</th>
+                                                                    <th width="10%">Barcode</th>
+                                                                    <th width="10%">Container Type</th>
+                                                                    <th width="10%">Quantity</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -316,11 +319,11 @@ Inventory
                                                     <table class="table table-sm bg-whitewash">
                                                             <thead>
                                                                 <tr>
-                                                                    <td>SKU</td>
-                                                                    <td>Description</td>
-                                                                    <td>Barcode</td>
-                                                                    <td>Container Type</td>
-                                                                    <td>Quantity</td>
+                                                                    <th width="10%">SKU</th>
+                                                                    <th width="10%">Description</th>
+                                                                    <th width="10%">Barcode</th>
+                                                                    <th width="10%">Container Type</th>
+                                                                    <th width="10%">Quantity</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -348,11 +351,11 @@ Inventory
                                                     <table class="table table-sm bg-whitewash">
                                                             <thead>
                                                                 <tr>
-                                                                    <td>SKU</td>
-                                                                    <td>Description</td>
-                                                                    <td>Barcode</td>
-                                                                    <td>Container Type</td>
-                                                                    <td>Quantity</td>
+                                                                    <th width="10%">SKU</th>
+                                                                    <th width="10%">Description</th>
+                                                                    <th width="10%">Barcode</th>
+                                                                    <th width="10%">Container Type</th>
+                                                                    <th width="10%">Quantity</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -381,11 +384,11 @@ Inventory
                                                     <table class="table table-sm bg-whitewash">
                                                             <thead>
                                                                 <tr>
-                                                                    <td>SKU</td>
-                                                                    <td>Description</td>
-                                                                    <td>Barcode</td>
-                                                                    <td>Container Type</td>
-                                                                    <td>Quantity</td>
+                                                                    <th width="10%">SKU</th>
+                                                                    <th width="10%">Description</th>
+                                                                    <th width="10%">Barcode</th>
+                                                                    <th width="10%">Container Type</th>
+                                                                    <th width="10%">Quantity</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -417,14 +420,14 @@ Inventory
                     <div class="table-responsive">
                     <table class="table table-sm">
                         <tr>
-                            <th></th>
-                            <th>Sku</th>
-                            <th>Description</th>
-                            <th>Barcode</th>
-                            <th>Quantity</th>
-                            <th>Qty/Carton</th>
-                            <th>Location</th>
-                            <th></th>
+                            <th width="10%"></th>
+                            <th width="10%">Sku</th>
+                            <th width="10%">Description</th>
+                            <th width="10%">Barcode</th>
+                            <th width="10%">Quantity</th>
+                            <th width="10%">Qty/Carton</th>
+                            <th width="10%">Location</th>
+                            <th width="10%"></th>
 
                         </tr>
                         @foreach($cartons as $carton)
@@ -469,11 +472,11 @@ Inventory
                                                     <table class="table table-sm bg-whitewash">
                                                             <thead>
                                                                 <tr>
-                                                                    <td>SKU</td>
-                                                                    <td>Description</td>
-                                                                    <td>Barcode</td>
-                                                                    <td>Container Type</td>
-                                                                    <td>Quantity</td>
+                                                                    <th width="10%">SKU</th>
+                                                                    <th width="10%">Description</th>
+                                                                    <th width="10%">Barcode</th>
+                                                                    <th width="10%">Container Type</th>
+                                                                    <th width="10%">Quantity</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -501,11 +504,11 @@ Inventory
                                                     <table class="table table-sm bg-whitewash">
                                                             <thead>
                                                                 <tr>
-                                                                    <td>SKU</td>
-                                                                    <td>Description</td>
-                                                                    <td>Barcode</td>
-                                                                    <td>Container Type</td>
-                                                                    <td>Quantity</td>
+                                                                    <th width="10%">SKU</th>
+                                                                    <th width="10%">Description</th>
+                                                                    <th width="10%">Barcode</th>
+                                                                    <th width="10%">Container Type</th>
+                                                                    <th width="10%">Quantity</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -534,11 +537,11 @@ Inventory
                                                     <table class="table table-sm">
                                                             <thead>
                                                                 <tr>
-                                                                    <td>SKU</td>
-                                                                    <td>Description</td>
-                                                                    <td>Barcode</td>
-                                                                    <td>Container Type</td>
-                                                                    <td>Quantity</td>
+                                                                    <th width="10%">SKU</th>
+                                                                    <th width="10%">Description</th>
+                                                                    <th width="10%">Barcode</th>
+                                                                    <th width="10%">Container Type</th>
+                                                                    <th width="10%">Quantity</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -570,14 +573,14 @@ Inventory
                     <div class="table-responsive">
                     <table class="table table-sm">
                         <tr>
-                            <th></th>
-                            <th>Sku</th>
-                            <th>Description</th>
-                            <th>Barcode</th>
-                            <th>Quantity</th>
-                            <th>Qty/Case</th>
-                            <th>Location</th>
-                            <th></th>
+                            <th width="10%"></th>
+                            <th width="10%">Sku</th>
+                            <th width="10%">Description</th>
+                            <th width="10%">Barcode</th>
+                            <th width="10%">Quantity</th>
+                            <th width="10%">Qty/Case</th>
+                            <th width="10%">Location</th>
+                            <th width="10%"></th>
 
                         </tr>
                         @foreach($cases as $case)
@@ -587,7 +590,7 @@ Inventory
                             <td>{{$case->description}}</td>
                             <td></td>
                             <td>{{$case->total_qty}}</td>
-                            <td></td>
+                            <td>{{$case->case_qty}}</td>
                             <td></td>
                             <td>
                                 <div style="margin-left: 30%">
@@ -621,11 +624,11 @@ Inventory
                                                 <table class="table table-sm bg-whitewash">
                                                         <thead>
                                                             <tr>
-                                                                <td>SKU</td>
-                                                                <td>Description</td>
-                                                                <td>Barcode</td>
-                                                                <td>Container Type</td>
-                                                                <td>Qty</td>
+                                                                <th width="10%">SKU</th>
+                                                                <th width="10%">Description</th>
+                                                                <th width="10%">Barcode</th>
+                                                                <th width="10%">Container Type</th>
+                                                                <th width="10%">Qty</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -653,11 +656,11 @@ Inventory
                                                     <table class="table table-sm bg-whitewash">
                                                             <thead>
                                                                 <tr>
-                                                                    <td>SKU</td>
-                                                                    <td>Description</td>
-                                                                    <td>Barcode</td>
-                                                                    <td>Container Type</td>
-                                                                    <td>Quantity</td>
+                                                                    <th width="10%">SKU</th>
+                                                                    <th width="10%">Description</th>
+                                                                    <th width="10%">Barcode</th>
+                                                                    <th width="10%">Container Type</th>
+                                                                    <th width="10%">Quantity</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -688,14 +691,14 @@ Inventory
                     <div class="table-responsive">
                     <table class="table table-sm">
                         <tr>
-                            <th></th>
-                            <th>Sku</th>
-                            <th>Description</th>
-                            <th>Barcode</th>
-                            <th>Quantity</th>
-                            <th>Qty/Kit</th>
-                            <th>Location</th>
-                            <th></th>
+                            <th width="10%"></th>
+                            <th width="10%">Sku</th>
+                            <th width="10%">Description</th>
+                            <th width="10%">Barcode</th>
+                            <th width="10%">Quantity</th>
+                            <th width="10%">Qty/Kit</th>
+                            <th width="10%">Location</th>
+                            <th width="10%"></th>
                         </tr>
                         @foreach($kits as $kit)
                         <tr>
@@ -738,11 +741,11 @@ Inventory
                                                 <table class="table table-sm bg-whitewash">
                                                         <thead>
                                                             <tr>
-                                                                <td>SKU</td>
-                                                                <td>Description</td>
-                                                                <td>Barcode</td>
-                                                                <td>Container Type</td>
-                                                                <td>Quantity</td>
+                                                                <th width="10%">SKU</th>
+                                                                <th width="10%">Description</th>
+                                                                <th width="10%">Barcode</th>
+                                                                <th width="10%">Container Type</th>
+                                                                <th width="10%">Quantity</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -777,15 +780,15 @@ Inventory
                     <table class="table table-sm">
                         <tr>
 
-                            <th>Sku</th>
-                            <th>Description</th>
-                            <th>Pallet Qty</th>
-                            <th>Carton Qty</th>
-                            <th>Case Qty</th>
-                            <th>Kit Qty</th>
-                            <th>Loose Qty</th>
-                            <th>Total Qty On Hand</th>
-                            <th></th>
+                            <th width="10%">Sku</th>
+                            <th width="10%">Description</th>
+                            <th width="10%">Pallet Qty</th>
+                            <th width="10%">Carton Qty</th>
+                            <th width="10%">Case Qty</th>
+                            <th width="10%">Kit Qty</th>
+                            <th width="10%">Loose Qty</th>
+                            <th width="10%">Total Qty On Hand</th>
+                            <th width="10%"></th>
 
                         </tr>
                         @foreach($basic_units as $unit)

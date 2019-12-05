@@ -181,6 +181,10 @@ class OrdersController extends Controller
                 $container_types = $request->container_type;
                 $container_barcodes = $request->container_barcode;
                 $container_qtys = $request->container_qty;
+                $carton_barcode = $request->carton_barcode;
+                $carton_qty = $request->carton_qty;
+                $carton_items = $request->carton_items;
+                $carton_item_qty = $request->carton_item_qty;
                 $items = $request->items;
                 $item_qty = $request->item_qty;
                 $total_items = 0;
@@ -204,10 +208,11 @@ class OrdersController extends Controller
 
                     if ($container_type === 'Pallet') {
                         $pallet = new Pallet();
+                        $pallet->user_id = auth()->user()->id;
                         $pallet->barcode = $container_barcodes[$i][0];
-                        $pallet->save();
                         $total_pallets += $container_qtys[$i][0];
                         $pallet->total_qty += $container_qtys[$i][0];
+                        $pallet->save();
                         $order->pallets()->attach([['pallet_id' => $pallet->id, 'quantity' => $container_qtys[$i][0]]]);
                         for ($y = 0; $y < count($items[$i]); $y++) {
 
@@ -227,14 +232,61 @@ class OrdersController extends Controller
                                 $pallet->cases()->attach([['cases_id' => $case->id, 'quantity' => $item_qty[$i][$y]]]);
                             }
                         }
+                        if($request->carton_items != NULL){
+                            
+                            for($y = 0; $y < count($carton_qty[$i]); $y++){
+                                $carton = new Carton();
+                                $total_cartons += $carton_qty[$i][$y];
+                                $carton->barcode = $carton_barcode[$i][$y];
+                                $carton->save();
+                                for($z = 0; $z < count($carton_items[$i][$y]); $z++){
+                                if (Basic_Unit::where('sku', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->exists()) {
+                                    $total_units += $carton_item_qty[$i][$y][$z];
+                                    $unit = Basic_Unit::where('sku', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->first();
+                                    if ($unit->total_qty < $carton_item_qty[$i][$y][$z]) {
+                                        throw new \Exception('Quantity of units in carton is greater than quantity at hand.');
+                                    }
+                                    else{
+                                        $carton->basic_units()->attach([['basic__unit_id' => $unit->id, 'quantity' => $carton_item_qty[$i][$y][$z]]]);
+                                    }
+                                    
+                                }
+                                if (Kit::where('sku', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->exists()) {
+                                    $total_kits += $carton_item_qty[$i][$y][$z];
+                                    $kit = Kit::where('sku', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->first();
+                                    if ($kit->total_qty < $carton_item_qty[$i][$y][$z]) {
+                                        throw new \Exception('Quantity of kits in carton is greater than quantity at hand.');
+                                    }
+                                    else{
+                                        $carton->kits()->attach([['kit_id' => $kit->id, 'quantity' => $carton_item_qty[$i][$y][$z]]]);
+                                    }
+                                    
+                                }
+                                if (Cases::where('sku', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->exists()) {
+                                    $total_cases += $carton_item_qty[$i][$y][$z];
+                                    $case = Cases::where('sku', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->first();
+                                    if ($case->total_qty < $carton_item_qty[$i][$y][$z]) {
+                                        throw new \Exception('Quantity of cases in carton is greater than quantity at hand.');
+                                    }
+                                    else{
+                                        $carton->cases()->attach([['cases_id' => $case->id, 'quantity' => $carton_item_qty[$i][$y][$z]]]);
+                                    }
+                                    
+                                }
+                            }
+                            $pallet->cartons()->attach([['carton_id' => $carton->id, 'quantity' => $carton_qty[$i][$y]]]);
+                        }
+                    }
+                    $pallet->save();
                     }
 
                     if ($container_type === 'Carton') {
                         $carton = new Carton();
-                        $carton->save();
+                        $carton->user_id = auth()->user()->id;
                         $carton->barcode = $container_barcodes[$i][0];
                         $total_cartons += $container_qtys[$i][0];
                         $carton->total_qty += $container_qtys[$i][0];
+                        $carton->save();
                         $order->cartons()->attach([['carton_id' => $carton->id, 'quantity' => $container_qtys[$i][0]]]);
                         for ($x = 0; $x < count($items[$i]); $x++) {
 
@@ -435,10 +487,11 @@ class OrdersController extends Controller
 
                     if ($container_type === 'Pallet') {
                         $pallet = new Pallet();
+                        $pallet->user_id = auth()->user()->id;
                         $pallet->barcode = $container_barcodes[$i][0];
-                        $pallet->save();
                         $total_pallets += $container_qtys[$i][0];
                         $pallet->total_qty += $container_qtys[$i][0];
+                        $pallet->save();
                         $order->pallets()->attach([['pallet_id' => $pallet->id, 'quantity' => $container_qtys[$i][0]]]);
                         for ($y = 0; $y < count($items[$i]); $y++) {
 
@@ -481,6 +534,7 @@ class OrdersController extends Controller
                             
                             for($y = 0; $y < count($carton_qty[$i]); $y++){
                                 $carton = new Carton();
+                                $carton->user_id = auth()->user()->id;
                                 $total_cartons += $carton_qty[$i][$y];
                                 $carton->barcode = $carton_barcode[$i][$y];
                                 $carton->save();
@@ -527,10 +581,11 @@ class OrdersController extends Controller
 
                     if ($container_type === 'Carton') {
                         $carton = new Carton();
-                        $carton->save();
+                        $carton->user_id = auth()->user()->id;
                         $carton->barcode = $container_barcodes[$i][0];
                         $total_cartons += $container_qtys[$i][0];
                         $carton->total_qty += $container_qtys[$i][0];
+                        $carton->save();
                         $order->cartons()->attach([['carton_id' => $carton->id, 'quantity' => $container_qtys[$i][0]]]);
                         for ($x = 0; $x < count($items[$i]); $x++) {
 
