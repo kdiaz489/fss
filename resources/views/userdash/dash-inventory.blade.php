@@ -794,7 +794,7 @@ Inventory
                         @foreach($basic_units as $unit)
                         <tr>
                             <td>{{$unit->sku}}</td>
-                            <td>{{$unit->desc}}</td>
+                            <td>{{$unit->description}}</td>
                             <td>{{$unit->pallet_qty}}</td>
                             <td>{{$unit->carton_qty}}</td>
                             <td>{{$unit->case_qty}}</td>
