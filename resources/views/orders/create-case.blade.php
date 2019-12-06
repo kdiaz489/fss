@@ -237,7 +237,7 @@ Create Case
                 <table class="table table-bordered table-striped" id="user_table">
                     <thead>
                         <tr>
-                            <th width="20%">Select Sku</th>
+                            <th width="20%">Select Items</th>
                             <th width="20%">Type</th>
                             <th width="20%">Quantity</th>
                             <th width="20%">Action</th>
