@@ -186,8 +186,9 @@
                     @if(count($orders) > 0)
                     <div class="table-responsive">
                         <table class="table table-sm orders">
+                            <thead>
                             <tr>
-                                <th width="10%"></th>
+                                <th width="2%"></th>
                                 <th width="10%"></th>
                                 <th width="10%">Order #</th>
                                 <th width="10%">Originator</th>
@@ -202,6 +203,7 @@
                                 <th width="10%"></th>
     
                             </tr>
+                            </thead>
                             @foreach($orders as $order)
     
     
@@ -438,8 +440,9 @@
                     @if(count($ordershistory) > 0)
                     <div class="table-responsive">
                         <table class="table table-sm orders">
+                            <thead>
                             <tr>
-                                <th width="10%"></th>
+                                <th width="2%"></th>
                                 <th width="10%">Order #</th>
                                 <th width="10%">Originator</th>
                                 <th width="10%">In Care Of</th>
@@ -453,6 +456,7 @@
                                 <th width="10%"></th>
     
                             </tr>
+                            </thead>
                             @foreach($ordershistory as $order)
     
     

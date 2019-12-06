@@ -183,8 +183,9 @@
                 @if(count($pallets) > 0)
                 <div class="table-responsive">
                     <table class="table table-sm">
+                        <thead>
                         <tr>
-                            <th width="10%"></th>
+                            <th width="2%"></th>
                             <th width="10%">Sku</th>
                             <th width="10%">Description</th>
                             <th width="10%">Cartons per Pallet</th>
@@ -194,6 +195,7 @@
                             <th width="10%"></th>
 
                         </tr>
+                    </thead>
                         @foreach($pallets as $pallet)
                         <tr>
                             <td><button type="button" class="btn text-denim toggle-{{$pallet->id}}"
@@ -373,9 +375,9 @@
                 @if(count($cartons) > 0)
                 <div class="table-responsive">
                     <table class="table table-sm">
+                        <thead>
                         <tr>
-                            <th width="10%"></th>
-
+                            <th width="2%"></th>
                             <th width="10%">Sku</th>
                             <th width="10%">Description</th>
                             <th width="10%">Cases per Carton</th>
@@ -385,6 +387,7 @@
                             <th width="10%"></th>
 
                         </tr>
+                        </thead>
                         @foreach($cartons as $carton)
                         <tr>
                             <td><button type="button" class="btn text-denim toggle-{{$carton->id}}"
@@ -531,9 +534,9 @@
                 @if(count($cases) > 0)
                 <div class="table-responsive">
                     <table class="table table-sm">
+                        <thead>
                         <tr>
-                            <th width="10%"></th>
-
+                            <th width="2%"></th>
                             <th width="10%">Sku</th>
                             <th width="10%">Description</th>
                             <th width="10%">Cases in Pallets</th>
@@ -544,6 +547,7 @@
                             <th width="10%"></th>
 
                         </tr>
+                        </thead>
                         @foreach($cases as $case)
                         <tr>
                             <td><button type="button" class="btn text-denim toggle-{{$case->id}}"
@@ -656,8 +660,9 @@
                 @if(count($kits) > 0)
                 <div class="table-responsive">
                     <table class="table table-sm">
+                        <thead>
                         <tr>
-                            <th width="10%"></th>
+                            <th width="2%"></th>
                             <th width="10%">Sku</th>
                             <th width="10%">Description</th>
                             <th width="10%">Kits in Pallets</th>
@@ -666,6 +671,7 @@
                             <th width="10%">Total # Kits</th>
                             <th width="10%"></th>
                         </tr>
+                        </thead>
                         @foreach($kits as $kit)
                         <tr>
                             <td><button type="button" class="btn text-denim toggle-{{$kit->id}}"
@@ -749,8 +755,8 @@
                 @if(count($basic_units) > 0)
                 <div class="table-responsive">
                     <table class="table table-sm">
+                        <thead>
                         <tr>
-
                             <th width="10%">Sku</th>
                             <th width="10%">Description</th>
                             <th width="10%">Pallet Qty</th>
@@ -761,6 +767,7 @@
                             <th width="10%"></th>
 
                         </tr>
+                        </thead>
                         @foreach($basic_units as $unit)
                         <tr>
                             <td>{{$unit->sku}}</td>
