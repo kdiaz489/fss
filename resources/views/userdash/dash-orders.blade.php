@@ -289,7 +289,7 @@ Storage Orders
                                             <tr>
                                                 <th width="10%">SKU</th>
                                                 <th width="10%">Description</th>
-                                                <th width="10%">Barcode</th>
+                                                <th width="10%">UPC</th>
                                                 <th width="10%">Container Type</th>
                                                 <th width="10%">Quantity</th>
                                             </tr>
@@ -298,7 +298,7 @@ Storage Orders
                                             <tr>
                                                 <td>{{$unit->sku}}</td>
                                                 <td>{{$unit->description}}</td>
-                                                <td></td>
+                                                <td>{{$unit->upc}}</td>
                                                 <td>Loose Item</td>
                                                 <td>{{$unit->pivot->quantity}}</td>
                                             </tr>
@@ -321,7 +321,7 @@ Storage Orders
                                             <tr>
                                                 <th width="10%">SKU</th>
                                                 <th width="10%">Description</th>
-                                                <th width="10%">Barcode</th>
+                                                <th width="10%">UPC</th>
                                                 <th width="10%">Container Type</th>
                                                 <th width="10%">Quantity</th>
                                             </tr>
@@ -330,7 +330,7 @@ Storage Orders
                                             <tr>
                                                 <td>{{$kit->sku}}</td>
                                                 <td>{{$kit->description}}</td>
-                                                <td></td>
+                                                <td>{{$kit->upc}}</td>
                                                 <td>Kit</td>
                                                 <td>{{$kit->pivot->quantity}}</td>
                                             </tr>
@@ -354,7 +354,7 @@ Storage Orders
                                             <tr>
                                                 <th width="10%">SKU</th>
                                                 <th width="10%">Description</th>
-                                                <th width="10%">Barcode</th>
+                                                <th width="10%">UPC</th>
                                                 <th width="10%">Container Type</th>
                                                 <th width="10%">Quantity</th>
                                             </tr>
@@ -363,7 +363,7 @@ Storage Orders
                                             <tr>
                                                 <td>{{$case->sku}}</td>
                                                 <td>{{$case->description}}</td>
-                                                <td></td>
+                                                <td>{{$case->upc}}</td>
                                                 <td>Case</td>
                                                 <td>{{$case->pivot->quantity}}</td>
                                             </tr>
@@ -386,7 +386,7 @@ Storage Orders
                                             <tr>
                                                 <th width="10%">SKU</th>
                                                 <th width="10%">Description</th>
-                                                <th width="10%">Barcode</th>
+                                                <th width="10%">UPC</th>
                                                 <th width="10%">Container Type</th>
                                                 <th width="10%">Quantity</th>
                                             </tr>
@@ -395,7 +395,7 @@ Storage Orders
                                             <tr>
                                                 <td>{{$carton->sku}}</td>
                                                 <td>{{$carton->description}}</td>
-                                                <td>{{$carton->barcode}}</td>
+                                                <td>{{$carton->upc}}</td>
                                                 <td>Carton</td>
                                                 <td>{{$carton->pivot->quantity}}</td>
                                             </tr>
@@ -418,7 +418,7 @@ Storage Orders
                                             <tr>
                                                 <th width="10%">SKU</th>
                                                 <th width="10%">Description</th>
-                                                <th width="10%">Barcode</th>
+                                                <th width="10%">UPC</th>
                                                 <th width="10%">Container Type</th>
                                                 <th width="10%">Quantity</th>
                                             </tr>
@@ -427,7 +427,7 @@ Storage Orders
                                             <tr>
                                                 <td>{{$pallet->sku}}</td>
                                                 <td>{{$pallet->description}}</td>
-                                                <td>{{$pallet->barcode}}</td>
+                                                <td>{{$pallet->upc}}</td>
                                                 <td>Pallet</td>
                                                 <td>{{$pallet->pivot->quantity}}</td>
                                             </tr>
@@ -525,7 +525,7 @@ Storage Orders
                                             <tr>
                                                 <th width="10%">SKU</th>
                                                 <th width="10%">Description</th>
-                                                <th width="10%">Barcode</th>
+                                                <th width="10%">UPC</th>
                                                 <th width="10%">Container Type</th>
                                                 <th width="10%">Quantity</th>
                                             </tr>
@@ -534,7 +534,7 @@ Storage Orders
                                             <tr>
                                                 <td>{{$unit->sku}}</td>
                                                 <td>{{$unit->description}}</td>
-                                                <td></td>
+                                                <td>{{$unit->upc}}</td>
                                                 <td>Loose Item</td>
                                                 <td>{{$unit->pivot->quantity}}</td>
                                             </tr>
@@ -557,7 +557,7 @@ Storage Orders
                                             <tr>
                                                 <th width="10%">SKU</th>
                                                 <th width="10%">Description</th>
-                                                <th width="10%">Barcode</th>
+                                                <th width="10%">UPC</th>
                                                 <th width="10%">Container Type</th>
                                                 <th width="10%">Quantity</th>
                                             </tr>
@@ -566,7 +566,7 @@ Storage Orders
                                             <tr>
                                                 <td>{{$kit->sku}}</td>
                                                 <td>{{$kit->description}}</td>
-                                                <td></td>
+                                                <td>{{$kit->upc}}</td>
                                                 <td>Kit</td>
                                                 <td>{{$kit->pivot->quantity}}</td>
                                             </tr>
@@ -590,7 +590,7 @@ Storage Orders
                                             <tr>
                                                 <th width="10%">SKU</th>
                                                 <th width="10%">Description</th>
-                                                <th width="10%">Barcode</th>
+                                                <th width="10%">UPC</th>
                                                 <th width="10%">Container Type</th>
                                                 <th width="10%">Quantity</th>
                                             </tr>
@@ -599,7 +599,7 @@ Storage Orders
                                             <tr>
                                                 <td>{{$case->sku}}</td>
                                                 <td>{{$case->description}}</td>
-                                                <td></td>
+                                                <td>{{$case->upc}}</td>
                                                 <td>Case</td>
                                                 <td>{{$case->pivot->quantity}}</td>
                                             </tr>
@@ -622,7 +622,7 @@ Storage Orders
                                             <tr>
                                                 <th width="10%">SKU</th>
                                                 <th width="10%">Description</th>
-                                                <th width="10%">Barcode</th>
+                                                <th width="10%">UPC</th>
                                                 <th width="10%">Container Type</th>
                                                 <th width="10%">Quantity</th>
                                             </tr>
@@ -631,7 +631,7 @@ Storage Orders
                                             <tr>
                                                 <td>{{$carton->sku}}</td>
                                                 <td>{{$carton->description}}</td>
-                                                <td></td>
+                                                <td>{{$carton->upc}}</td>
                                                 <td>Carton</td>
                                                 <td>{{$carton->pivot->quantity}}</td>
                                             </tr>
@@ -654,7 +654,7 @@ Storage Orders
                                             <tr>
                                                 <th width="10%">SKU</th>
                                                 <th width="10%">Description</th>
-                                                <th width="10%">Barcode</th>
+                                                <th width="10%">UPC</th>
                                                 <th width="10%">Container Type</th>
                                                 <th width="10%">Quantity</th>
                                             </tr>
@@ -663,7 +663,7 @@ Storage Orders
                                             <tr>
                                                 <td>{{$pallet->sku}}</td>
                                                 <td>{{$pallet->description}}</td>
-                                                <td></td>
+                                                <td>{{$pallet->upc}}</td>
                                                 <td>Pallet</td>
                                                 <td>{{$pallet->pivot->quantity}}</td>
                                             </tr>

@@ -530,11 +530,11 @@ Inventory
 
                             @if($carton->cases->all())
                                 @foreach ($carton->cases->all() as $case)
-                                    <tr class="bg-whitewash">
+                                    <tr>
                                         <td class="py-0 border-0"></td>                                    
                                         <td class="py-0 border-0" colspan="12">
                                             <div id="details{{$carton->id}}" class="accordion-body details collapse">
-                                                    <table class="table table-sm">
+                                                    <table class="table table-sm bg-whitewash">
                                                             <thead>
                                                                 <tr>
                                                                     <th width="10%">SKU</th>

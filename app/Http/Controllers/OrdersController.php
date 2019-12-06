@@ -209,7 +209,7 @@ class OrdersController extends Controller
                     if ($container_type === 'Pallet') {
                         $pallet = new Pallet();
                         $pallet->user_id = auth()->user()->id;
-                        $pallet->barcode = $container_barcodes[$i][0];
+                        $pallet->upc = $container_barcodes[$i][0];
                         $total_pallets += $container_qtys[$i][0];
                         $pallet->total_qty += $container_qtys[$i][0];
                         $pallet->save();
@@ -237,7 +237,7 @@ class OrdersController extends Controller
                             for($y = 0; $y < count($carton_qty[$i]); $y++){
                                 $carton = new Carton();
                                 $total_cartons += $carton_qty[$i][$y];
-                                $carton->barcode = $carton_barcode[$i][$y];
+                                $carton->upc = $carton_barcode[$i][$y];
                                 $carton->save();
                                 for($z = 0; $z < count($carton_items[$i][$y]); $z++){
                                 if (Basic_Unit::where('upc', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->exists()) {
@@ -283,7 +283,7 @@ class OrdersController extends Controller
                     if ($container_type === 'Carton') {
                         $carton = new Carton();
                         $carton->user_id = auth()->user()->id;
-                        $carton->barcode = $container_barcodes[$i][0];
+                        $carton->upc = $container_barcodes[$i][0];
                         $total_cartons += $container_qtys[$i][0];
                         $carton->total_qty += $container_qtys[$i][0];
                         $carton->save();
@@ -488,7 +488,7 @@ class OrdersController extends Controller
                     if ($container_type === 'Pallet') {
                         $pallet = new Pallet();
                         $pallet->user_id = auth()->user()->id;
-                        $pallet->barcode = $container_barcodes[$i][0];
+                        $pallet->upc = $container_barcodes[$i][0];
                         $total_pallets += $container_qtys[$i][0];
                         $pallet->total_qty += $container_qtys[$i][0];
                         $pallet->save();
@@ -536,7 +536,7 @@ class OrdersController extends Controller
                                 $carton = new Carton();
                                 $carton->user_id = auth()->user()->id;
                                 $total_cartons += $carton_qty[$i][$y];
-                                $carton->barcode = $carton_barcode[$i][$y];
+                                $carton->upc = $carton_barcode[$i][$y];
                                 $carton->save();
                                 for($z = 0; $z < count($carton_items[$i][$y]); $z++){
                                 if (Basic_Unit::where('upc', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->exists()) {
@@ -582,7 +582,7 @@ class OrdersController extends Controller
                     if ($container_type === 'Carton') {
                         $carton = new Carton();
                         $carton->user_id = auth()->user()->id;
-                        $carton->barcode = $container_barcodes[$i][0];
+                        $carton->upc = $container_barcodes[$i][0];
                         $total_cartons += $container_qtys[$i][0];
                         $carton->total_qty += $container_qtys[$i][0];
                         $carton->save();
@@ -763,7 +763,7 @@ class OrdersController extends Controller
 
                     if ($container_type === 'Pallet') {
                         $pallet = new Pallet();
-                        $pallet->barcode = $container_barcodes[$i][0];
+                        $pallet->upc = $container_barcodes[$i][0];
                         $pallet->save();
                         $total_pallets += $container_qtys[$i][0];
                         $pallet->total_qty += $container_qtys[$i][0];
@@ -810,7 +810,7 @@ class OrdersController extends Controller
                             for($y = 0; $y < count($carton_barcode[$i]); $y++){
                                 $carton = new Carton();
                                 $total_cartons += $carton_qty[$i][$y];
-                                $carton->barcode = $carton_barcode[$i][$y];
+                                $carton->upc = $carton_barcode[$i][$y];
                                 $carton->save();
                                 for($z = 0; $z < count($carton_items[$i][$y]); $z++){
                                 if (Basic_Unit::where('upc', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->exists()) {
@@ -856,7 +856,7 @@ class OrdersController extends Controller
                     if ($container_type === 'Carton') {
                         $carton = new Carton();
                         $carton->save();
-                        $carton->barcode = $container_barcodes[$i][0];
+                        $carton->upc = $container_barcodes[$i][0];
                         $total_cartons += $container_qtys[$i][0];
                         $carton->total_qty += $container_qtys[$i][0];
                         $order->cartons()->attach([['carton_id' => $carton->id, 'quantity' => $container_qtys[$i][0]]]);
