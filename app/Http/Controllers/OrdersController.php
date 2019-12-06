@@ -1574,7 +1574,7 @@ class OrdersController extends Controller
         //$order_history = Order::find($id);
         //$order_history = $order_history->toArray();
         //OrderHistory::insert($order_history);
-        Mail::to($useremail)->send(new StorUpdateMail($order));
+        //Mail::to($useremail)->send(new StorUpdateMail($order));
         Mail::to('ship@fillstorship.com')->send(new StorUpdateMail($order));
         return redirect()->back()->with('success', 'Storage Order has been updated.');
     }
