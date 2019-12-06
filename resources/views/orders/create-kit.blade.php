@@ -211,9 +211,14 @@ Create Kit
 
         <div class="form-row justify-content-center mb-4">
 
-            <div class="col-md-8">
-                <label for="sku">Kit Sku</label>
+            <div class="col-md-4">
+                <label for="sku">Individual Items Sku</label>
                 <input type="text" name="sku" class="form-control form-control-sm" placeholder="Sku #">
+            </div>
+
+            <div class="col-md-4">
+                <label for="upc">UPC/Barcode</label>
+                <input type="text" name="upc" class="form-control form-control-sm" placeholder="UPC #">
             </div>
 
 

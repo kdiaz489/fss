@@ -211,11 +211,15 @@ Create Case
 
         <div class="form-row justify-content-center mb-4">
 
-            <div class="col-md-8">
-                <label for="sku">Case Sku</label>
+            <div class="col-md-4">
+                <label for="sku">Individual Items Sku</label>
                 <input type="text" name="sku" class="form-control form-control-sm" value="{{ old('sku')}}"
                     placeholder="Sku #">
                 <div style="font-weight: 700; color:red">{{$errors->first('sku')}}</div>
+            </div>
+            <div class="col-md-4">
+                <label for="upc">UPC/Barcode</label>
+                <input type="text" name="upc" class="form-control form-control-sm" placeholder="UPC #">
             </div>
         </div>
 

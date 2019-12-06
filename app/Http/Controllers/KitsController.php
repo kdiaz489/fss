@@ -82,6 +82,7 @@ class KitsController extends Controller
             $kit->user_id = auth()->user()->id;
             $kit->company = auth()->user()->company_name;
             $kit->sku = $request->sku;
+            $kit->upc = $request->upc;
             $kit->description = $request->desc;
             $kit->save();
 
