@@ -57,6 +57,12 @@ class BasicUnitsController extends Controller
         $unit->sku = $request->sku;
         $unit->user_id = auth()->user()->id;
         $unit->upc = $request->upc;
+        $unit->loose_item_qty = 0;
+        $unit->kit_qty = 0;
+        $unit->case_qty = 0;
+        $unit->carton_qty = 0;
+        $unit->pallet_qty = 0;
+        $unit->total_qty = 0;
         $unit->description = $request->desc;
         $unit->save();
         return redirect('/basicunit')->with('success', 'Product has been added - Sku: ' . $unit->sku);
