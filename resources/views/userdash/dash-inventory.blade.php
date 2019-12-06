@@ -234,11 +234,10 @@ Inventory
                         <thead>
                             <tr>
                                     <th width="10%"></th>
-                                    <th width="10%">Pallet Sku</th>
+                                    <th width="10%">UPC</th>
                                     <th width="10%">Date Received</th>
                                     <th width="10%">Quantity</th>
                                     <th width="10%">Location</th>
-                                    <th width="10%">Notes</th>
                                     <th width="10%"></th>
         
                                 </tr>
@@ -248,8 +247,8 @@ Inventory
                         <tr>
                             <td><button type="button" class="btn text-denim toggle-{{$pallet->id}}" id="toggle-details{{$pallet->id}}" data-toggle="collapse" data-target="#details{{$pallet->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
                             
-                            <td>{{$pallet->sku}}</td>
-                            <td>{{$pallet->created_at->format('H:i:s m/d/y')}}</td>
+                            <td>{{$pallet->upc}}</td>
+                            <td>{{$pallet->created_at->format('m/d/y')}}</td>
                             <td>{{$pallet->total_qty}}</td>
                             <td></td>
                             <td></td>
@@ -421,11 +420,9 @@ Inventory
                     <table class="table table-sm">
                         <tr>
                             <th width="10%"></th>
-                            <th width="10%">Sku</th>
-                            <th width="10%">Description</th>
                             <th width="10%">UPC</th>
+                            <th width="10%">Date Received</th>
                             <th width="10%">Quantity</th>
-                            <th width="10%">Qty/Carton</th>
                             <th width="10%">Location</th>
                             <th width="10%"></th>
 
@@ -433,12 +430,9 @@ Inventory
                         @foreach($cartons as $carton)
                         <tr>
                             <td><button type="button" class="btn text-denim toggle-{{$carton->id}}" id="toggle-details{{$carton->id}}" data-toggle="collapse" data-target="#details{{$carton->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
-                            
-                            <td>{{$carton->sku}}</td>
-                            <td>{{$carton->description}}</td>
-                            <td></td>
+                            <td>{{$carton->upc}}</td>
+                            <td>{{$carton->created_at->format('m/d/y')}}</td>
                             <td>{{$carton->total_qty}}</td>
-                            <td></td>
                             <td></td>
                             <td>
                                 <div style="margin-left: 30%">
