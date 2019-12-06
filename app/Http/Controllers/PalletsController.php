@@ -82,6 +82,7 @@ class PalletsController extends Controller
             $pallet->user_id = auth()->user()->id;
             $pallet->company = auth()->user()->company_name;
             $pallet->sku = $request->sku;
+            $pallet->upc = $request->upc;
             $pallet->description = $request->desc;
             $pallet->save();
 

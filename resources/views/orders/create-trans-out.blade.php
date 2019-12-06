@@ -278,8 +278,8 @@ Transfer Out
                         <div class="form-row justify-content-center mb-4">
 
                             <div class="col-md-12">
-                                <label for="barcode">Barcode</label>
-                                <input type="text" name="barcode" class="form-control" placeholder="Barcode">
+                                <label for="upc">UPC/Barcode</label>
+                                <input type="text" name="upc" class="form-control" placeholder="#">
                             </div>
                         </div>
 
@@ -354,9 +354,9 @@ Transfer Out
                                                 <td  width="20%">
                                                     <select name="items[0][]" class="form-control select_transout_skus required">
                                                         <option value="">Choose Item</option>
-                                                        @if (count($cases) > 0) <optgroup label="Cases"> @foreach ($cases as $case) <option value="{{$case->sku}}">{{$case->sku}}</option> @endforeach</optgroup> @else<option value="" disabled>No Cases Available</option> @endif 
-                                                        @if (count($kits) > 0) <optgroup label="Kits"> @foreach ($kits as $kit) <option value="{{$kit->sku}}">{{$kit->sku}}</option> @endforeach</optgroup> @else<option value="" disabled>No Kits Available</option> @endif 
-                                                        @if (count($units) > 0) <optgroup label="Units"> @foreach ($units as $unit) <option value="{{$unit->sku}}">{{$unit->sku}}</option> @endforeach</optgroup> @else<option value="" disabled>No Units Available</option> @endif 
+                                                        @if (count($cases) > 0) <optgroup label="Cases"> @foreach ($cases as $case) <option value="{{$case->upc}}">{{$case->upc}}</option> @endforeach</optgroup> @else<option value="" disabled>No Cases Available</option> @endif 
+                                                        @if (count($kits) > 0) <optgroup label="Kits"> @foreach ($kits as $kit) <option value="{{$kit->upc}}">{{$kit->upc}}</option> @endforeach</optgroup> @else<option value="" disabled>No Kits Available</option> @endif 
+                                                        @if (count($units) > 0) <optgroup label="Units"> @foreach ($units as $unit) <option value="{{$unit->upc}}">{{$unit->upc}}</option> @endforeach</optgroup> @else<option value="" disabled>No Units Available</option> @endif 
     
                                                     </select>
                                                 </td>
@@ -482,9 +482,9 @@ Transfer Out
                 html += '<table class="table"><thead></thead><tbody><tr>';
                 html += '<td width="20%"><select name="carton_items[0][][]" class="form-control select_carton_skus required">'
                 html += '<option value="">Choose Item</option>'
-                html += '@if (count($cases) > 0) <optgroup label="Cases"> @foreach ($cases as $case) <option value="{{$case->sku}}">{{$case->sku}}</option> @endforeach</optgroup> @else<option value="" disabled>No Cases Available</option> @endif '
-                html += '@if (count($kits) > 0) <optgroup label="Kits"> @foreach ($kits as $kit) <option value="{{$kit->sku}}">{{$kit->sku}}</option> @endforeach</optgroup> @else<option value="" disabled>No Kits Available</option> @endif '
-                html += '@if (count($units) > 0) <optgroup label="Units"> @foreach ($units as $unit) <option value="{{$unit->sku}}">{{$unit->sku}}</option> @endforeach</optgroup> @else<option value="" disabled>No Units Available</option> @endif '
+                html += '@if (count($cases) > 0) <optgroup label="Cases"> @foreach ($cases as $case) <option value="{{$case->upc}}">{{$case->upc}}</option> @endforeach</optgroup> @else<option value="" disabled>No Cases Available</option> @endif '
+                html += '@if (count($kits) > 0) <optgroup label="Kits"> @foreach ($kits as $kit) <option value="{{$kit->upc}}">{{$kit->upc}}</option> @endforeach</optgroup> @else<option value="" disabled>No Kits Available</option> @endif '
+                html += '@if (count($units) > 0) <optgroup label="Units"> @foreach ($units as $unit) <option value="{{$unit->upc}}">{{$unit->upc}}</option> @endforeach</optgroup> @else<option value="" disabled>No Units Available</option> @endif '
                 html += '</select></td>'
                 html += '<td width="20%"><input type="text" name="carton_item_qty[0][][]" class="form-control required carton_item_qty" placeholder="Quantity #"/></td>';
                 html += '<td width="20%"><button type="button" name="remove" id="" class="btn btn-danger btn-sm remove circle"><i class="fas fa-lg fa-minus"></i></button>\
@@ -550,9 +550,9 @@ Transfer Out
         html = '<tr>';
         html += '<td><select name="items['+count+'][]" class="form-control select_transout_skus required">'
         html += '<option value="">Choose Item</option>'
-        html += '@if (count($cases) > 0) <optgroup label="Cases"> @foreach ($cases as $case) <option value="{{$case->sku}}">{{$case->sku}}</option> @endforeach</optgroup> @else<option value="" disabled>No Cases Available</option> @endif '
-        html += '@if (count($kits) > 0) <optgroup label="Kits"> @foreach ($kits as $kit) <option value="{{$kit->sku}}">{{$kit->sku}}</option> @endforeach</optgroup> @else<option value="" disabled>No Kits Available</option> @endif '
-        html += '@if (count($units) > 0) <optgroup label="Units"> @foreach ($units as $unit) <option value="{{$unit->sku}}">{{$unit->sku}}</option> @endforeach</optgroup> @else<option value="" disabled>No Units Available</option> @endif '
+        html += '@if (count($cases) > 0) <optgroup label="Cases"> @foreach ($cases as $case) <option value="{{$case->upc}}">{{$case->upc}}</option> @endforeach</optgroup> @else<option value="" disabled>No Cases Available</option> @endif '
+        html += '@if (count($kits) > 0) <optgroup label="Kits"> @foreach ($kits as $kit) <option value="{{$kit->upc}}">{{$kit->upc}}</option> @endforeach</optgroup> @else<option value="" disabled>No Kits Available</option> @endif '
+        html += '@if (count($units) > 0) <optgroup label="Units"> @foreach ($units as $unit) <option value="{{$unit->upc}}">{{$unit->upc}}</option> @endforeach</optgroup> @else<option value="" disabled>No Units Available</option> @endif '
         html += '</select></td>'
         html += '<td><input type="text" name="item_qty['+count+'][]" class="form-control required item_qty" placeholder="Quantity #"/></td>';
         html += '<td><button type="button" name="remove" id="" class="btn btn-danger btn-sm remove circle"><i class="fas fa-lg fa-minus"></i></button>\
@@ -567,9 +567,9 @@ Transfer Out
         html = '<tr>';
         html += '<td><select name="carton_items['+count+'][][]" class="form-control select_carton_skus required">'
         html += '<option value="">Choose Item</option>'
-        html += '@if (count($cases) > 0) <optgroup label="Cases"> @foreach ($cases as $case) <option value="{{$case->sku}}">{{$case->sku}}</option> @endforeach</optgroup> @else<option value="" disabled>No Cases Available</option> @endif '
-        html += '@if (count($kits) > 0) <optgroup label="Kits"> @foreach ($kits as $kit) <option value="{{$kit->sku}}">{{$kit->sku}}</option> @endforeach</optgroup> @else<option value="" disabled>No Kits Available</option> @endif '
-        html += '@if (count($units) > 0) <optgroup label="Units"> @foreach ($units as $unit) <option value="{{$unit->sku}}">{{$unit->sku}}</option> @endforeach</optgroup> @else<option value="" disabled>No Units Available</option> @endif '
+        html += '@if (count($cases) > 0) <optgroup label="Cases"> @foreach ($cases as $case) <option value="{{$case->upc}}">{{$case->upc}}</option> @endforeach</optgroup> @else<option value="" disabled>No Cases Available</option> @endif '
+        html += '@if (count($kits) > 0) <optgroup label="Kits"> @foreach ($kits as $kit) <option value="{{$kit->upc}}">{{$kit->upc}}</option> @endforeach</optgroup> @else<option value="" disabled>No Kits Available</option> @endif '
+        html += '@if (count($units) > 0) <optgroup label="Units"> @foreach ($units as $unit) <option value="{{$unit->upc}}">{{$unit->upc}}</option> @endforeach</optgroup> @else<option value="" disabled>No Units Available</option> @endif '
         html += '</select></td>'
         html += '<td><input type="text" name="carton_item_qty['+count+'][][]" class="form-control required carton_item_qty" placeholder="Quantity #"/></td>';
         html += '<td><button type="button" name="remove" id="" class="btn btn-danger btn-sm remove circle"><i class="fas fa-lg fa-minus"></i></button>\

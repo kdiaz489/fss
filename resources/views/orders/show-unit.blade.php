@@ -369,6 +369,11 @@
               </tr>
 
               <tr>
+                    <th scope="row">UPC/Barcode</th>
+                    <td>{{$basic_unit->upc}}</td>
+                </tr>
+
+              <tr>
                   <th scope="row">Description</th>
                   <td>{{$basic_unit->description}}</td>
               </tr>

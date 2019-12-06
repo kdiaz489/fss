@@ -79,6 +79,7 @@ class CartonsController extends Controller
             $carton->user_id = auth()->user()->id;
             $carton->company = auth()->user()->company_name;
             $carton->sku = $request->sku;
+            $carton->upc = $request->upc;
             $carton->description = $request->desc;
             $carton->save();
 

@@ -210,6 +210,13 @@ Create Unit
                 <div style="font-weight: 700; color:red">{{$errors->first('sku')}}</div>
             </div>
 
+            <div class="col-md-6">
+                <label for="upc">UPC/Barcode</label>
+                <input type="text" name="upc" class="form-control form-control-sm" value="{{ old('upc')}}"
+                    placeholder="#">
+                <div style="font-weight: 700; color:red">{{$errors->first('upc')}}</div>
+            </div>
+
         </div>
 
         <div class="form-row justify-content-center mb-3">

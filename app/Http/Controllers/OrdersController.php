@@ -216,19 +216,19 @@ class OrdersController extends Controller
                         $order->pallets()->attach([['pallet_id' => $pallet->id, 'quantity' => $container_qtys[$i][0]]]);
                         for ($y = 0; $y < count($items[$i]); $y++) {
 
-                            if (Basic_Unit::where('sku', $items[$i][$y])->where('user_id', auth()->user()->id)->exists()) {
+                            if (Basic_Unit::where('upc', $items[$i][$y])->where('user_id', auth()->user()->id)->exists()) {
                                 $total_units += $item_qty[$i][$y];
-                                $unit = Basic_Unit::where('sku', $items[$i][$y])->where('user_id', auth()->user()->id)->first();
+                                $unit = Basic_Unit::where('upc', $items[$i][$y])->where('user_id', auth()->user()->id)->first();
                                 $pallet->basic_units()->attach([['basic__unit_id' => $unit->id, 'quantity' => $item_qty[$i][$y]]]);
                             }
-                            if (Kit::where('sku', $items[$i][$y])->where('user_id', auth()->user()->id)->exists()) {
+                            if (Kit::where('upc', $items[$i][$y])->where('user_id', auth()->user()->id)->exists()) {
                                 $total_kits += $item_qty[$i][$y];
-                                $kit = Kit::where('sku', $items[$i][$y])->where('user_id', auth()->user()->id)->first();
+                                $kit = Kit::where('upc', $items[$i][$y])->where('user_id', auth()->user()->id)->first();
                                 $pallet->kits()->attach([['kit_id' => $kit->id, 'quantity' => $item_qty[$i][$y]]]);
                             }
-                            if (Cases::where('sku', $items[$i][$y])->where('user_id', auth()->user()->id)->exists()) {
+                            if (Cases::where('upc', $items[$i][$y])->where('user_id', auth()->user()->id)->exists()) {
                                 $total_cases += $item_qty[$i][$y];
-                                $case = Cases::where('sku', $items[$i][$y])->where('user_id', auth()->user()->id)->first();
+                                $case = Cases::where('upc', $items[$i][$y])->where('user_id', auth()->user()->id)->first();
                                 $pallet->cases()->attach([['cases_id' => $case->id, 'quantity' => $item_qty[$i][$y]]]);
                             }
                         }
@@ -240,9 +240,9 @@ class OrdersController extends Controller
                                 $carton->barcode = $carton_barcode[$i][$y];
                                 $carton->save();
                                 for($z = 0; $z < count($carton_items[$i][$y]); $z++){
-                                if (Basic_Unit::where('sku', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->exists()) {
+                                if (Basic_Unit::where('upc', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->exists()) {
                                     $total_units += $carton_item_qty[$i][$y][$z];
-                                    $unit = Basic_Unit::where('sku', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->first();
+                                    $unit = Basic_Unit::where('upc', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->first();
                                     if ($unit->total_qty < $carton_item_qty[$i][$y][$z]) {
                                         throw new \Exception('Quantity of units in carton is greater than quantity at hand.');
                                     }
@@ -251,9 +251,9 @@ class OrdersController extends Controller
                                     }
                                     
                                 }
-                                if (Kit::where('sku', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->exists()) {
+                                if (Kit::where('upc', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->exists()) {
                                     $total_kits += $carton_item_qty[$i][$y][$z];
-                                    $kit = Kit::where('sku', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->first();
+                                    $kit = Kit::where('upc', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->first();
                                     if ($kit->total_qty < $carton_item_qty[$i][$y][$z]) {
                                         throw new \Exception('Quantity of kits in carton is greater than quantity at hand.');
                                     }
@@ -262,9 +262,9 @@ class OrdersController extends Controller
                                     }
                                     
                                 }
-                                if (Cases::where('sku', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->exists()) {
+                                if (Cases::where('upc', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->exists()) {
                                     $total_cases += $carton_item_qty[$i][$y][$z];
-                                    $case = Cases::where('sku', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->first();
+                                    $case = Cases::where('upc', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->first();
                                     if ($case->total_qty < $carton_item_qty[$i][$y][$z]) {
                                         throw new \Exception('Quantity of cases in carton is greater than quantity at hand.');
                                     }
@@ -290,19 +290,19 @@ class OrdersController extends Controller
                         $order->cartons()->attach([['carton_id' => $carton->id, 'quantity' => $container_qtys[$i][0]]]);
                         for ($x = 0; $x < count($items[$i]); $x++) {
 
-                            if (Basic_Unit::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
+                            if (Basic_Unit::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
                                 $total_units += $item_qty[$i][$x];
-                                $unit = Basic_Unit::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
+                                $unit = Basic_Unit::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
                                 $carton->basic_units()->attach([['basic__unit_id' => $unit->id, 'quantity' => $item_qty[$i][$x]]]);
                             }
-                            if (Kit::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
+                            if (Kit::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
                                 $total_kits += $item_qty[$i][$x];
-                                $kit = Kit::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
+                                $kit = Kit::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
                                 $carton->kits()->attach([['kit_id' => $kit->id, 'quantity' => $item_qty[$i][$x]]]);
                             }
-                            if (Cases::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
+                            if (Cases::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
                                 $total_cases += $item_qty[$i][$x];
-                                $case = Cases::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
+                                $case = Cases::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
                                 $carton->cases()->attach([['cases_id' => $case->id, 'quantity' => $item_qty[$i][$x]]]);
                             }
                         }
@@ -311,19 +311,19 @@ class OrdersController extends Controller
 
                         for ($x = 0; $x < count($items[$i]); $x++) {
 
-                            if (Basic_Unit::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
+                            if (Basic_Unit::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
                                 $total_units += $item_qty[$i][$x];
-                                $unit = Basic_Unit::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
+                                $unit = Basic_Unit::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
                                 $order->basic_units()->attach([['basic__unit_id' => $unit->id, 'quantity' => $item_qty[$i][$x]]]);
                             }
-                            if (Kit::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
+                            if (Kit::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
                                 $total_kits += $item_qty[$i][$x];
-                                $kit = Kit::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
+                                $kit = Kit::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
                                 $order->kits()->attach([['kit_id' => $kit->id, 'quantity' => $item_qty[$i][$x]]]);
                             }
-                            if (Cases::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
+                            if (Cases::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
                                 $total_cases += $item_qty[$i][$x];
-                                $case = Cases::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
+                                $case = Cases::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
                                 $order->cases()->attach([['cases_id' => $case->id, 'quantity' => $item_qty[$i][$x]]]);
                             }
                         }
@@ -495,9 +495,9 @@ class OrdersController extends Controller
                         $order->pallets()->attach([['pallet_id' => $pallet->id, 'quantity' => $container_qtys[$i][0]]]);
                         for ($y = 0; $y < count($items[$i]); $y++) {
 
-                            if (Basic_Unit::where('sku', $items[$i][$y])->where('user_id', auth()->user()->id)->exists()) {
+                            if (Basic_Unit::where('upc', $items[$i][$y])->where('user_id', auth()->user()->id)->exists()) {
                                 $total_units += $item_qty[$i][$y];
-                                $unit = Basic_Unit::where('sku', $items[$i][$y])->where('user_id', auth()->user()->id)->first();
+                                $unit = Basic_Unit::where('upc', $items[$i][$y])->where('user_id', auth()->user()->id)->first();
                                 if ($unit->total_qty < $item_qty[$i][$y]) {
                                     throw new \Exception('Quantity of units on pallet is greater than quantity at hand.');
                                 }
@@ -506,9 +506,9 @@ class OrdersController extends Controller
                                 }
                                 
                             }
-                            if (Kit::where('sku', $items[$i][$y])->where('user_id', auth()->user()->id)->exists()) {
+                            if (Kit::where('upc', $items[$i][$y])->where('user_id', auth()->user()->id)->exists()) {
                                 $total_kits += $item_qty[$i][$y];
-                                $kit = Kit::where('sku', $items[$i][$y])->where('user_id', auth()->user()->id)->first();
+                                $kit = Kit::where('upc', $items[$i][$y])->where('user_id', auth()->user()->id)->first();
                                 if ($kit->total_qty < $item_qty[$i][$y]) {
                                     throw new \Exception('Quantity of kits on pallet is greater than quantity at hand.');
                                 }
@@ -517,9 +517,9 @@ class OrdersController extends Controller
                                 }
                                 
                             }
-                            if (Cases::where('sku', $items[$i][$y])->where('user_id', auth()->user()->id)->exists()) {
+                            if (Cases::where('upc', $items[$i][$y])->where('user_id', auth()->user()->id)->exists()) {
                                 $total_cases += $item_qty[$i][$y];
-                                $case = Cases::where('sku', $items[$i][$y])->where('user_id', auth()->user()->id)->first();
+                                $case = Cases::where('upc', $items[$i][$y])->where('user_id', auth()->user()->id)->first();
                                 if ($case->total_qty < $item_qty[$i][$y]) {
                                     throw new \Exception('Quantity of cases on pallet is greater than quantity at hand.');
                                 }
@@ -539,9 +539,9 @@ class OrdersController extends Controller
                                 $carton->barcode = $carton_barcode[$i][$y];
                                 $carton->save();
                                 for($z = 0; $z < count($carton_items[$i][$y]); $z++){
-                                if (Basic_Unit::where('sku', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->exists()) {
+                                if (Basic_Unit::where('upc', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->exists()) {
                                     $total_units += $carton_item_qty[$i][$y][$z];
-                                    $unit = Basic_Unit::where('sku', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->first();
+                                    $unit = Basic_Unit::where('upc', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->first();
                                     if ($unit->total_qty < $carton_item_qty[$i][$y][$z]) {
                                         throw new \Exception('Quantity of units in carton is greater than quantity at hand.');
                                     }
@@ -550,9 +550,9 @@ class OrdersController extends Controller
                                     }
                                     
                                 }
-                                if (Kit::where('sku', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->exists()) {
+                                if (Kit::where('upc', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->exists()) {
                                     $total_kits += $carton_item_qty[$i][$y][$z];
-                                    $kit = Kit::where('sku', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->first();
+                                    $kit = Kit::where('upc', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->first();
                                     if ($kit->total_qty < $carton_item_qty[$i][$y][$z]) {
                                         throw new \Exception('Quantity of kits in carton is greater than quantity at hand.');
                                     }
@@ -561,9 +561,9 @@ class OrdersController extends Controller
                                     }
                                     
                                 }
-                                if (Cases::where('sku', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->exists()) {
+                                if (Cases::where('upc', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->exists()) {
                                     $total_cases += $carton_item_qty[$i][$y][$z];
-                                    $case = Cases::where('sku', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->first();
+                                    $case = Cases::where('upc', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->first();
                                     if ($case->total_qty < $carton_item_qty[$i][$y][$z]) {
                                         throw new \Exception('Quantity of cases in carton is greater than quantity at hand.');
                                     }
@@ -589,9 +589,9 @@ class OrdersController extends Controller
                         $order->cartons()->attach([['carton_id' => $carton->id, 'quantity' => $container_qtys[$i][0]]]);
                         for ($x = 0; $x < count($items[$i]); $x++) {
 
-                            if (Basic_Unit::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
+                            if (Basic_Unit::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
                                 $total_units += $item_qty[$i][$x];
-                                $unit = Basic_Unit::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
+                                $unit = Basic_Unit::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
                                 if ($unit->total_qty < $item_qty[$i][$x]) {
                                     throw new \Exception('Quantity of units in carton is greater than quantity at hand.');
                                 }
@@ -600,9 +600,9 @@ class OrdersController extends Controller
                                 }
                                 
                             }
-                            if (Kit::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
+                            if (Kit::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
                                 $total_kits += $item_qty[$i][$x];
-                                $kit = Kit::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
+                                $kit = Kit::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
                                 if ($kit->total_qty < $item_qty[$i][$x]) {
                                     throw new \Exception('Quantity of kits in carton is greater than quantity at hand.');
                                 }
@@ -611,9 +611,9 @@ class OrdersController extends Controller
                                 }
                                 
                             }
-                            if (Cases::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
+                            if (Cases::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
                                 $total_cases += $item_qty[$i][$x];
-                                $case = Cases::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
+                                $case = Cases::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
                                 if ($case->total_qty < $item_qty[$i][$x]) {
                                     throw new \Exception('Quantity of cases in carton is greater than quantity at hand.');
                                 }
@@ -629,9 +629,9 @@ class OrdersController extends Controller
 
                         for ($x = 0; $x < count($items[$i]); $x++) {
 
-                            if (Basic_Unit::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
+                            if (Basic_Unit::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
                                 $total_units += $item_qty[$i][$x];
-                                $unit = Basic_Unit::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
+                                $unit = Basic_Unit::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
                                 if ($unit->total_qty < $item_qty[$i][$x]) {
                                     throw new \Exception('Quantity of units in loose item order is greater than quantity at hand.');
                                 }
@@ -640,9 +640,9 @@ class OrdersController extends Controller
                                 }
                                 
                             }
-                            if (Kit::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
+                            if (Kit::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
                                 $total_kits += $item_qty[$i][$x];
-                                $kit = Kit::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
+                                $kit = Kit::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
                                 if ($kit->total_qty < $item_qty[$i][$x]) {
                                     throw new \Exception('Quantity of kits in loose item order is greater than quantity at hand.');
                                 }
@@ -651,9 +651,9 @@ class OrdersController extends Controller
                                 }
                                 
                             }
-                            if (Cases::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
+                            if (Cases::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
                                 $total_cases += $item_qty[$i][$x];
-                                $case = Cases::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
+                                $case = Cases::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
                                 if ($case->total_qty < $item_qty[$i][$x]) {
                                     throw new \Exception('Quantity of cases in loose item order is greater than quantity at hand.');
                                 }
@@ -770,9 +770,9 @@ class OrdersController extends Controller
                         $order->pallets()->attach([['pallet_id' => $pallet->id, 'quantity' => $container_qtys[$i][0]]]);
                         for ($y = 0; $y < count($items[$i]); $y++) {
 
-                            if (Basic_Unit::where('sku', $items[$i][$y])->where('user_id', auth()->user()->id)->exists()) {
+                            if (Basic_Unit::where('upc', $items[$i][$y])->where('user_id', auth()->user()->id)->exists()) {
                                 $total_units += $item_qty[$i][$y];
-                                $unit = Basic_Unit::where('sku', $items[$i][$y])->where('user_id', auth()->user()->id)->first();
+                                $unit = Basic_Unit::where('upc', $items[$i][$y])->where('user_id', auth()->user()->id)->first();
                                 if ($unit->total_qty < $item_qty[$i][$y]) {
                                     throw new \Exception('Quantity of units on pallet is greater than quantity at hand.');
                                 }
@@ -781,9 +781,9 @@ class OrdersController extends Controller
                                 }
                                 
                             }
-                            if (Kit::where('sku', $items[$i][$y])->where('user_id', auth()->user()->id)->exists()) {
+                            if (Kit::where('upc', $items[$i][$y])->where('user_id', auth()->user()->id)->exists()) {
                                 $total_kits += $item_qty[$i][$y];
-                                $kit = Kit::where('sku', $items[$i][$y])->where('user_id', auth()->user()->id)->first();
+                                $kit = Kit::where('upc', $items[$i][$y])->where('user_id', auth()->user()->id)->first();
                                 if ($kit->total_qty < $item_qty[$i][$y]) {
                                     throw new \Exception('Quantity of kits on pallet is greater than quantity at hand.');
                                 }
@@ -792,9 +792,9 @@ class OrdersController extends Controller
                                 }
                                 
                             }
-                            if (Cases::where('sku', $items[$i][$y])->where('user_id', auth()->user()->id)->exists()) {
+                            if (Cases::where('upc', $items[$i][$y])->where('user_id', auth()->user()->id)->exists()) {
                                 $total_cases += $item_qty[$i][$y];
-                                $case = Cases::where('sku', $items[$i][$y])->where('user_id', auth()->user()->id)->first();
+                                $case = Cases::where('upc', $items[$i][$y])->where('user_id', auth()->user()->id)->first();
                                 if ($case->total_qty < $item_qty[$i][$y]) {
                                     throw new \Exception('Quantity of cases on pallet is greater than quantity at hand.');
                                 }
@@ -813,9 +813,9 @@ class OrdersController extends Controller
                                 $carton->barcode = $carton_barcode[$i][$y];
                                 $carton->save();
                                 for($z = 0; $z < count($carton_items[$i][$y]); $z++){
-                                if (Basic_Unit::where('sku', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->exists()) {
+                                if (Basic_Unit::where('upc', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->exists()) {
                                     $total_units += $carton_item_qty[$i][$y][$z];
-                                    $unit = Basic_Unit::where('sku', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->first();
+                                    $unit = Basic_Unit::where('upc', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->first();
                                     if ($unit->total_qty < $carton_item_qty[$i][$y][$z]) {
                                         throw new \Exception('Quantity of units in carton is greater than quantity at hand.');
                                     }
@@ -824,9 +824,9 @@ class OrdersController extends Controller
                                     }
                                     
                                 }
-                                if (Kit::where('sku', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->exists()) {
+                                if (Kit::where('upc', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->exists()) {
                                     $total_kits += $carton_item_qty[$i][$y][$z];
-                                    $kit = Kit::where('sku', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->first();
+                                    $kit = Kit::where('upc', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->first();
                                     if ($kit->total_qty < $carton_item_qty[$i][$y][$z]) {
                                         throw new \Exception('Quantity of kits in carton is greater than quantity at hand.');
                                     }
@@ -835,9 +835,9 @@ class OrdersController extends Controller
                                     }
                                     
                                 }
-                                if (Cases::where('sku', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->exists()) {
+                                if (Cases::where('upc', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->exists()) {
                                     $total_cases += $carton_item_qty[$i][$y][$z];
-                                    $case = Cases::where('sku', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->first();
+                                    $case = Cases::where('upc', $carton_items[$i][$y][$z])->where('user_id', auth()->user()->id)->first();
                                     if ($case->total_qty < $carton_item_qty[$i][$y][$z]) {
                                         throw new \Exception('Quantity of cases in carton is greater than quantity at hand.');
                                     }
@@ -862,9 +862,9 @@ class OrdersController extends Controller
                         $order->cartons()->attach([['carton_id' => $carton->id, 'quantity' => $container_qtys[$i][0]]]);
                         for ($x = 0; $x < count($items[$i]); $x++) {
 
-                            if (Basic_Unit::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
+                            if (Basic_Unit::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
                                 $total_units += $item_qty[$i][$x];
-                                $unit = Basic_Unit::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
+                                $unit = Basic_Unit::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
                                 if ($unit->total_qty < $item_qty[$i][$x]) {
                                     throw new \Exception('Quantity of units in carton is greater than quantity at hand.');
                                 }
@@ -873,9 +873,9 @@ class OrdersController extends Controller
                                 }
                                 
                             }
-                            if (Kit::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
+                            if (Kit::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
                                 $total_kits += $item_qty[$i][$x];
-                                $kit = Kit::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
+                                $kit = Kit::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
                                 if ($kit->total_qty < $item_qty[$i][$x]) {
                                     throw new \Exception('Quantity of kits in carton is greater than quantity at hand.');
                                 }
@@ -884,9 +884,9 @@ class OrdersController extends Controller
                                 }
                                 
                             }
-                            if (Cases::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
+                            if (Cases::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
                                 $total_cases += $item_qty[$i][$x];
-                                $case = Cases::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
+                                $case = Cases::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
                                 if ($case->total_qty < $item_qty[$i][$x]) {
                                     throw new \Exception('Quantity of cases in carton is greater than quantity at hand.');
                                 }
@@ -902,9 +902,9 @@ class OrdersController extends Controller
 
                         for ($x = 0; $x < count($items[$i]); $x++) {
 
-                            if (Basic_Unit::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
+                            if (Basic_Unit::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
                                 $total_units += $item_qty[$i][$x];
-                                $unit = Basic_Unit::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
+                                $unit = Basic_Unit::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
                                 if ($unit->total_qty < $item_qty[$i][$x]) {
                                     throw new \Exception('Quantity of units in loose item order is greater than quantity at hand.');
                                 }
@@ -913,9 +913,9 @@ class OrdersController extends Controller
                                 }
                                 
                             }
-                            if (Kit::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
+                            if (Kit::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
                                 $total_kits += $item_qty[$i][$x];
-                                $kit = Kit::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
+                                $kit = Kit::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
                                 if ($kit->total_qty < $item_qty[$i][$x]) {
                                     throw new \Exception('Quantity of kits in loose item order is greater than quantity at hand.');
                                 }
@@ -924,9 +924,9 @@ class OrdersController extends Controller
                                 }
                                 
                             }
-                            if (Cases::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
+                            if (Cases::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->exists()) {
                                 $total_cases += $item_qty[$i][$x];
-                                $case = Cases::where('sku', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
+                                $case = Cases::where('upc', $items[$i][$x])->where('user_id', auth()->user()->id)->first();
                                 if ($case->total_qty < $item_qty[$i][$x]) {
                                     throw new \Exception('Quantity of cases in loose item order is greater than quantity at hand.');
                                 }
@@ -1018,7 +1018,7 @@ class OrdersController extends Controller
                                     $caseobj->total_qty += $case->pivot->quantity * $carton->pivot->quantity * $pallet->pivot->quantity;
                                     $caseobj->save();
                                     if ($this->hasKits($case, 'cases')) {
-                                        foreach ($carton->kits->all() as $kit) {
+                                        foreach ($case->kits->all() as $kit) {
                                             $kitobj = Kit::find($kit->pivot->kit_id);
                                             $kitobj->total_qty += $kit->pivot->quantity * $case->pivot->quantity * $carton->pivot->quantity * $pallet->pivot->quantity;
                                             $kitobj->save();
@@ -1032,7 +1032,7 @@ class OrdersController extends Controller
                                         }
                                     }
                                     if ($this->hasUnits($case, 'case')) {
-                                        foreach ($kit->basic_units->all() as $unit) {
+                                        foreach ($case->basic_units->all() as $unit) {
                                             $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
                                             $unitobj->total_qty += $unit->pivot->quantity * $case->pivot->quantity * $pallet->pivot->quantity;
                                             $unitobj->save();
@@ -1100,7 +1100,7 @@ class OrdersController extends Controller
                             $kitobj->total_qty += $kit->pivot->quantity * $pallet->pivot->quantity;
                             $kitobj->save();
                             if ($this->hasUnits($kit, 'kit')) {
-                                foreach ($pallet->basic_units->all() as $unit) {
+                                foreach ($kit->basic_units->all() as $unit) {
                                     $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
                                     $unitobj->total_qty += $unit->pivot->quantity * $kit->pivot->quantity * $pallet->pivot->quantity;
                                     $unitobj->save();
@@ -1129,7 +1129,7 @@ class OrdersController extends Controller
                             $caseobj->total_qty += $case->pivot->quantity * $carton->pivot->quantity;
                             $caseobj->save();
                             if ($this->hasKits($case, 'cases')) {
-                                foreach ($carton->kits->all() as $kit) {
+                                foreach ($case->kits->all() as $kit) {
                                     $kitobj = Kit::find($kit->pivot->kit_id);
                                     $kitobj->total_qty += $kit->pivot->quantity * $case->pivot->quantity * $carton->pivot->quantity;
                                     $kitobj->save();
@@ -1143,7 +1143,7 @@ class OrdersController extends Controller
                                 }
                             }
                             if ($this->hasUnits($case, 'cases')) {
-                                foreach ($kit->basic_units->all() as $unit) {
+                                foreach ($case->basic_units->all() as $unit) {
                                     $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
                                     $unitobj->total_qty += $unit->pivot->quantity * $case->pivot->quantity * $carton->pivot->quantity;
                                     $unitobj->save();
@@ -1184,7 +1184,7 @@ class OrdersController extends Controller
                     $caseobj->total_qty += $case->pivot->quantity;
                     $caseobj->save();
                     if ($this->hasKits($case, 'cases')) {
-                        foreach ($order->kits->all() as $kit) {
+                        foreach ($case->kits->all() as $kit) {
                             $kitobj = Kit::find($kit->pivot->kit_id);
                             $kitobj->total_qty += $kit->pivot->quantity * $case->pivot->quantity;
                             $kitobj->save();
@@ -1198,7 +1198,7 @@ class OrdersController extends Controller
                         }
                     }
                     if ($this->hasUnits($case, 'cases')) {
-                        foreach ($kit->basic_units->all() as $unit) {
+                        foreach ($case->basic_units->all() as $unit) {
                             $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
                             $unitobj->total_qty += $unit->pivot->quantity * $case->pivot->quantity;
                             $unitobj->save();
@@ -1243,7 +1243,7 @@ class OrdersController extends Controller
                                     $caseobj->total_qty -= $case->pivot->quantity * $carton->pivot->quantity * $pallet->pivot->quantity;
                                     $caseobj->save();
                                     if ($this->hasKits($case, 'cases')) {
-                                        foreach ($carton->kits->all() as $kit) {
+                                        foreach ($case->kits->all() as $kit) {
                                             $kitobj = Kit::find($kit->pivot->kit_id);
                                             $kitobj->total_qty -= $kit->pivot->quantity * $case->pivot->quantity * $carton->pivot->quantity * $pallet->pivot->quantity;
                                             $kitobj->save();
@@ -1257,7 +1257,7 @@ class OrdersController extends Controller
                                         }
                                     }
                                     if ($this->hasUnits($case, 'cases')) {
-                                        foreach ($kit->basic_units->all() as $unit) {
+                                        foreach ($case->basic_units->all() as $unit) {
                                             $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
                                             $unitobj->total_qty -= $unit->pivot->quantity * $case->pivot->quantity * $pallet->pivot->quantity;
                                             $unitobj->save();
@@ -1296,7 +1296,7 @@ class OrdersController extends Controller
                             $caseobj->total_qty -= $case->pivot->quantity * $pallet->pivot->quantity;
                             $caseobj->save();
                             if ($this->hasKits($case, 'cases')) {
-                                foreach ($carton->kits->all() as $kit) {
+                                foreach ($case->kits->all() as $kit) {
                                     $kitobj = Kit::find($kit->pivot->kit_id);
                                     $kitobj->total_qty -= $kit->pivot->quantity * $case->pivot->quantity * $pallet->pivot->quantity;
                                     $kitobj->save();
@@ -1310,7 +1310,7 @@ class OrdersController extends Controller
                                 }
                             }
                             if ($this->hasUnits($case, 'cases')) {
-                                foreach ($kit->basic_units->all() as $unit) {
+                                foreach ($case->basic_units->all() as $unit) {
                                     $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
                                     $unitobj->total_qty -= $unit->pivot->quantity * $case->pivot->quantity * $pallet->pivot->quantity;
                                     $unitobj->save();
@@ -1325,7 +1325,7 @@ class OrdersController extends Controller
                             $kitobj->total_qty -= $kit->pivot->quantity * $pallet->pivot->quantity;
                             $kitobj->save();
                             if ($this->hasUnits($kit, 'kit')) {
-                                foreach ($pallet->basic_units->all() as $unit) {
+                                foreach ($kit->basic_units->all() as $unit) {
                                     $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
                                     $unitobj->total_qty -= $unit->pivot->quantity * $kit->pivot->quantity * $pallet->pivot->quantity;
                                     $unitobj->save();
@@ -1354,7 +1354,7 @@ class OrdersController extends Controller
                             $caseobj->total_qty -= $case->pivot->quantity * $carton->pivot->quantity;
                             $caseobj->save();
                             if ($this->hasKits($case, 'cases')) {
-                                foreach ($carton->kits->all() as $kit) {
+                                foreach ($case->kits->all() as $kit) {
                                     $kitobj = Kit::find($kit->pivot->kit_id);
                                     $kitobj->total_qty -= $kit->pivot->quantity * $case->pivot->quantity * $carton->pivot->quantity;
                                     $kitobj->save();
@@ -1368,7 +1368,7 @@ class OrdersController extends Controller
                                 }
                             }
                             if ($this->hasUnits($case, 'cases')) {
-                                foreach ($kit->basic_units->all() as $unit) {
+                                foreach ($case->basic_units->all() as $unit) {
                                     $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
                                     $unitobj->total_qty -= $unit->pivot->quantity * $case->pivot->quantity * $carton->pivot->quantity;
                                     $unitobj->save();
@@ -1408,7 +1408,7 @@ class OrdersController extends Controller
                     $caseobj->total_qty -= $case->pivot->quantity;
                     $caseobj->save();
                     if ($this->hasKits($case, 'cases')) {
-                        foreach ($order->kits->all() as $kit) {
+                        foreach ($case->kits->all() as $kit) {
                             $kitobj = Kit::find($kit->pivot->kit_id);
                             $kitobj->total_qty -= $kit->pivot->quantity * $case->pivot->quantity;
                             $kitobj->save();
@@ -1422,7 +1422,7 @@ class OrdersController extends Controller
                         }
                     }
                     if ($this->hasUnits($case, 'cases')) {
-                        foreach ($kit->basic_units->all() as $unit) {
+                        foreach ($case->basic_units->all() as $unit) {
                             $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
                             $unitobj->total_qty -= $unit->pivot->quantity * $case->pivot->quantity;
                             $unitobj->save();
