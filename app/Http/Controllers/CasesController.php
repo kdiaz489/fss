@@ -68,6 +68,8 @@ class CasesController extends Controller
             $case->upc = $request->upc;
             $case->basic_unit_qty = 0;
             $case->kit_qty = 0;
+            $case->carton_qty = 0;
+            $case->pallet_qty = 0;
             $case->total_qty = 0;
             $case->description = $request->desc;
             $case->save();
