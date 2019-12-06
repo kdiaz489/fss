@@ -355,9 +355,9 @@ Transfer In
                                                 <td  width="20%">
                                                     <select name="items[0][]" class="form-control select_transin_skus required">
                                                         <option value="">Choose Item</option>
-                                                        @if (count($cases) > 0) <optgroup label="Cases"> @foreach ($cases as $case) <option value="{{$case->upc}}">{{$case->upc}}</option> @endforeach</optgroup> @else<option value="" disabled>No Cases Available</option> @endif 
-                                                        @if (count($kits) > 0) <optgroup label="Kits"> @foreach ($kits as $kit) <option value="{{$kit->upc}}">{{$kit->upc}}</option> @endforeach</optgroup> @else<option value="" disabled>No Kits Available</option> @endif 
-                                                        @if (count($units) > 0) <optgroup label="Units"> @foreach ($units as $unit) <option value="{{$unit->upc}}">{{$unit->upc}}</option> @endforeach</optgroup> @else<option value="" disabled>No Units Available</option> @endif 
+                                                        @if (count($cases) > 0) <optgroup label="Cases"> @foreach ($cases as $case) <option value="{{$case->upc}}">{{$case->sku}}</option> @endforeach</optgroup> @else<option value="" disabled>No Cases Available</option> @endif 
+                                                        @if (count($kits) > 0) <optgroup label="Kits"> @foreach ($kits as $kit) <option value="{{$kit->upc}}">{{$kit->sku}}</option> @endforeach</optgroup> @else<option value="" disabled>No Kits Available</option> @endif 
+                                                        @if (count($units) > 0) <optgroup label="Units"> @foreach ($units as $unit) <option value="{{$unit->upc}}">{{$unit->sku}}</option> @endforeach</optgroup> @else<option value="" disabled>No Units Available</option> @endif 
     
                                                     </select>
                                                 </td>
