@@ -259,7 +259,7 @@ Storage Orders
                             <td>{{$order->job_num}}</td>
                             <td>{{$order->carrier}}</td>
                             <td>{{$order->carrier_id}}</td>
-                            <td>{{$order->created_at->format('H:i:s m/d/y')}}</td>
+                            <td>{{$order->created_at->format('m/d/y')}}</td>
                             <td>{{$order->status}}</td>
                             
                             <td>

@@ -188,6 +188,7 @@
                         <table class="table table-sm orders">
                             <tr>
                                 <th width="10%"></th>
+                                <th width="10%"></th>
                                 <th width="10%">Order #</th>
                                 <th width="10%">Originator</th>
                                 <th width="10%">In Care Of</th>
@@ -210,6 +211,22 @@
                                         id="toggle-details{{$order->id}}" data-toggle="collapse"
                                         data-target="#details{{$order->id}}" aria-expanded="false" aria-controls="details"
                                         data-delay="0"><i class="fas fa-plus"></i></button>
+                                </td>
+                                <td>                         
+                                    <form action="/order/update/{{$order->id}}" method="POST">
+                                        @csrf
+                                        {{method_field('PUT')}}
+                                        <select name="status" id="" class=" form-control form-control-sm">
+                                            <option value="" selected disabled>Choose</option>
+                                            <option value="Completed">Completed</option>
+                                            <option value="Approved">Approved</option>
+                                            <option value="In Progress">In Progress</option>
+                                            <option value="Rejected">Rejected</option>
+                                        </select>
+
+                                        <button type="submit" style=" margin-left: 1.25rem;"
+                                            class="btn btn-link btn-sm m-0"><small>Update</small></button>
+                                    </form>
                                 </td>
                                 <td>
                                     <a href="/vieworder/{{$order->id}}">
