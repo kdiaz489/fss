@@ -246,13 +246,10 @@ Inventory
                         @foreach($pallets as $pallet)
                         <tr>
                             <td><button type="button" class="btn text-denim toggle-{{$pallet->id}}" id="toggle-details{{$pallet->id}}" data-toggle="collapse" data-target="#details{{$pallet->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
-                            
                             <td>{{$pallet->upc}}</td>
                             <td>{{$pallet->created_at->format('m/d/y')}}</td>
                             <td>{{$pallet->total_qty}}</td>
                             <td></td>
-                            <td></td>
-
                             <td>
                                 <div style="margin-left: 30%">
                                     <!--
