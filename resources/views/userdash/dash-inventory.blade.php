@@ -576,7 +576,7 @@ Inventory
                             <th width="10%"></th>
                             <th width="10%">Sku</th>
                             <th width="10%">Description</th>
-                            <th width="10%">Barcode</th>
+                            <th width="10%">UPC/Barcode</th>
                             <th width="10%">Quantity</th>
                             <th width="10%">Qty/Case</th>
                             <th width="10%">Location</th>
@@ -588,7 +588,7 @@ Inventory
                             <td><button type="button" class="btn text-denim toggle-{{$case->id}}" id="toggle-details{{$case->id}}" data-toggle="collapse" data-target="#details{{$case->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
                             <td>{{$case->sku}}</td>
                             <td>{{$case->description}}</td>
-                            <td></td>
+                            <td>{{$case->upc}}</td>
                             <td>{{$case->total_qty}}</td>
                             <td>{{$case->case_qty}}</td>
                             <td></td>
@@ -694,7 +694,7 @@ Inventory
                             <th width="10%"></th>
                             <th width="10%">Sku</th>
                             <th width="10%">Description</th>
-                            <th width="10%">Barcode</th>
+                            <th width="10%">UPC/Barcode</th>
                             <th width="10%">Quantity</th>
                             <th width="10%">Qty/Kit</th>
                             <th width="10%">Location</th>
@@ -705,7 +705,7 @@ Inventory
                             <td><button type="button" class="btn text-denim toggle-{{$kit->id}}" id="toggle-details{{$kit->id}}" data-toggle="collapse" data-target="#details{{$kit->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
                             <td>{{$kit->sku}}</td>
                             <td>{{$kit->description}}</td>
-                            <td></td>
+                            <td>{{$kit->upc}}</td>
                             <td>{{$kit->total_qty}}</td>
                             <td>{{$kit->kit_qty}}</td>
                             <td></td>
