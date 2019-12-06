@@ -423,7 +423,7 @@ Inventory
                             <th width="10%"></th>
                             <th width="10%">Sku</th>
                             <th width="10%">Description</th>
-                            <th width="10%">Barcode</th>
+                            <th width="10%">UPC</th>
                             <th width="10%">Quantity</th>
                             <th width="10%">Qty/Carton</th>
                             <th width="10%">Location</th>
@@ -576,7 +576,7 @@ Inventory
                             <th width="10%"></th>
                             <th width="10%">Sku</th>
                             <th width="10%">Description</th>
-                            <th width="10%">UPC/Barcode</th>
+                            <th width="10%">UPC</th>
                             <th width="10%">Quantity</th>
                             <th width="10%">Qty/Case</th>
                             <th width="10%">Location</th>
@@ -626,7 +626,7 @@ Inventory
                                                             <tr>
                                                                 <th width="10%">SKU</th>
                                                                 <th width="10%">Description</th>
-                                                                <th width="10%">Barcode</th>
+                                                                <th width="10%">UPC</th>
                                                                 <th width="10%">Container Type</th>
                                                                 <th width="10%">Qty</th>
                                                             </tr>
@@ -635,7 +635,7 @@ Inventory
                                                             <tr>
                                                                 <td>{{$unit->sku}}</td>
                                                                 <td>{{$unit->description}}</td>
-                                                                <td></td>
+                                                                <td>{{$unit->upc}}</td>
                                                                 <td>Loose Item</td>
                                                                 <td>{{$unit->pivot->quantity}}</td>
                                                             </tr>                                                          
@@ -658,7 +658,7 @@ Inventory
                                                                 <tr>
                                                                     <th width="10%">SKU</th>
                                                                     <th width="10%">Description</th>
-                                                                    <th width="10%">Barcode</th>
+                                                                    <th width="10%">UPC</th>
                                                                     <th width="10%">Container Type</th>
                                                                     <th width="10%">Quantity</th>
                                                                 </tr>
@@ -667,7 +667,7 @@ Inventory
                                                                 <tr>
                                                                     <td>{{$kit->sku}}</td>
                                                                     <td>{{$kit->description}}</td>
-                                                                    <td></td>
+                                                                    <td>{{$kit->upc}}</td>
                                                                     <td>Kit</td>
                                                                     <td>{{$kit->pivot->quantity}}</td>
                                                                 </tr>                                                          
@@ -694,7 +694,7 @@ Inventory
                             <th width="10%"></th>
                             <th width="10%">Sku</th>
                             <th width="10%">Description</th>
-                            <th width="10%">UPC/Barcode</th>
+                            <th width="10%">UPC</th>
                             <th width="10%">Quantity</th>
                             <th width="10%">Qty/Kit</th>
                             <th width="10%">Location</th>
