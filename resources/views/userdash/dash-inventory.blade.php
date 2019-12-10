@@ -249,7 +249,7 @@ Inventory
                             <td>{{$pallet->upc}}</td>
                             <td>{{$pallet->created_at->format('m/d/y')}}</td>
                             <td>{{$pallet->total_qty}}</td>
-                            <td></td>
+                            <td>N/A</td>
                             <td>
                                 <div style="margin-left: 30%">
                                     <!--
@@ -415,6 +415,7 @@ Inventory
                     @if(count($cartons) > 0)
                     <div class="table-responsive">
                     <table class="table table-sm">
+                        <thead>
                         <tr>
                             <th width="10%"></th>
                             <th width="10%">UPC</th>
@@ -422,15 +423,16 @@ Inventory
                             <th width="10%">Quantity</th>
                             <th width="10%">Location</th>
                             <th width="10%"></th>
-
                         </tr>
+                        </thead>
+                        <tbody>
                         @foreach($cartons as $carton)
                         <tr>
                             <td><button type="button" class="btn text-denim toggle-{{$carton->id}}" id="toggle-details{{$carton->id}}" data-toggle="collapse" data-target="#details{{$carton->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
                             <td>{{$carton->upc}}</td>
                             <td>{{$carton->created_at->format('m/d/y')}}</td>
                             <td>{{$carton->total_qty}}</td>
-                            <td></td>
+                            <td>N/A</td>
                             <td>
                                 <div style="margin-left: 30%">
                                     <!--
@@ -453,6 +455,7 @@ Inventory
                                 </div>
                             </td>
                         </tr>
+                    
                             @if($carton->basic_units->all())
                                 @foreach ($carton->basic_units->all() as $unit)
                                     
@@ -552,6 +555,7 @@ Inventory
                             @endif
 
                         @endforeach
+                    </tbody>
                     </table>
                     </div>
                     @else
@@ -562,27 +566,30 @@ Inventory
 
                     @if(count($cases) > 0)
                     <div class="table-responsive">
-                    <table class="table table-sm">
+                    <table class="table table-sm cases-table">
+                        <thead>
                         <tr>
-                            <th width="10%"></th>
+                            <th width="10%">Expand</th>
                             <th width="10%">Sku</th>
                             <th width="10%">Description</th>
                             <th width="10%">UPC</th>
                             <th width="10%">Quantity</th>
                             <th width="10%">Qty/Case</th>
                             <th width="10%">Location</th>
-                            <th width="10%"></th>
+                            <th width="10%">Actions</th>
 
                         </tr>
+                    </thead>
+                    <tbody>
                         @foreach($cases as $case)
                         <tr>
                             <td><button type="button" class="btn text-denim toggle-{{$case->id}}" id="toggle-details{{$case->id}}" data-toggle="collapse" data-target="#details{{$case->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
                             <td>{{$case->sku}}</td>
                             <td>{{$case->description}}</td>
                             <td>{{$case->upc}}</td>
-                            <td>{{$case->total_qty}}</td>
+                            <td>10</td>
                             <td>{{$case->case_qty}}</td>
-                            <td></td>
+                            <td>N/A</td>
                             <td>
                                 <div style="margin-left: 30%">
                                     <!--
@@ -605,6 +612,7 @@ Inventory
                                 </div>
                             </td>
                         </tr>
+                    
                             @if($case->basic_units->all())
                                 @foreach ($case->basic_units->all() as $unit)
                                     
@@ -670,6 +678,7 @@ Inventory
                                 @endforeach
                             @endif
                         @endforeach
+                    </tbody>
                     </table>
                     </div>
                     @else
@@ -699,7 +708,7 @@ Inventory
                             <td>{{$kit->upc}}</td>
                             <td>{{$kit->total_qty}}</td>
                             <td>{{$kit->kit_qty}}</td>
-                            <td></td>
+                            <td>N/A</td>
                             <td>
 
                                 <div style="margin-left: 30%">
@@ -826,4 +835,10 @@ Inventory
     </div>
 </div>
 
+@endsection
+
+@section('scripts')
+<script>
+        $('.cases-table').DataTable();
+</script>
 @endsection

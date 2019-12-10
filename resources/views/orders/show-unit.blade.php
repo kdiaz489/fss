@@ -1,7 +1,11 @@
 
 @extends('layouts.userdashlte')
-@hasrole('user')
 
+@section('breadcrumb')
+Show Unit
+@endsection
+
+@hasrole('user')
 @section('main-sidebar')
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar bg-denim elevation-4">

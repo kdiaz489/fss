@@ -240,7 +240,7 @@ Account
                     <div class="container-fluid px-5 py-3" style="border: solid 1px #dee2e6; border-radius: 10px">
                         <div class="row">
                             <div class="col-lg-4">
-                                <h2 class="h2 font-weight-light">Balance Owed</h2>
+                                <p class="h3 font-weight-light">Balance Owed</p>
                             </div>
                         </div>
 
@@ -276,16 +276,16 @@ Account
                             <div class="container-fluid px-5 py-3" style="border: solid 1px #dee2e6; border-radius: 10px">
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <h2 class="h2 font-weight-light">Profile</h2>
+                                        <p class="h3 font-weight-light">Profile</p>
                                     </div>
                                 </div>
 
                                 <div class="row py-3 border-top border-bottom">
                                     <div class="col-lg-4">
-                                        <h5>Username:</h5>
+                                        <p>Username:</p>
                                     </div>
                                     <div class="col-lg-6">
-                                        <h5>{{auth()->user()->user_name}}</h5>
+                                        <p>{{auth()->user()->user_name}}</p>
                                     </div>
                                     <div class="col-lg-2">
                                         <a href="" href="" class="editusername" id=""><i
@@ -296,10 +296,10 @@ Account
 
                                 <div class="row py-3 border-bottom">
                                     <div class="col-lg-4">
-                                        <h5>E-Mail:</h5>
+                                        <p>E-Mail:</p>
                                     </div>
                                     <div class="col-lg-6">
-                                        <h5>{{auth()->user()->email}}</h5>
+                                        <p>{{auth()->user()->email}}</p>
                                     </div>
                                     <div class="col-lg-2">
                                         <a href="" class="editemail" id=""><i class="fas fa-pencil-alt"></i></a>
@@ -309,7 +309,7 @@ Account
 
                                 <div class="row py-3 ">
                                     <div class="col-lg-4">
-                                        <h5>Password:</h5>
+                                        <p>Password:</p>
                                     </div>
                                     <div class="col-lg-6">
                                         <input type="password" style="border:none;"
@@ -326,15 +326,15 @@ Account
                                 style="border: solid 1px #dee2e6; border-radius: 10px">
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <h2 class="h2 font-weight-light">Contact Info</h2>
+                                        <p class="h3 font-weight-light">Contact Info</5>
                                     </div>
                                 </div>
                                 <div class="row py-3 border-top border-bottom">
                                     <div class="col-lg-4">
-                                        <h5>Company Name:</h5>
+                                        <p>Company Name:</p>
                                     </div>
                                     <div class="col-lg-6">
-                                        <h5>{{auth()->user()->company_name}}</h5>
+                                        <p>{{auth()->user()->company_name}}</p>
                                     </div>
                                     <div class="col-lg-2">
                                         <a href="" href="" class="editcompanyname" id=""><i
@@ -345,10 +345,10 @@ Account
 
                                 <div class="row py-3 border-bottom">
                                     <div class="col-lg-4">
-                                        <h5>Contact Name:</h5>
+                                        <p>Contact Name:</p>
                                     </div>
                                     <div class="col-lg-6">
-                                        <h5>{{auth()->user()->name}}</h5>
+                                        <p>{{auth()->user()->name}}</p>
                                     </div>
                                     <div class="col-lg-2">
                                         <a href="" class="editcontact" id=""><i class="fas fa-pencil-alt"></i></a>
@@ -358,11 +358,11 @@ Account
 
                                 <div class="row py-3 ">
                                     <div class="col-lg-4">
-                                        <h5>Address:</h5>
+                                        <p>Address:</p>
                                     </div>
                                     <div class="col-lg-6">
-                                        <h5>{{auth()->user()->street_address.' '.auth()->user()->city.', '.auth()->user()->state. ' '.auth()->user()->zip}}
-                                        </h5>
+                                        <p>{{auth()->user()->street_address.' '.auth()->user()->city.', '.auth()->user()->state. ' '.auth()->user()->zip}}
+                                        </p>
                                     </div>
                                     <div class="col-lg-2">
                                         <a href="" class="editaddress" id=""><i class="fas fa-pencil-alt"></i></a>
