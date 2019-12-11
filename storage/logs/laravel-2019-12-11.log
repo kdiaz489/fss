@@ -20,3 +20,25 @@ command: /usr/local/bin/wkhtmltopdf-amd64 --lowquality '/var/folders/fh/gqtnvhf9
 #9 /Users/karendiaz/Desktop/fss/server.php(21): require_once('/Users/karendia...')
 #10 {main}
 "} 
+[2019-12-11 11:20:12] local.ERROR: The exit status code '127' says something went wrong:
+stderr: "sh: xvfb-run: command not found
+"
+stdout: ""
+command: xvfb-run -- /usr/local/bin/wkhtmltopdf-amd64 --lowquality '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df1416c5094e8.42412037.html' '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df1416c50a970.92080540.pdf'. {"userId":1,"exception":"[object] (RuntimeException(code: 127): The exit status code '127' says something went wrong:
+stderr: \"sh: xvfb-run: command not found
+\"
+stdout: \"\"
+command: xvfb-run -- /usr/local/bin/wkhtmltopdf-amd64 --lowquality '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df1416c5094e8.42412037.html' '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df1416c50a970.92080540.pdf'. at /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php:378)
+[stacktrace]
+#0 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(177): Knp\\Snappy\\AbstractGenerator->checkProcessStatus(127, '', 'sh: xvfb-run: c...', 'xvfb-run -- /us...')
+#1 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/Pdf.php(63): Knp\\Snappy\\AbstractGenerator->generate(Array, '/var/folders/fh...', Array, false)
+#2 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(221): Knp\\Snappy\\Pdf->generate(Array, '/var/folders/fh...', Array)
+#3 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(242): Knp\\Snappy\\AbstractGenerator->getOutput(Array, Array)
+#4 /Users/karendiaz/Desktop/fss/vendor/barryvdh/laravel-snappy/src/PdfWrapper.php(176): Knp\\Snappy\\AbstractGenerator->getOutputFromHtml('<!DOCTYPE html>...', Array)
+#5 /Users/karendiaz/Desktop/fss/vendor/barryvdh/laravel-snappy/src/PdfWrapper.php(246): Barryvdh\\Snappy\\PdfWrapper->output()
+#6 /Users/karendiaz/Desktop/fss/vendor/symfony/http-foundation/StreamedResponse.php(112): Barryvdh\\Snappy\\PdfWrapper->Barryvdh\\Snappy\\{closure}()
+#7 /Users/karendiaz/Desktop/fss/vendor/symfony/http-foundation/Response.php(376): Symfony\\Component\\HttpFoundation\\StreamedResponse->sendContent()
+#8 /Users/karendiaz/Desktop/fss/public/index.php(58): Symfony\\Component\\HttpFoundation\\Response->send()
+#9 /Users/karendiaz/Desktop/fss/server.php(21): require_once('/Users/karendia...')
+#10 {main}
+"} 

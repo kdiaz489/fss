@@ -25,12 +25,7 @@ class ShipmentBookingMail extends Mailable
     {
         $shipment = Shipment::find($id);
         $this->data = $data;
-
-
-        $pdf = PDF::loadView('pdf.invoice',  ['shipment' => $shipment])->setPaper('a4');
-        $pdf->save('invoice'. '_' . $id . '.pdf');
     
-
     }
 
     /**
