@@ -838,7 +838,5 @@ Inventory
 @endsection
 
 @section('scripts')
-<script>
-        $('.cases-table').DataTable();
-</script>
+
 @endsection

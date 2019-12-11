@@ -61,3 +61,276 @@
 #58 /Users/karendiaz/Desktop/fss/server.php(21): require_once('/Users/karendia...')
 #59 {main}
 "} 
+[2019-12-10 16:14:13] local.ERROR: The exit status code '127' says something went wrong:
+stderr: "sh: xvfb-run: command not found
+"
+stdout: ""
+command: xvfb-run -- /usr/local/bin/wkhtmltopdf-amd64 --lowquality '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df034d5c09223.88074845.html' '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df034d5c0a729.89605687.pdf'. {"userId":3,"exception":"[object] (RuntimeException(code: 127): The exit status code '127' says something went wrong:
+stderr: \"sh: xvfb-run: command not found
+\"
+stdout: \"\"
+command: xvfb-run -- /usr/local/bin/wkhtmltopdf-amd64 --lowquality '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df034d5c09223.88074845.html' '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df034d5c0a729.89605687.pdf'. at /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php:378)
+[stacktrace]
+#0 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(177): Knp\\Snappy\\AbstractGenerator->checkProcessStatus(127, '', 'sh: xvfb-run: c...', 'xvfb-run -- /us...')
+#1 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/Pdf.php(63): Knp\\Snappy\\AbstractGenerator->generate(Array, '/var/folders/fh...', Array, false)
+#2 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(221): Knp\\Snappy\\Pdf->generate(Array, '/var/folders/fh...', Array)
+#3 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(242): Knp\\Snappy\\AbstractGenerator->getOutput(Array, Array)
+#4 /Users/karendiaz/Desktop/fss/vendor/barryvdh/laravel-snappy/src/PdfWrapper.php(176): Knp\\Snappy\\AbstractGenerator->getOutputFromHtml('<!DOCTYPE html>...', Array)
+#5 /Users/karendiaz/Desktop/fss/vendor/barryvdh/laravel-snappy/src/PdfWrapper.php(246): Barryvdh\\Snappy\\PdfWrapper->output()
+#6 /Users/karendiaz/Desktop/fss/vendor/symfony/http-foundation/StreamedResponse.php(112): Barryvdh\\Snappy\\PdfWrapper->Barryvdh\\Snappy\\{closure}()
+#7 /Users/karendiaz/Desktop/fss/vendor/symfony/http-foundation/Response.php(376): Symfony\\Component\\HttpFoundation\\StreamedResponse->sendContent()
+#8 /Users/karendiaz/Desktop/fss/public/index.php(58): Symfony\\Component\\HttpFoundation\\Response->send()
+#9 /Users/karendiaz/Desktop/fss/server.php(21): require_once('/Users/karendia...')
+#10 {main}
+"} 
+[2019-12-10 16:14:18] local.ERROR: The exit status code '127' says something went wrong:
+stderr: "sh: xvfb-run: command not found
+"
+stdout: ""
+command: xvfb-run -- /usr/local/bin/wkhtmltopdf-amd64 --lowquality '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df034da0814e3.49125623.html' '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df034da082701.32838691.pdf'. {"userId":3,"exception":"[object] (RuntimeException(code: 127): The exit status code '127' says something went wrong:
+stderr: \"sh: xvfb-run: command not found
+\"
+stdout: \"\"
+command: xvfb-run -- /usr/local/bin/wkhtmltopdf-amd64 --lowquality '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df034da0814e3.49125623.html' '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df034da082701.32838691.pdf'. at /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php:378)
+[stacktrace]
+#0 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(177): Knp\\Snappy\\AbstractGenerator->checkProcessStatus(127, '', 'sh: xvfb-run: c...', 'xvfb-run -- /us...')
+#1 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/Pdf.php(63): Knp\\Snappy\\AbstractGenerator->generate(Array, '/var/folders/fh...', Array, false)
+#2 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(221): Knp\\Snappy\\Pdf->generate(Array, '/var/folders/fh...', Array)
+#3 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(242): Knp\\Snappy\\AbstractGenerator->getOutput(Array, Array)
+#4 /Users/karendiaz/Desktop/fss/vendor/barryvdh/laravel-snappy/src/PdfWrapper.php(176): Knp\\Snappy\\AbstractGenerator->getOutputFromHtml('<!DOCTYPE html>...', Array)
+#5 /Users/karendiaz/Desktop/fss/vendor/barryvdh/laravel-snappy/src/PdfWrapper.php(246): Barryvdh\\Snappy\\PdfWrapper->output()
+#6 /Users/karendiaz/Desktop/fss/vendor/symfony/http-foundation/StreamedResponse.php(112): Barryvdh\\Snappy\\PdfWrapper->Barryvdh\\Snappy\\{closure}()
+#7 /Users/karendiaz/Desktop/fss/vendor/symfony/http-foundation/Response.php(376): Symfony\\Component\\HttpFoundation\\StreamedResponse->sendContent()
+#8 /Users/karendiaz/Desktop/fss/public/index.php(58): Symfony\\Component\\HttpFoundation\\Response->send()
+#9 /Users/karendiaz/Desktop/fss/server.php(21): require_once('/Users/karendia...')
+#10 {main}
+"} 
+[2019-12-10 16:14:19] local.ERROR: The exit status code '127' says something went wrong:
+stderr: "sh: xvfb-run: command not found
+"
+stdout: ""
+command: xvfb-run -- /usr/local/bin/wkhtmltopdf-amd64 --lowquality '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df034db412fd4.15872464.html' '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df034db414311.60142712.pdf'. {"userId":3,"exception":"[object] (RuntimeException(code: 127): The exit status code '127' says something went wrong:
+stderr: \"sh: xvfb-run: command not found
+\"
+stdout: \"\"
+command: xvfb-run -- /usr/local/bin/wkhtmltopdf-amd64 --lowquality '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df034db412fd4.15872464.html' '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df034db414311.60142712.pdf'. at /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php:378)
+[stacktrace]
+#0 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(177): Knp\\Snappy\\AbstractGenerator->checkProcessStatus(127, '', 'sh: xvfb-run: c...', 'xvfb-run -- /us...')
+#1 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/Pdf.php(63): Knp\\Snappy\\AbstractGenerator->generate(Array, '/var/folders/fh...', Array, false)
+#2 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(221): Knp\\Snappy\\Pdf->generate(Array, '/var/folders/fh...', Array)
+#3 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(242): Knp\\Snappy\\AbstractGenerator->getOutput(Array, Array)
+#4 /Users/karendiaz/Desktop/fss/vendor/barryvdh/laravel-snappy/src/PdfWrapper.php(176): Knp\\Snappy\\AbstractGenerator->getOutputFromHtml('<!DOCTYPE html>...', Array)
+#5 /Users/karendiaz/Desktop/fss/vendor/barryvdh/laravel-snappy/src/PdfWrapper.php(246): Barryvdh\\Snappy\\PdfWrapper->output()
+#6 /Users/karendiaz/Desktop/fss/vendor/symfony/http-foundation/StreamedResponse.php(112): Barryvdh\\Snappy\\PdfWrapper->Barryvdh\\Snappy\\{closure}()
+#7 /Users/karendiaz/Desktop/fss/vendor/symfony/http-foundation/Response.php(376): Symfony\\Component\\HttpFoundation\\StreamedResponse->sendContent()
+#8 /Users/karendiaz/Desktop/fss/public/index.php(58): Symfony\\Component\\HttpFoundation\\Response->send()
+#9 /Users/karendiaz/Desktop/fss/server.php(21): require_once('/Users/karendia...')
+#10 {main}
+"} 
+[2019-12-10 16:14:20] local.ERROR: The exit status code '127' says something went wrong:
+stderr: "sh: xvfb-run: command not found
+"
+stdout: ""
+command: xvfb-run -- /usr/local/bin/wkhtmltopdf-amd64 --lowquality '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df034dc960f68.98117149.html' '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df034dc9621c1.15469935.pdf'. {"userId":3,"exception":"[object] (RuntimeException(code: 127): The exit status code '127' says something went wrong:
+stderr: \"sh: xvfb-run: command not found
+\"
+stdout: \"\"
+command: xvfb-run -- /usr/local/bin/wkhtmltopdf-amd64 --lowquality '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df034dc960f68.98117149.html' '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df034dc9621c1.15469935.pdf'. at /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php:378)
+[stacktrace]
+#0 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(177): Knp\\Snappy\\AbstractGenerator->checkProcessStatus(127, '', 'sh: xvfb-run: c...', 'xvfb-run -- /us...')
+#1 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/Pdf.php(63): Knp\\Snappy\\AbstractGenerator->generate(Array, '/var/folders/fh...', Array, false)
+#2 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(221): Knp\\Snappy\\Pdf->generate(Array, '/var/folders/fh...', Array)
+#3 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(242): Knp\\Snappy\\AbstractGenerator->getOutput(Array, Array)
+#4 /Users/karendiaz/Desktop/fss/vendor/barryvdh/laravel-snappy/src/PdfWrapper.php(176): Knp\\Snappy\\AbstractGenerator->getOutputFromHtml('<!DOCTYPE html>...', Array)
+#5 /Users/karendiaz/Desktop/fss/vendor/barryvdh/laravel-snappy/src/PdfWrapper.php(246): Barryvdh\\Snappy\\PdfWrapper->output()
+#6 /Users/karendiaz/Desktop/fss/vendor/symfony/http-foundation/StreamedResponse.php(112): Barryvdh\\Snappy\\PdfWrapper->Barryvdh\\Snappy\\{closure}()
+#7 /Users/karendiaz/Desktop/fss/vendor/symfony/http-foundation/Response.php(376): Symfony\\Component\\HttpFoundation\\StreamedResponse->sendContent()
+#8 /Users/karendiaz/Desktop/fss/public/index.php(58): Symfony\\Component\\HttpFoundation\\Response->send()
+#9 /Users/karendiaz/Desktop/fss/server.php(21): require_once('/Users/karendia...')
+#10 {main}
+"} 
+[2019-12-10 16:14:27] local.ERROR: The exit status code '127' says something went wrong:
+stderr: "sh: xvfb-run: command not found
+"
+stdout: ""
+command: xvfb-run -- /usr/local/bin/wkhtmltopdf-amd64 --lowquality '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df034e3aa7f33.00028443.html' '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df034e3aa93b1.76006793.pdf'. {"userId":3,"exception":"[object] (RuntimeException(code: 127): The exit status code '127' says something went wrong:
+stderr: \"sh: xvfb-run: command not found
+\"
+stdout: \"\"
+command: xvfb-run -- /usr/local/bin/wkhtmltopdf-amd64 --lowquality '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df034e3aa7f33.00028443.html' '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df034e3aa93b1.76006793.pdf'. at /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php:378)
+[stacktrace]
+#0 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(177): Knp\\Snappy\\AbstractGenerator->checkProcessStatus(127, '', 'sh: xvfb-run: c...', 'xvfb-run -- /us...')
+#1 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/Pdf.php(63): Knp\\Snappy\\AbstractGenerator->generate(Array, '/var/folders/fh...', Array, false)
+#2 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(221): Knp\\Snappy\\Pdf->generate(Array, '/var/folders/fh...', Array)
+#3 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(242): Knp\\Snappy\\AbstractGenerator->getOutput(Array, Array)
+#4 /Users/karendiaz/Desktop/fss/vendor/barryvdh/laravel-snappy/src/PdfWrapper.php(176): Knp\\Snappy\\AbstractGenerator->getOutputFromHtml('<!DOCTYPE html>...', Array)
+#5 /Users/karendiaz/Desktop/fss/vendor/barryvdh/laravel-snappy/src/PdfWrapper.php(246): Barryvdh\\Snappy\\PdfWrapper->output()
+#6 /Users/karendiaz/Desktop/fss/vendor/symfony/http-foundation/StreamedResponse.php(112): Barryvdh\\Snappy\\PdfWrapper->Barryvdh\\Snappy\\{closure}()
+#7 /Users/karendiaz/Desktop/fss/vendor/symfony/http-foundation/Response.php(376): Symfony\\Component\\HttpFoundation\\StreamedResponse->sendContent()
+#8 /Users/karendiaz/Desktop/fss/public/index.php(58): Symfony\\Component\\HttpFoundation\\Response->send()
+#9 /Users/karendiaz/Desktop/fss/server.php(21): require_once('/Users/karendia...')
+#10 {main}
+"} 
+[2019-12-10 16:16:54] local.ERROR: The exit status code '127' says something went wrong:
+stderr: "sh: xvfb-run: command not found
+"
+stdout: ""
+command: xvfb-run -- /usr/local/bin/wkhtmltopdf-amd64 --lowquality '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df03576bf1fe5.83971781.html' '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df03576bf3406.85749107.pdf'. {"userId":3,"exception":"[object] (RuntimeException(code: 127): The exit status code '127' says something went wrong:
+stderr: \"sh: xvfb-run: command not found
+\"
+stdout: \"\"
+command: xvfb-run -- /usr/local/bin/wkhtmltopdf-amd64 --lowquality '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df03576bf1fe5.83971781.html' '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df03576bf3406.85749107.pdf'. at /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php:378)
+[stacktrace]
+#0 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(177): Knp\\Snappy\\AbstractGenerator->checkProcessStatus(127, '', 'sh: xvfb-run: c...', 'xvfb-run -- /us...')
+#1 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/Pdf.php(63): Knp\\Snappy\\AbstractGenerator->generate(Array, '/var/folders/fh...', Array, false)
+#2 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(221): Knp\\Snappy\\Pdf->generate(Array, '/var/folders/fh...', Array)
+#3 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(242): Knp\\Snappy\\AbstractGenerator->getOutput(Array, Array)
+#4 /Users/karendiaz/Desktop/fss/vendor/barryvdh/laravel-snappy/src/PdfWrapper.php(176): Knp\\Snappy\\AbstractGenerator->getOutputFromHtml('<!DOCTYPE html>...', Array)
+#5 /Users/karendiaz/Desktop/fss/vendor/barryvdh/laravel-snappy/src/PdfWrapper.php(246): Barryvdh\\Snappy\\PdfWrapper->output()
+#6 /Users/karendiaz/Desktop/fss/vendor/symfony/http-foundation/StreamedResponse.php(112): Barryvdh\\Snappy\\PdfWrapper->Barryvdh\\Snappy\\{closure}()
+#7 /Users/karendiaz/Desktop/fss/vendor/symfony/http-foundation/Response.php(376): Symfony\\Component\\HttpFoundation\\StreamedResponse->sendContent()
+#8 /Users/karendiaz/Desktop/fss/public/index.php(58): Symfony\\Component\\HttpFoundation\\Response->send()
+#9 /Users/karendiaz/Desktop/fss/server.php(21): require_once('/Users/karendia...')
+#10 {main}
+"} 
+[2019-12-10 16:17:54] local.ERROR: The exit status code '127' says something went wrong:
+stderr: "sh: xvfb-run: command not found
+"
+stdout: ""
+command: xvfb-run -- /usr/local/bin/wkhtmltopdf-amd64 --lowquality '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df035b21481e3.42189853.html' '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df035b2149821.85555029.pdf'. {"userId":3,"exception":"[object] (RuntimeException(code: 127): The exit status code '127' says something went wrong:
+stderr: \"sh: xvfb-run: command not found
+\"
+stdout: \"\"
+command: xvfb-run -- /usr/local/bin/wkhtmltopdf-amd64 --lowquality '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df035b21481e3.42189853.html' '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df035b2149821.85555029.pdf'. at /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php:378)
+[stacktrace]
+#0 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(177): Knp\\Snappy\\AbstractGenerator->checkProcessStatus(127, '', 'sh: xvfb-run: c...', 'xvfb-run -- /us...')
+#1 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/Pdf.php(63): Knp\\Snappy\\AbstractGenerator->generate(Array, '/var/folders/fh...', Array, false)
+#2 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(221): Knp\\Snappy\\Pdf->generate(Array, '/var/folders/fh...', Array)
+#3 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(242): Knp\\Snappy\\AbstractGenerator->getOutput(Array, Array)
+#4 /Users/karendiaz/Desktop/fss/vendor/barryvdh/laravel-snappy/src/PdfWrapper.php(176): Knp\\Snappy\\AbstractGenerator->getOutputFromHtml('<!DOCTYPE html>...', Array)
+#5 /Users/karendiaz/Desktop/fss/vendor/barryvdh/laravel-snappy/src/PdfWrapper.php(246): Barryvdh\\Snappy\\PdfWrapper->output()
+#6 /Users/karendiaz/Desktop/fss/vendor/symfony/http-foundation/StreamedResponse.php(112): Barryvdh\\Snappy\\PdfWrapper->Barryvdh\\Snappy\\{closure}()
+#7 /Users/karendiaz/Desktop/fss/vendor/symfony/http-foundation/Response.php(376): Symfony\\Component\\HttpFoundation\\StreamedResponse->sendContent()
+#8 /Users/karendiaz/Desktop/fss/public/index.php(58): Symfony\\Component\\HttpFoundation\\Response->send()
+#9 /Users/karendiaz/Desktop/fss/server.php(21): require_once('/Users/karendia...')
+#10 {main}
+"} 
+[2019-12-10 17:31:28] local.ERROR: The exit status code '127' says something went wrong:
+stderr: "sh: /vendor/h4cc/wkhtmltoimage-amd64/bin: No such file or directory
+"
+stdout: ""
+command: /vendor/h4cc/wkhtmltoimage-amd64/bin --lowquality '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df046f0541cf5.12496390.html' '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df046f0543340.52645006.pdf'. {"userId":3,"exception":"[object] (RuntimeException(code: 127): The exit status code '127' says something went wrong:
+stderr: \"sh: /vendor/h4cc/wkhtmltoimage-amd64/bin: No such file or directory
+\"
+stdout: \"\"
+command: /vendor/h4cc/wkhtmltoimage-amd64/bin --lowquality '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df046f0541cf5.12496390.html' '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df046f0543340.52645006.pdf'. at /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php:378)
+[stacktrace]
+#0 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(177): Knp\\Snappy\\AbstractGenerator->checkProcessStatus(127, '', 'sh: /vendor/h4c...', '/vendor/h4cc/wk...')
+#1 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/Pdf.php(63): Knp\\Snappy\\AbstractGenerator->generate(Array, '/var/folders/fh...', Array, false)
+#2 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(221): Knp\\Snappy\\Pdf->generate(Array, '/var/folders/fh...', Array)
+#3 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(242): Knp\\Snappy\\AbstractGenerator->getOutput(Array, Array)
+#4 /Users/karendiaz/Desktop/fss/vendor/barryvdh/laravel-snappy/src/PdfWrapper.php(176): Knp\\Snappy\\AbstractGenerator->getOutputFromHtml('<!DOCTYPE html>...', Array)
+#5 /Users/karendiaz/Desktop/fss/vendor/barryvdh/laravel-snappy/src/PdfWrapper.php(246): Barryvdh\\Snappy\\PdfWrapper->output()
+#6 /Users/karendiaz/Desktop/fss/vendor/symfony/http-foundation/StreamedResponse.php(112): Barryvdh\\Snappy\\PdfWrapper->Barryvdh\\Snappy\\{closure}()
+#7 /Users/karendiaz/Desktop/fss/vendor/symfony/http-foundation/Response.php(376): Symfony\\Component\\HttpFoundation\\StreamedResponse->sendContent()
+#8 /Users/karendiaz/Desktop/fss/public/index.php(58): Symfony\\Component\\HttpFoundation\\Response->send()
+#9 /Users/karendiaz/Desktop/fss/server.php(21): require_once('/Users/karendia...')
+#10 {main}
+"} 
+[2019-12-10 17:32:47] local.ERROR: The exit status code '127' says something went wrong:
+stderr: "sh: /usr/local/bin/wkhtmltopdf: No such file or directory
+"
+stdout: ""
+command: /usr/local/bin/wkhtmltopdf --lowquality '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df0473f22ebe4.83093794.html' '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df0473f22fee6.16862051.pdf'. {"userId":3,"exception":"[object] (RuntimeException(code: 127): The exit status code '127' says something went wrong:
+stderr: \"sh: /usr/local/bin/wkhtmltopdf: No such file or directory
+\"
+stdout: \"\"
+command: /usr/local/bin/wkhtmltopdf --lowquality '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df0473f22ebe4.83093794.html' '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df0473f22fee6.16862051.pdf'. at /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php:378)
+[stacktrace]
+#0 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(177): Knp\\Snappy\\AbstractGenerator->checkProcessStatus(127, '', 'sh: /usr/local/...', '/usr/local/bin/...')
+#1 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/Pdf.php(63): Knp\\Snappy\\AbstractGenerator->generate(Array, '/var/folders/fh...', Array, false)
+#2 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(221): Knp\\Snappy\\Pdf->generate(Array, '/var/folders/fh...', Array)
+#3 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(242): Knp\\Snappy\\AbstractGenerator->getOutput(Array, Array)
+#4 /Users/karendiaz/Desktop/fss/vendor/barryvdh/laravel-snappy/src/PdfWrapper.php(176): Knp\\Snappy\\AbstractGenerator->getOutputFromHtml('<!DOCTYPE html>...', Array)
+#5 /Users/karendiaz/Desktop/fss/vendor/barryvdh/laravel-snappy/src/PdfWrapper.php(246): Barryvdh\\Snappy\\PdfWrapper->output()
+#6 /Users/karendiaz/Desktop/fss/vendor/symfony/http-foundation/StreamedResponse.php(112): Barryvdh\\Snappy\\PdfWrapper->Barryvdh\\Snappy\\{closure}()
+#7 /Users/karendiaz/Desktop/fss/vendor/symfony/http-foundation/Response.php(376): Symfony\\Component\\HttpFoundation\\StreamedResponse->sendContent()
+#8 /Users/karendiaz/Desktop/fss/public/index.php(58): Symfony\\Component\\HttpFoundation\\Response->send()
+#9 /Users/karendiaz/Desktop/fss/server.php(21): require_once('/Users/karendia...')
+#10 {main}
+"} 
+[2019-12-10 17:34:30] local.ERROR: The exit status code '127' says something went wrong:
+stderr: "sh: /usr/local/bin/wkhtmltopdf: No such file or directory
+"
+stdout: ""
+command: /usr/local/bin/wkhtmltopdf --lowquality '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df047a6ec9646.15196114.html' '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df047a6ecc120.30277375.pdf'. {"userId":3,"exception":"[object] (RuntimeException(code: 127): The exit status code '127' says something went wrong:
+stderr: \"sh: /usr/local/bin/wkhtmltopdf: No such file or directory
+\"
+stdout: \"\"
+command: /usr/local/bin/wkhtmltopdf --lowquality '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df047a6ec9646.15196114.html' '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df047a6ecc120.30277375.pdf'. at /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php:378)
+[stacktrace]
+#0 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(177): Knp\\Snappy\\AbstractGenerator->checkProcessStatus(127, '', 'sh: /usr/local/...', '/usr/local/bin/...')
+#1 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/Pdf.php(63): Knp\\Snappy\\AbstractGenerator->generate(Array, '/var/folders/fh...', Array, false)
+#2 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(221): Knp\\Snappy\\Pdf->generate(Array, '/var/folders/fh...', Array)
+#3 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(242): Knp\\Snappy\\AbstractGenerator->getOutput(Array, Array)
+#4 /Users/karendiaz/Desktop/fss/vendor/barryvdh/laravel-snappy/src/PdfWrapper.php(176): Knp\\Snappy\\AbstractGenerator->getOutputFromHtml('<!DOCTYPE html>...', Array)
+#5 /Users/karendiaz/Desktop/fss/vendor/barryvdh/laravel-snappy/src/PdfWrapper.php(246): Barryvdh\\Snappy\\PdfWrapper->output()
+#6 /Users/karendiaz/Desktop/fss/vendor/symfony/http-foundation/StreamedResponse.php(112): Barryvdh\\Snappy\\PdfWrapper->Barryvdh\\Snappy\\{closure}()
+#7 /Users/karendiaz/Desktop/fss/vendor/symfony/http-foundation/Response.php(376): Symfony\\Component\\HttpFoundation\\StreamedResponse->sendContent()
+#8 /Users/karendiaz/Desktop/fss/public/index.php(58): Symfony\\Component\\HttpFoundation\\Response->send()
+#9 /Users/karendiaz/Desktop/fss/server.php(21): require_once('/Users/karendia...')
+#10 {main}
+"} 
+[2019-12-10 17:44:08] local.ERROR: Command "update" is not defined. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"update\" is not defined. at /Users/karendiaz/Desktop/fss/vendor/symfony/console/Application.php:670)
+[stacktrace]
+#0 /Users/karendiaz/Desktop/fss/vendor/symfony/console/Application.php(236): Symfony\\Component\\Console\\Application->find('update')
+#1 /Users/karendiaz/Desktop/fss/vendor/symfony/console/Application.php(148): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#2 /Users/karendiaz/Desktop/fss/vendor/laravel/framework/src/Illuminate/Console/Application.php(90): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 /Users/karendiaz/Desktop/fss/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(133): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 /Users/karendiaz/Desktop/fss/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 {main}
+"} 
+[2019-12-10 17:47:17] local.ERROR: The exit status code '126' says something went wrong:
+stderr: "sh: /Users/karendiaz/Desktop/fss/vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf-amd64: cannot execute binary file
+"
+stdout: ""
+command: /Users/karendiaz/Desktop/fss/vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf-amd64 --lowquality '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df04aa5ea3849.03171951.html' '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df04aa5ea4d47.53500457.pdf'. {"userId":3,"exception":"[object] (RuntimeException(code: 126): The exit status code '126' says something went wrong:
+stderr: \"sh: /Users/karendiaz/Desktop/fss/vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf-amd64: cannot execute binary file
+\"
+stdout: \"\"
+command: /Users/karendiaz/Desktop/fss/vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf-amd64 --lowquality '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df04aa5ea3849.03171951.html' '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df04aa5ea4d47.53500457.pdf'. at /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php:378)
+[stacktrace]
+#0 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(177): Knp\\Snappy\\AbstractGenerator->checkProcessStatus(126, '', 'sh: /Users/kare...', '/Users/karendia...')
+#1 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/Pdf.php(63): Knp\\Snappy\\AbstractGenerator->generate(Array, '/var/folders/fh...', Array, false)
+#2 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(221): Knp\\Snappy\\Pdf->generate(Array, '/var/folders/fh...', Array)
+#3 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(242): Knp\\Snappy\\AbstractGenerator->getOutput(Array, Array)
+#4 /Users/karendiaz/Desktop/fss/vendor/barryvdh/laravel-snappy/src/PdfWrapper.php(176): Knp\\Snappy\\AbstractGenerator->getOutputFromHtml('<!DOCTYPE html>...', Array)
+#5 /Users/karendiaz/Desktop/fss/vendor/barryvdh/laravel-snappy/src/PdfWrapper.php(246): Barryvdh\\Snappy\\PdfWrapper->output()
+#6 /Users/karendiaz/Desktop/fss/vendor/symfony/http-foundation/StreamedResponse.php(112): Barryvdh\\Snappy\\PdfWrapper->Barryvdh\\Snappy\\{closure}()
+#7 /Users/karendiaz/Desktop/fss/vendor/symfony/http-foundation/Response.php(376): Symfony\\Component\\HttpFoundation\\StreamedResponse->sendContent()
+#8 /Users/karendiaz/Desktop/fss/public/index.php(58): Symfony\\Component\\HttpFoundation\\Response->send()
+#9 /Users/karendiaz/Desktop/fss/server.php(21): require_once('/Users/karendia...')
+#10 {main}
+"} 
+[2019-12-10 17:52:16] local.ERROR: The exit status code '126' says something went wrong:
+stderr: "sh: /usr/local/bin/wkhtmltopdf-amd64: cannot execute binary file
+"
+stdout: ""
+command: /usr/local/bin/wkhtmltopdf-amd64 --lowquality '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df04bd055a301.11590413.html' '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df04bd055b775.23484070.pdf'. {"userId":3,"exception":"[object] (RuntimeException(code: 126): The exit status code '126' says something went wrong:
+stderr: \"sh: /usr/local/bin/wkhtmltopdf-amd64: cannot execute binary file
+\"
+stdout: \"\"
+command: /usr/local/bin/wkhtmltopdf-amd64 --lowquality '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df04bd055a301.11590413.html' '/var/folders/fh/gqtnvhf93zg1446mf839jlmc0000gn/T/knp_snappy5df04bd055b775.23484070.pdf'. at /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php:378)
+[stacktrace]
+#0 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(177): Knp\\Snappy\\AbstractGenerator->checkProcessStatus(126, '', 'sh: /usr/local/...', '/usr/local/bin/...')
+#1 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/Pdf.php(63): Knp\\Snappy\\AbstractGenerator->generate(Array, '/var/folders/fh...', Array, false)
+#2 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(221): Knp\\Snappy\\Pdf->generate(Array, '/var/folders/fh...', Array)
+#3 /Users/karendiaz/Desktop/fss/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php(242): Knp\\Snappy\\AbstractGenerator->getOutput(Array, Array)
+#4 /Users/karendiaz/Desktop/fss/vendor/barryvdh/laravel-snappy/src/PdfWrapper.php(176): Knp\\Snappy\\AbstractGenerator->getOutputFromHtml('<!DOCTYPE html>...', Array)
+#5 /Users/karendiaz/Desktop/fss/vendor/barryvdh/laravel-snappy/src/PdfWrapper.php(246): Barryvdh\\Snappy\\PdfWrapper->output()
+#6 /Users/karendiaz/Desktop/fss/vendor/symfony/http-foundation/StreamedResponse.php(112): Barryvdh\\Snappy\\PdfWrapper->Barryvdh\\Snappy\\{closure}()
+#7 /Users/karendiaz/Desktop/fss/vendor/symfony/http-foundation/Response.php(376): Symfony\\Component\\HttpFoundation\\StreamedResponse->sendContent()
+#8 /Users/karendiaz/Desktop/fss/public/index.php(58): Symfony\\Component\\HttpFoundation\\Response->send()
+#9 /Users/karendiaz/Desktop/fss/server.php(21): require_once('/Users/karendia...')
+#10 {main}
+"} 

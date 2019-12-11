@@ -30,7 +30,7 @@ var shipcreditsucces =  '<div class="container app-success text-center justify-c
                    was successful. Please check your account balance on your user dashboard. The amount listed will need to be covered upon completion of the load.<br><br> <i class="fas fa-check-circle"></i></p> </div>';
 
 var success = '<div class="container app-success text-center justify-content-center" style="border: 1px solid #4BB543"> <p>Your account update was successful.\
-                <br><br> <i class="fas fa-check-circle"></i></p> </div>';
+                <br><br> <i class="fas fa-check-circle" style="font-size: 2rem; color: #4BB543"></i></p> </div>';
 
 var errorModal = '<div class="container app-success text-center justify-content-center" style="border: 1px solid red"> <p>There was an error with your submssion.\
                 <br> Please make sure you filled in the form correctly or contact us. <br><br> <i class="fas fa-exclamation-circle"></i></p> </div>';
@@ -258,7 +258,7 @@ $(document).ready(function () {
                 })
                 .done(function (result) {
 
-                    $('.modal-body').html(appsuccess);
+                    $('.modal-body').html(success);
                     $('.modal-footer').html('');
                     $('.modal').modal('show');
 
@@ -480,7 +480,7 @@ $(document).ready(function () {
                     });
 
                 })
-                .done(function (error) {
+                .fail(function (error) {
                     console.log(error);
                     $(".modal-body").html(errorModal);
                     $(".modal-footer").html('');

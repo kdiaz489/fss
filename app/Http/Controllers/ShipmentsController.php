@@ -867,7 +867,7 @@ class ShipmentsController extends Controller
         }
         
         Mail::to('ship@fillstorship.com')->send(new ShipmentBookingMail($emaildata, $shipmentid));
-        Mail::to(auth()->user()->email)->send(new CustomerShipmentBookingMail($emaildata));
+        //Mail::to(auth()->user()->email)->send(new CustomerShipmentBookingMail($emaildata));
         return response()->json($shipmentid);
         
     }
