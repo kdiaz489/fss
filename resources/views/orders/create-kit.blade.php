@@ -248,11 +248,10 @@ Create Kit
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="3" align="right">&nbsp;</td>
-                            <td>
+                            <td colspan="4" align="left">
                                 @csrf
-                                <input type="submit" name="save" id="save" class="btn btn-link text-denim"
-                                    value="Submit">
+                                <input type="submit" name="save" id="save" class="btn btn-primary text-white bg-denim"
+                                    value="Create Kit">
 
                             </td>
                         </tr>

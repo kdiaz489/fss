@@ -175,15 +175,17 @@
             @endif
 
             <div class="col-lg-12 col-12">
-                        <div class="container dashboard-container">
+                        <div class="">
                             <h3 class="font-weight-light mb-3">Manage Users</h3>
 
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
+                                        <th scope="col">Company</th>
                                         <th scope="col">Name</th>
+                                        <th scope="col">Address</th>
                                         <th scope="col">Email</th>
-                                        <th scope="col">Access</th>
+                                        <th scope="col">Role</th>
                                         <th scope="col"> Account Balance</th>
                                         <th scope="col">Credit</th>
                                         <th scope="col"></th>
@@ -192,7 +194,9 @@
                                 <tbody>
                                     @foreach($users as $user)
                                     <tr>
+                                        <td>{{$user->company_name}}</td>
                                         <td>{{$user->name}}</td>
+                                        <td>{{$user->street_address . ' ' . $user->city . ', ' . $user->state . ' ' . $user->zip}}</td>
                                         <td>{{$user->email}}</td>
                                         <td>{{implode(', ', $user->roles()->pluck('name')->toArray())}}</td>
                                                                                 <td>
@@ -232,7 +236,7 @@
                                             </form>
                                             
                                                     <a href="{{ route('admin.impersonate', $user->id) }}" class="float-left">
-                                                        <button class="btn btn-link text-success btn-sm" type="button">Impersonate User</button>
+                                                        <button class="btn btn-link text-success btn-sm" type="button">Impersonate</button>
                                                     </a>
                                                     
                                         </td>

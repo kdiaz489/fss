@@ -203,14 +203,14 @@ Create Unit
     <form action="/basicunit" method="POST">
         <div class="form-row justify-content-center mb-3">
 
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <label for="sku">Sku</label>
                 <input type="text" name="sku" class="form-control form-control-sm" value="{{ old('sku')}}"
                     placeholder="Sku #">
                 <div style="font-weight: 700; color:red">{{$errors->first('sku')}}</div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <label for="upc">UPC/Barcode</label>
                 <input type="text" name="upc" class="form-control form-control-sm" value="{{ old('upc')}}"
                     placeholder="#">
@@ -230,7 +230,7 @@ Create Unit
         </div>
 
         <div class="form-row justify-content-center">
-            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="submit" class="btn btn-primary text-white bg-denim">Create Unit</button>
         </div>
         @csrf
     </form>

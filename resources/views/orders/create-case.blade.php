@@ -248,11 +248,11 @@ Create Case
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="3" align="right">&nbsp;</td>
-                            <td>
+                            
+                            <td colspan="4" align="left">
 
-                                <input type="submit" name="save" id="save" class="btn btn-link text-denim"
-                                    value="Submit">
+                                <input type="submit" name="save" id="save" class="btn btn-primaery text-white bg-denim"
+                                    value="Create Case">
                             </td>
                         </tr>
                     </tfoot>
