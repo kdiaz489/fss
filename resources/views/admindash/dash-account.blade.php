@@ -207,7 +207,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row py-1 border-bottom">
+                                <div class="row py-1 border-top border-bottom">
                                     <div class="col-lg-4">
                                         <p>Username:</p>
                                     </div>
@@ -256,7 +256,7 @@
                                         <h4 class="mt-4 font-weight-light">Contact Info</p>
                                     </div>
                                 </div>
-                                <div class="row py-1 border-bottom">
+                                <div class="row py-1 border-top border-bottom">
                                     <div class="col-lg-4">
                                         <p>Company Name:</p>
                                     </div>

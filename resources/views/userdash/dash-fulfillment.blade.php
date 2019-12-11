@@ -248,7 +248,7 @@ Fulfilment Orders
                                             type="button">{{str_pad($order->orderid, 6, '0', STR_PAD_LEFT)}}</button>
                                     </a>
                                 </td>
-                                <td>{{$order->created_at->format('H:i:s m/d/y')}}</td>
+                                <td>{{$order->created_at->format('m/d/y')}}</td>
                                 <td>{{$order->company}}</td>
                                 <td></td>
                                 <td>{{$order->status}}</td>

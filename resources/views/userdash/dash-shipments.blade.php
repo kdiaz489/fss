@@ -247,12 +247,12 @@ Shipments
                                 @foreach($shipments as $shipment)
                                 <tr>
                                     <td>{{str_pad($shipment->id, 6, '0', STR_PAD_LEFT)}}</td>
-                                    <td>{{$shipment->created_at->format('H:i:s m/d/y')}}</td>
+                                    <td>{{$shipment->created_at->format('m/d/y')}}</td>
                                     <td>{{$shipment->work_status}}</td>
                                     <td>{{$shipment->orig_company}}</td>
                                     <td>{{$shipment->dest_company}}</td>
-                                    <td>{{$shipment->orig_pickup_date}}</td>
-                                    <td>{{$shipment->dest_pickup_date}}</td>
+                                    <td>{{date('m/d/y', strtotime($shipment->orig_pickup_date))}}</td>
+                                    <td>{{date('m/d/y', strtotime($shipment->dest_pickup_date))}}</td>
                                     <td>{{$shipment->dest_cont_name}}</td>
                                     <td>{{$shipment->dest_cont_email}}</td>
                                     <td>{{$shipment->dest_cont_phone}}</td>
@@ -320,12 +320,12 @@ Shipments
                             @foreach($shipmentshistory as $shipment)
                             <tr>
                                 <td>{{str_pad($shipment->id, 6, '0', STR_PAD_LEFT)}}</td>
-                                <td>{{$shipment->created_at->format('H:i:s m/d/y')}}</td>
+                                <td>{{$shipment->created_at->format('m/d/y')}}</td>
                                 <td>{{$shipment->work_status}}</td>
                                 <td>{{$shipment->orig_company}}</td>
                                 <td>{{$shipment->dest_company}}</td>
-                                <td>{{$shipment->orig_pickup_date}}</td>
-                                <td>{{$shipment->dest_pickup_date}}</td>
+                                <td>{{date('m/d/y', strtotime($shipment->orig_pickup_date))}}</td>
+                                <td>{{date('m/d/y', strtotime($shipment->dest_pickup_date))}}</td>
                                 <td>{{$shipment->dest_cont_name}}</td>
                                 <td>{{$shipment->dest_cont_email}}</td>
                                 <td>{{$shipment->dest_cont_phone}}</td>

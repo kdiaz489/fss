@@ -236,21 +236,21 @@ Account
 
             <div class="col-lg-12 col-12">
                     <br>
-                    <h1 class="h1 font-weight-light">Account Balance</h1>
-                    <div class="container-fluid px-5 py-3" style="border: solid 1px #dee2e6; border-radius: 10px">
+                    <h3 class="font-weight-light">Account Balance</h3>
+                    <div class="container-fluid px-5 py-1 pt-3" style="border: solid 1px #dee2e6; border-radius: 10px">
                         <div class="row">
                             <div class="col-lg-4">
-                                <p class="h3 font-weight-light">Balance Owed</p>
+                                <p class="h4 font-weight-light">Balance Owed</p>
                             </div>
                         </div>
 
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table table-sm">
                                     <tr>
-                                        <th>User</th>
-                                        <th>Company</th>
-                                        <th>Remaining Balance</th>
-                                        <th></th>
+                                        <th class="font-weight-normal">User</th>
+                                        <th class="font-weight-normal">Company</th>
+                                        <th class="font-weight-normal">Remaining Balance</th>
+                                        <th class="font-weight-normal"></th>
                                     </tr>
                                 
                                     <tr>
@@ -272,15 +272,15 @@ Account
 
                         <br>
                 
-                            <h1 class="h1 font-weight-light">Account Settings</h1>
-                            <div class="container-fluid px-5 py-3" style="border: solid 1px #dee2e6; border-radius: 10px">
+                            <p class="h3 font-weight-light">Account Settings</p>
+                            <div class="container-fluid px-5 py-1 pt-3" style="border: solid 1px #dee2e6; border-radius: 10px">
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <p class="h3 font-weight-light">Profile</p>
+                                        <p class="h4 font-weight-light">Profile</p>
                                     </div>
                                 </div>
 
-                                <div class="row py-3 border-top border-bottom">
+                                <div class="row py-1 border-top border-bottom">
                                     <div class="col-lg-4">
                                         <p>Username:</p>
                                     </div>
@@ -294,7 +294,7 @@ Account
 
                                 </div>
 
-                                <div class="row py-3 border-bottom">
+                                <div class="row py-1 border-bottom">
                                     <div class="col-lg-4">
                                         <p>E-Mail:</p>
                                     </div>
@@ -307,7 +307,7 @@ Account
 
                                 </div>
 
-                                <div class="row py-3 ">
+                                <div class="row py-1 ">
                                     <div class="col-lg-4">
                                         <p>Password:</p>
                                     </div>
@@ -322,14 +322,14 @@ Account
                                 </div>
                             </div>
 
-                            <div class="container-fluid px-5 py-3 mt-4"
+                            <div class="container-fluid px-5 py-1 pt-3 mt-4"
                                 style="border: solid 1px #dee2e6; border-radius: 10px">
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <p class="h3 font-weight-light">Contact Info</5>
+                                        <p class="h4 font-weight-light">Contact Info</p>
                                     </div>
                                 </div>
-                                <div class="row py-3 border-top border-bottom">
+                                <div class="row py-1 border-top border-bottom">
                                     <div class="col-lg-4">
                                         <p>Company Name:</p>
                                     </div>
@@ -343,7 +343,7 @@ Account
 
                                 </div>
 
-                                <div class="row py-3 border-bottom">
+                                <div class="row py-1 border-bottom">
                                     <div class="col-lg-4">
                                         <p>Contact Name:</p>
                                     </div>
@@ -356,7 +356,7 @@ Account
 
                                 </div>
 
-                                <div class="row py-3 ">
+                                <div class="row py-1 ">
                                     <div class="col-lg-4">
                                         <p>Address:</p>
                                     </div>
