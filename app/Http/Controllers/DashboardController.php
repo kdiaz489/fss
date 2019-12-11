@@ -203,7 +203,8 @@ class DashboardController extends Controller
         $pallets = Pallet::orderBy('created_at', 'desc')->get();
         //$orders = Order::orderBy('created_at', 'desc')->get()->where('status', '=', 'Pending Approval');
 
-        return view('admindash.dash-all-inventory')->with('basic_units', $units)->with('kits', $kits)->with('cases', $cases)->with('cartons', $cartons)->with('pallets', $pallets);
+        //return view('admindash.dash-all-inventory')->with('basic_units', $units)->with('kits', $kits)->with('cases', $cases)->with('cartons', $cartons)->with('pallets', $pallets);
+        return view('admindash.dash-all-inventory')->with('users', User::all());
     }
 
 

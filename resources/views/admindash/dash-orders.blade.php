@@ -68,7 +68,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                           <li class="nav-item">
-                            <a href="/dashboard" class="nav-link text-gunmetal bg-whitewash" >
+                            <a href="/dashboard" class="nav-link text-white" >
                               <i class="fas fa-angle-right nav-icon"></i>
                               <p>All Shipments</p>
                             </a>

@@ -48,6 +48,7 @@
   <link href="{{ asset('css/landingpage.css') }}" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <link href="{{ asset('css/fssdash.css') }}" rel="stylesheet">
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -85,12 +86,8 @@
               @yield('page-title')
             </h1>
           </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item">Dashboard</li>
-              <li class="breadcrumb-item active">@yield('breadcrumb')</li>
-            </ol>
-          </div><!-- /.col -->
+
+
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>

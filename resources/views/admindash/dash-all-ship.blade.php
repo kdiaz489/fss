@@ -196,7 +196,7 @@
                                 <th>Contact Email</th>
                                 <th>Contact Phone</th>
                                 <th>Dock</th>
-                                <th>Forklift</th>
+                                <th>Fork Lift</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -226,8 +226,8 @@
                                 <td>{{$shipment->work_status}}</td>
                                 <td>{{$shipment->orig_company}}</td>
                                 <td>{{$shipment->dest_company}}</td>
-                                <td>{{$shipment->orig_pickup_date}}</td>
-                                <td>{{$shipment->dest_pickup_date}}</td>
+                                <td>{{date('m/d/y', strtotime($shipment->orig_pickup_date))}}</td>
+                                <td>{{date('m/d/y', strtotime($shipment->dest_pickup_date))}}</td>
                                 <td>{{$shipment->dest_cont_name}}</td>
                                 <td>{{$shipment->dest_cont_email}}</td>
                                 <td>{{$shipment->dest_cont_phone}}</td>
@@ -312,8 +312,8 @@
                                 <td>{{$shipment->work_status}}</td>
                                 <td>{{$shipment->orig_company}}</td>
                                 <td>{{$shipment->dest_company}}</td>
-                                <td>{{$shipment->orig_pickup_date}}</td>
-                                <td>{{$shipment->dest_pickup_date}}</td>
+                                <td>{{date('m/d/y', strtotime($shipment->orig_pickup_date))}}</td>
+                                <td>{{date('m/d/y', strtotime($shipment->dest_pickup_date))}}</td>
                                 <td>{{$shipment->dest_cont_name}}</td>
                                 <td>{{$shipment->dest_cont_email}}</td>
                                 <td>{{$shipment->dest_cont_phone}}</td>
