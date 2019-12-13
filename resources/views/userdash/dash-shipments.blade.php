@@ -261,7 +261,7 @@ Shipments
                                     <td>
                                         <div>
                                             <a href="/ship/{{$shipment->id}}" class="float-left">
-                                                <button class="btn btn-link text-secondary btn-sm px-0 pr-1"
+                                                <button class="btn btn-link text-success btn-sm px-0 pr-1"
                                                     type="button"><small>View</small></button>
                                             </a>
                                             <a href="/pdf/{{$shipment->id}}" class="float-left">
@@ -334,7 +334,7 @@ Shipments
                                 <td>
                                     <div>
                                         <a href="/ship/{{$shipment->id}}" class="float-left">
-                                            <button class="btn btn-link text-secondary btn-sm px-0 pr-1"
+                                            <button class="btn btn-link text-success btn-sm px-0 pr-1"
                                                 type="button"><small>View</small></button>
                                         </a>
                                         <a href="/pdf/{{$shipment->id}}" class="float-left">

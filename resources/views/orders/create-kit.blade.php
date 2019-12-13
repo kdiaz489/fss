@@ -232,12 +232,13 @@ Create Kit
             </div>
         </div>
 
-        <div class="form-row justify-content-center mb-4">
+        <div class="form-row justify-content-center mb-2">
             <div class="col-md-8 justify-content-center">
+                <div class="table-responsive">
                 <table class="table table-bordered table-striped" id="user_table">
                     <thead>
                         <tr>
-                            <th width="20%">Select Items</th>
+                            <th width="20%">Select Kit Items</th>
                             <th width="20%">Item Type</th>
                             <th width="20%">Quantity</th>
                             <th width="20%">Action</th>
@@ -249,17 +250,20 @@ Create Kit
                     <tfoot>
                         <tr>
                             <td colspan="4" align="left">
-                                @csrf
-                                <input type="submit" name="save" id="save" class="btn btn-primary text-white bg-denim"
-                                    value="Create Kit">
-
+                                <button type="button" name="add" id="" class="btn btn-success btn-sm add-kit-row circle mr-1"><i class="fas fa-lg fa-plus"></i></button><small class="text-success">Add item to kit</small>
                             </td>
                         </tr>
                     </tfoot>
                 </table>
+              </div>
             </div>
         </div>
-
+        <div class="form-row justify-content-center">
+            <div class="col-md-8">
+                <input type="submit" name="save" id="save" class="btn btn-primary bg-denim btn-sm border-0" value="Create Kit">
+            </div>
+        </div>
+        @csrf
     </form>
 
 </div>
@@ -278,29 +282,21 @@ Create Kit
             html += '<option value="none" disabled selected>Choose</option> ';
             html += '@if (count($units) > 0)<optgroup label="Units">@foreach ($units as $unit) <option value="{{$unit->id}}">{{$unit->sku}}</option>@endforeach</optgroup> @else<option value="" disabled>No Units Available</option> @endif '
             html += '</td>';
-            html += '<td> <select type="text" name="type[]" class="form-control form-control-sm type" placeholder="Item Type"><option value="n/a" selected disabled>Choose</option><option value="Unit">Unit</option></select></td>'
-            html += '<td><input type="text" name="item_qty[]" class="form-control" /></td>';
-            if(number > 1)
+            html += '<td> <select type="text" name="type[]" class="form-control form-control-sm kit_item_type" placeholder="Item Type"><option value="n/a" selected disabled>Choose</option><option value="Unit">Unit</option></select></td>'
+            html += '<td><input type="text" name="item_qty[]" class="form-control" placeholder="Item quantity" /></td>';
+            if(number >= 1)
             {
-                html += '<td><button type="button" name="remove" id="" class="btn btn-danger btn-sm remove circle"><i class="fas fa-lg fa-minus"></i></button>\
-                        <button type="button" name="add" id="" class="btn btn-success btn-sm add circle"><i class="fas fa-lg fa-plus"></i></button></td></tr>';
+                html += '<td><button type="button" name="remove" id="" class="btn btn-danger btn-sm remove-kit-row circle"><i class="fas fa-lg fa-minus"></i></button> <small class="text-danger">Remove item</small></td></tr>';
                 
                 $('.form_inventory').append(html);
             }
-            else
-            {   
-                html += '<td>\
-                        <button type="button" name="remove" id="" class="btn btn-danger btn-sm remove circle"><i class="fas fa-lg fa-minus"></i></button>\
-                        <button type="button" name="add" id="" class="btn btn-success btn-sm add circle"><i class="fas fa-lg fa-plus"></i></button>\
-                        </td></tr>';
-                $('.form_inventory').html(html);
-            }
+            
             $('.select_kit_skus').select2({
                 width: '175px',
                 theme: 'bootstrap4'
             });
 
-            $('.type').select2({
+            $('.kit_item_type').select2({
                 width: '175px',
                 theme: 'bootstrap4'
             });
@@ -327,12 +323,12 @@ Create Kit
              
         });
 
-        $(document).on('click', '.add', function(){
+        $(document).on('click', '.add-kit-row', function(){
         count++;
         dynamic_field(count);
         });
 
-        $(document).on('click', '.remove', function(){
+        $(document).on('click', '.remove-kit-row', function(){
         const table = document.getElementsByClassName('form_inventory');
         const rownum = table[0].getElementsByTagName('TR').length;
         

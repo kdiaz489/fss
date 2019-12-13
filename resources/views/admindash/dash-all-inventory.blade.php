@@ -176,9 +176,9 @@ All Inventory
                   <input type="text" class="py-2" placeholder="Search.." onfocus="this.value=''" id="myInput" onkeyup="filterFunction()">
                         @foreach ($users as $user)
                             @if ($loop->first)
-                                <a class="p-3" id="{{$user->id . 'tab'}}" data-toggle="tab" href="#{{'user_' . $user->id}}" role="tab" >{{$user->company_name}}</a>
+                                <a class="p-3" id="{{$user->id . 'tab'}}" data-toggle="tab" href="#{{'user_' . $user->id}}" role="tab" aria-selected="false">{{$user->company_name}}</a>
                             @else
-                            <a class="p-3" id="{{$user->id . 'tab'}}" data-toggle="tab" href="#{{'user_' . $user->id}}" role="tab">{{$user->company_name}}</a>
+                                <a class="p-3" id="{{$user->id . 'tab'}}" data-toggle="tab" href="#{{'user_' . $user->id}}" role="tab" aria-selected="false">{{$user->company_name}}</a>
                             @endif
                     @endforeach
                 </div>
@@ -1477,6 +1477,18 @@ All Inventory
 
 @section('scripts')
 <script>
+
+
+$(".dropdown .dropdown-content a").on("click", function(){
+
+   $(this).tab('show');
+   $("#myDropdown").find(".active").removeClass("active");
+   $("#myDropdown").find(".active").attr('aria-selected', false);
+   $(this).addClass("active");
+   $(this).attr('aria-selected', true);
+});
+
+
 
 $(document).click(function(event) {
   //if you click on anything except the modal itself or the "open modal" link, close the modal

@@ -690,6 +690,7 @@ Inventory
                     @if(count($kits) > 0)
                     <div class="table-responsive">
                     <table class="table table-sm">
+                        <thead>
                         <tr>
                             <th width="10%"></th>
                             <th width="10%">Sku</th>
@@ -700,6 +701,7 @@ Inventory
                             <th width="10%">Location</th>
                             <th width="10%"></th>
                         </tr>
+                        </thead>
                         @foreach($kits as $kit)
                         <tr>
                             <td><button type="button" class="btn text-denim toggle-{{$kit->id}}" id="toggle-details{{$kit->id}}" data-toggle="collapse" data-target="#details{{$kit->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
@@ -778,6 +780,7 @@ Inventory
                     @if(count($basic_units) > 0)
                     <div class="table-responsive">
                     <table class="table table-sm">
+                        <thead>
                         <tr>
 
                             <th width="10%">Sku</th>
@@ -791,6 +794,7 @@ Inventory
                             <th width="10%"></th>
 
                         </tr>
+                        </thead>
                         @foreach($basic_units as $unit)
                         <tr>
                             <td>{{$unit->sku}}</td>
