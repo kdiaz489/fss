@@ -214,6 +214,7 @@ All Inventory
                         <th width="10%">Sku</th>
                         <th width="10%">Date Created</th>
                         <th width="10%">Quantity</th>
+                        <th width="10%">Status</th>
                         <th width="10%">Location</th>
                         <th width="10%"></th>
 
@@ -229,6 +230,7 @@ All Inventory
                         <td>{{$pallet->sku}}</td>
                         <td>{{date('m/d/y', strtotime($pallet->created_at))}}</td>
                         <td>{{$pallet->total_qty}}</td>
+                        <td>{{$pallet->status}}</td>
                         <td>N/A</td>
                         <td>
                             <div style="margin-left: 30%">
@@ -400,6 +402,7 @@ All Inventory
                         <th width="10%">Sku</th>
                         <th width="10%">Date Created</th>
                         <th width="10%">Quantity</th>
+                        <th width="10%">Status</th>
                         <th width="10%">Location</th>
                         <th width="10%"></th>
 

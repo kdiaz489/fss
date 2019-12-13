@@ -245,7 +245,7 @@ Inventory
 
                         @foreach($pallets as $pallet)
                         <tr>
-                            <td><button type="button" class="btn text-denim toggle-{{$pallet->id}}" id="toggle-details{{$pallet->id}}" data-toggle="collapse" data-target="#details{{$pallet->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
+                            <td><button type="button" class="btn text-denim toggle-{{$pallet->id}}" id="toggle-details-pallet-{{$pallet->id}}" data-toggle="collapse" data-target="#details-pallet-{{$pallet->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
                             <td>{{$pallet->upc}}</td>
                             <td>{{$pallet->created_at->format('m/d/y')}}</td>
                             <td>{{$pallet->total_qty}}</td>
@@ -278,7 +278,7 @@ Inventory
                                     <tr>
                                         <td class="py-0 border-0"></td> 
                                         <td class="py-0 border-0" colspan="12">
-                                            <div id="details{{$pallet->id}}" class="accordion-body details collapse">
+                                            <div id="details-pallet-{{$pallet->id}}" class="accordion-body details collapse">
                                                     <table class="table table-sm bg-whitewash">
                                                             <thead>
                                                                 <tr>
@@ -311,7 +311,7 @@ Inventory
                                     <tr>
                                         <td class="py-0 border-0"></td> 
                                         <td class="py-0 border-0" colspan="12">
-                                            <div id="details{{$pallet->id}}" class="accordion-body details collapse">
+                                            <div id="details-pallet-{{$pallet->id}}" class="accordion-body details collapse">
                                                     <table class="table table-sm bg-whitewash">
                                                             <thead>
                                                                 <tr>
@@ -343,7 +343,7 @@ Inventory
                                     <tr>
                                         <td class="py-0 border-0"></td> 
                                         <td class="py-0 border-0" colspan="12">
-                                            <div id="details{{$pallet->id}}" class="accordion-body details collapse">
+                                            <div id="details-pallet-{{$pallet->id}}" class="accordion-body details collapse">
                                                     <table class="table table-sm bg-whitewash">
                                                             <thead>
                                                                 <tr>
@@ -376,7 +376,7 @@ Inventory
                                     <tr>
                                         <td class="py-0 border-0"></td> 
                                         <td class="py-0 border-0" colspan="12">
-                                            <div id="details{{$pallet->id}}" class="accordion-body details collapse">
+                                            <div id="details-pallet-{{$pallet->id}}" class="accordion-body details collapse">
                                                     <table class="table table-sm bg-whitewash">
                                                             <thead>
                                                                 <tr>
@@ -428,7 +428,7 @@ Inventory
                         <tbody>
                         @foreach($cartons as $carton)
                         <tr>
-                            <td><button type="button" class="btn text-denim toggle-{{$carton->id}}" id="toggle-details{{$carton->id}}" data-toggle="collapse" data-target="#details{{$carton->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
+                            <td><button type="button" class="btn text-denim toggle-{{$carton->id}}" id="toggle-details-carton-{{$carton->id}}" data-toggle="collapse" data-target="#details-carton-{{$carton->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
                             <td>{{$carton->upc}}</td>
                             <td>{{$carton->created_at->format('m/d/y')}}</td>
                             <td>{{$carton->total_qty}}</td>
@@ -462,7 +462,7 @@ Inventory
                                     <tr>
                                         <td class="py-0 border-0"></td>  
                                         <td class="py-0 border-0" colspan="12">
-                                            <div id="details{{$carton->id}}" class="accordion-body details collapse">
+                                            <div id="details-carton-{{$carton->id}}" class="accordion-body details collapse">
                                                     <table class="table table-sm bg-whitewash">
                                                             <thead>
                                                                 <tr>
@@ -494,7 +494,7 @@ Inventory
                                     <tr>
                                         <td class="py-0 border-0"></td>  
                                         <td class="py-0 border-0" colspan="12">
-                                            <div id="details{{$carton->id}}" class="accordion-body details collapse">
+                                            <div id="details-carton-{{$carton->id}}" class="accordion-body details collapse">
                                                     <table class="table table-sm bg-whitewash">
                                                             <thead>
                                                                 <tr>
@@ -527,7 +527,7 @@ Inventory
                                     <tr>
                                         <td class="py-0 border-0"></td>                                    
                                         <td class="py-0 border-0" colspan="12">
-                                            <div id="details{{$carton->id}}" class="accordion-body details collapse">
+                                            <div id="details-carton-{{$carton->id}}" class="accordion-body details collapse">
                                                     <table class="table table-sm bg-whitewash">
                                                             <thead>
                                                                 <tr>
@@ -583,7 +583,7 @@ Inventory
                     <tbody>
                         @foreach($cases as $case)
                         <tr>
-                            <td><button type="button" class="btn text-denim toggle-{{$case->id}}" id="toggle-details{{$case->id}}" data-toggle="collapse" data-target="#details{{$case->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
+                            <td><button type="button" class="btn text-denim toggle-{{$case->id}}" id="toggle-details-cases-{{$case->id}}" data-toggle="collapse" data-target="#details-cases-{{$case->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
                             <td>{{$case->sku}}</td>
                             <td>{{$case->description}}</td>
                             <td>{{$case->upc}}</td>
@@ -619,7 +619,7 @@ Inventory
                                     <tr>
                                         <td class="py-0 border-0"></td>
                                         <td class="py-0 border-0" colspan="12">
-                                        <div  id="details{{$case->id}}" class="details collapse">
+                                        <div  id="details-cases-{{$case->id}}" class="details collapse">
                                                 <table class="table table-sm bg-whitewash">
                                                         <thead>
                                                             <tr>
@@ -651,7 +651,7 @@ Inventory
                                     <tr>
                                         <td class="py-0 border-0"></td>
                                         <td class="py-0 border-0" colspan="12">
-                                            <div id="details{{$case->id}}" class="details collapse">
+                                            <div id="details-cases-{{$case->id}}" class="details collapse">
                                                     <table class="table table-sm bg-whitewash">
                                                             <thead>
                                                                 <tr>
@@ -704,7 +704,7 @@ Inventory
                         </thead>
                         @foreach($kits as $kit)
                         <tr>
-                            <td><button type="button" class="btn text-denim toggle-{{$kit->id}}" id="toggle-details{{$kit->id}}" data-toggle="collapse" data-target="#details{{$kit->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
+                            <td><button type="button" class="btn text-denim toggle-{{$kit->id}}" id="toggle-details-kit-{{$kit->id}}" data-toggle="collapse" data-target="#details-kit-{{$kit->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
                             <td>{{$kit->sku}}</td>
                             <td>{{$kit->description}}</td>
                             <td>{{$kit->upc}}</td>
@@ -739,7 +739,7 @@ Inventory
                                     <tr>
                                     <td class="py-0 border-0"></td>
                                     <td class="py-0 border-0" colspan="12">
-                                        <div  id="details{{$kit->id}}" class="details collapse">
+                                        <div  id="details-kit-{{$kit->id}}" class="details collapse">
                                                 <table class="table table-sm bg-whitewash">
                                                         <thead>
                                                             <tr>
