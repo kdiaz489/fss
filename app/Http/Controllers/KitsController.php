@@ -122,7 +122,7 @@ class KitsController extends Controller
                  }
             }
             return response()->json([
-                'success'  => 'Kit submitted successfully.'
+                'success'  => 'Kit has been created. - Sku: ' . $kit->sku . ' UPC: ' . $kit->upc . ''
             ]);
         }
 
@@ -171,27 +171,70 @@ class KitsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($request->ajax()) {
 
-         $request->validate([
+
+            /**
+             * Establishes rules for form
+             * Items, item quantity and pallet quantity are required
+             * If rules are not met, json error is returned to the form
+             */
+
             
-            'kit_sku'=> 'required',
-            'kit_price' => 'nullable',
-            'kit_name' => 'required',
-            'kit_desc' => 'nullable',
-            'units' => 'required',
-            
-        ]);   
+            $rules = array(
+                'items.*'  => 'required',
+                'item_qty.*'  => 'required',
+                'type.*' => 'required',
+                
+            );
 
-        $kit = Kit::find($id);
-        $kit->kit_name = $request->kit_name;
-        $kit->kit_price = $request->kit_price;
-        $kit->kit_sku = $request->kit_sku;
-        $kit->kit_desc = $request->kit_desc;
-        $kit->save();
+            $error = Validator::make($request->all(), $rules);
+            if ($error->fails()) {
+                return response()->json([
+                    'error'  => $error->errors()->all()
+                ]);
+            }
 
-        $kit->basic_units()->sync($request->units);
-        return redirect('/editkit'. '/' . $id)->with('success', 'You have successfully updated Kit' . $kit->kit_name);
+
+            /**
+             * If request passes validation, Pallet object is initiated and attributes are set
+             */
+            $kit = Kit::find($id);
+            $kit->sku = $request->sku;
+            $kit->upc = $request->upc;
+            $kit->kit_qty = 0;
+            $kit->description = $request->desc;
+            $kit->save();
+            $kit->basic_units()->detach();
+
+
+            /**
+             * 
+             * Form arrays are saved into local variables
+             * 
+             */
+            $items = $request->items;
+            $types = $request->type;
+            $item_qty = $request->item_qty;
+
+
+            /**
+             * Conditional statements check for the type of items that were submitted to the form
+             * Checks for Unit, Kit, Case, if condition is met then create an object based on the item type and attached to the $pallet
+             */
+            for ($i = 0; $i < count($item_qty); $i++) {
+                if ($types[$i] == 'Unit') { 
+                    $kit->kit_qty += $item_qty[$i];
+                    $kit->save();
+                    $kit->basic_units()->attach(['basic__unit_id' => $items[$i]], ['quantity' => $item_qty[$i]]);
+
+
+                 }
+            }
+            return response()->json([
+                'success'  => 'Kit has been updated. - SKU: ' . $kit->sku . ' UPC: ' . $kit->upc . ''
+            ]);
+        }
     }
 
     /**
@@ -203,9 +246,10 @@ class KitsController extends Controller
     public function destroy($id)
     {
         $kit = Kit::find($id);
-
+        $sku = $kit->sku;
+        $upc = $kit->upc;
         $kit->basic_units()->detach();
         $kit->delete();
-        return redirect()->back()->with('success', 'You have successfully deleted kit.');
+        return redirect()->back()->with('success', 'You have successfully deleted kit. - SKU: ' . $sku . ' UPC: ' . $upc . '');
     }
 }

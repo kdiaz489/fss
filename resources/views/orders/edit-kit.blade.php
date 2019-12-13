@@ -1,4 +1,350 @@
-@extends('layouts.app')
+@extends('layouts.userdashlte')
+
+@hasrole('user')
+
+@section('main-sidebar')
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar bg-denim elevation-4">
+                <!-- Brand Logo -->
+                <a href="#" class="brand-link justify-content-center border-0">
+                  <img src="{{asset('img/fss-white.svg')}}" alt="AdminLTE Logo" class="brand-image" width="100px" height="80px" style="max-height:27px; width:auto">
+                  <span class="brand-text font-weight-light text-white">Dashboard</span>
+                </a>
+          
+                <!-- Sidebar -->
+                <div class="sidebar">
+          
+          
+                  <!-- Sidebar Menu -->
+                  <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
+                      <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+          
+          
+                      <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link text-white">
+          
+                          <i class="nav-icon fas fa-box-open"></i>
+                          <p>
+                            Fulfilment
+                            <i class="right fas fa-angle-left"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+          
+                          <li class="nav-item">
+                            <a href="/createfilorder" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Manual Order</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/dashboard/user/fulfillment" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Fulfillment Orders</p>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+          
+                      <li class="nav-item has-treeview menu-open">
+                        <a href="#" class="nav-link text-white shadow-sm" style="background-color: #3b679c">
+                          <i class="nav-icon fas fa-warehouse"></i>
+                          <p>
+                            Storage
+                            <i class="right fas fa-angle-left"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="/dashboard/user/inventory" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>All Inventory</p>
+                            </a>
+                          </li>
+          
+                          <li class="nav-item">
+                            <a href="/dashboard/user/orders" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Storage Orders</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/basicunit" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Unit</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/createkit" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Kit</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/createcase" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Case</p>
+                            </a>
+                          </li>
+          
+                        </ul>
+                      </li>
+                      <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link text-white">
+                          <i class="nav-icon fas fa-shipping-fast"></i>
+                          <p>
+                            Shipments
+                            <i class="fas fa-angle-left right"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="/dashboard" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>All Shipments</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/ship" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Get Quote</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/ship/book" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Book Shipment</p>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link text-white">
+                          <i class="nav-icon fas fa-edit"></i>
+                          <p>
+                            Orders
+                            <i class="fas fa-angle-left right"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="/createtransin" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Transfer In</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/createtransout" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Transfer Out</p>
+                            </a>
+                          </li>
+          
+          
+                        </ul>
+                      </li>
+                      <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link text-white">
+          
+                          <i class="nav-icon fas fa-user-alt"></i>
+                          <p>
+                            {{auth()->user()->name}} 
+                            <i class="fas fa-angle-left right"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="/dashboard/user/account" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Account Details</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                          document.getElementById('logout-form').submit();">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              {{ __('Logout') }}
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                              @csrf
+                            </form>
+                          </li>
+          
+          
+                        </ul>
+                      </li>
+          
+          
+          
+                    </ul>
+                  </nav>
+                  <!-- /.sidebar-menu -->
+                </div>
+                <!-- /.sidebar -->
+              </aside>
+@endsection
+@endhasrole
+
+
+
+@hasrole('admin')
+
+@section('main-sidebar')
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar bg-denim elevation-4">
+                <!-- Brand Logo -->
+                <a href="#" class="brand-link justify-content-center border-0">
+                  <img src="{{asset('img/fss-white.svg')}}" alt="AdminLTE Logo" class="brand-image" width="100px" height="80px" style="max-height:27px; width:auto">
+                  <span class="brand-text font-weight-light text-white">Admin Dashboard</span>
+                </a>
+          
+                <!-- Sidebar -->
+                <div class="sidebar">
+          
+          
+                  <!-- Sidebar Menu -->
+                  <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
+                      <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+          
+          
+                      <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link text-white">
+          
+                          <i class="nav-icon fas fa-box-open"></i>
+                          <p>
+                            Fulfilment
+                            <i class="right fas fa-angle-left"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+          
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/fulfillment" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Fulfillment Orders</p>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+          
+                      <li class="nav-item has-treeview menu-open">
+                        <a href="#" class="nav-link text-white shadow-sm" style="background-color: #3b679c">
+                          <i class="nav-icon fas fa-warehouse"></i>
+                          <p>
+                            Storage
+                            <i class="right fas fa-angle-left"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/inventory" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>All Inventory</p>
+                            </a>
+                          </li>
+          
+                        </ul>
+                      </li>
+                      <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link text-white">
+                          <i class="nav-icon fas fa-shipping-fast"></i>
+                          <p>
+                            Shipments
+                            <i class="fas fa-angle-left right"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="/dashboard" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>All Shipments</p>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link text-white">
+                          <i class="nav-icon fas fa-edit"></i>
+                          <p>
+                            Orders
+                            <i class="fas fa-angle-left right"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/orders" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Storage Orders</p>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link text-white">
+                              <i class="nav-icon fas fa-users"></i>
+                              <p>
+                                Users
+                                <i class="fas fa-angle-left right"></i>
+                              </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                              <li class="nav-item">
+                                <a href="/dashboard/admin/users" class="nav-link text-white">
+                                    <i class="fas fa-angle-right nav-icon"></i>
+                                  <p>Manage Users</p>
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                      <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link text-white">
+          
+                          <i class="nav-icon fas fa-user-alt"></i>
+                          <p>
+                            {{auth()->user()->name}} 
+                            <i class="fas fa-angle-left right"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/account" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Account Details</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                          document.getElementById('logout-form').submit();">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              {{ __('Logout') }}
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                              @csrf
+                            </form>
+                          </li>
+          
+          
+                        </ul>
+                      </li>
+          
+          
+          
+                    </ul>
+                  </nav>
+                  <!-- /.sidebar-menu -->
+                </div>
+                <!-- /.sidebar -->
+              </aside>
+@endsection
+@endhasrole
+
+@section('breadcrumb')
+Edit Kit
+@endsection
 
 @section('content')
 
@@ -13,7 +359,8 @@
 
     <!-- Flash Alerts Ends -->
 
-    <form action="/createkit" id="createpallet" method="POST">
+    <form action="/updatekit" id="editkit" method="POST">
+    {{method_field('PUT')}}
     <div class="form-row justify-content-center">
         <div class="col-md-8">
             <span class="text-center" id="result"></span>
@@ -21,22 +368,18 @@
         </div>
         
     </div>
-
-    <div class="form-row justify-content-center">
-        <div class="col-md-8">
-            <button type="button" onclick="history.back()" class="btn btn-link text-gunmetal p-0"><i class="fas fa-long-arrow-alt-left"></i> Go Back</button>
-            <br>
-            <br>
-        </div>
-        
-    </div>
     
     <div class="form-row justify-content-center mb-4">
 
-        <div class="col-md-8">
-            <label for="sku">Kit Sku</label>
-            <input type="text" name="sku" class="form-control form-control-sm"  placeholder="Sku #" value="{{$kit->sku}}">
+        <div class="col-md-4">
+            <label for="sku">Individual Items Sku</label>
+            <input type="text" name="sku" class="form-control form-control-sm"  placeholder="#" value="{{$kit->sku}}">
         </div>
+
+        <div class="col-md-4">
+                <label for="upc">UPC/Barcode</label>
+                <input type="text" name="upc" class="form-control form-control-sm"  placeholder="#" value="{{$kit->upc}}">
+            </div>
 
 
     </div>
@@ -60,67 +403,89 @@
                     </tr>
                 </thead>
                 <tbody class="form_inventory">
-
+                        @if ($kit->basic_units->all())
+                        @foreach ($kit->basic_units->all() as $kit_unit)
+                            <tr>
+                            <td><select name="items[]" class= "form-control select_kit_skus">
+                            @if (count($units) > 0) <optgroup label="Units"> @foreach ($units as $unit) @if ($kit_unit->id == $unit->id) <option value="{{$unit->id}}" selected>{{$unit->sku}}</option> @else <option value="{{$unit->id}}">{{$unit->sku}}</option> @endif @endforeach </optgroup> @else<option value="" disabled>No Units Available</option> @endif 
+                             
+                            </select></td>
+                            <td> <select type="text" name="type[]" class="form-control form-control-sm kit_item_type" placeholder="Item Type"><option value="n/a" disabled>Choose</option><option value="Carton">Carton</option><option value="Case">Case</option><option value="Kit">Kit</option><option value="Unit" selected>Unit</option><option value="Case">Case</option></select></td>
+                            <td><input type="text" name="item_qty[]" class="form-control kit_item_qty" placeholder="Item Quantity" value="{{$kit_unit->pivot->quantity}}" /></td>
+                            <td><button type="button" name="remove" id="" class="btn btn-danger btn-sm remove-kit-row circle mr-1"><i class="fas fa-lg fa-minus"></i></button><small class="text-danger">Remove item</small>
+                                </td></tr>
+                        @endforeach
+                    @endif
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="3" align="right">&nbsp;</td>
-                        <td>
-                            @csrf
-                        <input type="submit" name="save" id="save" class="btn btn-link text-denim" value="Submit">
-                        
+                        <td colspan="4" align="left">
+                            <button type="button" name="add" id="" class="btn btn-success btn-sm add-kit-row circle mr-1"><i class="fas fa-lg fa-plus"></i></button> <small class="text-success">Add item to kit</small>
                         </td>
                     </tr>
                 </tfoot>
             </table>
         </div>
     </div>
-
+    <div class="form-row justify-content-center">
+            <div class="col-md-8">
+                <input type="submit" name="save" id="save" class="btn btn-primary bg-denim btn-sm border-0" value="Submit Edit">
+            </div>
+        </div>
+    
+        @csrf
     </form>
 
 </div>
 
 <script>
     $(document).ready(function(){
+            $('.select_kit_skus').select2({
+                theme: 'bootstrap4',
+                width: '170px'
+             });
+            $('.kit_item_type').select2({
+                theme: 'bootstrap4',
+                width: '170px'
+            });
         var count = 1;
-        dynamic_field(count);
+        //dynamic_field(count);
 
 
         function dynamic_field(number){
             html = '<tr>';
-            html += '<td><select name="items[] class="form-control form-control-sm select_skus">'
-            html += '@if (count($units) > 0) <optgroup label="Units"> @foreach ($units as $unit)<option value="{{$unit->id}}">{{$unit->sku . ' - ' . $unit->unit_name}}</option>@endforeach </optgroup> @else<option value="" disabled>No Units Available</option> @endif '
+            html += '<td><select name="items[]" class="form-control select_kit_skus">'
+
+            html += '@if (count($units) > 0) <optgroup label="Units"> @foreach ($units as $unit) <option value="{{$unit->id}}"> {{$unit->sku}} </option> @endforeach </optgroup> @endif '
             html += '</select></td>';
-            html += '<td> <select type="text" name="type[]" class="form-control form-control-sm" placeholder="Item Type"><option value="n/a" selected disabled>Choose</option><option value="Unit">Unit</option><option value="Case">Case</option></select></td>'
-            html += '<td><input type="text" name="item_qty[]" class="form-control form-control-sm" placeholder="Item Quantity" /></td>';
+            html += '<td><select name="type[]" id="" class="form-control form-control-sm kit_item_type"><option value="none" disabled selected>Choose</option><option value="Kit">Kit</option><option value="Unit">Unit</option></select></td>'
+            html += '<td><input type="text" name="item_qty[]" class="form-control" placeholder="Item Quantity"/></td>';
             if(number > 1)
             {
-                html += '<td><button type="button" name="remove" id="" class="btn btn-danger btn-sm remove circle"><i class="fas fa-lg fa-minus"></i></button>\
-                        <button type="button" name="add" id="" class="btn btn-success btn-sm  add circle"><i class="fas fa-lg fa-plus"></i></button></td></tr>';
+                html += '<td><button type="button" name="remove" id="" class="btn btn-danger btn-sm remove-kit-row circle mr-1"><i class="fas fa-lg fa-minus"></i></button><small class="text-danger">Remove item</small></td></tr>';
                 
                 $('.form_inventory').append(html);
+                $('.select_kit_skus').select2({
+                    theme: 'bootstrap4',
+                    width: '170px'
+                });
+                $('.kit_item_type').select2({
+                    theme: 'bootstrap4',
+                    width: '170px'
+                });
             }
-            else
-            {   
-                html += '<td><button type="button" name="remove" id="" class="btn btn-danger btn-sm remove circle"><i class="fas fa-lg fa-minus"></i></button>\
-                        <button type="button" name="add" id="" class="btn btn-success btn-sm  add circle"><i class="fas fa-lg fa-plus"></i></button> \
-                        </td></tr>';
-                $('.form_inventory').html(html);
-            }
-            $('.select_skus').select2().val({!! json_encode($kit->basic_units()->allRelatedIds() ) !!}).trigger('change');
-            $('.select_skus').select2({
-                placeholder: 'Click to select cases'
-            });
+
+
         }
 
 
 
-        $(document).on('click', '.add', function(){
+        $(document).on('click', '.add-kit-row', function(){
             count++;
             dynamic_field(count);
         });
 
-        $(document).on('click', '.remove', function(){
+        $(document).on('click', '.remove-kit-row', function(){
             const table = document.getElementsByClassName('form_inventory');
             const rownum = table[0].getElementsByTagName('TR').length;
             
@@ -131,11 +496,11 @@
         });
 
 
-        $('#createpallet').on('submit', function(event){
+        $('#editkit').on('submit', function(event){
                 event.preventDefault();
                 $.ajax({
-                    url:'/createpallet',
-                    method:'post',
+                    url:'/updatekit/{{$kit->id}}',
+                    method:'put',
                     data:$(this).serialize(),
                     dataType:'json',
                     beforeSend:function(){

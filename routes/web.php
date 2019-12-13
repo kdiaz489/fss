@@ -80,7 +80,7 @@ Route::get('/viewkit/{id}', 'KitsController@show');
 Route::post('createkit', 'KitsController@store');
 Route::delete('/removekit/{id}', 'KitsController@destroy');
 Route::get('/editkit/{id}', 'KitsController@edit');
-Route::put('/editkit/{id}', 'KitsController@update');
+Route::put('/updatekit/{id}', 'KitsController@update');
 
 
 Route::get('/createcarton', 'CartonsController@create');

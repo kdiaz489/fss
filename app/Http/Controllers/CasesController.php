@@ -104,7 +104,7 @@ class CasesController extends Controller
             }
             
             return response()->json([
-                'success'  => 'Case submitted successfully.'
+                'success'  => 'Case has been created. - SKU: ' . $case->sku . ' UPC: ' . $case->upc . ''
             ]);
         }
     }
@@ -151,6 +151,8 @@ class CasesController extends Controller
     public function update(Request $request, $id)
     {
         if ($request->ajax()) {
+
+
             $rules = array(
                 'items.*'  => 'required',
                 'item_qty.*'  => 'required',
@@ -166,34 +168,46 @@ class CasesController extends Controller
                 ]);
             }
             $case = Cases::find($id);
-            $case->basic_units()->detach();
-            $case->kits()->detach();
             $case->case_name = $request->case_name;
             $case->sku = $request->sku;
+            $case->upc = $request->upc;
+            $case->case_qty = 0;
             $case->description = $request->desc;
-
+            $case->save();
+            $case->kits()->detach();
+            $case->basic_units()->detach();
 
             $items = $request->items;
             $item_qty = $request->item_qty;
             $types = $request->types;
-            
+
 
             for ($i = 0; $i < count($types); $i++) {
                 if ($types[$i] == 'Unit') {
-                    
-                    $case->basic_units()->attach(['basic__unit_id' => $items[$i]], ['quantity' => $item_qty[$i]]);
+                    $data = array(
+                        'basic__unit_id' => $items[$i],
+                        'quantity' => $item_qty[$i]
+                    );
+                    $unit_data[] = $data;
+                    $case->case_qty += $item_qty[$i];
+                    $case->save();
+                    $case->basic_units()->attach($unit_data);
                 }
 
                 if ($types[$i] == 'Kit') {
-                  
-                    $case->kits()->attach(['basic__unit_id' => $items[$i]], ['quantity' => $item_qty[$i]]);
+                    $data = array(
+                        'kit_id' => $items[$i],
+                        'quantity' => $item_qty[$i]
+                    );
+                    $kit_data[] = $data;
+                    $case->case_qty += $item_qty[$i];
+                    $case->save();
+                    $case->kits()->attach($kit_data);
                 }
             }
-
-            $case->save();
-
+            
             return response()->json([
-                'success'  => 'Case submitted successfully.'
+                'success'  => 'Case has been updated. - SKU: ' . $case->sku . ' UPC: ' . $case->upc . ''
             ]);
         }
     }
@@ -207,10 +221,12 @@ class CasesController extends Controller
     public function destroy($id)
     {
         $case = Cases::find($id);
+        $sku = $case->sku;
+        $upc = $case->upc;
         $case->basic_units()->detach();
         $case->orders()->detach();
         $case->kits()->detach();
         $case->delete();
-        return redirect()->back()->with('success', 'You have successfully deleted case.');
+        return redirect()->back()->with('success', 'You have successfully deleted case. - SKU: ' . $sku . ' UPC: ' . $upc . '');
     }
 }

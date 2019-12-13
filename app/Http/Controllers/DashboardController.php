@@ -157,7 +157,7 @@ class DashboardController extends Controller
     public function getuserorders(){
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
-        $orders = $user->orders->where('order_type', '!=', 'Fulfill Items')->where('status', '=', 'Pending Approval')->sortByDesc('created_at');
+        $orders = $user->orders->where('order_type', '!=', 'Fulfill Items')->where('status', '!=', 'Completed')->sortByDesc('created_at');
         $orderhistory = $user->orders->where('order_type', '!=', 'Fulfill Items')->where('status', '=', 'Completed')->sortByDesc('created_at');
         return view('userdash.dash-orders')->with('user', $user)->with('orders', $orders)->with('orderhistory', $orderhistory);
     }
@@ -181,7 +181,7 @@ class DashboardController extends Controller
     }
 
     public function getadminorders(){
-        $orders = Order::orderBy('created_at', 'desc')->get()->where('status', '=', 'Pending Approval')->where('order_type', '!=', 'Fulfill Items');
+        $orders = Order::orderBy('created_at', 'desc')->get()->where('status', '!=', 'Completed')->where('order_type', '!=', 'Fulfill Items');
         $ordershistory = Order::orderBy('created_at', 'desc')->get()->where('status', '=', 'Completed')->where('order_type', '!=', 'Fulfill Items');
         return view('admindash.dash-orders')->with('orders', $orders)->with('ordershistory', $ordershistory);
     }

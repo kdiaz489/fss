@@ -169,28 +169,30 @@ All Inventory
 
 @if (count($users) > 0)
 
+<div class="w-90 m-auto mb-5">
+        <div class="dropdown mb-3">
+                <button onclick="myFunction()" class="btn btn-secondary bg-denim border-0 show-dropdown-btn rounded-0">Customers <i class="fas fa-caret-down"></i></button>
+                <div id="myDropdown" class="dropdown-content scrollable-menu">
+                  <input type="text" class="py-2" placeholder="Search.." onfocus="this.value=''" id="myInput" onkeyup="filterFunction()">
+                        @foreach ($users as $user)
+                            @if ($loop->first)
+                                <a class="p-3" id="{{$user->id . 'tab'}}" data-toggle="tab" href="#{{'user_' . $user->id}}" role="tab" >{{$user->company_name}}</a>
+                            @else
+                            <a class="p-3" id="{{$user->id . 'tab'}}" data-toggle="tab" href="#{{'user_' . $user->id}}" role="tab">{{$user->company_name}}</a>
+                            @endif
+                    @endforeach
+                </div>
+        </div>
+</div>
 
-<ul class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
-    @foreach ($users as $user)
 
-    @if ($loop->first)
-    <li class="nav-item">
-        <a class="nav-link active" id="{{$user->id . 'tab'}}" data-toggle="tab" href="#{{'user_' . $user->id}}" role="tab" aria-controls="{{'user_' . $user->id}}" aria-selected="true">{{$user->company_name}}</a>
-    </li>    
-    
-    @else
-    <li class="nav-item">
-    <a class="nav-link" id="{{$user->id . 'tab'}}" data-toggle="tab" href="#{{'user_' . $user->id}}" role="tab" aria-controls="{{'user_' . $user->id}}" aria-selected="true">{{$user->company_name}}</a>
-    </li>
-    @endif
-    @endforeach
-</ul>
+
 
 <div class="tab-content w-90 m-auto" id="myTabContent">
 @foreach ($users as $user)
 
 @if ($loop->first)
-<div class="tab-pane fade show active" id="{{'user_' . $user->id}}" role="tabpanel" aria-labelledby="{{$user->id . 'tab'}}">
+<div class="tab-pane fade show active" id="{{'user_' . $user->id}}">
 
 
 
@@ -200,6 +202,7 @@ All Inventory
         </div>
         @endif
 
+            <h2 class="font-weight-light bg-whitewash mb-4 p-1">{{$user->company_name . ' - Inventory'}}</h2>
             <h3 class="font-weight-light">Product On Pallets</h3>
 
             @if(count($user->pallets->all()) > 0)
@@ -234,15 +237,14 @@ All Inventory
                         <td>{{$pallet->total_qty}}</td>
                         <td>
                             <div style="margin-left: 30%">
-                                <!--
-                                        <a href="/editpallet/{{$pallet->id}}" class="float-left"
-                                            style="margin-right:1%">
-                                            <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
-                                        </a>
-                                        -->
-
+                                
+                                <a href="/editpallet/{{$pallet->id}}" class="float-left"
+                                    style="margin-right:1%">
+                                    <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
+                                </a>
+                                        
                                 <a href="/viewpallet/{{$pallet->id}}" class="float-left" style="margin-right:1%">
-                                    <button class="btn btn-link text-denim btn-sm" type="button">View</button>
+                                    <button class="btn btn-link text-success btn-sm" type="button">View</button>
                                 </a>
 
                                 <form action="/removepallet/{{$pallet->id}}" method="POST" class="float-left">
@@ -425,15 +427,14 @@ All Inventory
                         <td>{{$carton->total_qty}}</td>
                         <td>
                             <div style="margin-left: 30%">
-                                <!--
-                                        <a href="/editcarton/{{$carton->id}}" class="float-left"
-                                            style="margin-right:1%">
-                                            <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
-                                        </a>
-                                        -->
-
+                            
+                                <a href="/editcarton/{{$carton->id}}" class="float-left"
+                                    style="margin-right:1%">
+                                    <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
+                                </a>
+                                    
                                 <a href="/viewcarton/{{$carton->id}}" class="float-left" style="margin-right:1%">
-                                    <button class="btn btn-link text-denim btn-sm" type="button">View</button>
+                                    <button class="btn btn-link text-success btn-sm" type="button">View</button>
                                 </a>
 
                                 <form action="/removecarton/{{$carton->id}}" method="POST" class="float-left">
@@ -585,14 +586,13 @@ All Inventory
                         <td>{{$case->total_qty}}</td>
                         <td>
                             <div style="margin-left: 30%">
-                                <!--
-                                        <a href="/editcase/{{$case->id}}" class="float-left" style="margin-right:1%">
-                                            <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
-                                        </a>
-                                        -->
-
+                                
+                                <a href="/editcase/{{$case->id}}" class="float-left" style="margin-right:1%">
+                                    <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
+                                </a>
+                                        
                                 <a href="/viewcase/{{$case->id}}" class="float-left" style="margin-right:1%">
-                                    <button class="btn btn-link text-denim btn-sm" type="button">View</button>
+                                    <button class="btn btn-link text-success btn-sm" type="button">View</button>
                                 </a>
 
                                 <form action="/removecase/{{$case->id}}" method="POST" class="float-left"
@@ -710,13 +710,13 @@ All Inventory
                         <td>
 
                             <div style="margin-left: 30%">
-                                <!--
-                                        <a href="/editkit/{{$kit->id}}" class="float-left" style="margin-right:1%">
-                                            <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
-                                        </a>
-                                        -->
+                                
+                                <a href="/editkit/{{$kit->id}}" class="float-left" style="margin-right:1%">
+                                    <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
+                                </a>
+                                        
                                 <a href="/viewkit/{{$kit->id}}" class="float-left" style="margin-right:1%">
-                                    <button class="btn btn-link text-denim btn-sm" type="button">View</button>
+                                    <button class="btn btn-link text-success btn-sm" type="button">View</button>
                                 </a>
 
                                 <form action="/removekit/{{$kit->id}}" method="POST" class="float-left">
@@ -801,14 +801,14 @@ All Inventory
                         <td>{{$unit->total_qty}}</td>
                         <td>
                             <div style="margin-left: 30%">
-                                <!--
-                                        <a href="/editbasicunit/{{$unit->id}}" class="float-left"
-                                            style="margin-right:1%">
-                                            <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
-                                        </a>
-                                        -->
+                                
+                                <a href="/editbasicunit/{{$unit->id}}" class="float-left"
+                                    style="margin-right:1%">
+                                    <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
+                                </a>
+                                        
                                 <a href="/viewbasicunit/{{$unit->id}}" class="float-left" style="margin-right:1%">
-                                    <button class="btn btn-link text-denim btn-sm" type="button">View</button>
+                                    <button class="btn btn-link text-success btn-sm" type="button">View</button>
                                 </a>
 
                                 <form action="/removebasicunit/{{$unit->id}}" method="POST" class="float-left"
@@ -841,7 +841,7 @@ All Inventory
                 {{ session('status') }}
             </div>
             @endif
-
+                <h2 class="font-weight-light bg-whitewash mb-4 p-1">{{$user->company_name . ' - Inventory'}}</h2>
                 <h3 class="font-weight-light">Product On Pallets</h3>
 
                 @if(count($user->pallets->all()) > 0)
@@ -876,15 +876,14 @@ All Inventory
                             <td>{{$pallet->total_qty}}</td>
                             <td>
                                 <div style="margin-left: 30%">
-                                    <!--
-                                            <a href="/editpallet/{{$pallet->id}}" class="float-left"
-                                                style="margin-right:1%">
-                                                <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
-                                            </a>
-                                            -->
-
+                                    
+                                    <a href="/editpallet/{{$pallet->id}}" class="float-left"
+                                        style="margin-right:1%">
+                                        <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
+                                    </a>
+                                            
                                     <a href="/viewpallet/{{$pallet->id}}" class="float-left" style="margin-right:1%">
-                                        <button class="btn btn-link text-denim btn-sm" type="button">View</button>
+                                        <button class="btn btn-link text-success btn-sm" type="button">View</button>
                                     </a>
 
                                     <form action="/removepallet/{{$pallet->id}}" method="POST" class="float-left">
@@ -1067,15 +1066,14 @@ All Inventory
                             <td>{{$carton->total_qty}}</td>
                             <td>
                                 <div style="margin-left: 30%">
-                                    <!--
-                                            <a href="/editcarton/{{$carton->id}}" class="float-left"
-                                                style="margin-right:1%">
-                                                <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
-                                            </a>
-                                            -->
-
+                                    
+                                    <a href="/editcarton/{{$carton->id}}" class="float-left"
+                                        style="margin-right:1%">
+                                        <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
+                                    </a>
+                                            
                                     <a href="/viewcarton/{{$carton->id}}" class="float-left" style="margin-right:1%">
-                                        <button class="btn btn-link text-denim btn-sm" type="button">View</button>
+                                        <button class="btn btn-link text-success btn-sm" type="button">View</button>
                                     </a>
 
                                     <form action="/removecarton/{{$carton->id}}" method="POST" class="float-left">
@@ -1227,14 +1225,13 @@ All Inventory
                             <td>{{$case->total_qty}}</td>
                             <td>
                                 <div style="margin-left: 30%">
-                                    <!--
-                                            <a href="/editcase/{{$case->id}}" class="float-left" style="margin-right:1%">
-                                                <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
-                                            </a>
-                                            -->
-
+                                    
+                                    <a href="/editcase/{{$case->id}}" class="float-left" style="margin-right:1%">
+                                        <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
+                                    </a>
+                                            
                                     <a href="/viewcase/{{$case->id}}" class="float-left" style="margin-right:1%">
-                                        <button class="btn btn-link text-denim btn-sm" type="button">View</button>
+                                        <button class="btn btn-link text-success btn-sm" type="button">View</button>
                                     </a>
 
                                     <form action="/removecase/{{$case->id}}" method="POST" class="float-left"
@@ -1352,13 +1349,13 @@ All Inventory
                             <td>
 
                                 <div style="margin-left: 30%">
-                                    <!--
-                                            <a href="/editkit/{{$kit->id}}" class="float-left" style="margin-right:1%">
-                                                <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
-                                            </a>
-                                            -->
+                                    
+                                    <a href="/editkit/{{$kit->id}}" class="float-left" style="margin-right:1%">
+                                        <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
+                                    </a>
+                                            
                                     <a href="/viewkit/{{$kit->id}}" class="float-left" style="margin-right:1%">
-                                        <button class="btn btn-link text-denim btn-sm" type="button">View</button>
+                                        <button class="btn btn-link text-success btn-sm" type="button">View</button>
                                     </a>
 
                                     <form action="/removekit/{{$kit->id}}" method="POST" class="float-left">
@@ -1443,14 +1440,14 @@ All Inventory
                             <td>{{$unit->total_qty}}</td>
                             <td>
                                 <div style="margin-left: 30%">
-                                    <!--
-                                            <a href="/editbasicunit/{{$unit->id}}" class="float-left"
-                                                style="margin-right:1%">
-                                                <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
-                                            </a>
-                                            -->
+                                    
+                                    <a href="/editbasicunit/{{$unit->id}}" class="float-left"
+                                        style="margin-right:1%">
+                                        <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
+                                    </a>
+                                            
                                     <a href="/viewbasicunit/{{$unit->id}}" class="float-left" style="margin-right:1%">
-                                        <button class="btn btn-link text-denim btn-sm" type="button">View</button>
+                                        <button class="btn btn-link text-success btn-sm" type="button">View</button>
                                     </a>
 
                                     <form action="/removebasicunit/{{$unit->id}}" method="POST" class="float-left"
@@ -1476,4 +1473,36 @@ All Inventory
 @endforeach
 </div>
 @endif  
+@endsection
+
+@section('scripts')
+<script>
+
+$(document).click(function(event) {
+  //if you click on anything except the modal itself or the "open modal" link, close the modal
+  if (!$(event.target).closest("#myInput, .show-dropdown-btn").length) {
+    $("body").find("#myDropdown").removeClass("show");
+  }
+});
+
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+  
+  function filterFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    div = document.getElementById("myDropdown");
+    a = div.getElementsByTagName("a");
+    for (i = 0; i < a.length; i++) {
+      txtValue = a[i].textContent || a[i].innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        a[i].style.display = "";
+      } else {
+        a[i].style.display = "none";
+      }
+    }
+  }
+  </script>
 @endsection

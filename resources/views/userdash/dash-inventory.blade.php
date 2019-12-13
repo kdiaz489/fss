@@ -252,15 +252,15 @@ Inventory
                             <td>N/A</td>
                             <td>
                                 <div style="margin-left: 30%">
-                                    <!--
-                                        <a href="/editpallet/{{$pallet->id}}" class="float-left"
-                                            style="margin-right:1%">
-                                            <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
-                                        </a>
-                                        -->
+                                    
+                                    <a href="/editpallet/{{$pallet->id}}" class="float-left"
+                                        style="margin-right:1%">
+                                        <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
+                                    </a>
+                                    
 
                                     <a href="/viewpallet/{{$pallet->id}}" class="float-left" style="margin-right:1%">
-                                        <button class="btn btn-link text-denim btn-sm" type="button">View</button>
+                                        <button class="btn btn-link text-success btn-sm" type="button">View</button>
                                     </a>
 
                                     <form action="/removepallet/{{$pallet->id}}" method="POST" class="float-left">
@@ -435,15 +435,15 @@ Inventory
                             <td>N/A</td>
                             <td>
                                 <div style="margin-left: 30%">
-                                    <!--
-                                        <a href="/editcarton/{{$carton->id}}" class="float-left"
-                                            style="margin-right:1%">
-                                            <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
-                                        </a>
-                                        -->
+                                
+                                    <a href="/editcarton/{{$carton->id}}" class="float-left"
+                                        style="margin-right:1%">
+                                        <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
+                                    </a>
+                                        
 
                                     <a href="/viewcarton/{{$carton->id}}" class="float-left" style="margin-right:1%">
-                                        <button class="btn btn-link text-denim btn-sm" type="button">View</button>
+                                        <button class="btn btn-link text-success btn-sm" type="button">View</button>
                                     </a>
 
                                     <form action="/removecarton/{{$carton->id}}" method="POST" class="float-left">
@@ -592,14 +592,14 @@ Inventory
                             <td>N/A</td>
                             <td>
                                 <div style="margin-left: 30%">
-                                    <!--
-                                        <a href="/editcase/{{$case->id}}" class="float-left" style="margin-right:1%">
-                                            <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
-                                        </a>
-                                        -->
+                                
+                                    <a href="/editcase/{{$case->id}}" class="float-left" style="margin-right:1%">
+                                        <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
+                                    </a>
+                                        
 
                                     <a href="/viewcase/{{$case->id}}" class="float-left" style="margin-right:1%">
-                                        <button class="btn btn-link text-denim btn-sm" type="button">View</button>
+                                        <button class="btn btn-link text-success btn-sm" type="button">View</button>
                                     </a>
 
                                     <form action="/removecase/{{$case->id}}" method="POST" class="float-left"
@@ -712,13 +712,13 @@ Inventory
                             <td>
 
                                 <div style="margin-left: 30%">
-                                    <!--
-                                        <a href="/editkit/{{$kit->id}}" class="float-left" style="margin-right:1%">
-                                            <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
-                                        </a>
-                                        -->
+                                    
+                                    <a href="/editkit/{{$kit->id}}" class="float-left" style="margin-right:1%">
+                                        <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
+                                    </a>
+                                        
                                     <a href="/viewkit/{{$kit->id}}" class="float-left" style="margin-right:1%">
-                                        <button class="btn btn-link text-denim btn-sm" type="button">View</button>
+                                        <button class="btn btn-link text-success btn-sm" type="button">View</button>
                                     </a>
 
                                     <form action="/removekit/{{$kit->id}}" method="POST" class="float-left">
@@ -803,14 +803,14 @@ Inventory
                             <td>{{$unit->total_qty}}</td>
                             <td>
                                 <div style="margin-left: 30%">
-                                    <!--
-                                        <a href="/editbasicunit/{{$unit->id}}" class="float-left"
-                                            style="margin-right:1%">
-                                            <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
-                                        </a>
-                                        -->
+                                    
+                                    <a href="/editbasicunit/{{$unit->id}}" class="float-left"
+                                        style="margin-right:1%">
+                                        <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
+                                    </a>
+                                        
                                     <a href="/viewbasicunit/{{$unit->id}}" class="float-left" style="margin-right:1%">
-                                        <button class="btn btn-link text-denim btn-sm" type="button">View</button>
+                                        <button class="btn btn-link text-success btn-sm" type="button">View</button>
                                     </a>
 
                                     <form action="/removebasicunit/{{$unit->id}}" method="POST" class="float-left"

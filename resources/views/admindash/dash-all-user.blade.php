@@ -175,20 +175,20 @@
             @endif
 
             <div class="col-lg-12 col-12">
-                        <div class="">
+                        <div class="table-responsive">
                             <h3 class="font-weight-light mb-3">Manage Users</h3>
 
-                            <table class="table table-striped">
+                            <table class="table table-sm users-table mb-3">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Company</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Address</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Role</th>
-                                        <th scope="col"> Account Balance</th>
-                                        <th scope="col">Credit</th>
-                                        <th scope="col"></th>
+                                        <th width="5%">Company</th>
+                                        <th width="2%">Name</th>
+                                        <th width="5%">Address</th>
+                                        <th width="1%">Email</th>
+                                        <th width="4%">Role</th>
+                                        <th width="5%"> Account Balance</th>
+                                        <th width="5%">Credit</th>
+                                        <th width="5%">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -203,7 +203,7 @@
                                             <form action="/user/accbal/update/{{$user->id}}" method="POST">
                                                 @csrf
                                                 {{method_field('PUT')}}
-                                                <input type="text" name="accbal" class="text-center form-control form-control-sm" style="width:40%" value="{{number_format($user->account_balance,2)}}">
+                                                <input type="text" name="accbal" class="text-center form-control form-control-sm" style="width:70%" value="{{number_format($user->account_balance,2)}}">
                                                 <button type="submit" style=" margin-left: 1.25rem;"
                                                     class="btn btn-link text-success btn-sm m-0"><small>Update</small></button>
                                             </form>
@@ -213,7 +213,7 @@
                                             <form action=" /user/credit/update/{{$user->id}}" method="POST">
                                                 @csrf
                                                 {{method_field('PUT')}}
-                                                <select name="credit_status">
+                                                <select class="form-control form-control-sm m-0 p-0" name="credit_status">
                                                     <option value="" selected disabled>{{$user->credit}}</option>
                                                     <option value="Approved">Approved</option>
                                                     <option value="Not Approved">Not Approved</option>
@@ -224,8 +224,7 @@
                                         </td>
                                         <td>
                                             <a href="{{ route('admin.users.edit', $user->id) }}" class="float-left">
-                                                <button class="btn btn-link text-primary btn-sm" type="button">Edit
-                                                    Access</button>
+                                                <button class="btn btn-link text-primary btn-sm" type="button">Edit Role</button>
                                             </a>
                                             <form action="{{route('admin.users.destroy', $user->id) }}" method="POST"
                                                 class="float-left">
@@ -249,4 +248,13 @@
         </div>
     </div>
 
+    @endsection
+    @section('scripts')
+    <script>
+    $('.users-table').DataTable({
+      paging: false,
+      info : false
+
+    });
+    </script>
     @endsection

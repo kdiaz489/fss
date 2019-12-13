@@ -55,7 +55,7 @@
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand bg-light navbar-light">
+  <nav class="main-header navbar navbar-expand bg-light navbar-light py-0">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">

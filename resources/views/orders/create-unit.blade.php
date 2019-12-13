@@ -191,11 +191,15 @@ Create Unit
 @section('content')
 
 <div class="container mt-5">
-    <!-- Flash Alerts Begin -->
+    
+    <div class="col-md-6">
+      <!-- Flash Alerts Begin -->
 
-    @include('partials.alerts')
+      @include('partials.alerts')
 
-    <!-- Flash Alerts Ends -->
+      <!-- Flash Alerts Ends -->
+    </div>
+
 
     <h1 class="display-4 text-center">Create Unit</h1>
 
