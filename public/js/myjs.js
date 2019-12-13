@@ -119,7 +119,7 @@ $(document).ready(function () {
 
     var hash = window.location.hash;
     if (hash) {
-        $('.nav-link[href="' + hash + '"]').tab('show');
+        $('a[href="' + hash + '"]').tab('show');
     }
 
     /**** Code for Dash board tabs ends ****/

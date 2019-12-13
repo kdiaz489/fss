@@ -212,11 +212,9 @@ All Inventory
                     <tr>
                         <th width="2%"></th>
                         <th width="10%">Sku</th>
-                        <th width="10%">Description</th>
-                        <th width="10%">Cartons per Pallet</th>
-                        <th width="10%">Cases per Pallet</th>
-                        <th width="10%">Kits per Pallet</th>
-                        <th width="10%">Total # Pallets</th>
+                        <th width="10%">Date Created</th>
+                        <th width="10%">Quantity</th>
+                        <th width="10%">Location</th>
                         <th width="10%"></th>
 
                     </tr>
@@ -229,12 +227,9 @@ All Inventory
                                 data-delay="0"><i class="fas fa-plus"></i></button></td>
 
                         <td>{{$pallet->sku}}</td>
-                        <td>{{$pallet->description}}</td>
-
-                        <td>{{$pallet->carton_qty}}</td>
-                        <td>{{$pallet->case_qty}}</td>
-                        <td>{{$pallet->kit_qty}}</td>
+                        <td>{{date('m/d/y', strtotime($pallet->created_at))}}</td>
                         <td>{{$pallet->total_qty}}</td>
+                        <td>N/A</td>
                         <td>
                             <div style="margin-left: 30%">
                                 
@@ -403,11 +398,9 @@ All Inventory
                     <tr>
                         <th width="2%"></th>
                         <th width="10%">Sku</th>
-                        <th width="10%">Description</th>
-                        <th width="10%">Cases per Carton</th>
-                        <th width="10%">Kits per Carton</th>
-                        <th width="10%">Units per Carton</th>
-                        <th width="10%">Total # Cartons</th>
+                        <th width="10%">Date Created</th>
+                        <th width="10%">Quantity</th>
+                        <th width="10%">Location</th>
                         <th width="10%"></th>
 
                     </tr>
@@ -417,14 +410,14 @@ All Inventory
                         <td><button type="button" class="btn text-denim toggle-{{$carton->id}}"
                                 id="toggle-details-carton-{{$carton->id}}" data-toggle="collapse"
                                 data-target="#details-carton-{{$carton->id}}" aria-expanded="false" aria-controls="details"
-                                data-delay="0"><i class="fas fa-plus"></i></button></td>
+                                data-delay="0"><i class="fas fa-plus"></i></button>
+                        </td>
 
                         <td>{{$carton->sku}}</td>
-                        <td>{{$carton->description}}</td>
-                        <td>{{$carton->case_qty}}</td>
-                        <td>{{$carton->kit_qty}}</td>
-                        <td>{{$carton->basic_unit_qty}}</td>
+                        <td>{{date('m/d/y', strtotime($carton->created_at))}}</td>
                         <td>{{$carton->total_qty}}</td>
+                        <td>N/A</td>
+                        
                         <td>
                             <div style="margin-left: 30%">
                             
@@ -562,11 +555,10 @@ All Inventory
                         <th width="2%"></th>
                         <th width="10%">Sku</th>
                         <th width="10%">Description</th>
-                        <th width="10%">Cases in Pallets</th>
-                        <th width="10%">Cases in Cartons</th>
-                        <th width="10%">Kits per Case</th>
-                        <th width="10%">Units per Case</th>
-                        <th width="10%">Total # Cases</th>
+                        <th width="10%">UPC</th>
+                        <th width="10%">Quantity</th>
+                        <th width="10%">Qty/Case</th>
+                        <th width="10%">Location</th>
                         <th width="10%"></th>
 
                     </tr>
@@ -579,11 +571,11 @@ All Inventory
                                 data-delay="0"><i class="fas fa-plus"></i></button></td>
                         <td>{{$case->sku}}</td>
                         <td>{{$case->description}}</td>
-                        <td>{{$case->pallet_qty}}</td>
-                        <td>{{$case->carton_qty}}</td>
-                        <td>{{$case->kit_qty}}</td>
-                        <td>{{$case->basic_unit_qty}}</td>
+                        <td>{{$case->upc}}</td>
                         <td>{{$case->total_qty}}</td>
+                        <td>{{$case->case_qty}}</td>
+                        <td>N/A</td>
+                        
                         <td>
                             <div style="margin-left: 30%">
                                 
@@ -687,10 +679,10 @@ All Inventory
                         <th width="2%"></th>
                         <th width="10%">Sku</th>
                         <th width="10%">Description</th>
-                        <th width="10%">Kits in Pallets</th>
-                        <th width="10%">Kits in Cartons</th>
-                        <th width="10%">Units per Kit</th>
-                        <th width="10%">Total # Kits</th>
+                        <th width="10%">UPC</th>
+                        <th width="10%">Quantity</th>
+                        <th width="10%">Qty/Kit</th>
+                        <th width="10%">Location</th>
                         <th width="10%"></th>
                     </tr>
                     </thead>
@@ -702,11 +694,10 @@ All Inventory
                                 data-delay="0"><i class="fas fa-plus"></i></button></td>
                         <td>{{$kit->sku}}</td>
                         <td>{{$kit->description}}</td>
-                        <td>{{$kit->pallet_qty}}</td>
-                        <td>{{$kit->carton_qty}}</td>
-                        <td>{{$kit->basic_unit_qty}}</td>
-
+                        <td>{{$kit->upc}}</td>
                         <td>{{$kit->total_qty}}</td>
+                        <td>{{$kit->kit_qty}}</td>
+                        <td>N/A</td>
                         <td>
 
                             <div style="margin-left: 30%">
@@ -781,10 +772,12 @@ All Inventory
                     <tr>
                         <th width="10%">Sku</th>
                         <th width="10%">Description</th>
+                        <th width="10%">UPC</th>
                         <th width="10%">Pallet Qty</th>
                         <th width="10%">Carton Qty</th>
                         <th width="10%">Case Qty</th>
                         <th width="10%">Kit Qty</th>
+                        <th width="10%">Loose Item Qty</th>
                         <th width="10%">Total Qty</th>
                         <th width="10%"></th>
 
@@ -794,10 +787,12 @@ All Inventory
                     <tr>
                         <td>{{$unit->sku}}</td>
                         <td>{{$unit->description}}</td>
+                        <td>{{$unit->upc}}</td>
                         <td>{{$unit->pallet_qty}}</td>
                         <td>{{$unit->carton_qty}}</td>
                         <td>{{$unit->case_qty}}</td>
                         <td>{{$unit->kit_qty}}</td>
+                        <td>{{$unit->loose_item_qty}}</td>
                         <td>{{$unit->total_qty}}</td>
                         <td>
                             <div style="margin-left: 30%">
@@ -851,11 +846,9 @@ All Inventory
                         <tr>
                             <th width="2%"></th>
                             <th width="10%">Sku</th>
-                            <th width="10%">Description</th>
-                            <th width="10%">Cartons per Pallet</th>
-                            <th width="10%">Cases per Pallet</th>
-                            <th width="10%">Kits per Pallet</th>
-                            <th width="10%">Total # Pallets</th>
+                            <th width="10%">Date Created</th>
+                            <th width="10%">Quantity</th>
+                            <th width="10%">Location</th>
                             <th width="10%"></th>
 
                         </tr>
@@ -868,12 +861,9 @@ All Inventory
                                     data-delay="0"><i class="fas fa-plus"></i></button></td>
 
                             <td>{{$pallet->sku}}</td>
-                            <td>{{$pallet->description}}</td>
-
-                            <td>{{$pallet->carton_qty}}</td>
-                            <td>{{$pallet->case_qty}}</td>
-                            <td>{{$pallet->kit_qty}}</td>
+                            <td>{{date('m/d/y', strtotime($pallet->created_at))}}</td>
                             <td>{{$pallet->total_qty}}</td>
+                            <td>N/A</td>
                             <td>
                                 <div style="margin-left: 30%">
                                     
@@ -1042,11 +1032,9 @@ All Inventory
                         <tr>
                             <th width="2%"></th>
                             <th width="10%">Sku</th>
-                            <th width="10%">Description</th>
-                            <th width="10%">Cases per Carton</th>
-                            <th width="10%">Kits per Carton</th>
-                            <th width="10%">Units per Carton</th>
-                            <th width="10%">Total # Cartons</th>
+                            <th width="10%">Date Created</th>
+                            <th width="10%">Quantity</th>
+                            <th width="10%">Location</th>
                             <th width="10%"></th>
 
                         </tr>
@@ -1059,11 +1047,9 @@ All Inventory
                                     data-delay="0"><i class="fas fa-plus"></i></button></td>
 
                             <td>{{$carton->sku}}</td>
-                            <td>{{$carton->description}}</td>
-                            <td>{{$carton->case_qty}}</td>
-                            <td>{{$carton->kit_qty}}</td>
-                            <td>{{$carton->basic_unit_qty}}</td>
+                            <td>{{date('m/d/y', strtotime($carton->created_at))}}</td>
                             <td>{{$carton->total_qty}}</td>
+                            <td>N/A</td>
                             <td>
                                 <div style="margin-left: 30%">
                                     
@@ -1201,11 +1187,10 @@ All Inventory
                             <th width="2%"></th>
                             <th width="10%">Sku</th>
                             <th width="10%">Description</th>
-                            <th width="10%">Cases in Pallets</th>
-                            <th width="10%">Cases in Cartons</th>
-                            <th width="10%">Kits per Case</th>
-                            <th width="10%">Units per Case</th>
-                            <th width="10%">Total # Cases</th>
+                            <th width="10%">UPC</th>
+                            <th width="10%">Quantity</th>
+                            <th width="10%">Qty/Case</th>
+                            <th width="10%">Location</th>
                             <th width="10%"></th>
 
                         </tr>
@@ -1218,11 +1203,10 @@ All Inventory
                                     data-delay="0"><i class="fas fa-plus"></i></button></td>
                             <td>{{$case->sku}}</td>
                             <td>{{$case->description}}</td>
-                            <td>{{$case->pallet_qty}}</td>
-                            <td>{{$case->carton_qty}}</td>
-                            <td>{{$case->kit_qty}}</td>
-                            <td>{{$case->basic_unit_qty}}</td>
+                            <td>{{$case->upc}}</td>
                             <td>{{$case->total_qty}}</td>
+                            <td>{{$case->case_qty}}</td>
+                            <td>N/A</td>
                             <td>
                                 <div style="margin-left: 30%">
                                     
@@ -1326,10 +1310,10 @@ All Inventory
                             <th width="2%"></th>
                             <th width="10%">Sku</th>
                             <th width="10%">Description</th>
-                            <th width="10%">Kits in Pallets</th>
-                            <th width="10%">Kits in Cartons</th>
-                            <th width="10%">Units per Kit</th>
-                            <th width="10%">Total # Kits</th>
+                            <th width="10%">UPC</th>
+                            <th width="10%">Quantity</th>
+                            <th width="10%">Qty/Kit</th>
+                            <th width="10%">Location</th>
                             <th width="10%"></th>
                         </tr>
                         </thead>
@@ -1341,11 +1325,10 @@ All Inventory
                                     data-delay="0"><i class="fas fa-plus"></i></button></td>
                             <td>{{$kit->sku}}</td>
                             <td>{{$kit->description}}</td>
-                            <td>{{$kit->pallet_qty}}</td>
-                            <td>{{$kit->carton_qty}}</td>
-                            <td>{{$kit->basic_unit_qty}}</td>
-
+                            <td>{{$kit->upc}}</td>
                             <td>{{$kit->total_qty}}</td>
+                            <td>{{$kit->kit_qty}}</td>
+                            <td>N/A</td>
                             <td>
 
                                 <div style="margin-left: 30%">
@@ -1420,10 +1403,12 @@ All Inventory
                         <tr>
                             <th width="10%">Sku</th>
                             <th width="10%">Description</th>
+                            <th width="10%">UPC</th>
                             <th width="10%">Pallet Qty</th>
                             <th width="10%">Carton Qty</th>
                             <th width="10%">Case Qty</th>
                             <th width="10%">Kit Qty</th>
+                            <th width="10%">Loose Item Qty</th>
                             <th width="10%">Total Qty</th>
                             <th width="10%"></th>
 
@@ -1433,10 +1418,12 @@ All Inventory
                         <tr>
                             <td>{{$unit->sku}}</td>
                             <td>{{$unit->description}}</td>
+                            <td>{{$unit->upc}}</td>
                             <td>{{$unit->pallet_qty}}</td>
                             <td>{{$unit->carton_qty}}</td>
                             <td>{{$unit->case_qty}}</td>
                             <td>{{$unit->kit_qty}}</td>
+                            <td>{{$unit->loose_item_qty}}</td>
                             <td>{{$unit->total_qty}}</td>
                             <td>
                                 <div style="margin-left: 30%">
