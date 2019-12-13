@@ -80,6 +80,7 @@ class CartonsController extends Controller
             $carton->company = auth()->user()->company_name;
             $carton->sku = $request->sku;
             $carton->upc = $request->upc;
+            $carton->status = 'Pending Approval';
             $carton->description = $request->desc;
             $carton->save();
 

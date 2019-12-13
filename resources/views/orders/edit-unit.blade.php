@@ -352,43 +352,47 @@ Edit Unit
 <div class="container mt-5">
 
     <h1 class="display-4 text-center mb-4">Edit your Unit</h1>
-    
-    <!-- Flash Alerts Begin -->
+    <div class="form-row justify-content-center">
+        <div class="col-md-6">
+            <!-- Flash Alerts Begin -->
 
-    @include('partials.alerts')
+            @include('partials.alerts')
 
-    <!-- Flash Alerts Ends -->
+            <!-- Flash Alerts Ends -->
+        </div>
+    </div>
 
-        <form action="/updatebasicunit/{{$basic_unit->id}}" method="POST">
-        {{method_field('PUT')}} 
-            <div class="form-row justify-content-center mb-3">
 
-                <div class="col-md-3">
-                    <label for="sku">Sku</label>
-                    <input type="text" name="sku" class="form-control form-control-sm" value="{{$basic_unit->sku}}" placeholder="Sku #">
-                    <div style="font-weight: 700; color:red">{{$errors->first('sku')}}</div>
+    <form action="/updatebasicunit/{{$basic_unit->id}}" method="POST">
+    {{method_field('PUT')}} 
+        <div class="form-row justify-content-center mb-3">
+
+            <div class="col-md-3">
+                <label for="sku">Sku</label>
+                <input type="text" name="sku" class="form-control form-control-sm" value="{{$basic_unit->sku}}" placeholder="Sku #">
+                <div style="font-weight: 700; color:red">{{$errors->first('sku')}}</div>
+            </div>
+
+            <div class="col-md-3">
+                    <label for="upc">UPC/Barcode</label>
+                    <input type="text" name="upc" class="form-control form-control-sm" value="{{$basic_unit->upc}}" placeholder="Sku #">
+                    <div style="font-weight: 700; color:red">{{$errors->first('upc')}}</div>
                 </div>
 
-                <div class="col-md-3">
-                        <label for="upc">UPC/Barcode</label>
-                        <input type="text" name="upc" class="form-control form-control-sm" value="{{$basic_unit->upc}}" placeholder="Sku #">
-                        <div style="font-weight: 700; color:red">{{$errors->first('upc')}}</div>
-                    </div>
+        </div>
 
+        <div class="form-row justify-content-center mb-3">
+            <div class="col-md-6">
+                <label for="desc">Description</label>
+                <textarea name="desc" id="desc" cols="30" rows="3" class="form-control form-control-sm" placeholder="Product Description">{{$basic_unit->description}}</textarea>
             </div>
+        </div>
 
-            <div class="form-row justify-content-center mb-3">
-                <div class="col-md-6">
-                    <label for="desc">Description</label>
-                    <textarea name="desc" id="desc" cols="30" rows="3" class="form-control form-control-sm" placeholder="Product Description">{{$basic_unit->description}}</textarea>
-                </div>
-            </div>
-
-            <div class="form-row justify-content-center">
-                <button type="submit" class="btn btn-primary bg-denim border-0">Submit Update</button>
-            </div>
-            @csrf
-        </form>
+        <div class="form-row justify-content-center">
+            <button type="submit" class="btn btn-primary bg-denim border-0">Submit Update</button>
+        </div>
+        @csrf
+    </form>
 
 </div>
 

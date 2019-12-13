@@ -587,7 +587,7 @@ Inventory
                             <td>{{$case->sku}}</td>
                             <td>{{$case->description}}</td>
                             <td>{{$case->upc}}</td>
-                            <td>10</td>
+                            <td>{{$case->total_qty}}</td>
                             <td>{{$case->case_qty}}</td>
                             <td>N/A</td>
                             <td>

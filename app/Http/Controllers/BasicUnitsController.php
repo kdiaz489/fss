@@ -105,21 +105,18 @@ class BasicUnitsController extends Controller
         //
         $request->validate([
             'sku'=> 'required',
-            'price' => 'nullable',
-            'name' => 'required',
+            'upc' => 'required',
             'desc' => 'nullable',
-            'weight' => 'nullable'
+            
         ]);
 
         $basic_unit = Basic_Unit::find($id);
         $basic_unit->sku = $request->sku;
-        $basic_unit->price = $request->price;
-        $basic_unit->unit_name = $request->name;
+        $basic_unit->upc = $request->upc;
         $basic_unit->description = $request->desc;
-        $basic_unit->weight = $request->weight;
         $basic_unit->save();
 
-        return redirect('/editbasicunit'. '/' . $id)->with('success', 'You have successfully updated product ' . $basic_unit->unit_name);
+        return redirect('/editbasicunit'. '/' . $id)->with('success', 'You have successfully updated unit. - SKU: ' . $basic_unit->sku . ' UPC: ' . $basic_unit->upc . '');
     
     }
 

@@ -135,8 +135,8 @@ class DashboardController extends Controller
         $basic_units = $user->basic_units->sortByDesc('created_at');
         $kits = $user->kits->sortByDesc('created_at');
         $cases = $user->cases->sortByDesc('created_at');
-        $cartons = $user->cartons->sortByDesc('created_at');
-        $pallets = $user->pallets->sortByDesc('created_at');
+        $cartons = $user->cartons->where('status', '!=', 'Pending Approval')->sortByDesc('created_at');
+        $pallets = $user->pallets->where('status', '!=', 'Pending Approval')->sortByDesc('created_at');
         return view('userdash.dash-inventory')->with('cartons', $cartons)->with('pallets', $pallets)->with('cases', $cases)->with('basic_units', $basic_units)->with('kits', $kits);
     }
 

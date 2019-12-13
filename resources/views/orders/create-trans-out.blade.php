@@ -245,23 +245,23 @@ Transfer Out
         
                             <div class="col-md-6">
                                 <label for="incareof">In Care Of</label>
-                                <input type="text" name="incareof" class="form-control required" placeholder="In Care Of">
+                                <input type="text" name="in_care_of" class="form-control required" placeholder="In Care Of">
                             </div>
                         </div>
                         <div class="form-row justify-content-center mb-4">
         
                             <div class="col-md-4">
                                 <label for="ponum">PO #</label>
-                                <input type="text" name="ponum" class="form-control" placeholder="#">
+                                <input type="text" name="po_num" class="form-control" placeholder="#">
                             </div>
         
                             <div class="col-md-4">
                                 <label for="sonum">SO #</label>
-                                <input type="text" name="sonum" class="form-control" placeholder="#">
+                                <input type="text" name="so_num" class="form-control" placeholder="#">
                             </div>
                             <div class="col-md-4">
                                 <label for="jobnum">Job #</label>
-                                <input type="text" name="jobnum" class="form-control" placeholder="#">
+                                <input type="text" name="job_num" class="form-control" placeholder="#">
                             </div>
                         </div>
                         <div class="form-row justify-content-center mb-4">

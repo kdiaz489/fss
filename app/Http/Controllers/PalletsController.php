@@ -83,6 +83,7 @@ class PalletsController extends Controller
             $pallet->company = auth()->user()->company_name;
             $pallet->sku = $request->sku;
             $pallet->upc = $request->upc;
+            $pallet->status="Pending Approval";
             $pallet->description = $request->desc;
             $pallet->save();
 

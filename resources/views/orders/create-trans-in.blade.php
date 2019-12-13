@@ -245,7 +245,7 @@ Transfer In
                     </div>
 
                     <div class="col-md-6">
-                        <label for="incareof">In Care Of</label>
+                        <label for="in_care_of">In Care Of</label>
                         <input type="text" name="in_care_of" class="form-control required" placeholder="In Care of">
                     </div>
                 </div>
