@@ -106,8 +106,8 @@
     <!-- /.content-wrapper -->
     <footer class="main-footer bg-light">
 
-      <a href="/about" class="btn btn-link">About</a>
-      <a href="/contact" class="btn btn-link">Contact</a>
+      <a href="/about" class="btn btn-link" style="visibility: hidden">About</a>
+      <a href="/contact" class="btn btn-link" style="visibility: hidden">Contact</a>
       <div class="float-right d-none d-sm-inline-block">
         FillStorShip© 2019
       </div>
