@@ -106,13 +106,13 @@
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="/ship" class="nav-link text-white">
+                            <a href="/dashboard/user/getquote" class="nav-link text-white">
                               <i class="fas fa-angle-right nav-icon"></i>
                               <p>Get Quote</p>
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="/ship/book" class="nav-link text-white">
+                            <a href="/dashboard/user/bookshipment" class="nav-link text-white">
                               <i class="fas fa-angle-right nav-icon"></i>
                               <p>Book Shipment</p>
                             </a>

@@ -24,7 +24,7 @@ function emptyForm() {
 
 /***** Variables for modal footer and content ****/
 var appsuccess = '<div class="container app-success text-center justify-content-center" style="border: 1px solid #4BB543"> <p>Your submission to FillStorShip\
-                   was successful. We will get back to you shortly.<br><br> <i class="fas fa-check-circle"></i></p> </div>';
+                   was successful. We will get back to you shortly.<br><br> <i class="fas fa-check-circle" style="font-size: 2rem; color: #4BB543"></i></p> </div>';
 
 var shipcreditsucces =  '<div class="container app-success text-center justify-content-center" style="border: 1px solid #4BB543"> <p>Your submission to FillStorShip\
                    was successful. Please check your account balance on your user dashboard. The amount listed will need to be covered upon completion of the load.<br><br> <i class="fas fa-check-circle"></i></p> </div>';
@@ -33,7 +33,7 @@ var success = '<div class="container app-success text-center justify-content-cen
                 <br><br> <i class="fas fa-check-circle" style="font-size: 2rem; color: #4BB543"></i></p> </div>';
 
 var errorModal = '<div class="container app-success text-center justify-content-center" style="border: 1px solid red"> <p>There was an error with your submssion.\
-                <br> Please make sure you filled in the form correctly or contact us. <br><br> <i class="fas fa-exclamation-circle"></i></p> </div>';
+                <br> Please make sure you filled in the form correctly or contact us. <br><br> <i class="fas fa-exclamation-circle" style="font-size: 2rem; color: red"></i></p> </div>';
 
 var modalFooter = '<button type="button" id="storage-apply-credit" name="storage-quote-submit" class="btn btn-primary">Apply for Credit</button>';
 
@@ -232,7 +232,7 @@ $(document).ready(function () {
 
     });
 
-    $('.modal').on('click', '#paycc', function (e) {
+    $('.modal').on('click', '.paycc', function (e) {
 
         e.preventDefault();
         //initialContent = $('.modal-content').html();
@@ -657,6 +657,60 @@ $(document).ready(function () {
 
     });
 
+    $('.dash_get_quote').click(function (e) {
+
+        e.preventDefault();
+        initialContent = $('.modal-content').html();
+        shippingQuoteParms = $('#dash_quote_form').serialize();
+
+        if ($("#dash_quote_form").valid()) {
+            $.ajax({
+                type: 'POST',
+                url: '/ship/calc',
+                data: $('#dash_quote_form').serialize(),
+            })
+                .done(function (result) {
+
+                    $('.modal-body').html('<h2 class="text-center">Your Quote: $' + result.tot_load_cost + '</h2>' + '<br> <h5 class="text-center"> Total Mileage: ' +
+                        result.mileage + ' mi</h5> <br> <h5 class="text-center"> Total Pallets: ' + $('#no_of_pallets').val() + '</h5> <br> <h5 class="text-center"> Total Weight: ' +
+                        $('#tot_load_wt').val() + ' lbs</h5>' + disclaimer + '<div class="wait justify-content-center text-center" style="display:none;width:69px;height:89px;padding:2px; margin:auto;">\
+                        <div style="font-size:12px"></div><img src="https://www.grouplandmark.in/assets/visual/logo/loader.gif" width="64" height="64" /><br>Loading...</div>');
+
+                    quoteTotal = result.tot_load_cost;
+
+                    $('.modal').modal('show');
+                    console.log("Application submission was successful");
+                    console.log(result.orig_address);
+                    console.log(result.dest_address);
+                    console.log('mileage = ' + result.mileage);
+                    console.log('mileage cost = ' + result.mileage_cost_total);
+                    $('.modal').on('hide.bs.modal', function (e) {
+                        $('.modal-content').html(initialContent);
+                    });
+
+                })
+                .fail(function (error) {
+                    console.log(error);
+                    $(".modal-body").html(errorModal);
+                    $(".modal-footer").html('');
+                    $('#confirm_data_Modal').modal('show');
+
+                    $('.modal').on('hide.bs.modal', function (e) {
+                        $('.modal-content').html(initialContent);
+                    });
+                });
+        }
+        else{
+
+            $('html, body').animate({
+                scrollTop: ($('.error:visible').offset().top - 300)
+            }, 1000);
+        }
+        
+
+
+    });
+
 
     /****** Code for /ship ends here *****/
 
@@ -756,6 +810,41 @@ $(document).ready(function () {
 
     });
 
+    $('.modal').on('click', '.dash_pay_credit', function (e) {
+
+        e.preventDefault();
+        initialContent = $('.modal-content').html();
+
+        $.ajax({
+            type: 'POST',
+            url: '/submitshipment',
+            data: $('.dash_book_shipment_form').serialize() + '&quote=' + quoteTotal + '&payment_type=' + 'accbal',
+        })
+            .done(function (result) {
+                //sessionStorage.clear();
+                $(".modal-body").html(appsuccess);
+                $(".modal-footer").html('');
+                $('.modal').modal('show');
+                console.log("Shipping Form submission was successful. We will get back to you shortly");
+                $('.modal').on('hide.bs.modal', function (e) {
+                    $('.modal-content').html(initialContent);
+                });
+            })
+
+
+            .fail(function (error) {
+                console.log(error);
+                $(".modal-body").html(errorModal);
+                $(".modal-footer").html('');
+                $('.modal').modal('show');
+                $('.modal').on('hide.bs.modal', function (e) {
+                    $('.modal-content').html(initialContent);
+                });
+
+            });
+
+    });
+
 
     $('.modal').on('click', '#book30', function (e) {
 
@@ -794,6 +883,57 @@ $(document).ready(function () {
 
             });
 
+    });
+
+    $('.dash_book_shipment').click(function (e) {
+
+        e.preventDefault();
+        initialContent = $('.modal-content').html();
+        shippingQuoteParms = $('.dash_book_shipment_form').serialize();
+        if ($(".dash_book_shipment_form").valid()) {
+            $.ajax({
+                type: 'POST',
+                url: '/ship/calc',
+                data: $('.dash_book_shipment_form').serialize(),
+            })
+                .done(function (result) {
+
+                    $('.modal-body').html('<h2 class="text-center">Your Quote: $' + result.tot_load_cost +
+                        '</h2>' + '<br> <h5 class="text-center"> Total Mileage: ' + result.mileage + ' mi</h5> <br> <h5 class="text-center"> Total Pallets: ' +
+                        $('#no_of_pallets').val() + '</h5> <br> <h5 class="text-center"> Total Weight: ' + $('#tot_load_wt').val() + ' lbs</h5><br>\
+                        <div class="wait justify-content-center text-center" style="display:none;width:69px;height:89px;padding:2px; margin:auto;">\
+                        <img src="https://www.grouplandmark.in/assets/visual/logo/loader.gif" width="64" height="64" /><br>Loading...</div>');
+
+                    quoteTotal = result.tot_load_cost;
+
+                    $('.modal').modal('show');
+                    //console.log("Application submission was successful");
+                    $('.modal').on('hide.bs.modal', function (e) {
+                        $('.modal').data('bs.modal', null);
+                        $('.modal-content').html(initialContent);
+                    });
+                })
+
+
+                .fail(function (error) {
+                    console.log(error);
+                    $(".modal-body").html(errorModal);
+                    $(".modal-footer").html('');
+                    $('.modal').modal('show');
+                    $('.modal').on('hide.bs.modal', function (e) {
+                        $('.modal').data('bs.modal', null);
+                        $('.modal-content').html(initialContent);
+                    });
+                });
+
+        }
+        else{
+
+            $('html, body').animate({
+                scrollTop: ($('.error:visible').offset().top - 300)
+            }, 1000);
+        }
+        
     });
 
     //Handles Credit Card Submission and Submitting to the DB
@@ -927,6 +1067,14 @@ $(document).ready(function () {
 
 
     $('#final_book_shipment_modal').on('click', '#na_applycredit', function (e) {
+
+        e.preventDefault();
+        $(".modal-body").load('/applyforcredit');
+        $('.modal-footer').html('');
+
+    });
+
+    $('.modal').on('click', '.dash_apply_credit', function (e) {
 
         e.preventDefault();
         $(".modal-body").load('/applyforcredit');

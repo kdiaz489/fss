@@ -154,6 +154,16 @@ class DashboardController extends Controller
         return view('userdash.dash-account')->with('user', $user);
     }
 
+    public function getusershippingquote(){
+
+        return view('userdash.dash-get-shipping-quote');
+    }
+
+    public function getuserbookshipment(){
+
+        return view('userdash.dash-book-ship');
+    }
+
     public function getuserorders(){
         $user_id = auth()->user()->id;
         $user = User::find($user_id);

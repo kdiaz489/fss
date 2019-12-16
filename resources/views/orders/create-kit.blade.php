@@ -306,19 +306,19 @@ Create Kit
             var selected = $(':selected', this);
             var label = selected.parent().attr('label');
             if(label == 'Pallets'){
-                selected.closest('tr').find('.type').val('Pallet').change();
+                selected.closest('tr').find('.kit_item_type').val('Pallet').change();
             }
             if(label == 'Cartons'){
-                selected.closest('tr').find('.type').val('Carton').change();
+                selected.closest('tr').find('.kit_item_type').val('Carton').change();
             }
             else if(label == 'Cases'){
-                selected.closest('tr').find('.type').val('Case').change();
+                selected.closest('tr').find('.kit_item_type').val('Case').change();
             }
             else if(label == 'Kits'){
-                selected.closest('tr').find('.type').val('Kit').change();
+                selected.closest('tr').find('.kit_item_type').val('Kit').change();
             }
             else if(label == 'Units'){
-                selected.closest('tr').find('.type').val('Unit').change();
+                selected.closest('tr').find('.kit_item_type').val('Unit').change();
             }
              
         });

@@ -15,7 +15,7 @@
 
           <!-- Confirm Data Modal -->
           <div class="modal fade confirm_data_Modal" action="" id="final_book_shipment_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-dialog modal-dialpayccog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" data-backdrop="false" aria-label="Close">
@@ -29,7 +29,7 @@
 
                     
                     @if(Auth::user()->credit == 'Approved')
-                        <input type="button" name="paycc" id="paycc" value="Book w/ Payment" class="btn btn-primary text-white bg-denim"/>
+                        <input type="button" name="paycc" id="paycc" value="Book w/ Payment" class="btn btn-primary text-white bg-denim paycc"/>
                         <input type="button" name="paywcredit" id="paywcredit" value="Book w/ Credit " class="btn btn-primary text-white bg-denim"/>
                     @elseif(Auth::user()->credit == 'Not Approved')
                         <input type="button" name="paycc" id="paycc" value="Book w/ Credit Card" class="btn btn-primary text-white bg-denim"/>
