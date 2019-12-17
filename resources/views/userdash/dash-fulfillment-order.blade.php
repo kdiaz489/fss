@@ -236,7 +236,7 @@ Fulfilment Order
 
             <div class="card">
                 <div class="card-header">
-                    1) Order Information
+                    <span class="display-4" style="font-size: 1.2rem;"> 1. Order Information</span>
                 </div>
                 <div class="card-body">
                     <div class="form-row justify-content-center mb-4">
@@ -280,8 +280,8 @@ Fulfilment Order
 
             <div class="card">
                 <div class="card-header">
-                    2) Create Product Container
-                    <div class="float-right"><button class="btn btn-link add-container">Add Container</button></div>
+                    <span class="display-4" style="font-size: 1.2rem;"> 2. Create Product Container</span>
+                    <div class="float-right"><button class="btn btn-link add-container p-0 m-0">Add Container</button></div>
 
                 </div>
                 <div class="card-body create-container">

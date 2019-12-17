@@ -340,8 +340,11 @@
                 <!-- /.sidebar -->
               </aside>
 @endsection
-
 @endhasrole
+
+@section('breadcrumb')
+Show Case
+@endsection
 
 @section('user-name')
 {{auth()->user()->name}}
@@ -364,8 +367,8 @@
 
 
               <tr>
-                  <th scope="row">Case Name</th>
-                  <td>{{$case->case_name}}</td>
+                  <th scope="row">UPC/Barcode</th>
+                  <td>{{$case->upc}}</td>
               </tr>
 
               <tr>

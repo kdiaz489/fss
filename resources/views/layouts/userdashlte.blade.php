@@ -49,6 +49,7 @@
   <link href="{{ asset('css/landingpage.css') }}" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <link href="{{ asset('css/fssdash.css') }}" rel="stylesheet">
 
 </head>
 

@@ -340,8 +340,11 @@
                 <!-- /.sidebar -->
               </aside>
 @endsection
-
 @endhasrole
+
+@section('breadcrumb')
+Show Kit
+@endsection
 
 @section('user-name')
 {{auth()->user()->name}}
@@ -364,8 +367,8 @@
 
 
               <tr>
-                  <th scope="row">Kit Name</th>
-                  <td>{{$kit->kit_name}}</td>
+                  <th scope="row">UPC/Barcode</th>
+                  <td>{{$kit->upc}}</td>
               </tr>
 
               <tr>

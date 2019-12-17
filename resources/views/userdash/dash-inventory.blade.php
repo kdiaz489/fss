@@ -199,6 +199,9 @@ Inventory
     <!-- Flash Alerts Ends -->
 
 </div>
+
+
+
 <div class="container-fluid dashboard-container">
 
 
@@ -576,7 +579,7 @@ Inventory
                             <th width="10%">Quantity</th>
                             <th width="10%">Qty/Case</th>
                             <th width="10%">Location</th>
-                            <th width="10%">Actions</th>
+                            <th width="10%"></th>
 
                         </tr>
                     </thead>

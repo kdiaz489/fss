@@ -328,7 +328,12 @@ class CartonsController extends Controller
     public function destroy($id)
     {
         $carton = Carton::find($id);
+        $sku = $carton->sku;
+        $upc = $carton->upc;
+        $carton->basic_units()->detach();
+        $carton->kits()->detach();
+        $carton->cases()->detach();
         $carton->delete();
-        return redirect()->back()->with('success', 'You have successfully deleted carton.');
+        return redirect()->back()->with('success', 'You have successfully deleted carton. - SKU #: ' . $sku . ' UPC: ' . $upc . '');
     }
 }

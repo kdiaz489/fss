@@ -342,6 +342,11 @@
 
 @endhasrole
 
+
+@section('breadcrumb')
+Show Order
+@endsection
+
 @section('user-name')
 {{auth()->user()->name}}
 @endsection
@@ -366,10 +371,6 @@
                 <td>{{$order->user_id}}</td>
             </tr>
 
-            <tr>
-                <th scope="row">Order Name</th>
-                <td>{{$order->name}}</td>
-            </tr>
 
             <tr>
                 <th scope="row">Company</th>

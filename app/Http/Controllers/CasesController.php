@@ -61,7 +61,6 @@ class CasesController extends Controller
                 ]);
             }
             $case = new Cases();
-            $case->case_name = $request->case_name;
             $case->user_id = auth()->user()->id;
             $case->company = auth()->user()->company_name;
             $case->sku = $request->sku;
@@ -168,7 +167,6 @@ class CasesController extends Controller
                 ]);
             }
             $case = Cases::find($id);
-            $case->case_name = $request->case_name;
             $case->sku = $request->sku;
             $case->upc = $request->upc;
             $case->case_qty = 0;

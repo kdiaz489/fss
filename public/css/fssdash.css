@@ -87,3 +87,21 @@
 .w-80{
     width: 80% !important;
 }
+
+.bg-circle{
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  background-color: #d6d8d9;
+  border-radius: 15px 15px 15px 0px;
+  display: inline-block;
+  text-align: center;
+}
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}

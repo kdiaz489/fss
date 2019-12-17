@@ -105,13 +105,13 @@
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="/ship" class="nav-link text-white">
+                            <a href="/dashboard/user/getquote" class="nav-link text-white">
                               <i class="fas fa-angle-right nav-icon"></i>
                               <p>Get Quote</p>
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="/ship/book" class="nav-link text-white">
+                            <a href="/dashboard/user/bookshipment" class="nav-link text-white">
                               <i class="fas fa-angle-right nav-icon"></i>
                               <p>Book Shipment</p>
                             </a>
@@ -235,7 +235,7 @@ Transfer In
 
             <div class="card">
                 <div class="card-header">
-                    1) Order Information
+                  <span class="display-4 " style="font-size: 1.2rem;"> 1. Order Information</span>
                 </div>
                 <div class="card-body">
                 <div class="form-row justify-content-center mb-4">
@@ -301,8 +301,8 @@ Transfer In
 
             <div class="card">
                 <div class="card-header">
-                    2) Create Product Container
-                    <div class="float-right"><button class="btn btn-link add-container">Add Container</button></div>
+                  <span class="display-4" style="font-size: 1.2rem;"> 2. Create Product Container</span>
+                    <div class="float-right"><button class="btn btn-link add-container p-0 m-0">Add Container</button></div>
 
                 </div>
                 <div class="card-body create-container">
@@ -320,8 +320,8 @@ Transfer In
                                 <label for="container_type">Container Type</label>
                                 <select name="container_type[0][]" class="form-control container_type required">
                                     <option value="">Choose</option>
-                                    <option value="Pallet">Pallet</option>
-                                    <option value="Carton">Carton</option>
+                                    <option value="Pallet">Palletize</option>
+                                    <option value="Carton">Cartonize</option>
                                     <option value="Loose Items">Loose Items</option>
                                 </select>
                             </div>

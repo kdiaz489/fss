@@ -344,8 +344,11 @@ Show Unit
                 <!-- /.sidebar -->
               </aside>
 @endsection
-
 @endhasrole
+
+@section('breadcrumb')
+Show Unit
+@endsection
 
 @section('user-name')
 {{auth()->user()->name}}
@@ -366,16 +369,15 @@ Show Unit
                     </tr>
                   </thead>
 
+              <tr>
+                  <th scope="row">UPC/Barcode</th>
+                  <td>{{$basic_unit->upc}}</td>
+              </tr>
 
               <tr>
                   <th scope="row">Sku #</th>
                   <td>{{$basic_unit->sku}}</td>
               </tr>
-
-              <tr>
-                    <th scope="row">UPC/Barcode</th>
-                    <td>{{$basic_unit->upc}}</td>
-                </tr>
 
               <tr>
                   <th scope="row">Description</th>

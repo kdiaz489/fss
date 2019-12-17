@@ -340,8 +340,11 @@
                 <!-- /.sidebar -->
               </aside>
 @endsection
-
 @endhasrole
+
+@section('breadcrumb')
+Show Pallet
+@endsection
 
 @section('content')
 <div class="container" style="margin-top: 2%">
@@ -360,8 +363,8 @@
 
 
               <tr>
-                  <th scope="row">Pallet Name</th>
-                  <td>{{$pallet->pallet_name}}</td>
+                  <th scope="row">Pallet UPC/Barcode</th>
+                  <td>{{$pallet->upc}}</td>
               </tr>
 
               <tr>
