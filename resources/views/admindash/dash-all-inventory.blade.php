@@ -157,6 +157,8 @@ All Inventory
 @section('content')
 
 
+
+
 <div class="container-fluid dashboard-container m-auto w-75">
 
     <!-- Flash Alerts Begin -->

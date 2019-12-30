@@ -63,6 +63,7 @@ class BasicUnitsController extends Controller
         $unit->carton_qty = 0;
         $unit->pallet_qty = 0;
         $unit->total_qty = 0;
+        $unit->loose_item_qty = 0;
         $unit->description = $request->desc;
         $unit->save();
         return redirect('/basicunit')->with('success', 'Product has been created - Sku: ' . $unit->sku);

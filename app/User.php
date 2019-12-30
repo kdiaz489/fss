@@ -43,16 +43,15 @@ class User extends Authenticatable implements MustVerifyEmail
         
     }
 
-    public function shipments(){
-        // A user has many posts, a one to many relationship
-        
-        return $this->hasMany('App\Shipment');
+    public function shopify_orders(){
+        // A user has many shopify orders, a one to many relationship
+        return $this->hasMany('App\ShopifyOrder');
     }
 
-    public function shipmentshistory(){
-        // A user has many posts, a one to many relationship
+    public function shipments(){
+        // A user has many shipments, a one to many relationship
         
-        return $this->hasMany('App\ShipHistory');
+        return $this->hasMany('App\Shipment');
     }
 
     public function storage(){

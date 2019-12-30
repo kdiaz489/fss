@@ -6,6 +6,13 @@ use Illuminate\Http\Request;
 use Excel;
 use App\User;
 use App\Imports\CsvImport;
+use App\Exports\CsvExport;
+use App\Imports\OrderImport;
+use App\Exports\OrderExport;
+use App\Exports\UnitExport;
+use App\Exports\KitExport;
+use App\Exports\CaseExport;
+use App\Exports\CartonExport;
 
 class CsvFile extends Controller
 {
@@ -20,13 +27,29 @@ class CsvFile extends Controller
         
     }
 
-    public function csv_export(){
-        return Excel::download(new CsvExport, 'sample.csv');
+    public function order_export($id){
+        return Excel::download(new OrderExport($id), 'sample.csv');
     }
 
     public function csv_import(){
         Excel::import(new CsvImport, request()->file('file'));
         return back();
+    }
+
+    public function units_export($id){
+        return Excel::download(new UnitExport($id), 'sample.csv');
+    }
+
+    public function kits_export($id){
+        return Excel::download(new KitExport($id), 'sample.csv');
+    }
+
+    public function cases_export($id){
+        return Excel::download(new CaseExport($id), 'sample.csv');
+    }
+
+    public function cartons_export($id){
+        return Excel::download(new CartonExport($id), 'sample.csv');
     }
 
     /**

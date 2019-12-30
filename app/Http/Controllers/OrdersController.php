@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Order;
 use App\Kit;
@@ -954,6 +954,32 @@ class OrdersController extends Controller
     public function update(Request $request, $id)
     {
         $order = Order::find($id);
+    }
+
+    public function verify_order_skus(Request $request, $id){
+        
+        if($request->type == 'Unit'){
+           
+            if (Basic_Unit::where('sku', $request->sku)->where('user_id', '3')->exists()) {
+                $unit = Basic_Unit::where('sku', $request->sku)->where('user_id', '3')->first();
+                //dd($unit->upc);
+                if(strval($unit->upc) == strval($request->barcode)){
+                    return response()->json([
+                        'success'  => 'This item matches the product SKU.'
+                    ], 200);
+                }
+                else{
+                    return response()->json([
+                        'error'  => 'barcode check. this item does not match the product SKU'
+                    ], 404);
+                }
+            }
+            else{
+                return response()->json([
+                    'error'  => 'This item does not match the product SKU'
+                ], 404);
+            }
+        }
     }
 
     public function updatestatus(Request $request, $id)

@@ -107,6 +107,7 @@ Route::get('/createtransout', 'OrdersController@create_transout_order');
 Route::post('/createtransout', 'OrdersController@store_transout_order');
 Route::get('/createfilorder', 'OrdersController@create_fil_order');
 Route::post('/createfilorder', 'OrdersController@store_fil_order');
+Route::post('/verifyorderskus/{id}', 'OrdersController@verify_order_skus');
 
 Route::resource('posts', 'PostsController');
 
@@ -130,6 +131,8 @@ Route::get('/dashboard/admin/fulfillment', 'DashboardController@getadminfulfillm
 Route::get('/dashboard/admin/orders', 'DashboardController@getadminorders');
 Route::get('/dashboard/admin/inventory', 'DashboardController@getadmininventory');
 Route::get('/dashboard/admin/account', 'DashboardController@getadminaccount');
+Route::get('/dashboard/admin/fulfill/{id}', 'DashboardController@getadminfulfillorderform');
+
 
 Route::get('/updateusername', 'DashboardController@getupdateusername');
 Route::get('/updateemail', 'DashboardController@getupdateemail');
@@ -158,7 +161,17 @@ Route::get('editcase/{id}', 'CasesController@edit');
 Route::put('/updatecase/{id}', 'CasesController@update');
 Route::delete('/removecase/{id}', 'CasesController@destroy');
 
+
+Route::get('/getallproducts', 'ShopifyController@index');
+Route::get('/scanshopifyorders', 'ShopifyController@scanOrders');
+
 Route::post('csv_file/import', 'CsvFile@csv_import')->name('import');
+Route::get('csv_file/export', 'CsvFile@csv_export')->name('export');
+Route::get('/order/export/{id}', 'CsvFile@order_export')->name('orderexport');
+Route::get('/inventory/units/export/{id}', 'CsvFile@units_export')->name('unitsexport');
+Route::get('/inventory/kits/export/{id}', 'CsvFile@kits_export')->name('kitsexport');
+Route::get('/inventory/cases/export/{id}', 'CsvFile@cases_export')->name('casesexport');
+Route::get('/inventory/cartons/export/{id}', 'CsvFile@cartons_export')->name('cartonsexport');
 
 Route::get('/admin', function(){
     return 'You are an admin';

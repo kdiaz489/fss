@@ -359,6 +359,6 @@ class PalletsController extends Controller
     {
         $pallet = Pallet::find($id);
         $pallet->delete();
-        return redirect()->back()->with('success', 'You have successfully deleted pallet.');
+        return back()->with('success', 'You have successfully deleted pallet.');
     }
 }

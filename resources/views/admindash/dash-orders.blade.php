@@ -182,7 +182,7 @@
                         <br>
                         <br>
                         -->
-                    <p class="h1 font-weight-light">Active Orders</p>
+                    <h3 class="font-weight-light">Active Orders</h3>
                     @if(count($orders) > 0)
                     <div class="table-responsive">
                         <table class="table table-sm orders">
@@ -436,7 +436,7 @@
                         <br>
                         <br>
                         -->
-                    <p class="h1 font-weight-light">Order History</p>
+                    <h3 class="font-weight-light">Order History</h3>
                     @if(count($ordershistory) > 0)
                     <div class="table-responsive">
                         <table class="table table-sm orders">

@@ -223,13 +223,13 @@ Fulfilment Orders
                         <table class="table table-sm" id="filorders">
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th>Order ID</th>
-                                    <th>Submitted On</th>
-                                    <th>Customer</th>
-                                    <th>Payment</th>
-                                    <th>Status</th>
-                                    <th></th>
+                                    <th width="10%"></th>
+                                    <th width="10%">Order ID</th>
+                                    <th width="10%">Submitted On</th>
+                                    <th width="10%">Customer</th>
+                                    <th width="10%">Payment</th>
+                                    <th width="10%">Status</th>
+                                    <th width="10%"></th>
 
                                 </tr>
                             </thead>
@@ -238,21 +238,21 @@ Fulfilment Orders
 
 
                             <tr>
-                                <td><button type="button" class="btn text-denim toggle-{{$order->id}}"
+                                <td width="10%"><button type="button" class="btn text-denim toggle-{{$order->id}}"
                                         id="toggle-details{{$order->id}}" data-toggle="collapse"
                                         data-target="#details{{$order->id}}" aria-expanded="false"
                                         aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
-                                <td>
+                                <td width="10%">
                                     <a href="/vieworder/{{$order->id}}">
                                         <button class="btn btn-link text-denim btn-sm px-0 "
                                             type="button">{{str_pad($order->orderid, 6, '0', STR_PAD_LEFT)}}</button>
                                     </a>
                                 </td>
-                                <td>{{$order->created_at->format('m/d/y')}}</td>
-                                <td>{{$order->company}}</td>
-                                <td></td>
-                                <td>{{$order->status}}</td>
-                                <td>
+                                <td width="10%">{{$order->created_at->format('m/d/y')}}</td>
+                                <td width="10%">{{$order->cust_name}}</td>
+                                <td width="10%">{{$order->financial_status}}</td>
+                                <td width="10%">{{$order->fulfillment_status}}</td>
+                                <td width="10%">
                                     <div style="margin-left: 10%">
 
                                         <a href="/vieworder/{{$order->id}}" class="float-left" style="margin-right:1%">
@@ -278,20 +278,20 @@ Fulfilment Orders
                                         <table class="table table-sm bg-whitewash">
                                             <thead>
                                                 <tr>
-                                                    <td>SKU</td>
-                                                    <td>Description</td>
-                                                    <td>Barcode</td>
-                                                    <td>Container Type</td>
-                                                    <td>Quantity</td>
+                                                    <th width="10%">SKU</th>
+                                                    <th width="10%">Description</th>
+                                                    <th width="10%">Barcode</th>
+                                                    <th width="10%">Container Type</th>
+                                                    <th width="10%">Quantity</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>{{$unit->sku}}</td>
-                                                    <td>{{$unit->description}}</td>
-                                                    <td></td>
-                                                    <td>Loose Item</td>
-                                                    <td>{{$unit->pivot->quantity}}</td>
+                                                    <td width="10%">{{$unit->sku}}</td>
+                                                    <td width="10%">{{$unit->description}}</td>
+                                                    <td width="10%"></td>
+                                                    <td width="10%">Loose Item</td>
+                                                    <td width="10%">{{$unit->pivot->quantity}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -310,20 +310,20 @@ Fulfilment Orders
                                         <table class="table table-sm bg-whitewash">
                                             <thead>
                                                 <tr>
-                                                    <td>SKU</td>
-                                                    <td>Description</td>
-                                                    <td>Barcode</td>
-                                                    <td>Container Type</td>
-                                                    <td>Quantity</td>
+                                                    <th  width="10%">SKU</th>
+                                                    <th  width="10%">Description</th>
+                                                    <th  width="10%">Barcode</th>
+                                                    <th  width="10%">Container Type</th>
+                                                    <th  width="10%">Quantity</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>{{$kit->sku}}</td>
-                                                    <td>{{$kit->description}}</td>
-                                                    <td></td>
-                                                    <td>Kit</td>
-                                                    <td>{{$kit->pivot->quantity}}</td>
+                                                    <td  width="10%">{{$kit->sku}}</td>
+                                                    <td  width="10%">{{$kit->description}}</td>
+                                                    <td  width="10%"></td>
+                                                    <td  width="10%">Kit</td>
+                                                    <td  width="10%">{{$kit->pivot->quantity}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -343,20 +343,20 @@ Fulfilment Orders
                                         <table class="table table-sm bg-whitewash">
                                             <thead>
                                                 <tr>
-                                                    <td>SKU</td>
-                                                    <td>Description</td>
-                                                    <td>Barcode</td>
-                                                    <td>Container Type</td>
-                                                    <td>Quantity</td>
+                                                    <th  width="10%">SKU</th>
+                                                    <th  width="10%">Description</th>
+                                                    <th  width="10%">Barcode</th>
+                                                    <th  width="10%">Container Type</th>
+                                                    <th  width="10%">Quantity</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>{{$case->sku}}</td>
-                                                    <td>{{$case->description}}</td>
-                                                    <td></td>
-                                                    <td>Case</td>
-                                                    <td>{{$case->pivot->quantity}}</td>
+                                                    <td  width="10%">{{$case->sku}}</td>
+                                                    <td  width="10%">{{$case->description}}</td>
+                                                    <td  width="10%"></td>
+                                                    <td  width="10%">Case</td>
+                                                    <td  width="10%">{{$case->pivot->quantity}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -375,20 +375,20 @@ Fulfilment Orders
                                         <table class="table table-sm bg-whitewash">
                                             <thead>
                                                 <tr>
-                                                    <td>SKU</td>
-                                                    <td>Description</td>
-                                                    <td>Barcode</td>
-                                                    <td>Container Type</td>
-                                                    <td>Quantity</td>
+                                                    <th  width="10%">SKU</th>
+                                                    <th  width="10%">Description</th>
+                                                    <th  width="10%">Barcode</th>
+                                                    <th  width="10%">Container Type</th>
+                                                    <th  width="10%">Quantity</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>{{$carton->sku}}</td>
-                                                    <td>{{$carton->description}}</td>
-                                                    <td></td>
-                                                    <td>Carton</td>
-                                                    <td>{{$carton->pivot->quantity}}</td>
+                                                    <td  width="10%">{{$carton->sku}}</td>
+                                                    <td  width="10%">{{$carton->description}}</td>
+                                                    <td  width="10%"></td>
+                                                    <td  width="10%">Carton</td>
+                                                    <td  width="10%">{{$carton->pivot->quantity}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -407,20 +407,20 @@ Fulfilment Orders
                                         <table class="table table-sm bg-whitewash">
                                             <thead>
                                                 <tr>
-                                                    <td>SKU</td>
-                                                    <td>Description</td>
-                                                    <td>Barcode</td>
-                                                    <td>Container Type</td>
-                                                    <td>Quantity</td>
+                                                    <th  width="10%">SKU</th>
+                                                    <th  width="10%">Description</th>
+                                                    <th  width="10%">Barcode</th>
+                                                    <th  width="10%">Container Type</th>
+                                                    <th  width="10%">Quantity</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>{{$pallet->sku}}</td>
-                                                    <td>{{$pallet->description}}</td>
-                                                    <td></td>
-                                                    <td>Pallet</td>
-                                                    <td>{{$pallet->pivot->quantity}}</td>
+                                                    <td  width="10%">{{$pallet->sku}}</td>
+                                                    <td  width="10%">{{$pallet->description}}</td>
+                                                    <td  width="10%"></td>
+                                                    <td  width="10%">Pallet</td>
+                                                    <td  width="10%">{{$pallet->pivot->quantity}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -437,6 +437,231 @@ Fulfilment Orders
                     <p>You have 0 pending orders.</p>
                     @endif
             </div>
+            <div class="col-lg-12 col-12">
+              <!--
+              <a href="/createfilorder" class="btn btn-outline-secondary">Create Fulfillment</a>
+              -->
+
+              <p class="h1 font-weight-light">Fulfillment Orders History</p>
+              @if(count($ordershistory) > 0)
+              <div class="table-responsive">
+                  <table class="table table-sm" id="filorders">
+                      <thead>
+                          <tr>
+                              <th width="10%"></th>
+                              <th width="10%">Order ID</th>
+                              <th width="10%">Submitted On</th>
+                              <th width="10%">Customer</th>
+                              <th width="10%">Payment</th>
+                              <th width="10%">Status</th>
+                              <th width="10%"></th>
+
+                          </tr>
+                      </thead>
+                      <tbody>
+                      @foreach($ordershistory as $order)
+
+
+                      <tr>
+                          <td width="10%"><button type="button" class="btn text-denim toggle-{{$order->id}}"
+                                  id="toggle-details{{$order->id}}" data-toggle="collapse"
+                                  data-target="#details{{$order->id}}" aria-expanded="false"
+                                  aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
+                          <td width="10%">
+                              <a href="/vieworder/{{$order->id}}">
+                                  <button class="btn btn-link text-denim btn-sm px-0 "
+                                      type="button">{{str_pad($order->orderid, 6, '0', STR_PAD_LEFT)}}</button>
+                              </a>
+                          </td>
+                          <td width="10%">{{$order->created_at->format('m/d/y')}}</td>
+                          <td width="10%">{{$order->cust_name}}</td>
+                          <td width="10%"></td>
+                          <td width="10%">{{$order->status}}</td>
+                          <td width="10%">
+                              <div style="margin-left: 10%">
+
+                                  <a href="/vieworder/{{$order->id}}" class="float-left" style="margin-right:1%">
+                                      <button class="btn btn-link text-denim btn-sm" type="button">View</button>
+                                  </a>
+                                  <form action="/order/remove/{{$order->id}}" method="POST" class="float-left">
+                                      @method('DELETE')
+                                      @csrf
+                                      <button type="submit"
+                                          class="btn btn-link text-danger btn-sm">Remove</button>
+                                  </form>
+                              </div>
+                          </td>
+                      </tr>
+
+                      @if($order->basic_units->all())
+                      @foreach ($order->basic_units->all() as $unit)
+
+                      <tr>
+                          <td class="py-0 border-0"></td>
+                          <td class="py-0 border-0" colspan="12">
+                              <div id="details{{$order->id}}" class="accordion-body details collapse">
+                                  <table class="table table-sm bg-whitewash">
+                                      <thead>
+                                          <tr>
+                                              <th width="10%">SKU</th>
+                                              <th width="10%">Description</th>
+                                              <th width="10%">Barcode</th>
+                                              <th width="10%">Container Type</th>
+                                              <th width="10%">Quantity</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                          <tr>
+                                              <td width="10%">{{$unit->sku}}</td>
+                                              <td width="10%">{{$unit->description}}</td>
+                                              <td width="10%"></td>
+                                              <td width="10%">Loose Item</td>
+                                              <td width="10%">{{$unit->pivot->quantity}}</td>
+                                          </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </td>
+                      </tr>
+                      @endforeach
+                      @endif
+
+                      @if($order->kits->all())
+                      @foreach ($order->kits->all() as $kit)
+                      <tr>
+                          <td class="py-0 border-0"></td>
+                          <td class="py-0 border-0" colspan="12">
+                              <div id="details{{$order->id}}" class="accordion-body details collapse">
+                                  <table class="table table-sm bg-whitewash">
+                                      <thead>
+                                          <tr>
+                                              <th  width="10%">SKU</th>
+                                              <th  width="10%">Description</th>
+                                              <th  width="10%">Barcode</th>
+                                              <th  width="10%">Container Type</th>
+                                              <th  width="10%">Quantity</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                          <tr>
+                                              <td  width="10%">{{$kit->sku}}</td>
+                                              <td  width="10%">{{$kit->description}}</td>
+                                              <td  width="10%"></td>
+                                              <td  width="10%">Kit</td>
+                                              <td  width="10%">{{$kit->pivot->quantity}}</td>
+                                          </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </td>
+                      </tr>
+                      @endforeach
+                      @endif
+
+
+                      @if($order->cases->all())
+                      @foreach ($order->cases->all() as $case)
+                      <tr>
+                          <td class="py-0 border-0"></td>
+                          <td class="py-0 border-0" colspan="12">
+                              <div id="details{{$order->id}}" class="accordion-body details collapse">
+                                  <table class="table table-sm bg-whitewash">
+                                      <thead>
+                                          <tr>
+                                              <th  width="10%">SKU</th>
+                                              <th  width="10%">Description</th>
+                                              <th  width="10%">Barcode</th>
+                                              <th  width="10%">Container Type</th>
+                                              <th  width="10%">Quantity</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                          <tr>
+                                              <td  width="10%">{{$case->sku}}</td>
+                                              <td  width="10%">{{$case->description}}</td>
+                                              <td  width="10%"></td>
+                                              <td  width="10%">Case</td>
+                                              <td  width="10%">{{$case->pivot->quantity}}</td>
+                                          </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </td>
+                      </tr>
+                      @endforeach
+                      @endif
+
+                      @if($order->cartons->all())
+                      @foreach ($order->cartons->all() as $carton)
+                      <tr>
+                          <td class="py-0 border-0"></td>
+                          <td class="py-0 border-0" colspan="12">
+                              <div id="details{{$order->id}}" class="accordion-body details collapse">
+                                  <table class="table table-sm bg-whitewash">
+                                      <thead>
+                                          <tr>
+                                              <th  width="10%">SKU</th>
+                                              <th  width="10%">Description</th>
+                                              <th  width="10%">Barcode</th>
+                                              <th  width="10%">Container Type</th>
+                                              <th  width="10%">Quantity</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                          <tr>
+                                              <td  width="10%">{{$carton->sku}}</td>
+                                              <td  width="10%">{{$carton->description}}</td>
+                                              <td  width="10%"></td>
+                                              <td  width="10%">Carton</td>
+                                              <td  width="10%">{{$carton->pivot->quantity}}</td>
+                                          </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </td>
+                      </tr>
+                      @endforeach
+                      @endif
+
+                      @if($order->pallets->all())
+                      @foreach ($order->pallets->all() as $pallet)
+                      <tr>
+                          <td class="py-0 border-0"></td>
+                          <td class="py-0 border-0" colspan="12">
+                              <div id="details{{$order->id}}" class="accordion-body details collapse">
+                                  <table class="table table-sm bg-whitewash">
+                                      <thead>
+                                          <tr>
+                                              <th  width="10%">SKU</th>
+                                              <th  width="10%">Description</th>
+                                              <th  width="10%">Barcode</th>
+                                              <th  width="10%">Container Type</th>
+                                              <th  width="10%">Quantity</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                          <tr>
+                                              <td  width="10%">{{$pallet->sku}}</td>
+                                              <td  width="10%">{{$pallet->description}}</td>
+                                              <td  width="10%"></td>
+                                              <td  width="10%">Pallet</td>
+                                              <td  width="10%">{{$pallet->pivot->quantity}}</td>
+                                          </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </td>
+                      </tr>
+                  </tbody>
+                          @endforeach
+                          @endif
+                          @endforeach
+                  </table>
+              </div>
+              @else
+              <p>You have 0 pending orders.</p>
+              @endif
+      </div>
         </div>
     </div>
 </div>

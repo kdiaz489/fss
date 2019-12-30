@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\StorageWork;
 use App\Shipment;
 use App\Storage;
@@ -144,8 +144,9 @@ class DashboardController extends Controller
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
         $kits = $user->kits;
-        $orders = $user->orders->where('order_type', '=', 'Fulfill Items')->where('status', '=', 'Pending Approval')->sortByDesc('created_at');
-        return view('userdash.dash-fulfillment')->with('orders', $orders);
+        $orders = $user->orders->where('order_type', '=', 'Fulfill Items')->where('status', '!=', 'Completed')->sortByDesc('created_at');
+        $ordershistory = $user->orders->where('order_type', '=', 'Fulfill Items')->where('status', '=', 'Completed')->sortByDesc('created_at');
+        return view('userdash.dash-fulfillment')->with('orders', $orders)->with('ordershistory', $ordershistory);
     }
 
     public function getuserdashaccount(){
@@ -166,7 +167,7 @@ class DashboardController extends Controller
 
     public function getuserorders(){
         $user_id = auth()->user()->id;
-        $user = User::find($user_id);
+        $user = User::find('3');
         $orders = $user->orders->where('order_type', '!=', 'Fulfill Items')->where('status', '!=', 'Completed')->sortByDesc('created_at');
         $orderhistory = $user->orders->where('order_type', '!=', 'Fulfill Items')->where('status', '=', 'Completed')->sortByDesc('created_at');
         return view('userdash.dash-orders')->with('user', $user)->with('orders', $orders)->with('orderhistory', $orderhistory);
@@ -186,13 +187,21 @@ class DashboardController extends Controller
 
     public function getadminfulfillment(){
 
-        $orders = Order::orderBy('created_at', 'desc')->where('order_type', '=', 'Fulfill Items')->where('status', '=', 'Pending Approval')->get();
-        return view('admindash.dash-fulfillment')->with('orders', $orders);
+        $orders = Order::orderBy('cust_order_no', 'desc')->where('order_type', '=', 'Fulfill Items')->where('status', '!=', 'Completed')->get();
+        $ordershistory = Order::orderBy('cust_order_no', 'desc')->where('order_type', '=', 'Fulfill Items')->where('status', '=', 'Completed')->get();
+        return view('admindash.dash-fulfillment')->with('orders', $orders)->with('ordershistory', $ordershistory);
+    }
+
+    public function getadminfulfillorderform($id){
+        $order = Order::find($id);
+        //dd(class_basename($order));
+        //dd($order);
+        return view('admindash.dash-fulfill-order-form')->with('order', $order);
     }
 
     public function getadminorders(){
-        $orders = Order::orderBy('created_at', 'desc')->get()->where('status', '!=', 'Completed')->where('order_type', '!=', 'Fulfill Items');
-        $ordershistory = Order::orderBy('created_at', 'desc')->get()->where('status', '=', 'Completed')->where('order_type', '!=', 'Fulfill Items');
+        $orders = Order::orderBy('orderid', 'desc')->get()->where('status', '!=', 'Completed')->where('order_type', '!=', 'Fulfill Items');
+        $ordershistory = Order::orderBy('orderid', 'desc')->get()->where('status', '=', 'Completed')->where('order_type', '!=', 'Fulfill Items');
         return view('admindash.dash-orders')->with('orders', $orders)->with('ordershistory', $ordershistory);
     }
 
