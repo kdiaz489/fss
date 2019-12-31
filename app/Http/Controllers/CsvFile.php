@@ -37,7 +37,8 @@ class CsvFile extends Controller
     }
 
     public function units_export($id){
-        return Excel::download(new UnitExport($id), 'sample.csv');
+        ini_set('precision', 18);
+        return Excel::download(new UnitExport($id), 'inventory_' . $id . '.csv' );
     }
 
     public function kits_export($id){

@@ -215,19 +215,9 @@ Inventory
             @endif
 
             <div class="col-lg-12 col-12">
-                    <!--
-                    <div class="btn-group" role="group">
-                        <button id="btnGroupDrop1" type="button" class="btn bg-denim text-white dropdown-toggle"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-plus"></i> Create
-                        </button>
-                        <div class="dropdown-menu bg-whitewash" aria-labelledby="btnGroupDrop1">
-                            <a class="dropdown-item" href="/basicunit">Units</a>
-                            <a class="dropdown-item" href="/createkit">Kits</a>
-                            <a class="dropdown-item" href="/createcase">Cases</a>
-                        </div>
-                    </div>
-                -->
+                    
+                    <a href="/inventory/units/export/{{auth()->user()->id}}" class="btn btn-link text-denim btn-sm ml-0 pl-0" role="button" aria-pressed="false"><i class="fas fa-file-export"></i> Export Inventory</a>
+                
 
                     <p class="h1 font-weight-light">Product On Pallets</p>
 

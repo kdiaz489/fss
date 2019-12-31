@@ -80,16 +80,8 @@ class ShipmentsController extends Controller
     }
 
     public function pdfexport($id){
-        //return view('pdf.boltemplate');
-        
         $shipment = Shipment::find($id);
-        //dd($shipment->user_id);
-        $pdf = PDF::loadView('pdf.invoice', ['shipment' => $shipment]);
-        //$pdf->save('test.pdf');
-	    $fileName = storage_path('app/public/uploads/' . 'bol_' . $id . '.pdf');
-	    $pdf->save($fileName);
-        return $pdf->stream('billoflading'. '_' . $id . '.pdf');
-        //return $pdf->download('document.pdf')
+        return response()->file(public_path($shipment->pdf_url));
     }
 
     public function calcLength($width, $totItems, $length){
@@ -853,9 +845,7 @@ class ShipmentsController extends Controller
         
         //return redirect('/ship')->with('success', 'Shipment Request Sent');
         //dd($palletGo, $charges);
-        $emaildata = $request;
         $shipmentid = $shipment->id;
-        $pdf_data = $shipment;
         if(request('payment_type') != null && request('payment_type') == 'accbal'){
             if($user->account_balance != null){
                 $user->account_balance += $shipment->tot_load_cost;
@@ -866,8 +856,14 @@ class ShipmentsController extends Controller
               $user->save();
             } 
         }
-        
-        Mail::to('ship@fillstorship.com')->send(new ShipmentBookingMail($emaildata, $shipmentid));
+        $pdf = PDF::loadView('pdf.invoice', ['shipment' => $shipment]);
+        //$pdf->save('test.pdf');
+	    $filePath = storage_path('app/public/uploads/bol_' . $shipmentid . '.pdf');
+        $pdf->save($filePath, true);
+        $path = 'storage/uploads/bol_' . $shipmentid . '.pdf';
+        $shipment->pdf_url = $path;
+        $shipment->save();
+        Mail::to('ship@fillstorship.com')->send(new ShipmentBookingMail($path, $shipment));
         //Mail::to(auth()->user()->email)->send(new CustomerShipmentBookingMail($emaildata));
         return response()->json($shipmentid);
         

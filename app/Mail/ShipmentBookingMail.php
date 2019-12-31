@@ -21,10 +21,12 @@ class ShipmentBookingMail extends Mailable
      *
      * @return void
      */
-    public function __construct($data, $id)
+    public function __construct($filePath, $shipment)
     {
-        $shipment = Shipment::find($id);
-        $this->data = $data;
+        //$shipment = Shipment::find($id);
+        $this->filePath = $filePath;
+        $this->data = $shipment;
+        //dd($filePath);
     
     }
 
@@ -35,6 +37,6 @@ class ShipmentBookingMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.contact.ship-booking-email')->subject('Shipment Request Submitted');
+        return $this->markdown('emails.contact.ship-booking-email')->subject('Shipment Request Submitted')->attach($this->filePath);
     }
 }
