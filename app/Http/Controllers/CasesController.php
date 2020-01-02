@@ -63,14 +63,16 @@ class CasesController extends Controller
             $case = new Cases();
             $case->user_id = auth()->user()->id;
             $case->company = auth()->user()->company_name;
+            $case->description = $request->desc;
             $case->sku = $request->sku;
             $case->upc = $request->upc;
+            $case->loose_item_qty = 0;
             $case->basic_unit_qty = 0;
             $case->kit_qty = 0;
+            $case->case_qty = 0;
             $case->carton_qty = 0;
             $case->pallet_qty = 0;
             $case->total_qty = 0;
-            $case->description = $request->desc;
             $case->save();
 
             $items = $request->items;

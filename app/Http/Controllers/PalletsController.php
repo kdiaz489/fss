@@ -85,6 +85,13 @@ class PalletsController extends Controller
             $pallet->upc = $request->upc;
             $pallet->status="Pending Approval";
             $pallet->description = $request->desc;
+            $pallet->loose_item_qty = 0;
+            $pallet->basic_unit_qty = 0;
+            $pallet->kit_qty = 0;
+            $pallet->case_qty = 0;
+            $pallet->carton_qty = 0;
+            $pallet->pallet_qty = 0;
+            $pallet->total_qty = 0;
             $pallet->save();
 
 
