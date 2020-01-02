@@ -16,7 +16,7 @@
                                 <label for="company-name" class="col-md-4 col-form-label text-md-right">{{ __('Company Name') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="company-name" type="text" class="form-control @error('company-name') is-invalid @enderror" name="company-name" value="{{ old('company-name') }}" required autocomplete="company-name" autofocus>
+                                    <input id="company-name" type="text" class="form-control @error('company-name') is-invalid @enderror" name="company-name" value="{{ old('company-name') }}" autocomplete="company-name" autofocus>
     
                                     @error('company-name')
                                         <span class="invalid-feedback" role="alert">
@@ -30,7 +30,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Contact Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -44,7 +44,7 @@
                                 <label for="user-name" class="col-md-4 col-form-label text-md-right">{{ __('User Name') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="user-name" type="text" class="form-control @error('user-name') is-invalid @enderror" name="user-name" value="{{ old('user-name') }}" required autocomplete="user-name" autofocus>
+                                    <input id="user-name" type="text" class="form-control @error('user-name') is-invalid @enderror" name="user-name" value="{{ old('user-name') }}" autocomplete="user-name" autofocus>
     
                                     @error('user-name')
                                         <span class="invalid-feedback" role="alert">
@@ -58,7 +58,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -72,7 +72,7 @@
                                 <label for="street-address" class="col-md-4 col-form-label text-md-right">{{ __('Street Address') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="street-address" type="text" class="form-control" name="street_address" required autocomplete="street-address">
+                                    <input id="street-address" type="text" class="form-control" name="street_address" autocomplete="street-address">
                                 </div>
                         </div>
 
@@ -80,7 +80,7 @@
                                 <label for="city-address" class="col-md-4 col-form-label text-md-right">{{ __('City') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="city-address" type="text" class="form-control" name="city_address" required autocomplete="city-address">
+                                    <input id="city-address" type="text" class="form-control" name="city_address" autocomplete="city-address">
                                 </div>
                         </div>
 
@@ -88,7 +88,7 @@
                                 <label for="state-address" class="col-md-4 col-form-label text-md-right">{{ __('State') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="state-address" type="text" class="form-control" name="state_address" required autocomplete="state-address">
+                                    <input id="state-address" type="text" class="form-control" name="state_address" autocomplete="state-address">
                                 </div>
                         </div>
 
@@ -96,7 +96,7 @@
                                 <label for="zip-address" class="col-md-4 col-form-label text-md-right">{{ __('Zip') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="zip-address" type="text" class="form-control" name="zip_address" required autocomplete="zip-address">
+                                    <input id="zip-address" type="text" class="form-control" name="zip_address" autocomplete="zip-address">
                                 </div>
                         </div>
 
@@ -104,7 +104,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -118,10 +118,22 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
                             </div>
                         </div>
 
+
+                    <div class="form-group row justify-content-center">
+                        <div class="col-md-6">
+                                <div class="g-recaptcha" data-sitekey="{{ env('CAPTCHA_SITE_KEY')}}"></div>
+                                @error('g-recaptcha-response')
+                                    <span class="invalid-feedback" style="display: block">
+                                        <strong>{{$errors->first('g-recaptcha-response')}}</strong>
+                                    </span>
+                                @enderror
+                        </div>
+
+                    </div>
                         
 
                         <div class="form-group row mb-0">

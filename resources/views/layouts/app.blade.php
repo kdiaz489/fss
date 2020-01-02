@@ -17,7 +17,7 @@
     <script src="{{asset('js/app.js')}}"></script>
     <script src="{{asset('js/myjs.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
-    
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="{{asset('img/FSS_favicon.png')}}" />

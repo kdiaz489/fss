@@ -83,6 +83,9 @@ class KitsController extends Controller
             $kit->company = auth()->user()->company_name;
             $kit->sku = $request->sku;
             $kit->upc = $request->upc;
+            $kit->loose_item_qty = 0;
+            $kit->basic_unit_qty = 0;
+            $kit->kit_qty = 0;
             $kit->case_qty = 0;
             $kit->carton_qty = 0;
             $kit->pallet_qty = 0;

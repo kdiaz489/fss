@@ -216,7 +216,7 @@ Inventory
 
             <div class="col-lg-12 col-12">
                     
-                    <a href="/inventory/units/export/{{auth()->user()->id}}" class="btn btn-link text-denim btn-sm ml-0 pl-0" role="button" aria-pressed="false"><i class="fas fa-file-export"></i> Export Inventory</a>
+                    <a href="/inventory/export/{{auth()->user()->id}}" class="btn btn-link text-denim btn-sm ml-0 pl-0" role="button" aria-pressed="false"><i class="fas fa-file-export"></i> Export Inventory</a>
                 
 
                     <p class="h1 font-weight-light">Product On Pallets</p>
@@ -747,7 +747,7 @@ Inventory
                                                             <tr>
                                                                 <td>{{$unit->sku}}</td>
                                                                 <td>{{$unit->description}}</td>
-                                                                <td><{{$unit->upc}}/td>
+                                                                <td>{{$unit->upc}}</td>
                                                                 <td>Loose Item</td>
                                                                 <td>{{$unit->pivot->quantity}}</td>
                                                             </tr>                                                          

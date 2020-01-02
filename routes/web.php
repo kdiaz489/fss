@@ -168,7 +168,7 @@ Route::get('/scanshopifyorders', 'ShopifyController@scanOrders');
 Route::post('csv_file/import', 'CsvFile@csv_import')->name('import');
 Route::get('csv_file/export', 'CsvFile@csv_export')->name('export');
 Route::get('/order/export/{id}', 'CsvFile@order_export')->name('orderexport');
-Route::get('/inventory/units/export/{id}', 'CsvFile@units_export')->name('unitsexport');
+Route::get('/inventory/export/{id}', 'CsvFile@inventory_export')->name('inventoryexport');
 Route::get('/inventory/kits/export/{id}', 'CsvFile@kits_export')->name('kitsexport');
 Route::get('/inventory/cases/export/{id}', 'CsvFile@cases_export')->name('casesexport');
 Route::get('/inventory/cartons/export/{id}', 'CsvFile@cartons_export')->name('cartonsexport');

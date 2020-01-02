@@ -9,7 +9,7 @@ use App\Imports\CsvImport;
 use App\Exports\CsvExport;
 use App\Imports\OrderImport;
 use App\Exports\OrderExport;
-use App\Exports\UnitExport;
+use App\Exports\InventoryExport;
 use App\Exports\KitExport;
 use App\Exports\CaseExport;
 use App\Exports\CartonExport;
@@ -36,9 +36,9 @@ class CsvFile extends Controller
         return back();
     }
 
-    public function units_export($id){
+    public function inventory_export($id){
         ini_set('precision', 18);
-        return Excel::download(new UnitExport($id), 'inventory_' . $id . '.csv' );
+        return Excel::download(new InventoryExport($id), 'inventory_' . $id . '.csv' );
     }
 
     public function kits_export($id){

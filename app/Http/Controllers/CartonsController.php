@@ -82,6 +82,13 @@ class CartonsController extends Controller
             $carton->upc = $request->upc;
             $carton->status = 'Pending Approval';
             $carton->description = $request->desc;
+            $carton->loose_item_qty = 0;
+            $carton->basic_unit_qty = 0;
+            $carton->kit_qty = 0;
+            $carton->case_qty = 0;
+            $carton->carton_qty = 0;
+            $carton->pallet_qty = 0;
+            $carton->total_qty = 0;
             $carton->save();
 
 

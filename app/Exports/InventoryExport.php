@@ -21,7 +21,7 @@ use Maatwebsite\Excel\Concerns\WithCustomValueBinder;
 
 
 
-class UnitExport extends DefaultValueBinder implements FromCollection, WithHeadings, WithMapping, ShouldAutoSize, WithCustomValueBinder 
+class InventoryExport extends DefaultValueBinder implements FromCollection, WithHeadings, WithMapping, ShouldAutoSize, WithCustomValueBinder 
 {
 
     use Exportable;

@@ -27,19 +27,34 @@
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" name="name" class="form-control">
-                        <div style="font-weight: 700; color:red">{{$errors->first('name')}}</div>
+                        <span class="invalid-feedback" style="display: block">
+                            <strong>{{$errors->first('name')}}</strong>
+                        </span>
                     </div>
 
                     <div class="form-group">
                         <label for="email">E-mail</label>
                         <input type="email" name="email" class="form-control">
-                        <div style="font-weight: 700; color:red">{{$errors->first('email')}}</div>
+                        <span class="invalid-feedback" style="display: block">
+                            <strong>{{$errors->first('email')}}</strong>
+                        </span>
                     </div>
 
                     <div class="form-group">
                         <label for="message">Message</label>
                         <textarea name="message" id="message" cols="30" rows="10" class="form-control">{{ old('message')}}</textarea>
-                        <div style="font-weight: 700; color:red">{{$errors->first('message')}}</div>
+                        <span class="invalid-feedback" style="display: block">
+                            <strong>{{$errors->first('message')}}</strong>
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="g-recaptcha" data-sitekey="{{ env('CAPTCHA_SITE_KEY')}}"></div>
+                        @if ($errors->has('g-recaptcha-response'))
+                            <span class="invalid-feedback" style="display: block">
+                                <strong>{{$errors->first('g-recaptcha-response')}}</strong>
+                            </span>
+                        @endif
                     </div>
 
                     @csrf
