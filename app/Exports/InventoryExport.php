@@ -47,7 +47,6 @@ class InventoryExport extends DefaultValueBinder implements FromCollection, With
     {
         if (is_numeric($value)) {
             $cell->setValueExplicit($value, DataType::TYPE_STRING);
-
             return true;
         }
 
@@ -57,8 +56,6 @@ class InventoryExport extends DefaultValueBinder implements FromCollection, With
 
     public function map($row): array{
         return $fields = [
-            
-            
             $row->sku,
             $row->upc,
             $row->description,
@@ -74,8 +71,6 @@ class InventoryExport extends DefaultValueBinder implements FromCollection, With
 
     public function headings(): array{
         return [
-            
-            
             'sku',
             'upc',
             'description',

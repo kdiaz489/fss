@@ -6,12 +6,11 @@ use Illuminate\Http\Request;
 use Excel;
 use App\User;
 use App\Imports\CsvImport;
-use App\Exports\CsvExport;
-use App\Imports\OrderImport;
 use App\Exports\OrderExport;
 use App\Exports\InventoryExport;
+use App\Imports\InventoryImport;
+use App\Exports\TemplateExport;
 use App\Exports\KitExport;
-use App\Exports\CaseExport;
 use App\Exports\CartonExport;
 
 class CsvFile extends Controller
@@ -41,12 +40,22 @@ class CsvFile extends Controller
         return Excel::download(new InventoryExport($id), 'inventory_' . $id . '.csv' );
     }
 
+    public function inventory_import($id){
+        Excel::import(new InventoryImport($id), request()->file('file'));
+        return back();
+    }
+    public function template_export($id){
+        $user = User::select('id', 'company_name')->where('id', $id)->get();
+        //dd($user);
+        return Excel::download(new TemplateExport($user), 'inventory_template.csv' );
+    }
+
     public function kits_export($id){
         return Excel::download(new KitExport($id), 'sample.csv');
     }
 
     public function cases_export($id){
-        return Excel::download(new CaseExport($id), 'sample.csv');
+        return Excel::download(new TemplateExport($id), 'sample.csv');
     }
 
     public function cartons_export($id){
@@ -54,14 +63,15 @@ class CsvFile extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for importing inventory.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('userdash.dash-import-inventory');
     }
+
 
     /**
      * Store a newly created resource in storage.
