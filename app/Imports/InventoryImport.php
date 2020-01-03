@@ -29,7 +29,7 @@ class InventoryImport implements ToCollection, WithHeadingRow
                 $total_kits = 0;
                 $total_units = 0;
 
-                if (Basic_Unit::where('sku', trim($filerow['sku']))->doesntExist()) {
+                if (Basic_Unit::where('sku', trim($filerow['sku']))->where('user_id', trim($filerow['user_id']))->doesntExist()) {
                     //dd('DOESNT EXIST', $filerow);
                     $unit = new Basic_Unit();
                     $unit->user_id = $filerow['user_id'];
@@ -48,7 +48,7 @@ class InventoryImport implements ToCollection, WithHeadingRow
                     //dd($unit);
 
                 }
-                else if (Basic_Unit::where('sku', trim($filerow['sku']))->exists()) {
+                else if (Basic_Unit::where('sku', trim($filerow['sku']))->where('user_id', trim($filerow['user_id']))->exists()) {
                     //dd('EXISTS', $filerow);
                     $unit = Basic_Unit::where('sku', trim($filerow['sku']))->first();
                     $unit->sku = $filerow['sku'];
