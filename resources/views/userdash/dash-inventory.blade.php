@@ -190,6 +190,33 @@ Inventory
 
 @section('content')
 
+<!-- Modal -->
+<div class="modal fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalLongTitle">Import Units with CSV</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-secondary text-justify" role="alert">
+                    <p>*Note: Prior to importing with your file, please confirm your data is not in scientific notation.</p>
+                </div>
+                <form action="/importinventory/{{auth()->user()->id}}" enctype="multipart/form-data" id="upload_csv_form" method="post">
+                    @csrf
+                    <input type="file" name="file" class="form-control-file" id="csv_file">
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary border-0" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary bg-denim border-0 submit_import_csv" form="upload_csv_form">Import</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
 <div class="container-fluid dashboard-container">
 
     <!-- Flash Alerts Begin -->
@@ -217,7 +244,9 @@ Inventory
             <div class="col-lg-12 col-12">
                     
                     <a href="/inventory/export/{{auth()->user()->id}}" class="btn btn-link text-denim btn-sm ml-0 pl-0" role="button" aria-pressed="false"><i class="fas fa-file-export"></i> Export Inventory</a>
-                
+
+                    <a href="/template/export/{{auth()->user()->id}}" class="btn btn-link text-gunmetal btn-sm ml-0 pl-0" role="button" aria-pressed="false"><i class="fas fa-file-download"></i> Download CSV Template</a>
+
 
                     <p class="h1 font-weight-light">Product On Pallets</p>
 
@@ -769,7 +798,11 @@ Inventory
                     @endif
 
 
-                    <p class="h1 font-weight-light">Units</p>
+                    <p class="h1 font-weight-light d-inline">Units</p>
+                
+                    <button type="submit" name="submit" class="btn btn-link text-denim d-inline pb-3" data-toggle="modal" data-target="#modalCenter"><i class="fas fa-file-upload"></i> Import with CSV</button>
+                        
+                
                     @if(count($basic_units) > 0)
                     <div class="table-responsive">
                     <table class="table table-sm">
@@ -835,5 +868,40 @@ Inventory
 @endsection
 
 @section('scripts')
+<script>
+    /*
+    $(document).ready(function(){
 
+    $('#upload_csv_form').on('submit', function(e){
+        e.preventDefault();
+
+        $.ajax({
+            type: 'POST',
+            enctype: 'multipart/form-data',
+            url: '/importinventory/{{auth()->user()->id}}',
+            data: new FormData(this),
+            contentType: false,
+            cache:false,
+            processData:false
+
+        })
+        .done(function(result){
+            console.log(result);
+            var success = '<div class="alert alert-success text-center" role="alert">You have successfully upload your CSV file. <br> <i class="far fa-check-circle fa-3x"></i></div>';
+            $('.modal-body').html(success);
+            $('.modal-footer').html('');
+            $('.modal').modal('show');
+
+        })
+        .fail(function(result){
+            console.log(result);
+            var error = '<div class="alert alert-danger text-center" role="alert">Your CSV file was not successfully uploaded. Please confirm your file is in the correct format and try again. <br> <i class="far fa-times-circle fa-3x"></i> </div>'
+            $('.modal-body').html(error);
+            $('.modal-footer').html('');
+            $('.modal').modal('show');
+        });
+    })
+});
+*/
+</script>
 @endsection
