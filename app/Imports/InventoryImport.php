@@ -20,15 +20,15 @@ class InventoryImport implements ToCollection, WithHeadingRow
      */
     public function collection(Collection $row)
     {
+        DB::beginTransaction();
+        try {
+            foreach ($row as $filerow) {
+                //dd($row);
+                $total_items = 0;
+                $total_cases = 0;
+                $total_kits = 0;
+                $total_units = 0;
 
-        foreach ($row as $filerow) {
-            $total_items = 0;
-            $total_cases = 0;
-            $total_kits = 0;
-            $total_units = 0;
-
-            DB::beginTransaction();
-            try {
                 if (Basic_Unit::where('sku', trim($filerow['sku']))->doesntExist()) {
                     //dd('DOESNT EXIST', $filerow);
                     $unit = new Basic_Unit();
@@ -49,6 +49,7 @@ class InventoryImport implements ToCollection, WithHeadingRow
 
                 }
                 else if (Basic_Unit::where('sku', trim($filerow['sku']))->exists()) {
+                    //dd('EXISTS', $filerow);
                     $unit = Basic_Unit::where('sku', trim($filerow['sku']))->first();
                     $unit->sku = $filerow['sku'];
                     $unit->upc = $filerow['upc'];
@@ -62,6 +63,7 @@ class InventoryImport implements ToCollection, WithHeadingRow
                     $unit->total_qty = $filerow['total_qty'];
                     $unit->save();
                 }
+            }
                 DB::commit();
                 return redirect()->back()->with('success', 'You have successfully imported units via CSV.');
 
@@ -71,4 +73,4 @@ class InventoryImport implements ToCollection, WithHeadingRow
             }
         }
     }
-}
+
