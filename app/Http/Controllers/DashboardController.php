@@ -218,11 +218,11 @@ class DashboardController extends Controller
         $orders = DB::select('SELECT * FROM orders WHERE status = ?', ['Pending Approval']);
         */
 
-        $units = Basic_Unit::orderBy('created_at', 'desc')->get();
-        $kits = Kit::orderBy('created_at', 'desc')->get();
-        $cases = Cases::orderBy('created_at', 'desc')->get();
-        $cartons = Carton::orderBy('created_at', 'desc')->get();
-        $pallets = Pallet::orderBy('created_at', 'desc')->get();
+        //$units = Basic_Unit::orderBy('sku', 'desc')->get();
+        //$kits = Kit::orderBy('sku', 'desc')->get();
+        //$cases = Cases::orderBy('created_at', 'desc')->get();
+        //$cartons = Carton::orderBy('created_at', 'desc')->get();
+        //$pallets = Pallet::orderBy('created_at', 'desc')->get();
         //$orders = Order::orderBy('created_at', 'desc')->get()->where('status', '=', 'Pending Approval');
 
         //return view('admindash.dash-all-inventory')->with('basic_units', $units)->with('kits', $kits)->with('cases', $cases)->with('cartons', $cartons)->with('pallets', $pallets);

@@ -11,6 +11,8 @@
     --orange : #fd5822;
     --frenchblue: #A2AAB0;
     --whitewash: #EBECED;
+    --ghostwhite: #F7F7F8;
+    --lightsteelblue: #A5BEDD;
 
 
   }
@@ -36,6 +38,10 @@
     background: var(--whitewash);
   }
 
+  .bg-ghostwhite {
+    background: var(--ghostwhite);
+  }
+
   .bg-denim {
     background: var(--denim);
   }
@@ -46,6 +52,10 @@
 
   .bg-white {
     background: white;
+  }
+
+  .bg-lightsteelblue{
+    background: var(--lightsteelblue);
   }
 
   .text-denim {
@@ -64,6 +74,14 @@
     color: var(--gunmetal);
   }
 
+  .text-ghostwhite {
+    color: var(--ghostwhite);
+  }
+
+  .text-lightsteelblue{
+    color: var(--lightsteelblue);
+  }
+
   .container-fluid-max {
     max-width: 1440px;
   }
@@ -74,6 +92,18 @@
 
   .border-frenchblue{
     border-color: var(--frenchblue);
+  }
+
+  .border-gunmetal {
+    border-color: var(--gunmetal);
+  }
+
+  .border-ghostwhite {
+    border-color: var(--ghostwhite);
+  }
+
+  .border-lightsteelblue{
+    border-color: var(--lightsteelblue);
   }
 
   .cover {

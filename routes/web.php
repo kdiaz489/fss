@@ -82,7 +82,15 @@ Route::post('createkit', 'KitsController@store');
 Route::delete('/removekit/{id}', 'KitsController@destroy');
 Route::get('/editkit/{id}', 'KitsController@edit');
 Route::put('/updatekit/{id}', 'KitsController@update');
+Route::put('/admin/updatekit/{id}', 'KitsController@adminupdate');
 
+Route::get('/createcase', 'CasesController@create');
+Route::get('/viewcase/{id}', 'CasesController@show');
+Route::post('/createcase', 'CasesController@store');
+Route::get('editcase/{id}', 'CasesController@edit');
+Route::put('/updatecase/{id}', 'CasesController@update');
+Route::delete('/removecase/{id}', 'CasesController@destroy');
+Route::put('/admin/updatecase/{id}', 'CasesController@adminupdate');
 
 Route::get('/createcarton', 'CartonsController@create');
 Route::post('/createcarton', 'CartonsController@store');
@@ -154,14 +162,6 @@ Route::get('/checkout', 'AuthorizeController@index');
 Route::post('/checkout', 'AuthorizeController@chargeCreditCard');
 Route::get('/makepayment/{id}', 'AuthorizeController@makepaymentform');
 Route::post('/makeapayment', 'AuthorizeController@makepayment');
-
-Route::get('/createcase', 'CasesController@create');
-Route::get('/viewcase/{id}', 'CasesController@show');
-Route::post('/createcase', 'CasesController@store');
-Route::get('editcase/{id}', 'CasesController@edit');
-Route::put('/updatecase/{id}', 'CasesController@update');
-Route::delete('/removecase/{id}', 'CasesController@destroy');
-
 
 Route::get('/getallproducts', 'ShopifyController@index');
 Route::get('/scanshopifyorders', 'ShopifyController@scanOrders');

@@ -172,6 +172,34 @@ class KitsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function adminupdate(Request $request, $id)
+    {
+        //
+        //dd($request);
+        
+        $kit = Kit::find($id);
+
+        $kit->update([
+                        'sku' => $request->sku, 
+                        'upc' => $request->upc, 
+                        'description' => $request->desc,
+                        'loose_item_qty' => $request->loose_item_qty,
+                        'basic_unit_qty' => $request->basic_unit_qty,
+                        'kit_qty' => $request->kit_qty,
+                        'case_qty' => $request->case_qty,
+                        'carton_qty' => $request->carton_qty,
+                        'pallet_qty' => $request->pallet_qty,
+                        'total_qty' => $request->total_qty,
+                        'location' => $request->location,
+                        'lot_num' => $request->lot_num,
+                        ]);
+
+
+        //return redirect('/dashboard/admin/editunit/' . $id)->with('success', 'You have successfully updated unit. - SKU: ' . $basic_unit->sku . ' UPC: ' . $basic_unit->upc . '');
+    
+    }
+
     public function update(Request $request, $id)
     {
         if ($request->ajax()) {

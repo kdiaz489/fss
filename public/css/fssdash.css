@@ -31,7 +31,11 @@ table.dataTable tfoot th {
 }
 */
 
-
+td[contenteditable="true"]:focus{
+    outline: 1px solid #A5BEDD;
+    box-shadow: 0 0 10px #A5BEDD;
+    background-color: white;
+}
 .scrollable-menu{
     height: auto;
     max-height: 300px;

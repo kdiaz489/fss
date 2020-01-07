@@ -1158,64 +1158,59 @@ All Inventory
 
                 @if(count($user->cases->all()) > 0)
                 <div class="table-responsive">
-                    <table class="table table-sm">
+                    <table class="table table-sm table-bordered">
                         <thead>
                         <tr>
-                            <th width="2%"></th>
-                            <th width="10%">Sku</th>
+                            <th width="2%">Expand</th>
+                            <th width="5%">SKU</th>
                             <th width="10%">Description</th>
-                            <th width="10%">UPC</th>
-                            <th width="10%">Quantity</th>
-                            <th width="10%">Qty/Case</th>
-                            <th width="10%">Location</th>
-                            <th width="10%"></th>
-
+                            <th width="5%">UPC</th>
+                            <th width="5%">Quantity</th>
+                            <th width="5%">Qty/Case</th>
+                            <th width="5%">Location</th>
+                            <th width="5%">Lot #</th>
+                            <th width="5%">Actions</th>
                         </tr>
                         </thead>
                         @foreach($user->cases->all() as $case)
                         <tr>
-                            <td><button type="button" class="btn text-denim toggle-{{$case->id}}"
+                            <td class="text-center"><button type="button" class="btn btn-sm text-denim toggle-{{$case->id}}"
                                     id="toggle-details-case-{{$case->id}}" data-toggle="collapse"
                                     data-target="#details-case-{{$case->id}}" aria-expanded="false" aria-controls="details"
                                     data-delay="0"><i class="fas fa-plus"></i></button></td>
-                            <td>{{$case->sku}}</td>
-                            <td>{{$case->description}}</td>
-                            <td>{{$case->upc}}</td>
-                            <td>{{$case->total_qty}}</td>
-                            <td>{{$case->case_qty}}</td>
-                            <td>N/A</td>
+                            <td contenteditable="false" class="sku">{{$case->sku}}</td>
+                            <td contenteditable="false" class="desc">{{$case->description}}</td>
+                            <td contenteditable="false" class="upc">{{$case->upc}}</td>
+                            <td contenteditable="false" class="total_qty">{{$case->total_qty}}</td>
+                            <td contenteditable="false" class="case_qty">{{$case->case_qty}}</td>
+                            <td contenteditable="false" class="location">{{$case->location}}</td>
+                            <td contenteditable="false" class="lot_num">{{$case->lot_num}}</td>
                             <td>
-                                <div style="margin-left: 30%">
-                                    
-                                    <a href="/editcase/{{$case->id}}" class="float-left" style="margin-right:1%">
-                                        <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
-                                    </a>
-
-                                    <form action="/removecase/{{$case->id}}" method="POST" class="float-left"
+                                    <button id="case-{{$case->id}}" class="btn btn-link text-success btn-sm update-case d-none"><i class="far fa-check-circle fa-lg"></i></button>
+                                    <button class="btn btn-link text-denim btn-sm enable-modify d-inline"><i class="far fa-edit fa-lg"></i></button>
+                                    <form action="/removecase/{{$case->id}}" method="POST" class="d-inline"
                                         style="margin-right:1%">
                                         @method('DELETE')
                                         @csrf
-                                        <button type="submit" class="btn btn-link text-danger btn-sm">Remove</button>
+                                        <button type="submit" class="btn btn-link text-danger btn-sm"><i class="far fa-trash-alt fa-lg"></i></button>
                                     </form>
-
-                                </div>
                             </td>
                         </tr>
                         @if($case->basic_units->all())
                         @foreach ($case->basic_units->all() as $unit)
 
                         <tr>
-                            <td class="py-0 border-0"></td>
-                            <td class="py-0 border-0" colspan="12">
+                            <td class="p-0 border-0"></td>
+                            <td class="p-0 border-0" colspan="12">
                                 <div id="details-case-{{$case->id}}" class="details collapse">
                                     <table class="table table-sm bg-whitewash">
                                         <thead>
                                             <tr>
-                                                <th width="10%">SKU</th>
+                                                <th width="5%">SKU</th>
                                                 <th width="10%">Description</th>
-                                                <th width="10%">UPC</th>
-                                                <th width="10%">Container Type</th>
-                                                <th width="10%">Quantity</th>
+                                                <th width="5%">UPC</th>
+                                                <th width="5%">Container Type</th>
+                                                <th width="5%">Quantity</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1223,7 +1218,7 @@ All Inventory
                                                 <td>{{$unit->sku}}</td>
                                                 <td>{{$unit->description}}</td>
                                                 <td>{{$unit->upc}}</td>
-                                                <td>Loose Item</td>
+                                                <td>Basic Unit</td>
                                                 <td>{{$unit->pivot->quantity}}</td>
                                             </tr>
                                         </tbody>
@@ -1237,8 +1232,8 @@ All Inventory
                         @if($case->kits->all())
                         @foreach ($case->kits->all() as $kit)
                         <tr>
-                            <td class="py-0 border-0"></td>
-                            <td class="py-0 border-0" colspan="12">
+                            <td class="p-0 border-0"></td>
+                            <td class="p-0 border-0" colspan="12">
                                 <div id="details-case-{{$case->id}}" class="details collapse">
                                     <table class="table table-sm bg-whitewash">
                                         <thead>
@@ -1277,17 +1272,18 @@ All Inventory
 
                 @if(count($user->kits->all()) > 0)
                 <div class="table-responsive">
-                    <table class="table table-sm table-bordered">
+                    <table class="table table-sm table-bordered kits-table">
                         <thead>
                         <tr>
-                            <th width="2%"></th>
-                            <th width="10%">SKU</th>
-                            <th width="15%">Description</th>
-                            <th width="10%">UPC</th>
+                            <th width="2%">Expand</th>
+                            <th width="5%">SKU</th>
+                            <th width="10%">Description</th>
+                            <th width="5%">UPC</th>
                             <th width="5%">Quantity</th>
                             <th width="5%">Qty/Kit</th>
-                            <th width="10%">Location</th>
-                            <th width="10%"></th>
+                            <th width="5%">Location</th>
+                            <th width="5%">Lot #</th>
+                            <th width="5%">Actions</th>
                         </tr>
                         </thead>
                         @foreach($user->kits->all() as $kit)
@@ -1296,18 +1292,16 @@ All Inventory
                                     id="toggle-details-kit-{{$kit->id}}" data-toggle="collapse"
                                     data-target="#details-kit-{{$kit->id}}" aria-expanded="false" aria-controls="details"
                                     data-delay="0"><i class="fas fa-plus"></i></button></td>
-                            <td>{{$kit->sku}}</td>
-                            <td>{{$kit->description}}</td>
-                            <td>{{$kit->upc}}</td>
-                            <td>{{$kit->total_qty}}</td>
-                            <td>{{$kit->kit_qty}}</td>
-                            <td>N/A</td>
+                            <td contenteditable="false" class="sku">{{$kit->sku}}</td>
+                            <td contenteditable="false" class="desc">{{$kit->description}}</td>
+                            <td contenteditable="false" class="upc">{{$kit->upc}}</td>
+                            <td contenteditable="false" class="total_qty">{{$kit->total_qty}}</td>
+                            <td contenteditable="false" class="kit_qty">{{$kit->kit_qty}}</td>
+                            <td contenteditable="false" class="location">{{$kit->location}}</td>
+                            <td contenteditable="false" class="lot_num">{{$kit->lot_num}}</td>
                             <td>
-
-                                    <a href="/editkit/{{$kit->id}}" class="d-inline">
-                                        <button class="btn btn-link text-denim btn-sm" type="button"><i class="far fa-edit fa-lg"></i></button>
-                                    </a>
-
+                                    <button id="kit-{{$kit->id}}" class="btn btn-link text-success btn-sm update-kit d-none"><i class="far fa-check-circle fa-lg"></i></button>
+                                    <button class="btn btn-link text-denim btn-sm enable-modify d-inline"><i class="far fa-edit fa-lg"></i></button>
                                     <form action="/removekit/{{$kit->id}}" method="POST" class="d-inline">
                                         @method('DELETE')
                                         @csrf
@@ -1318,7 +1312,7 @@ All Inventory
                         </tr>
 
                         @if($kit->basic_units->all())
-                        @foreach ($kit->basic_units->all() as $unit)
+                        @foreach ($kit->basic_units->sortByDesc('sku')->all() as $unit)
 
                         <tr>
                             <td class="p-0 border-0"></td>
@@ -1328,10 +1322,10 @@ All Inventory
                                         <thead>
                                             <tr>
                                                 <th width="10%">SKU</th>
-                                                <th width="10%">Description</th>
+                                                <th width="15%">Description</th>
                                                 <th width="10%">UPC</th>
-                                                <th width="10%">Container Type</th>
-                                                <th width="10%">Quantity</th>
+                                                <th width="5%">Container Type</th>
+                                                <th width="5%">Quantity</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1438,9 +1432,12 @@ $('.units-table').dataTable({
     info : false
 });
 
+
+
 $('.update-unit').on('click', function(e){
     e.preventDefault();
     var row = $(this).closest('tr');
+    var submit = $(this);
     var sku = $(row).find('.sku').text();
     var desc = $(row).find('.desc').text();
     var upc = $(row).find('.upc').text();
@@ -1481,6 +1478,112 @@ $('.update-unit').on('click', function(e){
     })
     .done(function(data){
         console.log('success');
+        $(submit).removeClass('d-inline');
+        $(submit).addClass('d-none');
+    })
+    .fail(function(data){
+        console.log('fail');
+    });
+});
+
+$('.update-case').on('click', function(e){
+    e.preventDefault();
+    var row = $(this).closest('tr');
+    var submit = $(this);
+    var sku = $(row).find('.sku').text();
+    var desc = $(row).find('.desc').text();
+    var upc = $(row).find('.upc').text();
+    var pallet_qty = $(row).find('.pallet_qty').text();
+    var carton_qty = $(row).find('.carton_qty').text();
+    var case_qty = $(row).find('.case_qty').text();
+    var kit_qty = $(row).find('.kit_qty').text();
+    var loose_item_qty = $(row).find('.loose_item_qty').text();
+    var total_qty = $(row).find('.total_qty').text();
+    var location = $(row).find('.location').text();
+    var lot_num = $(row).find('.lot_num').text();
+    var id = $(this).attr('id');
+    id = id.slice(5, id.length);
+    console.log('id ' + id);
+
+    var formData = new FormData();
+    formData.append('sku', sku);
+    formData.append('desc', desc);
+    formData.append('upc', upc);
+    formData.append('pallet_qty', pallet_qty);
+    formData.append('carton_qty', carton_qty);
+    formData.append('case_qty', case_qty);
+    formData.append('kit_qty', kit_qty);
+    formData.append('loose_item_qty', loose_item_qty);
+    formData.append('total_qty',total_qty);
+    formData.append('location',location);
+    formData.append('lot_num',lot_num);
+    formData.append('_token', '{{csrf_token()}}');
+    formData.append('_method', 'PUT');
+
+    $.ajax({
+        headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"},
+        type: 'POST',
+        url: '/admin/updatecase/' + id,
+        data: formData,
+        processData: false,
+        contentType: false,
+    })
+    .done(function(data){
+        console.log('success');
+        $(submit).removeClass('d-inline');
+        $(submit).addClass('d-none');
+    })
+    .fail(function(data){
+        console.log('fail');
+    });
+});
+
+$('.update-unit').on('click', function(e){
+    e.preventDefault();
+    var row = $(this).closest('tr');
+    var submit = $(this);
+    var sku = $(row).find('.sku').text();
+    var desc = $(row).find('.desc').text();
+    var upc = $(row).find('.upc').text();
+    var pallet_qty = $(row).find('.pallet_qty').text();
+    var carton_qty = $(row).find('.carton_qty').text();
+    var case_qty = $(row).find('.case_qty').text();
+    var kit_qty = $(row).find('.kit_qty').text();
+    var loose_item_qty = $(row).find('.loose_item_qty').text();
+    var total_qty = $(row).find('.total_qty').text();
+    var location = $(row).find('.location').text();
+    var lot_num = $(row).find('.lot_num').text();
+    var id = $(this).attr('id');
+    id = id.slice(5, id.length);
+    console.log('id ' + id);
+
+    var formData = new FormData();
+    formData.append('sku', sku);
+    formData.append('desc', desc);
+    formData.append('upc', upc);
+    formData.append('pallet_qty', pallet_qty);
+    formData.append('carton_qty', carton_qty);
+    formData.append('case_qty', case_qty);
+    formData.append('kit_qty', kit_qty);
+    formData.append('loose_item_qty', loose_item_qty);
+    formData.append('total_qty',total_qty);
+    formData.append('location',location);
+    formData.append('lot_num',lot_num);
+    formData.append('_token', '{{csrf_token()}}');
+    formData.append('_method', 'PUT');
+
+    $.ajax({
+        headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"},
+        type: 'POST',
+        url: '/admin/updatebasicunit/' + id,
+        data: formData,
+        processData: false,
+        contentType: false,
+    })
+    .done(function(data){
+        console.log('success');
+        $(submit).removeClass('d-inline');
+        $(submit).addClass('d-none');
     })
     .fail(function(data){
         console.log('fail');
@@ -1506,7 +1609,7 @@ $(document).on('click', '.enable-modify', function(e){
     $(this).html('<i class="fas fa-ban fa-lg"></i>');
     $(this).removeClass('enable-modify');
     $(this).addClass('disable-modify');
-    $(row).addClass('bg-whitewash');
+    $(row).addClass('bg-ghostwhite');
 
 });
 
@@ -1524,13 +1627,13 @@ $(document).on('click', '.disable-modify', function(e){
     row.find('.kit_qty').attr('contenteditable', false);
     row.find('.loose_item_qty').attr('contenteditable', false);
     row.find('.total_qty').attr('contenteditable', false);
-    row.find('.location').attr('contenteditable', true);
-    row.find('.lot_num').attr('contenteditable', true);
+    row.find('.location').attr('contenteditable', false);
+    row.find('.lot_num').attr('contenteditable', false);
 
     $(this).html('<i class="far fa-edit fa-lg"></i>');
     $(this).removeClass('disable-modify');
     $(this).addClass('enable-modify');
-    $(row).removeClass('bg-whitewash');
+    $(row).removeClass('bg-ghostwhite');
 });
 
 $(".dropdown .dropdown-content a").on("click", function(){

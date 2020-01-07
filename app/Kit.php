@@ -10,7 +10,8 @@ class Kit extends Model
 
     public $primaryKey = 'id';
 
-    
+    protected $fillable = ['sku', 'upc', 'description', 'loose_item_qty', 'basic_unit_qty', 'kit_qty', 'case_qty', 'carton_qty', 'pallet_qty', 'total_qty', 'location', 'lot_num'];
+
 
     public function user(){
         //Post has a relationship with a user and belongs to this user.
