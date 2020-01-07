@@ -23,13 +23,13 @@ table.dataTable tfoot th {
   border-top: 0;
   border-top: 0;
 }
-.dataTable > thead > tr > th[class*="sort"]:after{
-  content: "" !important;
-}
 
+
+/*
 .dataTable > thead > tr > th[class*="sort"]:before{
     content: "" !important;
 }
+*/
 
 
 .scrollable-menu{

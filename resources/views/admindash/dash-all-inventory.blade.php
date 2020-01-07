@@ -1431,7 +1431,7 @@ All Inventory
 $('.units-table').dataTable({
     'order': [[0, 'asc']],
     'columnDefs': [
-    {'targets' : [3,4,5,6,7,8,9], 'orderable': false}
+    {'targets' : [3,4,5,6,7,8,9,10,11], 'orderable': false, 'bSort': false}
     ],
     paging: false,
     searching: false,
@@ -1526,7 +1526,7 @@ $(document).on('click', '.disable-modify', function(e){
     row.find('.total_qty').attr('contenteditable', false);
     row.find('.location').attr('contenteditable', true);
     row.find('.lot_num').attr('contenteditable', true);
-    
+
     $(this).html('<i class="far fa-edit fa-lg"></i>');
     $(this).removeClass('disable-modify');
     $(this).addClass('enable-modify');

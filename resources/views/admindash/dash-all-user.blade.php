@@ -252,9 +252,12 @@
     @section('scripts')
     <script>
     $('.users-table').DataTable({
+      'order': [[0, 'asc']],
+      'columnDefs': [
+      {'targets' : [5,6,7], 'orderable': false, 'bSort': false}
+      ],
       paging: false,
       info : false
-
     });
     </script>
     @endsection
