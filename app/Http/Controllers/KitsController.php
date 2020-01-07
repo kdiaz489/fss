@@ -38,7 +38,7 @@ class KitsController extends Controller
         $user = User::find($user_id);
         $basic_units =  $user->basic_units->sortKeysDesc();
         $kits = $user->kits;
-        return view('orders.create-kit')->with('units', $basic_units)->with('kits', $kits);
+        return view('kits.create-kit')->with('units', $basic_units)->with('kits', $kits);
     }
 
     /**
@@ -143,7 +143,7 @@ class KitsController extends Controller
         $user_id = $kit->user_id;
         $user = User::find($user_id);
         $basic_units =  $kit->basic_units->sortKeysDesc();
-        return view('orders.show-kit')->with('basic_units', $basic_units)->with('kit', $kit);
+        return view('kits.show-kit')->with('basic_units', $basic_units)->with('kit', $kit);
     }
 
     /**
@@ -162,7 +162,7 @@ class KitsController extends Controller
         $user = User::find($user_id);
         $basic_units = $user->basic_units->sortKeysDesc();
        
-        return view('orders.edit-kit')->with('kit', $kit)->with('units', $basic_units);
+        return view('kits.edit-kit')->with('kit', $kit)->with('units', $basic_units);
     }
 
     /**

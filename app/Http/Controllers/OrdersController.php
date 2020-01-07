@@ -78,15 +78,6 @@ class OrdersController extends Controller
             ->exists();
     }
 
-    public function create()
-    {
-        //
-        $user_id = auth()->user()->id;
-        $user = User::find($user_id);
-        $kits = $user->kits->sortKeysDesc();
-        return view('orders.trans-in-kit')->with('kits', $kits);
-    }
-
     public function create_transin_order()
     {
 

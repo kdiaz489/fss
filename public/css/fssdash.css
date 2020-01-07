@@ -10,9 +10,21 @@
     float:none;
     }
 */
-
+/*
 .dataTable > thead > tr > th[class*="sort"]:after{
     font-family: "Font Awesome 5 Free"; font-weight: 900; content: '\f881' !important
+}
+*/
+table.dataTable thead th {
+  border-top: 0;
+  border-bottom: 0;
+}
+table.dataTable tfoot th {
+  border-top: 0;
+  border-top: 0;
+}
+.dataTable > thead > tr > th[class*="sort"]:after{
+  content: "" !important;
 }
 
 .dataTable > thead > tr > th[class*="sort"]:before{
@@ -75,6 +87,10 @@
   .dropdown a:hover {background-color: #ddd;}
   
   .show {display: block;}
+
+.w-95{
+    width: 95% !important;
+}
 
 .w-90{
     width: 90% !important;

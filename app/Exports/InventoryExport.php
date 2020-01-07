@@ -56,10 +56,13 @@ class InventoryExport extends DefaultValueBinder implements FromCollection, With
 
     public function map($row): array{
         return $fields = [
+            $row->user_id,
+            $row->company,
             $row->sku,
             $row->upc,
             $row->description,
             $row->loose_item_qty,
+            $row->basic_unit_qty,
             $row->kit_qty,
             $row->case_qty,
             $row->carton_qty,
@@ -71,10 +74,13 @@ class InventoryExport extends DefaultValueBinder implements FromCollection, With
 
     public function headings(): array{
         return [
+            'user_id',
+            'company_name',
             'sku',
             'upc',
             'description',
             'loose_item_qty',
+            'basic_unit_qty',
             'kit_qty',
             'case_qty',
             'carton_qty',

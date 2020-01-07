@@ -279,11 +279,6 @@ Inventory
                                         style="margin-right:1%">
                                         <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
                                     </a>
-                                    
-
-                                    <a href="/viewpallet/{{$pallet->id}}" class="float-left" style="margin-right:1%">
-                                        <button class="btn btn-link text-success btn-sm" type="button">View</button>
-                                    </a>
 
                                     <form action="/removepallet/{{$pallet->id}}" method="POST" class="float-left">
                                         @method('DELETE')
@@ -462,11 +457,6 @@ Inventory
                                         style="margin-right:1%">
                                         <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
                                     </a>
-                                        
-
-                                    <a href="/viewcarton/{{$carton->id}}" class="float-left" style="margin-right:1%">
-                                        <button class="btn btn-link text-success btn-sm" type="button">View</button>
-                                    </a>
 
                                     <form action="/removecarton/{{$carton->id}}" method="POST" class="float-left">
                                         @method('DELETE')
@@ -618,11 +608,6 @@ Inventory
                                     <a href="/editcase/{{$case->id}}" class="float-left" style="margin-right:1%">
                                         <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
                                     </a>
-                                        
-
-                                    <a href="/viewcase/{{$case->id}}" class="float-left" style="margin-right:1%">
-                                        <button class="btn btn-link text-success btn-sm" type="button">View</button>
-                                    </a>
 
                                     <form action="/removecase/{{$case->id}}" method="POST" class="float-left"
                                         style="margin-right:1%">
@@ -740,10 +725,6 @@ Inventory
                                     <a href="/editkit/{{$kit->id}}" class="float-left" style="margin-right:1%">
                                         <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
                                     </a>
-                                        
-                                    <a href="/viewkit/{{$kit->id}}" class="float-left" style="margin-right:1%">
-                                        <button class="btn btn-link text-success btn-sm" type="button">View</button>
-                                    </a>
 
                                     <form action="/removekit/{{$kit->id}}" method="POST" class="float-left">
                                         @method('DELETE')
@@ -811,12 +792,13 @@ Inventory
 
                             <th width="10%">Sku</th>
                             <th width="10%">Description</th>
+                            <th width="10%">UPC</th>
                             <th width="10%">Pallet Qty</th>
                             <th width="10%">Carton Qty</th>
                             <th width="10%">Case Qty</th>
                             <th width="10%">Kit Qty</th>
                             <th width="10%">Loose Qty</th>
-                            <th width="10%">Total Qty On Hand</th>
+                            <th width="10%">Total Qty</th>
                             <th width="10%"></th>
 
                         </tr>
@@ -825,6 +807,7 @@ Inventory
                         <tr>
                             <td>{{$unit->sku}}</td>
                             <td>{{$unit->description}}</td>
+                            <td>{{$unit->upc}}</td>
                             <td>{{$unit->pallet_qty}}</td>
                             <td>{{$unit->carton_qty}}</td>
                             <td>{{$unit->case_qty}}</td>
@@ -837,10 +820,6 @@ Inventory
                                     <a href="/editbasicunit/{{$unit->id}}" class="float-left"
                                         style="margin-right:1%">
                                         <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
-                                    </a>
-                                        
-                                    <a href="/viewbasicunit/{{$unit->id}}" class="float-left" style="margin-right:1%">
-                                        <button class="btn btn-link text-success btn-sm" type="button">View</button>
                                     </a>
 
                                     <form action="/removebasicunit/{{$unit->id}}" method="POST" class="float-left"

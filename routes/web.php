@@ -74,6 +74,7 @@ Route::get('/viewbasicunit/{id}', 'BasicUnitsController@show');
 Route::delete('/removebasicunit/{id}', 'BasicUnitsController@destroy');
 Route::get('/editbasicunit/{id}', 'BasicUnitsController@edit');
 Route::put('/updatebasicunit/{id}', 'BasicUnitsController@update');
+Route::put('/admin/updatebasicunit/{id}', 'BasicUnitsController@adminupdate');
 
 Route::get('/createkit', 'KitsController@create');
 Route::get('/viewkit/{id}', 'KitsController@show');
@@ -132,7 +133,7 @@ Route::get('/dashboard/admin/orders', 'DashboardController@getadminorders');
 Route::get('/dashboard/admin/inventory', 'DashboardController@getadmininventory');
 Route::get('/dashboard/admin/account', 'DashboardController@getadminaccount');
 Route::get('/dashboard/admin/fulfill/{id}', 'DashboardController@getadminfulfillorderform');
-
+Route::get('/dashboard/admin/editunit/{id}', 'DashboardController@admineditunit');
 
 Route::get('/updateusername', 'DashboardController@getupdateusername');
 Route::get('/updateemail', 'DashboardController@getupdateemail');

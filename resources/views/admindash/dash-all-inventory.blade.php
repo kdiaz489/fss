@@ -159,7 +159,7 @@ All Inventory
 
 
 
-<div class="container-fluid dashboard-container m-auto w-75">
+<div class="container-fluid dashboard-container w-95 p-0 m-auto">
 
     <!-- Flash Alerts Begin -->
 
@@ -171,7 +171,7 @@ All Inventory
 
 @if (count($users) > 0)
 
-<div class="w-90 m-auto mb-5">
+<div class="w-95 m-auto mb-5">
         <div class="dropdown mb-3">
                 <button onclick="myFunction()" class="btn btn-secondary bg-denim border-0 show-dropdown-btn rounded-0">Customers <i class="fas fa-caret-down"></i></button>
                 <div id="myDropdown" class="dropdown-content scrollable-menu">
@@ -190,7 +190,7 @@ All Inventory
 
 
 
-<div class="tab-content w-90 m-auto" id="myTabContent">
+<div class="tab-content w-95 m-auto" id="myTabContent">
 @foreach ($users as $user)
 
 @if ($loop->first)
@@ -240,10 +240,6 @@ All Inventory
                                 <a href="/editpallet/{{$pallet->id}}" class="float-left"
                                     style="margin-right:1%">
                                     <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
-                                </a>
-                                        
-                                <a href="/viewpallet/{{$pallet->id}}" class="float-left" style="margin-right:1%">
-                                    <button class="btn btn-link text-success btn-sm" type="button">View</button>
                                 </a>
 
                                 <form action="/removepallet/{{$pallet->id}}" method="POST" class="float-left">
@@ -430,10 +426,6 @@ All Inventory
                                     style="margin-right:1%">
                                     <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
                                 </a>
-                                    
-                                <a href="/viewcarton/{{$carton->id}}" class="float-left" style="margin-right:1%">
-                                    <button class="btn btn-link text-success btn-sm" type="button">View</button>
-                                </a>
 
                                 <form action="/removecarton/{{$carton->id}}" method="POST" class="float-left">
                                     @method('DELETE')
@@ -587,10 +579,6 @@ All Inventory
                                 <a href="/editcase/{{$case->id}}" class="float-left" style="margin-right:1%">
                                     <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
                                 </a>
-                                        
-                                <a href="/viewcase/{{$case->id}}" class="float-left" style="margin-right:1%">
-                                    <button class="btn btn-link text-success btn-sm" type="button">View</button>
-                                </a>
 
                                 <form action="/removecase/{{$case->id}}" method="POST" class="float-left"
                                     style="margin-right:1%">
@@ -710,10 +698,6 @@ All Inventory
                                 <a href="/editkit/{{$kit->id}}" class="float-left" style="margin-right:1%">
                                     <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
                                 </a>
-                                        
-                                <a href="/viewkit/{{$kit->id}}" class="float-left" style="margin-right:1%">
-                                    <button class="btn btn-link text-success btn-sm" type="button">View</button>
-                                </a>
 
                                 <form action="/removekit/{{$kit->id}}" method="POST" class="float-left">
                                     @method('DELETE')
@@ -806,10 +790,6 @@ All Inventory
                                     style="margin-right:1%">
                                     <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
                                 </a>
-                                        
-                                <a href="/viewbasicunit/{{$unit->id}}" class="float-left" style="margin-right:1%">
-                                    <button class="btn btn-link text-success btn-sm" type="button">View</button>
-                                </a>
 
                                 <form action="/removebasicunit/{{$unit->id}}" method="POST" class="float-left"
                                     style="margin-right:1%">
@@ -875,10 +855,6 @@ All Inventory
                                     <a href="/editpallet/{{$pallet->id}}" class="float-left"
                                         style="margin-right:1%">
                                         <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
-                                    </a>
-                                            
-                                    <a href="/viewpallet/{{$pallet->id}}" class="float-left" style="margin-right:1%">
-                                        <button class="btn btn-link text-success btn-sm" type="button">View</button>
                                     </a>
 
                                     <form action="/removepallet/{{$pallet->id}}" method="POST" class="float-left">
@@ -1062,10 +1038,6 @@ All Inventory
                                         style="margin-right:1%">
                                         <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
                                     </a>
-                                            
-                                    <a href="/viewcarton/{{$carton->id}}" class="float-left" style="margin-right:1%">
-                                        <button class="btn btn-link text-success btn-sm" type="button">View</button>
-                                    </a>
 
                                     <form action="/removecarton/{{$carton->id}}" method="POST" class="float-left">
                                         @method('DELETE')
@@ -1218,10 +1190,6 @@ All Inventory
                                     <a href="/editcase/{{$case->id}}" class="float-left" style="margin-right:1%">
                                         <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
                                     </a>
-                                            
-                                    <a href="/viewcase/{{$case->id}}" class="float-left" style="margin-right:1%">
-                                        <button class="btn btn-link text-success btn-sm" type="button">View</button>
-                                    </a>
 
                                     <form action="/removecase/{{$case->id}}" method="POST" class="float-left"
                                         style="margin-right:1%">
@@ -1309,22 +1277,22 @@ All Inventory
 
                 @if(count($user->kits->all()) > 0)
                 <div class="table-responsive">
-                    <table class="table table-sm">
+                    <table class="table table-sm table-bordered">
                         <thead>
                         <tr>
                             <th width="2%"></th>
-                            <th width="10%">Sku</th>
-                            <th width="10%">Description</th>
+                            <th width="10%">SKU</th>
+                            <th width="15%">Description</th>
                             <th width="10%">UPC</th>
-                            <th width="10%">Quantity</th>
-                            <th width="10%">Qty/Kit</th>
+                            <th width="5%">Quantity</th>
+                            <th width="5%">Qty/Kit</th>
                             <th width="10%">Location</th>
                             <th width="10%"></th>
                         </tr>
                         </thead>
                         @foreach($user->kits->all() as $kit)
                         <tr>
-                            <td><button type="button" class="btn text-denim toggle-{{$kit->id}}"
+                            <td class="text-center"><button type="button" class="btn btn-sm text-denim toggle-{{$kit->id}}"
                                     id="toggle-details-kit-{{$kit->id}}" data-toggle="collapse"
                                     data-target="#details-kit-{{$kit->id}}" aria-expanded="false" aria-controls="details"
                                     data-delay="0"><i class="fas fa-plus"></i></button></td>
@@ -1336,23 +1304,16 @@ All Inventory
                             <td>N/A</td>
                             <td>
 
-                                <div style="margin-left: 30%">
-                                    
-                                    <a href="/editkit/{{$kit->id}}" class="float-left" style="margin-right:1%">
-                                        <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
-                                    </a>
-                                            
-                                    <a href="/viewkit/{{$kit->id}}" class="float-left" style="margin-right:1%">
-                                        <button class="btn btn-link text-success btn-sm" type="button">View</button>
+                                    <a href="/editkit/{{$kit->id}}" class="d-inline">
+                                        <button class="btn btn-link text-denim btn-sm" type="button"><i class="far fa-edit fa-lg"></i></button>
                                     </a>
 
-                                    <form action="/removekit/{{$kit->id}}" method="POST" class="float-left">
+                                    <form action="/removekit/{{$kit->id}}" method="POST" class="d-inline">
                                         @method('DELETE')
                                         @csrf
-                                        <button type="submit" class="btn btn-link text-danger btn-sm">Remove</button>
+                                        <button type="submit" class="btn btn-link text-danger btn-sm"><i class="far fa-trash-alt fa-lg"></i></button>
                                     </form>
 
-                                </div>
                             </td>
                         </tr>
 
@@ -1360,8 +1321,8 @@ All Inventory
                         @foreach ($kit->basic_units->all() as $unit)
 
                         <tr>
-                            <td class="py-0 border-0"></td>
-                            <td class="py-0 border-0" colspan="12">
+                            <td class="p-0 border-0"></td>
+                            <td class="p-0 border-0" colspan="12">
                                 <div id="details-kit-{{$kit->id}}" class="details collapse">
                                     <table class="table table-sm bg-whitewash">
                                         <thead>
@@ -1378,7 +1339,7 @@ All Inventory
                                                 <td>{{$unit->sku}}</td>
                                                 <td>{{$unit->description}}</td>
                                                 <td>{{$unit->upc}}</td>
-                                                <td>Loose Item</td>
+                                                <td>Basic Unit</td>
                                                 <td>{{$unit->pivot->quantity}}</td>
                                             </tr>
                                         </tbody>
@@ -1403,57 +1364,54 @@ All Inventory
                 <h3 class="font-weight-light">Units</h3>
                 @if(count($user->basic_units->all()) > 0)
                 <div class="table-responsive">
-                    <table class="table table-sm">
+                    <table class="table table-sm table-bordered units-table">
                         <thead>
                         <tr>
-                            <th width="10%">Sku</th>
-                            <th width="10%">Description</th>
+                            <th width="10%">SKU</th>
+                            <th width="20%">Description</th>
                             <th width="10%">UPC</th>
-                            <th width="10%">Pallet Qty</th>
-                            <th width="10%">Carton Qty</th>
-                            <th width="10%">Case Qty</th>
-                            <th width="10%">Kit Qty</th>
-                            <th width="10%">Loose Item Qty</th>
-                            <th width="10%">Total Qty</th>
+                            <th width="5%">Pallet</th>
+                            <th width="5%">Carton</th>
+                            <th width="5%">Case</th>
+                            <th width="5%">Kit</th>
+                            <th width="5%">Loose</th>
+                            <th width="5%">Total</th>
+                            <th width="5%">Location</th>
+                            <th width="5%">Lot #</th>
                             <th width="10%"></th>
 
                         </tr>
                         </thead>
+                        <tbody>
                         @foreach($user->basic_units->all() as $unit)
                         <tr>
-                            <td>{{$unit->sku}}</td>
-                            <td>{{$unit->description}}</td>
-                            <td>{{$unit->upc}}</td>
-                            <td>{{$unit->pallet_qty}}</td>
-                            <td>{{$unit->carton_qty}}</td>
-                            <td>{{$unit->case_qty}}</td>
-                            <td>{{$unit->kit_qty}}</td>
-                            <td>{{$unit->loose_item_qty}}</td>
-                            <td>{{$unit->total_qty}}</td>
-                            <td>
-                                <div style="margin-left: 30%">
-                                    
-                                    <a href="/editbasicunit/{{$unit->id}}" class="float-left"
-                                        style="margin-right:1%">
-                                        <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
-                                    </a>
-                                            
-                                    <a href="/viewbasicunit/{{$unit->id}}" class="float-left" style="margin-right:1%">
-                                        <button class="btn btn-link text-success btn-sm" type="button">View</button>
-                                    </a>
-
-                                    <form action="/removebasicunit/{{$unit->id}}" method="POST" class="float-left"
+                            <td contenteditable="false" class="sku">{{$unit->sku}}</td>
+                            <td contenteditable="false" class="desc">{{$unit->description}}</td>
+                            <td contenteditable="false" class="upc">{{$unit->upc}}</td>
+                            <td contenteditable="false" class="pallet_qty">{{$unit->pallet_qty}}</td>
+                            <td contenteditable="false" class="carton_qty">{{$unit->carton_qty}}</td>
+                            <td contenteditable="false" class="case_qty">{{$unit->case_qty}}</td>
+                            <td contenteditable="false" class="kit_qty">{{$unit->kit_qty}}</td>
+                            <td contenteditable="false" class="loose_item_qty">{{$unit->loose_item_qty}}</td>
+                            <td contenteditable="false" class="total_qty">{{$unit->total_qty}}</td>
+                            <td contenteditable="false" class="location">{{$unit->location}}</td>
+                            <td contenteditable="false" class="lot_num">{{$unit->lot_num}}</td>
+                            <td>    
+                                    <button id="unit-{{$unit->id}}" class="btn btn-link text-success btn-sm update-unit d-none"><i class="far fa-check-circle fa-lg"></i></button>
+                                    <button class="btn btn-link text-denim btn-sm enable-modify d-inline"><i class="far fa-edit fa-lg"></i></button>
+                                    <form action="/removebasicunit/{{$unit->id}}" method="POST" class="d-inline"
                                         style="margin-right:1%">
                                         @method('DELETE')
                                         @csrf
-                                        <button type="submit" class="btn btn-link text-danger btn-sm">Remove</button>
+                                        <button type="submit" class="btn btn-link text-danger btn-sm d-inline"><i class="far fa-trash-alt fa-lg"></i></button>
                                     </form>
 
-                                </div>
+                                
                             </td>
 
                         </tr>
                         @endforeach
+                    </tbody>
                     </table>
                 </div>
                 @else
@@ -1470,6 +1428,110 @@ All Inventory
 @section('scripts')
 <script>
 
+$('.units-table').dataTable({
+    'order': [[0, 'asc']],
+    'columnDefs': [
+    {'targets' : [3,4,5,6,7,8,9], 'orderable': false}
+    ],
+    paging: false,
+    searching: false,
+    info : false
+});
+
+$('.update-unit').on('click', function(e){
+    e.preventDefault();
+    var row = $(this).closest('tr');
+    var sku = $(row).find('.sku').text();
+    var desc = $(row).find('.desc').text();
+    var upc = $(row).find('.upc').text();
+    var pallet_qty = $(row).find('.pallet_qty').text();
+    var carton_qty = $(row).find('.carton_qty').text();
+    var case_qty = $(row).find('.case_qty').text();
+    var kit_qty = $(row).find('.kit_qty').text();
+    var loose_item_qty = $(row).find('.loose_item_qty').text();
+    var total_qty = $(row).find('.total_qty').text();
+    var location = $(row).find('.location').text();
+    var lot_num = $(row).find('.lot_num').text();
+    var id = $(this).attr('id');
+    id = id.slice(5, id.length);
+    console.log('id ' + id);
+
+    var formData = new FormData();
+    formData.append('sku', sku);
+    formData.append('desc', desc);
+    formData.append('upc', upc);
+    formData.append('pallet_qty', pallet_qty);
+    formData.append('carton_qty', carton_qty);
+    formData.append('case_qty', case_qty);
+    formData.append('kit_qty', kit_qty);
+    formData.append('loose_item_qty', loose_item_qty);
+    formData.append('total_qty',total_qty);
+    formData.append('location',location);
+    formData.append('lot_num',lot_num);
+    formData.append('_token', '{{csrf_token()}}');
+    formData.append('_method', 'PUT');
+
+    $.ajax({
+        headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"},
+        type: 'POST',
+        url: '/admin/updatebasicunit/' + id,
+        data: formData,
+        processData: false,
+        contentType: false,
+    })
+    .done(function(data){
+        console.log('success');
+    })
+    .fail(function(data){
+        console.log('fail');
+    });
+});
+
+$(document).on('click', '.enable-modify', function(e){
+    e.preventDefault();
+    var row = $(this).closest('tr');
+    var update = $(this).prev().removeClass('d-none').addClass('d-inline');
+    row.find('.sku').attr('contenteditable', true);
+    row.find('.desc').attr('contenteditable', true);
+    row.find('.upc').attr('contenteditable', true);
+    row.find('.pallet_qty').attr('contenteditable', true);
+    row.find('.carton_qty').attr('contenteditable', true);
+    row.find('.case_qty').attr('contenteditable', true);
+    row.find('.kit_qty').attr('contenteditable', true);
+    row.find('.loose_item_qty').attr('contenteditable', true);
+    row.find('.total_qty').attr('contenteditable', true);
+    row.find('.location').attr('contenteditable', true);
+    row.find('.lot_num').attr('contenteditable', true);
+    
+    $(this).html('<i class="fas fa-ban fa-lg"></i>');
+    $(this).removeClass('enable-modify');
+    $(this).addClass('disable-modify');
+    $(row).addClass('bg-whitewash');
+
+});
+
+$(document).on('click', '.disable-modify', function(e){
+    e.preventDefault();
+    console.log('disable');
+    var row = $(this).closest('tr');
+    var update = $(this).prev().removeClass('d-inline').addClass('d-none');
+    row.find('.sku').attr('contenteditable', false);
+    row.find('.desc').attr('contenteditable', false);
+    row.find('.upc').attr('contenteditable', false);
+    row.find('.pallet_qty').attr('contenteditable', false);
+    row.find('.carton_qty').attr('contenteditable', false);
+    row.find('.case_qty').attr('contenteditable', false);
+    row.find('.kit_qty').attr('contenteditable', false);
+    row.find('.loose_item_qty').attr('contenteditable', false);
+    row.find('.total_qty').attr('contenteditable', false);
+    row.find('.location').attr('contenteditable', true);
+    row.find('.lot_num').attr('contenteditable', true);
+    
+    $(this).html('<i class="far fa-edit fa-lg"></i>');
+    $(this).removeClass('disable-modify');
+    $(this).addClass('enable-modify');
+    $(row).removeClass('bg-whitewash');
+});
 
 $(".dropdown .dropdown-content a").on("click", function(){
 

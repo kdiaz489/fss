@@ -32,7 +32,7 @@ class CasesController extends Controller
         $user = User::find($user_id);
         $basic_units =  $user->basic_units->sortKeysDesc();
         $kits = $user->kits->all();
-        return view('orders.create-case')->with('units', $basic_units)->with('kits', $kits);
+        return view('cases.create-case')->with('units', $basic_units)->with('kits', $kits);
     }
 
     /**
@@ -123,7 +123,7 @@ class CasesController extends Controller
         $user = User::find($user_id);
         $basic_units =  $case->basic_units->sortKeysDesc();
         $kits = $case->kits->all();
-        return view('orders.show-case')->with('basic_units', $basic_units)->with('case', $case)->with('kits', $kits);
+        return view('cases.show-case')->with('basic_units', $basic_units)->with('case', $case)->with('kits', $kits);
     }
 
     /**
@@ -139,7 +139,7 @@ class CasesController extends Controller
         $user = User::find($user_id);
         $units =  $user->basic_units->sortKeysDesc();
         $kits = $user->kits->all();
-        return view('orders.edit-case')->with('units', $units)->with('case', $case)->with('kits', $kits);
+        return view('cases.edit-case')->with('units', $units)->with('case', $case)->with('kits', $kits);
     }
 
     /**

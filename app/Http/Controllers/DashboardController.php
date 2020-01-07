@@ -173,7 +173,10 @@ class DashboardController extends Controller
         return view('userdash.dash-orders')->with('user', $user)->with('orders', $orders)->with('orderhistory', $orderhistory);
     }
 
-
+    public function admineditunit($id){
+        $basic_unit = Basic_Unit::find($id);
+        return view('basic_units.admin-edit-unit')->with('basic_unit',$basic_unit);
+    }
 
     public function getadminusers(){
 

@@ -32,7 +32,7 @@ class BasicUnitsController extends Controller
     public function create()
     {
         //
-        return view('orders.create-unit');
+        return view('basic_units.create-unit');
     }
 
     /**
@@ -66,6 +66,8 @@ class BasicUnitsController extends Controller
         $unit->pallet_qty = 0;
         $unit->total_qty = 0;
         $unit->description = $request->desc;
+        $unit->location = 'N/A';
+        $unit->lot_num = 'N/A';
         $unit->save();
         return redirect('/basicunit')->with('success', 'Product has been created - Sku: ' . $unit->sku);
     }
@@ -80,7 +82,7 @@ class BasicUnitsController extends Controller
     {
         //
         $basic_unit = Basic_Unit::find($id);
-        return view('orders.show-unit')->with('basic_unit', $basic_unit);
+        return view('basic_units.show-unit')->with('basic_unit', $basic_unit);
     }
 
     /**
@@ -92,7 +94,7 @@ class BasicUnitsController extends Controller
     public function edit($id)
     {
         $basic_unit = Basic_Unit::find($id);
-        return view('orders.edit-unit')->with('basic_unit', $basic_unit);
+        return view('basic_units.edit-unit')->with('basic_unit', $basic_unit);
     }
 
     /**
@@ -122,6 +124,33 @@ class BasicUnitsController extends Controller
     
     }
 
+    public function adminupdate(Request $request, $id)
+    {
+        //
+        //dd($request);
+        
+        $basic_unit = Basic_Unit::find($id);
+
+        $basic_unit->update([
+                        'sku' => $request->sku, 
+                        'upc' => $request->upc, 
+                        'description' => $request->desc,
+                        'loose_item_qty' => $request->loose_item_qty,
+                        'basic_unit_qty' => $request->basic_unit_qty,
+                        'kit_qty' => $request->kit_qty,
+                        'case_qty' => $request->case_qty,
+                        'carton_qty' => $request->carton_qty,
+                        'pallet_qty' => $request->pallet_qty,
+                        'location' => $request->location,
+                        'lot_num' => $request->lot_num,
+                        'total_qty' => $request->total_qty
+                        ]);
+
+
+        return redirect('/dashboard/admin/editunit/' . $id)->with('success', 'You have successfully updated unit. - SKU: ' . $basic_unit->sku . ' UPC: ' . $basic_unit->upc . '');
+    
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -135,7 +164,7 @@ class BasicUnitsController extends Controller
         $basic_unit->orders()->detach();
         $basic_unit->cases()->detach();
         $basic_unit->delete();
-        return redirect()->back()->with('success', 'You have successfully deleted unit.');
+        return back()->with('success', 'You have successfully deleted unit.');
 
     }
 }

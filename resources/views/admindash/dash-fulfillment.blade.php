@@ -208,7 +208,7 @@
                                 <thead>
                                     <tr>
                                         <th width="2%">Expand</th>
-                                        <th width="15%%">Update</th>
+                                        <th width="7%%">Update</th>
                                         <th width="10%">Order ID</th>
                                         <th width="10%">Customer</th>
                                         <th width="10%">Payment</th>
@@ -236,7 +236,8 @@
                                                         <select name="status" class="custom-select custom-select-sm rounded-0">
                                                             <option value="" selected disabled>Choose</option>
                                                             <option value="Approved">Approved</option>
-                                                            <option value="In Progress">In Progress</option>
+                                                            <option value="Picked">Picked</option>
+                                                            <option value="Boxed">Boxed</option>
                                                             <option value="Rejected">Rejected</option>
                                                         </select>
                                                         @csrf 
