@@ -208,8 +208,8 @@
                                 <thead>
                                     <tr>
                                         <th width="2%">Expand</th>
-                                        <th width="7%%">Update</th>
-                                        <th width="10%">Order ID</th>
+                                        <th width="10%%">Update</th>
+                                        <th width="7%">Order ID</th>
                                         <th width="10%">Customer</th>
                                         <th width="10%">Payment</th>
                                         <th width="10%">Status</th>
@@ -251,7 +251,7 @@
 
                                     </td>
                                     <td>
-                                        <a href="/vieworder/{{$order->cust_order_no}}">
+                                        <a href="/vieworder/{{$order->id}}">
                                             <button class="btn btn-link text-denim btn-sm px-0 "
                                                 type="button">{{str_pad($order->cust_order_no, 6, '0', STR_PAD_LEFT)}}</button>
                                         </a></td>
@@ -709,7 +709,7 @@
 
                     }
                     else{
-                        html += '<div class=" alert alert-secondary> <h5 class="alert-heading"> There are no new orders to import. Check again later."';
+                        html += '<div class=" alert alert-secondary> <h5 class="alert-heading"> Inventory scanned. Ready to import. Continue?';
                     }
 
                     $('.modal-body').html(html);

@@ -202,44 +202,53 @@ Create Unit
      </div> 
 
 
-
     <h1 class="display-4 text-center">Create Unit</h1>
+     
+    <div class="row justify-content-center mt-4">
+     <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title font-weight-bold">Unit Information</h4>
+            <div class=" card-text">
+                <form action="/basicunit" method="POST">
+                  <div class="form-row justify-content-center mb-3">
+                      <div class="col-md-6">
+                          <label for="sku" class="font-weight-normal">SKU</label>
+                          <input type="text" name="sku" class="form-control form-control-sm" value="{{ old('sku')}}"
+                              placeholder="Sku #">
+                          <div style="font-weight: 700; color:red">{{$errors->first('sku')}}</div>
+                      </div>
 
+                      <div class="col-md-6">
+                          <label for="upc" class="font-weight-normal">UPC/Barcode</label>
+                          <input type="text" name="upc" class="form-control form-control-sm" value="{{ old('upc')}}"
+                              placeholder="#">
+                          <div style="font-weight: 700; color:red">{{$errors->first('upc')}}</div>
+                      </div>
 
-    <form action="/basicunit" method="POST">
-        <div class="form-row justify-content-center mb-3">
+                  </div>
 
-            <div class="col-md-3">
-                <label for="sku">Sku</label>
-                <input type="text" name="sku" class="form-control form-control-sm" value="{{ old('sku')}}"
-                    placeholder="Sku #">
-                <div style="font-weight: 700; color:red">{{$errors->first('sku')}}</div>
-            </div>
+                  <div class="form-row justify-content-center mb-3">
+                      <div class="col-md-12">
+                          <label for="desc" class="font-weight-normal">Description</label>
+                          <textarea name="desc" id="desc" cols="30" rows="3" class="form-control form-control-sm"
+                              value="{{ old('desc')}}" placeholder="Product Description"></textarea>
+                          <div style="font-weight: 700; color:red">{{$errors->first('desc')}}</div>
 
-            <div class="col-md-3">
-                <label for="upc">UPC/Barcode</label>
-                <input type="text" name="upc" class="form-control form-control-sm" value="{{ old('upc')}}"
-                    placeholder="#">
-                <div style="font-weight: 700; color:red">{{$errors->first('upc')}}</div>
-            </div>
+                      </div>
+                  </div>
 
+                  <div class="form-row justify-content-center">
+                      <button type="submit" class="btn btn-primary text-white bg-denim">Create Unit</button>
+                  </div>
+                  @csrf
+              </form>
+          </div>
         </div>
-
-        <div class="form-row justify-content-center mb-3">
-            <div class="col-md-6">
-                <label for="desc">Description</label>
-                <textarea name="desc" id="desc" cols="30" rows="3" class="form-control form-control-sm"
-                    value="{{ old('desc')}}" placeholder="Product Description"></textarea>
-                <div style="font-weight: 700; color:red">{{$errors->first('desc')}}</div>
-
-            </div>
         </div>
+      </div>
+    </div>
 
-        <div class="form-row justify-content-center">
-            <button type="submit" class="btn btn-primary text-white bg-denim">Create Unit</button>
-        </div>
-        @csrf
-    </form>
 
 </div>
 

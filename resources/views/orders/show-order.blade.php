@@ -354,156 +354,143 @@ Show Order
 @section('content')
 <div class="container" style="margin-top: 2%">
 
-    <h1>Order ID: #{{$order->id}}</h1>
-    <table class="table">
+    <h2>Order Details</h2>
 
-        <tbody>
-
-            <thead class="thead-light">
-                <tr>
-                    <th>Details</th>
-                    <th></th>
-                </tr>
-            </thead>
-
-            <tr>
-                <th scope="row">Order User Id</th>
-                <td>{{$order->user_id}}</td>
-            </tr>
-
-
-            <tr>
-                <th scope="row">Company</th>
-                <td>{{$order->company}}</td>
-            </tr>
-
-            <tr>
-                <th scope="row">Order Type</th>
-                <td>{{$order->order_type}}</td>
-            </tr>
-
-            <tr>
-                <th scope="row">Barcode</th>
-                <td>{{$order->barcode}}</td>
-            </tr>
-
-            <tr>
-                <th scope="row">Description</th>
-                <td>{{$order->description}}</td>
-            </tr>
-
-            <tr>
-                <th scope="row">Unit Quantity</th>
-                <td>{{$order->unit_qty}}</td>
-            </tr>
-
-            <tr>
-                <th scope="row">Units in Order</th>
-                <td>
-                    @foreach ($order->basic_units as $unit)
-                    <a href="/viewunit/{{$unit->id}}"><span
-                            class="badge badge-secondary">{{'Unit Sku: ' . $unit->sku}}</span></a>
-                    @endforeach
-
-                    @foreach ($order->pallets as $pallet)
-                        @if ($pallet->basic_units != null)
-                            @foreach($pallet->basic_units as $unit)
-                                <a href="/viewbasicunit/{{$unit->id}}"><span class="badge badge-secondary">{{'Unit Sku: ' . $unit->sku}}</span></a>
-                            @endforeach
-                        @endif
-
-                        @if ($pallet->cases != null)
-                            @foreach($pallet->cases as $case)
-                                @if ($case->basic_units != null)
-                                    @foreach ($case->basic_units as $unit)
-                                        <a href="/viewbasicunit/{{$unit->id}}"><span class="badge badge-secondary">{{'Unit Sku: ' . $unit->sku}}</span></a>
-                                    @endforeach
-                                @endif
-                            @endforeach
-                        @endif
-
-                    @endforeach
-
-                </td>
-            </tr>
-
-            <tr>
-                <th scope="row">Kit Quantity</th>
-                <td>{{$order->kit_qty}}</td>
-            </tr>
-
-
-            <tr>
-                <th scope="row">Kits in Order</th>
-                <td>
-                    @foreach ($order->kits as $kit)
-                    <a href="/viewkit/{{$kit->id}}"><span
-                            class="badge badge-secondary">{{'Kit Sku: ' . $kit->sku}}</span></a>
-                    @endforeach
-                </td>
-            </tr>
-
-            <tr>
-                <th scope="row">Case Quantity</th>
-                <td>{{$order->case_qty}}</td>
-            </tr>
-
-            <tr>
-                <th scope="row">Cases in Order</th>
-                <td>
-                    @foreach ($order->pallets as $pallet)
-                        @if ($pallet->cases != null)
-                            @foreach ($pallet->cases as $case)
-                                <a href="/viewcase/{{$case->id}}"><span
-                                        class="badge badge-secondary">{{'Case Sku: ' . $case->sku}}</span></a>
-                            @endforeach
-                        @endif
-                    @endforeach
-                </td>
-            </tr>
-            
-            <tr>
-                <th scope="row">Carton Quantity</th>
-                <td>{{$order->carton_qty}}</td>
-            </tr>
-
-            <tr>
-                <th scope="row">Cartons in Order</th>
-                <td>
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Order Details</h5>
+              <p class="card-text">
+                <table class="table table-sm">
+                  <thead>
+                    <tr>
+                      <th class="font-weight-normal">Order ID #</th>
+                      <th class="font-weight-normal">Company</th>
+                      <th class="font-weight-normal">Order Type</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{{$order->orderid}}</td>
+                      <td>{{$order->company}}</td>
+                    <td>{{$order->order_type}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </p>
+              
+            </div>
+          </div>
+          <div class="row mt-3">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Order Products</h5>
+                    <p class="card-text">
+                      <table class="table table-sm">
+                        <thead>
+                          <tr>
+                            <th class="font-weight-normal">SKU</th>
+                            <th class="font-weight-normal">UPC</th>
+                            <th class="font-weight-normal">Description</th>
+                            <th class="font-weight-normal">Type</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @foreach ($order->basic_units->all() as $unit)
+                          <tr>
+                              <td>{{$unit->sku}}</td>
+                              <td>{{$unit->upc}}</td>
+                              <td>{{$unit->description}}</td>
+                              <td>Unit</td>
+                            </tr>
+                          @endforeach
+    
+                          @foreach ($order->kits->all() as $kit)
+                          <tr>
+                              <td>{{$kit->sku}}</td>
+                              <td>{{$kit->upc}}</td>
+                              <td>{{$kit->description}}</td>
+                              <td>Kit</td>
+                            </tr>
+                          @endforeach
+    
+                          @foreach ($order->cases->all() as $case)
+                          <tr>
+                              <td>{{$case->sku}}</td>
+                              <td>{{$case->upc}}</td>
+                              <td>{{$case->description}}</td>
+                              <td>Case</td>
+                            </tr>
+                          @endforeach
+    
+                          @foreach ($order->cartons->all() as $carton)
+                          <tr>
+                              <td>{{$carton->sku}}</td>
+                              <td>{{$carton->upc}}</td>
+                              <td>{{$carton->description}}</td>
+                              <td>Case</td>
+                            </tr>
+                          @endforeach
+    
+                          @foreach ($order->pallets->all() as $pallet)
+                          <tr>
+                              <td>{{$pallet->sku}}</td>
+                              <td>{{$pallet->upc}}</td>
+                              <td>{{$pallet->description}}</td>
+                              <td>Case</td>
+                            </tr>
+                          @endforeach
+    
+                        </tbody>
+                      </table>
+                    </p>
                     
-                        @if ($order->cartibs != null)
-                            @foreach ($order->cartons as $carton)
-                                <a href="/viewcarton/{{$carton->id}}"><span
-                                        class="badge badge-secondary">{{'Sku: ' . $carton->sku}}</span></a>
-                            @endforeach
-                        @endif
-                    
-                </td>
-            </tr>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Order Counts</h5>
+                <p class="card-text">
+                  <table class="table table-sm">
 
-            <tr>
-                <th scope="row">Pallet Quantity</th>
-                <td>{{$order->pallet_qty}}</td>
-            </tr>
+                    <tbody>
+                      <tr>
+                        <th scope="row">Unit Qty</th>
+                        <td>{{$order->unit_qty}}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Kit Qty</th>
+                        <td>{{$order->kit_qty}}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Case Qty</th>
+                        <td>{{$order->case_qty}}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Carton Qty</th>
+                        <td>{{$order->carton_qty}}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Pallet Qty</th>
+                        <td>{{$order->pallet_qty}}</td>
+                      </tr>
 
-            <tr>
-                <th scope="row">Pallets in Order</th>
-                <td>
-                    @if ($order->pallets != null)
+                    </tbody>
+                  </table>
+                </p>
+                
+              </div>
+            </div>
+          </div>
+      </div>
 
-                        @foreach ($order->pallets as $pallet)
-
-                                <a href="/viewpallet/{{$pallet->id}}"><span
-                                        class="badge badge-secondary">{{'Pallet Sku: ' . $pallet->sku}}</span></a>
-                            
-                        @endforeach
-                        
-                    @endif
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
 
 </div>
 

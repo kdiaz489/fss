@@ -92,37 +92,27 @@ class ShopifyController extends Controller
                 for($y = 0; $y < count($orders[$i]->line_items); $y++){
                     
                     //dd(gettype($orders[$i]->line_items[$y]->sku));
-
-                    if (Basic_Unit::where('sku', $orders[$i]->line_items[$y]->sku)->where('user_id', '3')->exists()) {
-                        //dd($orders[$i]->line_items[$y]->sku);
-                        
-                        $unit = Basic_Unit::where('sku', $orders[$i]->line_items[$y]->sku)->where('user_id', '3')->first();
-                        
-                        $shopify_order->basic_units()->attach([['basic__unit_id' => $unit->id, 'quantity' => $orders[$i]->line_items[$y]->quantity]]);
-                        
-                        
+                    if(!(STR::contains($orders[$i]->line_items[$y]->name, ['kit', 'set', 'Kit', 'Set', 'KIT', 'SET']))){
+                        if (Basic_Unit::where('sku', $orders[$i]->line_items[$y]->sku)->where('user_id', '3')->exists()) {
+                            $unit = Basic_Unit::where('sku', $orders[$i]->line_items[$y]->sku)->where('user_id', '3')->first();
+                            $shopify_order->unit_qty +=  $orders[$i]->line_items[$y]->quantity;           
+                            $shopify_order->basic_units()->attach([['basic__unit_id' => $unit->id, 'quantity' => $orders[$i]->line_items[$y]->quantity]]);
+                
+                        }
                     }
-                    /*
-                    if (Kit::where('sku', $orders[$i]->line_items[$y]->sku)->where('user_id', '3')->exists()) {
-                        
-                        $kit = Kit::where('sku', $orders[$i]->line_items[$y]->sku)->where('user_id', '3')->first();
-                        $shopify_order->kits()->attach([['kit_id' => $kit->id, 'quantity' => $orders[$i]->line_items[$y]->quantity]]);
-                    }
-                    */
+                    if(STR::contains($orders[$i]->line_items[$y]->name, ['kit', 'set', 'Kit', 'Set', 'KIT', 'SET'])){
+                        if (Kit::where('sku', $orders[$i]->line_items[$y]->sku)->where('user_id', '3')->exists()) {
+                            $kit = Kit::where('sku', $orders[$i]->line_items[$y]->sku)->where('user_id', '3')->first();
+                            $shopify_order->kit_qty +=  $orders[$i]->line_items[$y]->quantity;   
+                            $shopify_order->kits()->attach([['kit_id' => $kit->id, 'quantity' => $orders[$i]->line_items[$y]->quantity]]);
+                        }
                 }
-
+                    
+                }
+                $shopify_order->save();
             }
         }
-        /*
-        for($i = 0; $i < count($orders[0]->line_items); $i++){
-            dd($orders[0]->line_items[$i]);
-            echo '<br/>';
-            
-            echo '<br/>';
-        }
-        */
-        
-        
+
         //dd($orders);
         //return view('userdash.dash-shopifyorders')->with('orders', $orders);
     }
@@ -172,7 +162,7 @@ class ShopifyController extends Controller
                 for($y = 0; $y < count($orders[$i]->line_items); $y++){
                     
                     //dd(gettype($orders[$i]->line_items[$y]->sku));
-                    if(!(STR::contains($orders[$i]->line_items[$y]->name, ['kit', 'set', 'Kit', 'Set']))){
+                    if(!(STR::contains($orders[$i]->line_items[$y]->name, ['kit', 'set', 'Kit', 'Set', 'KIT', 'SET']))){
                         if (Basic_Unit::where('sku', $orders[$i]->line_items[$y]->sku)->where('user_id', '3')->doesntExist()) {
                             //dd($orders[$i]->line_items[$y]->sku);
                             array_push($doesntExist, 'Basic Unit: ' . $orders[$i]->line_items[$y]->sku );                        
@@ -184,7 +174,7 @@ class ShopifyController extends Controller
                         }
                     }
 
-                    if(STR::contains($orders[$i]->line_items[$y]->name, ['kit', 'set', 'Kit', 'Set'])){
+                    if(STR::contains($orders[$i]->line_items[$y]->name, ['kit', 'set', 'Kit', 'Set', 'KIT', 'SET'])){
                         if (Kit::where('sku', $orders[$i]->line_items[$y]->sku)->where('user_id', '3')->doesntExist()) {
                             array_push($doesntExist, 'Kit: ' . $orders[$i]->line_items[$y]->sku );
                             //$kit = Kit::where('sku', $orders[$i]->line_items[$y]->sku)->where('user_id', '3')->first();
