@@ -68,7 +68,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                           <li class="nav-item">
-                            <a href="/dashboard" class="nav-link text-gunmetal bg-whitewash" >
+                            <a href="/dashboard" class="nav-link text-white" >
                               <i class="fas fa-angle-right nav-icon"></i>
                               <p>All Shipments</p>
                             </a>
@@ -102,7 +102,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                               <li class="nav-item">
-                                <a href="/dashboard/admin/users" class="nav-link text-gunmetal bg-whitewash">
+                                <a href="/dashboard/admin/users" class="nav-link text-white">
                                     <i class="fas fa-angle-right nav-icon"></i>
                                   <p>Manage Users</p>
                                 </a>
@@ -151,6 +151,26 @@
 @endsection
 
 @section('content')
+
+<!-- Modal -->
+<div class="modal fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="col-md-12">
 
 <main class="content" role="content">
@@ -211,10 +231,10 @@
                             </div>
                             <div class="col-md-5">
                               <div class="input-group">
-                                  <input type="text" class="form-control" placeholder="Scan Product">
+                                  <input type="text" class="form-control scan" placeholder="Scan Product">
                                   <div class="input-group-append">
-                                      <button type="button" class="btn btn-primary verify_sku">Verify</button>
-                                      @csrf
+                                      <span class="input-group-text bg-denim border-denim text-white verify_sku">Verify</span>
+                                      
                                   </div> 
                               </div>
                                 
@@ -227,42 +247,62 @@
 
 
   <div class="tab" id="final">
+      <div class="card m-0 mb-3">
+          <h4 class="card-header font-weight-light">
+              Order Details
+          </h4>
+          <div class="card-body">
+              <div class="row mb-4">
+                  <div class="col-md-6">
+                      <p class="card-text"> <span>Order #: </span> <br> {{$order->cust_order_no}}</p>
+                  </div>
+      
+                  <div class="col-md-6">
+                      <p class="card-text"> <span>Customer Name: </span> <br> {{$order->cust_name}}</p>
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-6">
+                      <p class="card-text"> <span>Shipping Address: </span> <br> {{$order->street_address}} <br> {{$order->city . ', ' . $order->state . ' ' . $order->zip . ' '}}</p>
+                  </div>
+          
+                  <div class="col-md-6">
+                      <p class="card-text"> <span>Current Fulfillment Status: </span> <br> {{$order->fulfillment_status}}</p>
+                  </div>
+              </div>
+              
+          </div>
+          </div>
+          
+
         <div class="card overflow-auto m-0 mb-3 w-100" style="height: 100%">
-                <h4 class="card-header font-weight-light">
-                    Order Products
-                </h4>
                 <div class="card-body final-card-body">
                     @foreach ($order->basic_units as $unit)
                         <div class="row mb-4">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <p class="mb-0">SKU #: </p>
                                 <p class="product_sku unit">{{$unit->sku}}</p>
                             </div>
                 
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <p class="mb-0">Description: </p>
                                 <p>{{$unit->description}}</p>
                             </div>
-                            <div class="col-md-4">
-                                <p class="card-text">
-                                    <div class="row mb-4">
-                                        <div class="col-md-6">
-                                            <label class="font-weight-normal" for="">Boxed
-                                              <input type="checkbox" class="" name="" id="">
-                                          </label>
-                                        </div>
-                                        <div class="col-md-6">
-                                                <label class="font-weight-normal" for="">Label On
-                                                  <input type="checkbox" class="" name="" id="">
-                                              </label>
-                                            </div>
-                                    </div>
-                                </p>
-                            </div>
+
                         </div>
                     @endforeach
+                    <div class="row mb-4">
+                      <div class="col-md-12">
+                          <label class="font-weight-normal" for="">Is the following order Boxed and Labeled?
+                              <input type="checkbox" class="" name="" id="">
+                          </label>
+                      </div>
+                    </div>
                 </div>
             </div>
+
+  
   </div>
 
   <div style="overflow:auto;">
@@ -357,14 +397,17 @@ function nextPrev(n) {
             currentTab = currentTab-1;
             showTab(currentTab);
             console.log('Success');
-            $('.card').find('.final-card-body').html(success);
+            $('#nextBtn').attr('disabled', true)
+            $('.modal-body').html(success);
+            $('.modal').modal('show');
             
         })
 
         .fail(function (jqXHR, textStatus, error) {
             currentTab = currentTab-1;
             showTab(currentTab);
-            $('.card').find('.final-card-body').html(fail);
+            $('.modal-body').html(fail);
+            $('.modal').modal('show');
             
         });
   }
@@ -395,7 +438,7 @@ function validateForm() {
           valid = false;
       }
       else{
-        y[i].classList.remove('invalid');
+        y[i].closest('label').classList.remove('invalid');
       }
     }
     if(y[i].type === 'text'){
@@ -429,9 +472,11 @@ function fixStepIndicator(n) {
   x[n].className += " active";
 }
 
-$(document).on('click', '.verify_sku', function(e){
+$('.scan').on('input', function(e){
     e.preventDefault();
-    var button = $(this);
+    var button = $(this).next().children('.verify_sku');
+   
+    console.log(button);
     var sku = '';
     var barcode = '';
     var type = '';
@@ -442,6 +487,7 @@ $(document).on('click', '.verify_sku', function(e){
     }
     $.ajax({
     type: 'POST',
+    headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"},
     url: '/verifyorderskus/{{$order->id}}',
     data: {
         sku: sku,
@@ -451,8 +497,8 @@ $(document).on('click', '.verify_sku', function(e){
     },
     })
     .done(function (result) {
-        $(button).removeClass('btn-danger');
-        $(button).addClass('btn-success');
+        $(button).removeClass('bg-danger border-danger');
+        $(button).addClass('bg-success border-success');
         $(button).html('<i class="fas fa-check-circle"></i>');
         $(button).closest('input').removeClass('invalid');
         $(button).parent().prev('input').removeClass('invalid');
@@ -460,8 +506,8 @@ $(document).on('click', '.verify_sku', function(e){
     })
 
     .fail(function (jqXHR, textStatus, error) {
-        $(button).removeClass('btn-success');
-        $(button).addClass('btn-danger');
+        $(button).removeClass('bg-success border-success');
+        $(button).addClass('bg-danger border-danger');
         $(button).html('<i class="fas fa-times-circle"></i>');
         
         $(button).parent().prev('input').addClass('invalid');

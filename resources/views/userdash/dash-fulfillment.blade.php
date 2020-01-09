@@ -275,22 +275,22 @@ Fulfilment Orders
                                 <td class="py-0 border-0"></td>
                                 <td class="py-0 border-0" colspan="12">
                                     <div id="details{{$order->id}}" class="accordion-body details collapse">
-                                        <table class="table table-sm bg-whitewash">
+                                        <table class="table table-sm bg-ghostwhite">
                                             <thead>
                                                 <tr>
-                                                    <th width="10%">SKU</th>
-                                                    <th width="10%">Description</th>
-                                                    <th width="10%">Barcode</th>
+                                                    <th width="7%">SKU</th>
+                                                    <th width="13%">Description</th>
+                                                    <th width="10%">UPC</th>
                                                     <th width="10%">Container Type</th>
                                                     <th width="10%">Quantity</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td width="10%">{{$unit->sku}}</td>
-                                                    <td width="10%">{{$unit->description}}</td>
-                                                    <td width="10%"></td>
-                                                    <td width="10%">Loose Item</td>
+                                                    <td width="7%">{{$unit->sku}}</td>
+                                                    <td width="13%">{{$unit->description}}</td>
+                                                    <td width="10%">{{$unit->upc}}</td>
+                                                    <td width="10%">Unit</td>
                                                     <td width="10%">{{$unit->pivot->quantity}}</td>
                                                 </tr>
                                             </tbody>
@@ -307,21 +307,21 @@ Fulfilment Orders
                                 <td class="py-0 border-0"></td>
                                 <td class="py-0 border-0" colspan="12">
                                     <div id="details{{$order->id}}" class="accordion-body details collapse">
-                                        <table class="table table-sm bg-whitewash">
+                                        <table class="table table-sm bg-ghostwhite">
                                             <thead>
                                                 <tr>
-                                                    <th  width="10%">SKU</th>
-                                                    <th  width="10%">Description</th>
-                                                    <th  width="10%">Barcode</th>
+                                                    <th  width="7%">SKU</th>
+                                                    <th  width="13%">Description</th>
+                                                    <th  width="10%">UPC</th>
                                                     <th  width="10%">Container Type</th>
                                                     <th  width="10%">Quantity</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td  width="10%">{{$kit->sku}}</td>
-                                                    <td  width="10%">{{$kit->description}}</td>
-                                                    <td  width="10%"></td>
+                                                    <td  width="7%">{{$kit->sku}}</td>
+                                                    <td  width="13%">{{$kit->description}}</td>
+                                                    <td  width="10%">{{$kit->upc}}</td>
                                                     <td  width="10%">Kit</td>
                                                     <td  width="10%">{{$kit->pivot->quantity}}</td>
                                                 </tr>
@@ -340,21 +340,21 @@ Fulfilment Orders
                                 <td class="py-0 border-0"></td>
                                 <td class="py-0 border-0" colspan="12">
                                     <div id="details{{$order->id}}" class="accordion-body details collapse">
-                                        <table class="table table-sm bg-whitewash">
+                                        <table class="table table-sm bg-ghostwhite">
                                             <thead>
                                                 <tr>
-                                                    <th  width="10%">SKU</th>
-                                                    <th  width="10%">Description</th>
-                                                    <th  width="10%">Barcode</th>
+                                                    <th  width="7%">SKU</th>
+                                                    <th  width="13%">Description</th>
+                                                    <th  width="10%">UPC</th>
                                                     <th  width="10%">Container Type</th>
                                                     <th  width="10%">Quantity</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td  width="10%">{{$case->sku}}</td>
-                                                    <td  width="10%">{{$case->description}}</td>
-                                                    <td  width="10%"></td>
+                                                    <td  width="7%">{{$case->sku}}</td>
+                                                    <td  width="13%">{{$case->description}}</td>
+                                                    <td  width="10%">{{$case->upc}}</td>
                                                     <td  width="10%">Case</td>
                                                     <td  width="10%">{{$case->pivot->quantity}}</td>
                                                 </tr>
@@ -372,21 +372,21 @@ Fulfilment Orders
                                 <td class="py-0 border-0"></td>
                                 <td class="py-0 border-0" colspan="12">
                                     <div id="details{{$order->id}}" class="accordion-body details collapse">
-                                        <table class="table table-sm bg-whitewash">
+                                        <table class="table table-sm bg-ghostwhite">
                                             <thead>
                                                 <tr>
-                                                    <th  width="10%">SKU</th>
+                                                    <th  width="7%">SKU</th>
                                                     <th  width="10%">Description</th>
-                                                    <th  width="10%">Barcode</th>
+                                                    <th  width="10%">UPC</th>
                                                     <th  width="10%">Container Type</th>
                                                     <th  width="10%">Quantity</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td  width="10%">{{$carton->sku}}</td>
+                                                    <td  width="13%">{{$carton->sku}}</td>
                                                     <td  width="10%">{{$carton->description}}</td>
-                                                    <td  width="10%"></td>
+                                                    <td  width="10%">{{$carton->upc}}</td>
                                                     <td  width="10%">Carton</td>
                                                     <td  width="10%">{{$carton->pivot->quantity}}</td>
                                                 </tr>
@@ -404,21 +404,21 @@ Fulfilment Orders
                                 <td class="py-0 border-0"></td>
                                 <td class="py-0 border-0" colspan="12">
                                     <div id="details{{$order->id}}" class="accordion-body details collapse">
-                                        <table class="table table-sm bg-whitewash">
+                                        <table class="table table-sm bg-ghostwhite">
                                             <thead>
                                                 <tr>
-                                                    <th  width="10%">SKU</th>
-                                                    <th  width="10%">Description</th>
-                                                    <th  width="10%">Barcode</th>
+                                                    <th  width="7%">SKU</th>
+                                                    <th  width="13%">Description</th>
+                                                    <th  width="10%">UPC</th>
                                                     <th  width="10%">Container Type</th>
                                                     <th  width="10%">Quantity</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td  width="10%">{{$pallet->sku}}</td>
-                                                    <td  width="10%">{{$pallet->description}}</td>
-                                                    <td  width="10%"></td>
+                                                    <td  width="7%">{{$pallet->sku}}</td>
+                                                    <td  width="13%">{{$pallet->description}}</td>
+                                                    <td  width="10%">{{$pallet->upc}}</td>
                                                     <td  width="10%">Pallet</td>
                                                     <td  width="10%">{{$pallet->pivot->quantity}}</td>
                                                 </tr>

@@ -16,6 +16,7 @@ use App\OrderNumber;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\StorUpdateMail;
 use App\Mail\StorRequestMail;
+use App\Mail\OrderFulfilled;
 use App\Mail\StorRemoveMail;
 use App\Mail\CustomerStorRequestMail;
 use Illuminate\Support\Facades\Validator;
@@ -665,6 +666,9 @@ class OrdersController extends Controller
                 $order->state = $request->state;
                 $order->zip = $request->zip;
                 $order->status = 'Pending Approval';
+                $order->order_type = 'Fulfill Items';
+                $order->financial_status = 'Unpaid';
+                $order->fulfillment_status = 'Unfulfilled';
                 $order->save();
 
 
@@ -707,6 +711,7 @@ class OrdersController extends Controller
                         $pallet = new Pallet();
                         $pallet->user_id = auth()->user()->id;
                         $pallet->company = auth()->user()->company_name;
+                        dd($container_barcodes[$i][0]);
                         $pallet->upc = $container_barcodes[$i][0];
                         $pallet->save();
                         $total_pallets += $container_qtys[$i][0];
@@ -899,7 +904,7 @@ class OrdersController extends Controller
                 DB::commit();
                 Mail::to('ship@fillstorship.com')->send(new StorRequestMail($order));
                 return response()->json([
-                    'success'  => 'Order submitted successfully. Your Order # is ' . $order->order_id . ''
+                    'success'  => 'Order submitted successfully. Your Order # is ' . $order->orderid . ''
                 ]);
                 
             } catch (\Exception $e) {
@@ -1729,6 +1734,7 @@ class OrdersController extends Controller
                     $kitobj = Kit::find($kit->pivot->kit_id);
                     $kitobj->total_qty -= $kit->pivot->quantity;
                     $kitobj->save();
+                    /*
                     if ($this->hasUnits($kit, 'kit')) {
                         foreach ($kit->basic_units->all() as $unit) {
                             $unitobj = Basic_Unit::find($unit->pivot->basic__unit_id);
@@ -1737,6 +1743,7 @@ class OrdersController extends Controller
                             $unitobj->save();
                         }
                     }
+                    */
                 }
             }
 
@@ -1748,12 +1755,14 @@ class OrdersController extends Controller
                     $unitobj->save();
                 }
             }
+            Mail::to('ship@fillstorship.com')->send(new OrderFulfilled($order));
         }
 
 
         $order->save();
         DB::commit();
         Mail::to('ship@fillstorship.com')->send(new StorUpdateMail($order));
+        
         return redirect()->back()->with('success', 'Success. Order #: ' . $order->orderid . ' has been updated.');
 
 

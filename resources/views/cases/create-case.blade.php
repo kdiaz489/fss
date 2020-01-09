@@ -200,73 +200,87 @@ Create Case
 
     <!-- Flash Alerts Ends -->
 
-    <form action="/createcase" id="createcase" method="POST">
-        <div class="form-row justify-content-center">
-            <div class="col-md-8">
-                <span class="text-center" id="result"></span>
+    <div class="row justify-content-center mt-4">
+        <div class="col-sm-8">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title font-weight-bold">Case Information</h5>
+              <p class="card-text">
+                  <form action="/createcase" id="createcase" method="POST">
+                    <div class="form-row justify-content-center">
+                        <div class="col-md-8">
+                            <span class="text-center" id="result"></span>
+                        </div>
+            
+                    </div>
+            
+            
+                    <div class="form-row justify-content-center mb-4">
+            
+                        <div class="col-md-6">
+                            <label class="font-weight-normal" for="sku">Case SKU</label>
+                            <input type="text" name="sku" class="form-control form-control-sm" value="{{ old('sku')}}"
+                                placeholder="Sku #">
+                            <div style="font-weight: 700; color:red">{{$errors->first('sku')}}</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="font-weight-normal" for="upc">UPC/Barcode</label>
+                            <input type="text" name="upc" class="form-control form-control-sm" placeholder="UPC #">
+                        </div>
+                    </div>
+            
+                    <div class="form-row justify-content-center mb-4">
+                        <div class="col-md-12">
+                            <label class="font-weight-normal" for="desc">Description</label>
+                            <textarea name="desc" id="" cols="30" rows="3" class="form-control form-control-sm"
+                                placeholder="Description Here">{{ old('desc')}}</textarea>
+                            <div style="font-weight: 700; color:red">{{$errors->first('desc')}}</div>
+                        </div>
+                    </div>
+            
+                    <div class="form-row justify-content-center mb-4">
+                        <div class="col-md-12 justify-content-center">
+                          <div class="table-responsive">
+                            <table class="table table-bordered table-striped" id="user_table">
+                                <thead>
+                                    <tr>
+                                        <th class="font-weight-normal" width="20%">Select Items</th>
+                                        <th class="font-weight-normal" width="20%">Type</th>
+                                        <th class="font-weight-normal" width="20%">Quantity</th>
+                                        <th class="font-weight-normal" width="20%">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="form_inventory">
+            
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        
+                                        <td colspan="4" align="left">
+                                            <button type="button" name="add" id="" class="btn btn-success btn-sm add-case-row circle"><i class="fas fa-lg fa-plus"></i></button> <small class="text-success">Add item to case</small>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                          </div>
+                        </div>
+                    </div>
+                    
+                        
+                          
+                        <button type="submit" name="save" id="save" class="btn btn-primary bg-denim btn-sm border-0" >Submit Edit</button>
+                    
+                
+                    @csrf
+                </form>
+              </p>
             </div>
-
+          </div>
         </div>
 
+      </div>
 
-        <div class="form-row justify-content-center mb-4">
 
-            <div class="col-md-4">
-                <label for="sku">Individual Items Sku</label>
-                <input type="text" name="sku" class="form-control form-control-sm" value="{{ old('sku')}}"
-                    placeholder="Sku #">
-                <div style="font-weight: 700; color:red">{{$errors->first('sku')}}</div>
-            </div>
-            <div class="col-md-4">
-                <label for="upc">UPC/Barcode</label>
-                <input type="text" name="upc" class="form-control form-control-sm" placeholder="UPC #">
-            </div>
-        </div>
-
-        <div class="form-row justify-content-center mb-4">
-            <div class="col-md-8">
-                <label for="desc">Description</label>
-                <textarea name="desc" id="" cols="30" rows="3" class="form-control form-control-sm"
-                    placeholder="Description Here">{{ old('desc')}}</textarea>
-                <div style="font-weight: 700; color:red">{{$errors->first('desc')}}</div>
-            </div>
-        </div>
-
-        <div class="form-row justify-content-center mb-4">
-            <div class="col-md-8 justify-content-center">
-              <div class="table-responsive">
-                <table class="table table-bordered table-striped" id="user_table">
-                    <thead>
-                        <tr>
-                            <th width="20%">Select Items</th>
-                            <th width="20%">Type</th>
-                            <th width="20%">Quantity</th>
-                            <th width="20%">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody class="form_inventory">
-
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            
-                            <td colspan="4" align="left">
-                                <button type="button" name="add" id="" class="btn btn-success btn-sm add-case-row circle"><i class="fas fa-lg fa-plus"></i></button> <small class="text-success">Add item to case</small>
-                            </td>
-                        </tr>
-                    </tfoot>
-                </table>
-              </div>
-            </div>
-        </div>
-        <div class="form-row justify-content-center">
-            <div class="col-md-8">
-                <input type="submit" name="save" id="save" class="btn btn-primary bg-denim btn-sm border-0" value="Submit Edit">
-            </div>
-        </div>
-    
-        @csrf
-    </form>
 
 </div>
 

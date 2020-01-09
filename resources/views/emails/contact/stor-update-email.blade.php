@@ -1,18 +1,13 @@
 @component('mail::message')
-# There has been an update on your Inventory Request.
-<br>
-Order Status: {{$data['status']}}
+#There has been an update on your Inventory Request.
 <br>
 See details below. 
 
-
-<strong>User iD: </strong> {{$data['user_id']}}
+<br>
+<strong>Order ID #: </strong> {{$data['orderid']}}
 <br>
 
 <strong>Company: </strong> {{$data['company']}}
-<br>
-
-<strong>Order Name: </strong> {{$data['name']}}
 <br>
 
 <strong>Order Type: </strong> {{$data['order_type']}}
@@ -21,19 +16,9 @@ See details below.
 <strong>Barcode: </strong> {{$data['barcode']}}
 <br>
 
-<strong>Carton Quantity: </strong> {{$data['carton_qty']}}
+<strong>Status: </strong> {{$data['status']}}
 <br>
 
-<strong>Case Quantity: </strong> {{$data['case_qty']}}
-<br>
-
-<strong>Kit Quantity: </strong> {{$data['kit_qty']}}
-<br>
-
-<strong>Unit Quantity: </strong> {{$data['unit_qty']}}
-<br>
-
-<strong>Total Quantity: </strong> {{$data['tot_qty']}}
 <br>
 
 
