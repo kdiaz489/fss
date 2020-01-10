@@ -64,9 +64,10 @@ class ShopifyController extends Controller
                 
                 $shopify_order = new Order();
                 $ordernumber = new OrderNumber();
+                $user = User::where('company_name', 'Color Proof')->first();
                 $ordernumber->save();
                 $ordernumber->fss_id = $ordernumber->id + 100;
-                $ordernumber->user_id = User::where('company_name', 'Color Proof')->id;
+                $ordernumber->user_id = $user->id;
                 $shopify_order->orderid = $ordernumber->fss_id;
                 $shopify_order->ordernumber_id = $ordernumber->id;
                 $ordernumber->save();
@@ -74,12 +75,13 @@ class ShopifyController extends Controller
                 $shopify_order->cust_order_no = $orders[$i]->order_number;
                 $shopify_order->user_id = '3';
                 $shopify_order->shopify_id = $orders[$i]->id;
-                $shopify_order->company = User::where('company_name', 'Color Proof')->company_name;
+                $shopify_order->company = $user->company_name;
                 $shopify_order->cust_name = ucwords($orders[$i]->customer->first_name . ' ' . $orders[$i]->customer->last_name);
                 $shopify_order->street_address = ucwords($orders[$i]->shipping_address->address1 . ' ' . $orders[$i]->shipping_address->address2);
                 $shopify_order->city = ucwords($orders[$i]->shipping_address->city);
                 $shopify_order->state = ucwords($orders[$i]->shipping_address->province);
                 $shopify_order->zip = ucwords($orders[$i]->shipping_address->zip);
+                
                 if($orders[$i]->fulfillment_status == null){
                     $shopify_order->fulfillment_status = 'Unfulfilled';
                 }
@@ -106,6 +108,14 @@ class ShopifyController extends Controller
                             $kit = Kit::where('sku', $orders[$i]->line_items[$y]->sku)->where('company', 'Color Proof')->first();
                             $shopify_order->kit_qty +=  $orders[$i]->line_items[$y]->quantity;   
                             $shopify_order->kits()->attach([['kit_id' => $kit->id, 'quantity' => $orders[$i]->line_items[$y]->quantity]]);
+                        }
+                        else{
+                            /*
+                            $kit = new Kit();
+                            $kit->sku = $orders[$i]->line_items[$y]->sku;
+                            $shopify_order->kit_qty +=  $orders[$i]->line_items[$y]->quantity;  
+                            $kit->description = $orders[$i]->line_items[$y]->quantity;
+                            */
                         }
                 }
                     
