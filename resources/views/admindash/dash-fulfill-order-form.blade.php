@@ -233,7 +233,7 @@
                               <div class="input-group">
                                   <input type="text" class="form-control scan" placeholder="Scan Product">
                                   <div class="input-group-append">
-                                      <span class="input-group-text bg-denim border-denim text-white verify_sku">Verify</span>
+                                      <button type="submit" class="btn btn-sm btn-secondary bg-denim border-denim text-white verify_sku">Verify</button>
                                       
                                   </div> 
                               </div>
@@ -472,9 +472,9 @@ function fixStepIndicator(n) {
   x[n].className += " active";
 }
 
-$('.scan').on('input', function(e){
+$('.verify_sku').on('click', function(e){
     e.preventDefault();
-    var button = $(this).next().children('.verify_sku');
+    var button = $(this);
    
     console.log(button);
     var sku = '';
