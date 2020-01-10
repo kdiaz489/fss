@@ -956,8 +956,8 @@ class OrdersController extends Controller
         
         if($request->type == 'Unit'){
            
-            if (Basic_Unit::where('sku', $request->sku)->where('user_id', '3')->exists()) {
-                $unit = Basic_Unit::where('sku', $request->sku)->where('user_id', '3')->first();
+            if (Basic_Unit::where('sku', $request->sku)->where('company', 'Color Proof')->exists()) {
+                $unit = Basic_Unit::where('sku', $request->sku)->where('company', 'Color Proof')->first();
                 //dd($unit->upc);
                 if(strval($unit->upc) == strval($request->barcode)){
                     return response()->json([
@@ -966,7 +966,7 @@ class OrdersController extends Controller
                 }
                 else{
                     return response()->json([
-                        'error'  => 'barcode check. this item does not match the product SKU'
+                        'error'  => 'Barcode check. this item does not match the product SKU'
                     ], 404);
                 }
             }
