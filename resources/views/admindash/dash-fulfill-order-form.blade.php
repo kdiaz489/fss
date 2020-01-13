@@ -220,7 +220,7 @@
                 <div class="card-body">
                     @foreach ($order->basic_units as $unit)
                         <div class="row mb-2">
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <p class="mb-0">SKU #: </p>
                                 <p class="product_sku unit">{{$unit->sku}}</p>
                             </div>
@@ -229,13 +229,19 @@
                                 <p class="mb-0">Description: </p>
                                 <p>{{$unit->description}}</p>
                             </div>
-                            <div class="col-md-5">
+
+                            <div class="col-md-2">
+                                <p class="mb-0">Quantity: </p>
+                                <p class="text-center">{{$unit->pivot->quantity}}</p>
+                            </div>
+
+                            <div class="col-md-4">
                               <div class="input-group">
-                                  <input type="text" class="form-control scan" placeholder="Scan Product">
-                                  <div class="input-group-append">
-                                      <button type="submit" class="btn btn-sm btn-secondary bg-denim border-denim text-white verify_sku">Verify</button>
-                                      
-                                  </div> 
+                                    <input type="text" class="form-control scan" placeholder="Scan Product">
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-sm btn-secondary bg-denim border-denim text-white verify_sku">Verify</button>
+                                    </div> 
+                              
                               </div>
                                 
                             </div>
@@ -472,48 +478,54 @@ function fixStepIndicator(n) {
   x[n].className += " active";
 }
 
-$('.scan').on('keypress', function(e){
-    e.preventDefault();
-    if(e.which == 13){
-      var button = $(this).next().children('.verify_sku');
-    
-      console.log(button);
-      var sku = '';
-      var barcode = '';
-      var type = '';
-      sku = $(this).closest('.row').find('.product_sku').text();
-      barcode = $(this).closest('.input-group').find('input[type=text]').val();
-      if($(this).closest('.row').find('.product_sku').hasClass('unit')){
-          type = 'Unit';
-      }
-      $.ajax({
-      type: 'POST',
-      headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"},
-      url: '/verifyorderskus/{{$order->id}}',
-      data: {
-          sku: sku,
-          barcode: barcode,
-          type: type,
-          _token: $(this).next("input[name=_token]").val()
-      },
-      })
-      .done(function (result) {
-          $(button).removeClass('bg-danger border-danger');
-          $(button).addClass('bg-success border-success');
-          $(button).html('<i class="fas fa-check-circle"></i>');
-          $(button).closest('input').removeClass('invalid');
-          $(button).parent().prev('input').removeClass('invalid');
-          
-      })
 
-      .fail(function (jqXHR, textStatus, error) {
-          $(button).removeClass('bg-success border-success');
-          $(button).addClass('bg-danger border-danger');
-          $(button).html('<i class="fas fa-times-circle"></i>');
-          
-          $(button).parent().prev('input').addClass('invalid');
-      });
-  }
+
+$('.verify_sku').focus(function(e){
+  e.preventDefault();
+  $(this).click();
+});
+
+$('.verify_sku').on('click', function(e){
+    
+    //var button = $(this).next().children('.verify_sku');
+    var button = $(this);
+    console.log(button);
+    var sku = '';
+    var barcode = '';
+    var type = '';
+    sku = $(this).closest('.row').find('.product_sku').text();
+    console.log('SKU = ' + sku)
+    barcode = $(this).closest('.input-group').find('input[type=text]').val();
+    if($(this).closest('.row').find('.product_sku').hasClass('unit')){
+        type = 'Unit';
+    }
+    $.ajax({
+    type: 'POST',
+    headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"},
+    url: '/verifyorderskus/{{$order->id}}',
+    data: {
+        sku: sku,
+        barcode: barcode,
+        type: type,
+        _token: $(this).next("input[name=_token]").val()
+    },
+    })
+    .done(function (result) {
+        $(button).removeClass('bg-danger border-danger');
+        $(button).addClass('bg-success border-success');
+        $(button).html('<i class="fas fa-check-circle"></i>');
+        $(button).closest('input').removeClass('invalid');
+        $(button).parent().prev('input').removeClass('invalid');
+        
+    })
+
+    .fail(function (jqXHR, textStatus, error) {
+        $(button).removeClass('bg-success border-success');
+        $(button).addClass('bg-danger border-danger');
+        $(button).html('<i class="fas fa-times-circle"></i>');
+        
+        $(button).parent().prev('input').addClass('invalid');
+    });
 });
 
 </script>
