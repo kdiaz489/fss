@@ -94,7 +94,17 @@ class ShopifyController extends Controller
                 $shopify_order->save();
                 for($y = 0; $y < count($orders[$i]->line_items); $y++){
                     
+
+                    if (Basic_Unit::where('sku', $orders[$i]->line_items[$y]->sku)->where('company', 'Color Proof')->exists()) {
+                        $unit = Basic_Unit::where('sku', $orders[$i]->line_items[$y]->sku)->where('company', 'Color Proof')->first();
+                        $shopify_order->unit_qty +=  $orders[$i]->line_items[$y]->quantity;           
+                        $shopify_order->basic_units()->attach([['basic__unit_id' => $unit->id, 'quantity' => $orders[$i]->line_items[$y]->quantity]]);
+            
+                    }
+
                     //dd(gettype($orders[$i]->line_items[$y]->sku));
+                    /*
+                    
                     if(!(STR::contains($orders[$i]->line_items[$y]->name, ['kit', 'set', 'Kit', 'Set', 'KIT', 'SET']))){
                         if (Basic_Unit::where('sku', $orders[$i]->line_items[$y]->sku)->where('company', 'Color Proof')->exists()) {
                             $unit = Basic_Unit::where('sku', $orders[$i]->line_items[$y]->sku)->where('company', 'Color Proof')->first();
@@ -103,6 +113,8 @@ class ShopifyController extends Controller
                 
                         }
                     }
+                    */
+                    /*
                     if(STR::contains($orders[$i]->line_items[$y]->name, ['kit', 'set', 'Kit', 'Set', 'KIT', 'SET'])){
                         if (Kit::where('sku', $orders[$i]->line_items[$y]->sku)->where('company', 'Color Proof')->exists()) {
                             $kit = Kit::where('sku', $orders[$i]->line_items[$y]->sku)->where('company', 'Color Proof')->first();
@@ -110,14 +122,16 @@ class ShopifyController extends Controller
                             $shopify_order->kits()->attach([['kit_id' => $kit->id, 'quantity' => $orders[$i]->line_items[$y]->quantity]]);
                         }
                         else{
-                            /*
+                            
                             $kit = new Kit();
                             $kit->sku = $orders[$i]->line_items[$y]->sku;
                             $shopify_order->kit_qty +=  $orders[$i]->line_items[$y]->quantity;  
                             $kit->description = $orders[$i]->line_items[$y]->quantity;
-                            */
+                            
                         }
                 }
+                */
+                
                     
                 }
                 $shopify_order->save();
