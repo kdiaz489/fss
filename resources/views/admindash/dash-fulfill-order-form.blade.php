@@ -173,6 +173,8 @@
 
 <div class="col-md-12">
 
+<input type="text" class="hidden-status" value="{{$order->status}}" hidden>
+
 <main class="content" role="content">
 	
 	<section id="section1">
@@ -182,80 +184,78 @@
 <form class="p-0 mb-3" id="filForm" action="">
         {{method_field('PUT')}}
   <h1 class="font-weight-light mb-3">Fulfill Shopify Order</h1>
+
   <!-- One "tab" for each step in the form: -->
   <div class="tab">
     <div class="card m-0 mb-3">
-            <h4 class="card-header font-weight-light">
-                Order Details
-            </h4>
+            <div class="card-header">
+                <div class="row justify-content-center">
+                  <div class="col-md-4">
+                    <h4 class="font-weight-light">Order Details</h4>
+                  </div>
+                  <div class="col-md-4 text-center">
+                    @if ($order->status != 'Completed')
+                      <h5><span class="badge badge-pill badge-warning">{{$order->status}}</span></h5>
+                    @else 
+                      <h5><span class="badge badge-pill badge-success">{{$order->status}}</span></h5>
+                    @endif
+                  
+                  </div>
+                  <div class="col-md-4 text-right">
+                    <h4 class="font-weight-light">#{{$order->cust_order_no}}</h4>
+                  </div>
+                </div>
+
+              </div>
             <div class="card-body">
-                <div class="row mb-4">
-                    <div class="col-md-6">
-                        <p class="card-text"> <span>Order #: </span> <br> {{$order->cust_order_no}}</p>
+                @foreach ($order->basic_units as $unit)
+                <div class="row p-3 border-top border-bottom mb-2">
+                    <div class="col-md-7 m-auto">
+                        <p class="mb-0">{{$unit->description}}</p>
+                        <p class="product_sku unit">{{$unit->sku}}</p>
+                       
                     </div>
-        
-                    <div class="col-md-6">
-                        <p class="card-text"> <span>Customer Name: </span> <br> {{$order->cust_name}}</p>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <p class="card-text"> <span>Shipping Address: </span> <br> {{$order->street_address}} <br> {{$order->city . ', ' . $order->state . ' ' . $order->zip . ' '}}</p>
+                    <div class="col-md-1 m-auto">
+                        <p class="text-left">x{{$unit->pivot->quantity}}</p>
                     </div>
-            
-                    <div class="col-md-6">
-                        <p class="card-text"> <span>Current Fulfillment Status: </span> <br> {{$order->fulfillment_status}}</p>
+
+                    <div class="col-md-4">
+                      <div class="input-group">
+                            <input type="text" class="form-control scan" placeholder="Scan Product">
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-sm btn-secondary bg-denim border-denim text-white verify_sku">Verify</button>
+                            </div> 
+                      
+                      </div>
+                        
                     </div>
                 </div>
+            @endforeach
                 
             </div>
             </div>
   </div>
-  <div class="tab">
-        <div class="card overflow-auto m-0 mb-3" style="height: 100%">
-                <h4 class="card-header font-weight-light">
-                    Order Products
-                </h4>
-                <div class="card-body">
-                    @foreach ($order->basic_units as $unit)
-                        <div class="row mb-2">
-                            <div class="col-md-2">
-                                <p class="mb-0">SKU #: </p>
-                                <p class="product_sku unit">{{$unit->sku}}</p>
-                            </div>
-                
-                            <div class="col-md-4">
-                                <p class="mb-0">Description: </p>
-                                <p>{{$unit->description}}</p>
-                            </div>
-
-                            <div class="col-md-2">
-                                <p class="mb-0">Quantity: </p>
-                                <p class="text-center">{{$unit->pivot->quantity}}</p>
-                            </div>
-
-                            <div class="col-md-4">
-                              <div class="input-group">
-                                    <input type="text" class="form-control scan" placeholder="Scan Product">
-                                    <div class="input-group-append">
-                                        <button type="button" class="btn btn-sm btn-secondary bg-denim border-denim text-white verify_sku">Verify</button>
-                                    </div> 
-                              
-                              </div>
-                                
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-  </div>
-
 
   <div class="tab" id="final">
       <div class="card m-0 mb-3">
           <h4 class="card-header font-weight-light">
-              Order Details
+              <div class="row justify-content-center">
+                  <div class="col-md-4">
+                    <h4 class="font-weight-light">Order Details</h4>
+                  </div>
+                  <div class="col-md-4 text-center">
+                    @if ($order->stat != 'Completed')
+                      <h5><span class="badge badge-pill badge-warning">{{$order->status}}</span></h5>
+                    @else 
+                      <h5><span class="badge badge-pill badge-success">{{$order->status}}</span></h5>
+                    @endif
+                  
+                  </div>
+                  <div class="col-md-4 text-right">
+                    <h4 class="font-weight-light">#{{$order->cust_order_no}}</h4>
+                  </div>
+                </div>
           </h4>
           <div class="card-body">
               <div class="row mb-4">
@@ -321,7 +321,6 @@
   <div style="text-align:center;margin-top:40px;">
     <span class="step"></span>
     <span class="step"></span>
-    <span class="step"></span>
   </div>
   @csrf
 </form>
@@ -338,14 +337,27 @@
 
 <script>
 
+
 var success = '<div class="container app-success text-center justify-content-center" style="border: 1px solid #4BB543"> <p>Your order is fulfilled.\
                 <br><br> <i class="fas fa-check-circle" style="font-size: 2rem; color: #4BB543"></i></p> </div>';
 
 var fail = '<div class="container app-success text-center justify-content-center" style="border: 1px solid red"> <p>Your order was not fulfilled.\
 <br><br> <i class="fas fa-check-circle" style="font-size: 2rem; color: #4BB543"></i></p> </div>';
 
+var button = $('.verify_sku');
+for(var i = 0; i < button.length; i++){
+  console.log(button[i]);
+}
+
 // Multi-Step Form
 var currentTab = 0; // Current tab is set to be the first tab (0)
+if($('.hidden-status').val() != 'Picked'){
+  currentTab = 0;
+}
+else{
+  currentTab = 1;
+}
+
 showTab(currentTab); // Display the crurrent tab
 
 function showTab(n) {
@@ -359,9 +371,9 @@ function showTab(n) {
     document.getElementById("prevBtn").style.display = "inline";
   }
   if (n == (x.length - 1)) {
-    document.getElementById("nextBtn").innerHTML = "Submit";
+    document.getElementById("nextBtn").innerHTML = "Submit Fulfillment";
   } else {
-    document.getElementById("nextBtn").innerHTML = "Next";
+    document.getElementById("nextBtn").innerHTML = "Submit Pick";
   }
   //... and run a function that will display the correct step indicator:
   fixStepIndicator(n)
@@ -369,6 +381,7 @@ function showTab(n) {
 
 
 function nextPrev(n) {
+  console.log(n);
   // This function will figure out which tab to display
   var x = document.getElementsByClassName("tab");
   // Exit the function if any field in the current tab is invalid:
@@ -406,6 +419,9 @@ function nextPrev(n) {
             $('#nextBtn').attr('disabled', true)
             $('.modal-body').html(success);
             $('.modal').modal('show');
+            $('.badge').removeClass('badge-warning');
+            $('.badge').addClass('badge-success');
+            $('.badge').text('Completed');
             
         })
 
@@ -417,6 +433,26 @@ function nextPrev(n) {
             
         });
   }
+  else if(currentTab == 1){
+    $.ajax({
+    type: 'POST',
+        url: '/order/update/{{$order->id}}',
+        data:'&status=' + 'Picked',
+        })
+        .done(function (result) {
+            window.history.back();
+            
+        })
+
+        .fail(function (jqXHR, textStatus, error) {
+            currentTab = currentTab-1;
+            showTab(currentTab);
+            $('.modal-body').html(fail);
+            $('.modal').modal('show');
+            
+        });
+  }
+  
   else{
   // Otherwise, display the correct tab:
   showTab(currentTab);
@@ -496,6 +532,7 @@ $('.verify_sku').on('click', function(e){
     sku = $(this).closest('.row').find('.product_sku').text();
     console.log('SKU = ' + sku)
     barcode = $(this).closest('.input-group').find('input[type=text]').val();
+    console.log(barcode + 'Barcode');
     if($(this).closest('.row').find('.product_sku').hasClass('unit')){
         type = 'Unit';
     }

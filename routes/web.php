@@ -105,6 +105,8 @@ Route::get('/viewpallet/{id}', 'PalletsController@show');
 Route::delete('/removepallet/{id}', 'PalletsController@destroy');
 Route::get('/editpallet/{id}', 'PalletsController@edit');
 Route::put('/updatepallet/{id}', 'PalletsController@update');
+Route::get('/getpallet/{id}', 'PalletsController@getpallet');
+Route::post('/pickfrompallet/{id}', 'PalletsController@pickfrompallet');
 
 
 Route::get('/vieworder/{id}', 'OrdersController@show');
@@ -117,6 +119,7 @@ Route::post('/createtransout', 'OrdersController@store_transout_order');
 Route::get('/createfilorder', 'OrdersController@create_fil_order');
 Route::post('/createfilorder', 'OrdersController@store_fil_order');
 Route::post('/verifyorderskus/{id}', 'OrdersController@verify_order_skus');
+Route::get('/getorder/{id}', 'OrdersController@getorder');
 
 Route::resource('posts', 'PostsController');
 

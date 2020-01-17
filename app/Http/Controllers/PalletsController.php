@@ -43,6 +43,35 @@ class PalletsController extends Controller
         return view('pallet.create-pallet')->with('cartons', $cartons)->with('kits', $kits)->with('cases', $cases)->with('units', $units);
     }
 
+    public function getpallet($id){
+        $pallet = Pallet::with('cartons', 'cases')->find($id);
+        return collect(['pallet' => $pallet]);
+    }
+
+    public function pickfrompallet(Request $request, $id){
+        
+        $pallet = Pallet::with('cases')->find($id);
+        $item = $request->item;
+        $item_qty = $request->item_qty;
+        $cases = $pallet->cases;
+        
+        for($i = 0; $i < count($cases); $i++){
+            if($cases[$i]->sku == $item[$i]){
+                
+                $quantity = ((int)$cases[$i]->pivot->quantity - (int)$item_qty[$i]);
+                
+                $cases[$i]->pivot->quantity = $quantity;
+                $cases[$i]->pivot->save();
+
+                $cases[$i]->pallet_qty -= $item_qty[$i];
+                $cases[$i]->case_shelf_qty += $item_qty[$i];
+                $cases[$i]->save();
+
+                
+            }
+        }
+    }
+
     /**
      * Store a newly created resource in storage.
      *

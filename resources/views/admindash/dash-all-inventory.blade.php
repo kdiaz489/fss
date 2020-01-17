@@ -156,7 +156,25 @@ All Inventory
 
 @section('content')
 
-
+<!-- Modal -->
+<div class="modal fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" form="pick-form" class="btn btn-primary remove-submit">Remove</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 <div class="container-fluid dashboard-container w-95 p-0 m-auto">
@@ -241,6 +259,8 @@ All Inventory
                                     style="margin-right:1%">
                                     <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
                                 </a>
+
+                                
 
                                 <form action="/removepallet/{{$pallet->id}}" method="POST" class="float-left">
                                     @method('DELETE')
@@ -857,6 +877,11 @@ All Inventory
                                         <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
                                     </a>
 
+                                <a href="/getpallet/{{$pallet->id}}" class="float-left pick-pallet"
+                                        style="margin-right:1%">
+                                        <button class="btn btn-link text-success btn-sm" type="button">Pick</button>
+                                    </a>
+
                                     <form action="/removepallet/{{$pallet->id}}" method="POST" class="float-left">
                                         @method('DELETE')
                                         @csrf
@@ -1411,6 +1436,7 @@ All Inventory
                 @else
                 <p>You have 0 units.</p>
                 @endif
+                             
             
 </div>
 @endif
@@ -1421,6 +1447,76 @@ All Inventory
 
 @section('scripts')
 <script>
+
+$('.pick-pallet').on('click', function(e){
+    e.preventDefault();
+    var url = $(this).attr('href');
+    console.log('URL = ' + url);
+    var id = url.slice(16);
+    $.ajax({
+        headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"},
+        type: 'GET',
+        url: url,
+       
+    })
+    .done(function(data){
+        $('.modal-header').prepend('<h5>Remove from Pallet</h5>')
+        let pallet = data.pallet;
+        let html='<form id="pick-form" class="pallet-' + pallet.id + '">';
+        
+        if(pallet.cases.length > 0){
+            html += '';
+                for(var i = 0; i < pallet.cases.length; i++){
+                    html += '<div class="row mb-3"><div class="col-md-6">';
+                    html += '<label class="font-weight-normal">SKU <input type="text" class="form-control" value="' + pallet.cases[i].sku + '" name="item[]" readonly></div></label>';
+                    html += '<div class="col-md-6"><label class="font-weight-normal">Quantity <input type="number" name="item_qty[]" class="form-control" value="1"></label></div></div>';
+                }
+        }
+
+        if(pallet.cartons.length > 0){
+            html += '';
+                for(var i = 0; i < pallet.cartons.length; i++){
+                    html += '<div class="row"><div class="col-md-6">';
+                    html += '<label class="font-weight-normal">SKU <input type="text" class="form-control" value="' + pallet.cartons[i].upc + '" name="item[] readonly"></div></label>';
+                    html += '<div class="col-md-6"><label class="font-weight-normal"><input type="number" name="item_qty[]" class="form-control" value="1"></label></div>';
+
+                }
+        }
+        
+        html += '@csrf</form>';
+
+        $('.modal-body').html(html);
+        $('.modal').modal('show');
+
+        
+    })
+    .fail(function(data){
+        console.log('fail');
+    });
+
+});
+
+$(document).on('submit', '#pick-form', function(e){
+    e.preventDefault();
+
+    var pallet_id = $('#pick-form').attr('class').slice(7);
+    console.log(pallet_id);
+    $.ajax({
+        type: 'POST',
+        url: '/pickfrompallet/' + pallet_id,
+        data: $(this).serialize()
+
+    })
+    .done(function(data){
+        $('.modal-body').html('<p class="text-success">You have successfully picked from this pallet.</p>');
+        $('.modal').modal('show');
+    })
+    .fail(function(data){
+        $('.modal-body').html('<p class="text-danger">You did not successfully pick from this pallet. Please try again.</p>');
+        $('.modal').modal('show');
+    });
+
+});
 
 $('.units-table').dataTable({
     'order': [[0, 'asc']],
