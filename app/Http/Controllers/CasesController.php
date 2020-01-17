@@ -70,6 +70,9 @@ class CasesController extends Controller
             $case->basic_unit_qty = 0;
             $case->kit_qty = 0;
             $case->case_qty = 0;
+            $case->qty_per_case = 0;
+            $case->case_shelf_qty = 0;
+            $case->case_pallet_qty = 0;
             $case->carton_qty = 0;
             $case->pallet_qty = 0;
             $case->total_qty = 0;
@@ -87,7 +90,7 @@ class CasesController extends Controller
                         'quantity' => $item_qty[$i]
                     );
                     $unit_data[] = $data;
-                    $case->case_qty += $item_qty[$i];
+                    $case->qty_per_case += $item_qty[$i];
                     $case->save();
                     $case->basic_units()->attach($unit_data);
                 }
@@ -98,7 +101,7 @@ class CasesController extends Controller
                         'quantity' => $item_qty[$i]
                     );
                     $kit_data[] = $data;
-                    $case->case_qty += $item_qty[$i];
+                    $case->qty_per_case += $item_qty[$i];
                     $case->save();
                     $case->kits()->attach($kit_data);
                 }
@@ -171,7 +174,7 @@ class CasesController extends Controller
             $case = Cases::find($id);
             $case->sku = $request->sku;
             $case->upc = $request->upc;
-            $case->case_qty = 0;
+            $case->qty_per_case = 0;
             $case->description = $request->desc;
             $case->save();
             $case->kits()->detach();
@@ -189,7 +192,7 @@ class CasesController extends Controller
                         'quantity' => $item_qty[$i]
                     );
                     $unit_data[] = $data;
-                    $case->case_qty += $item_qty[$i];
+                    $case->qty_per_case += $item_qty[$i];
                     $case->save();
                     $case->basic_units()->attach($unit_data);
                 }
@@ -200,7 +203,7 @@ class CasesController extends Controller
                         'quantity' => $item_qty[$i]
                     );
                     $kit_data[] = $data;
-                    $case->case_qty += $item_qty[$i];
+                    $case->qty_per_case += $item_qty[$i];
                     $case->save();
                     $case->kits()->attach($kit_data);
                 }
@@ -223,12 +226,8 @@ class CasesController extends Controller
                         'sku' => $request->sku, 
                         'upc' => $request->upc, 
                         'description' => $request->desc,
-                        'loose_item_qty' => $request->loose_item_qty,
-                        'basic_unit_qty' => $request->basic_unit_qty,
-                        'kit_qty' => $request->kit_qty,
-                        'case_qty' => $request->case_qty,
-                        'carton_qty' => $request->carton_qty,
-                        'pallet_qty' => $request->pallet_qty,
+                        'case_shelf_qty' => $request->shelf_qty,
+                        'case_pallet_qty' => $request->pallet_qty,
                         'total_qty' => $request->total_qty,
                         'location' => $request->location,
                         'lot_num' => $request->lot_num,

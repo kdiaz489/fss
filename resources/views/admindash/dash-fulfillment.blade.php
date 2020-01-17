@@ -738,6 +738,7 @@
         
         var id = $(this).parent().prev().find('.container').attr('id').slice(7);
         var status = $(currentRow).find('.status');
+        var button = $(this);
         console.log(status);
 
         var formData = new FormData();
@@ -752,6 +753,10 @@
         data: formData,
         processData: false,
         contentType: false,
+        beforeSend:function(){
+            
+            $(button).attr('disabled','disabled');
+            }
         })
         .done(function (result) {
             $(currentRow).html('Picked');
@@ -853,7 +858,7 @@
         else if($(this).parent().prev().find('input[type="checkbox"]').prop('checked') == true){
             $(this).parent().prev().find('input[type="checkbox"]').parent().removeClass('invalid');
             var id = currentRow.find('.order-id').attr('id').slice(6);
-            console.log(id);
+            var button = $(this);
             $.ajax({
             type: 'POST',
             url: '/order/update/' + id,
@@ -862,6 +867,9 @@
                 _method: 'PUT',
                 _token: '{{csrf_token()}}'
             },
+            beforeSend:function(){
+            $(button).attr('disabled','disabled');
+            }
             })
             .done(function (result) {
                 var success = '<div class="border border-secondary text-center p-4"><h4 class="text-success">You have successfully fulfilled this order.</h4> <br> <br> <i class=" border p-4 rounded-circle text-white bg-success border-success fas fa-3x fa-thumbs-up"></i><div>';

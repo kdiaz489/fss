@@ -694,7 +694,6 @@ All Inventory
                         <th width="10%">Description</th>
                         <th width="10%">UPC</th>
                         <th width="10%">Quantity</th>
-                        <th width="10%">Qty/Kit</th>
                         <th width="10%">Location</th>
                         <th width="10%"></th>
                     </tr>
@@ -709,7 +708,6 @@ All Inventory
                         <td>{{$kit->description}}</td>
                         <td>{{$kit->upc}}</td>
                         <td>{{$kit->total_qty}}</td>
-                        <td>{{$kit->kit_qty}}</td>
                         <td>N/A</td>
                         <td>
 
@@ -898,7 +896,7 @@ All Inventory
                             <td class="py-0 border-0"></td>
                             <td class="py-0 border-0" colspan="12">
                                 <div id="details-pallet-{{$pallet->id}}" class="accordion-body details collapse">
-                                    <table class="table table-sm bg-whitewash">
+                                    <table class="table table-sm bg-ghostwhite">
                                         <thead>
                                             <tr>
                                                 <th width="10%">SKU</th>
@@ -931,7 +929,7 @@ All Inventory
                             <td class="py-0 border-0"></td>
                             <td class="py-0 border-0" colspan="12">
                                 <div id="details-pallet-{{$pallet->id}}" class="accordion-body details collapse">
-                                    <table class="table table-sm bg-whitewash">
+                                    <table class="table table-sm bg-ghostwhite">
                                         <thead>
                                             <tr>
                                                 <th width="10%">SKU</th>
@@ -963,7 +961,7 @@ All Inventory
                             <td class="py-0 border-0"></td>
                             <td class="py-0 border-0" colspan="12">
                                 <div id="details-pallet-{{$pallet->id}}" class="accordion-body details collapse">
-                                    <table class="table table-sm bg-whitewash">
+                                    <table class="table table-sm bg-ghostwhite">
                                         <thead>
                                             <tr>
                                                 <th width="10%">SKU</th>
@@ -996,7 +994,7 @@ All Inventory
                             <td class="py-0 border-0"></td>
                             <td class="py-0 border-0" colspan="12">
                                 <div id="details-pallet-{{$pallet->id}}" class="accordion-body details collapse">
-                                    <table class="table table-sm bg-whitewash">
+                                    <table class="table table-sm bg-ghostwhite">
                                         <thead>
                                             <tr>
                                                 <th width="10%">SKU</th>
@@ -1080,7 +1078,7 @@ All Inventory
                             <td class="py-0 border-0"></td>
                             <td class="py-0 border-0" colspan="12">
                                 <div id="details-carton-{{$carton->id}}" class="accordion-body details collapse">
-                                    <table class="table table-sm bg-whitewash">
+                                    <table class="table table-sm bg-ghostwhite">
                                         <thead>
                                             <tr>
                                                 <th width="10%">SKU</th>
@@ -1112,7 +1110,7 @@ All Inventory
                             <td class="py-0 border-0"></td>
                             <td class="py-0 border-0" colspan="12">
                                 <div id="details-carton-{{$carton->id}}" class="accordion-body details collapse">
-                                    <table class="table table-sm bg-whitewash">
+                                    <table class="table table-sm bg-ghostwhite">
                                         <thead>
                                             <tr>
                                                 <th width="10%">SKU</th>
@@ -1145,7 +1143,7 @@ All Inventory
                             <td class="py-0 border-0"></td>
                             <td class="py-0 border-0" colspan="12">
                                 <div id="details-carton-{{$carton->id}}" class="accordion-body details collapse">
-                                    <table class="table table-sm bg-whitewash">
+                                    <table class="table table-sm bg-ghostwhite">
                                         <thead>
                                             <tr>
                                                 <th width="10%">SKU</th>
@@ -1186,15 +1184,16 @@ All Inventory
                     <table class="table table-sm table-bordered">
                         <thead>
                         <tr>
-                            <th width="2%">Expand</th>
+                            <th width="2%"></th>
                             <th width="5%">SKU</th>
                             <th width="10%">Description</th>
                             <th width="5%">UPC</th>
-                            <th width="5%">Quantity</th>
-                            <th width="5%">Qty/Case</th>
+                            <th width="3%">Total</th>
+                            <th width="3%">Pallet</th>
+                            <th width="3%">Shelf</th>
                             <th width="5%">Location</th>
                             <th width="5%">Lot #</th>
-                            <th width="5%">Actions</th>
+                            <th width="3%"></th>
                         </tr>
                         </thead>
                         @foreach($user->cases->all() as $case)
@@ -1207,7 +1206,8 @@ All Inventory
                             <td contenteditable="false" class="desc">{{$case->description}}</td>
                             <td contenteditable="false" class="upc">{{$case->upc}}</td>
                             <td contenteditable="false" class="total_qty">{{$case->total_qty}}</td>
-                            <td contenteditable="false" class="case_qty">{{$case->case_qty}}</td>
+                            <td contenteditable="false" class="pallet_qty">{{$case->case_pallet_qty}}</td>
+                            <td contenteditable="false" class="shelf_qty">{{$case->case_shelf_qty}}</td>
                             <td contenteditable="false" class="location">{{$case->location}}</td>
                             <td contenteditable="false" class="lot_num">{{$case->lot_num}}</td>
                             <td>
@@ -1217,7 +1217,7 @@ All Inventory
                                         style="margin-right:1%">
                                         @method('DELETE')
                                         @csrf
-                                        <button type="submit" class="btn btn-link text-danger btn-sm"><i class="far fa-trash-alt fa-lg"></i></button>
+                                        <button type="submit" class="btn btn-link text-danger btn-sm d-inline"><i class="far fa-trash-alt fa-lg"></i></button>
                                     </form>
                             </td>
                         </tr>
@@ -1228,14 +1228,14 @@ All Inventory
                             <td class="p-0 border-0"></td>
                             <td class="p-0 border-0" colspan="12">
                                 <div id="details-case-{{$case->id}}" class="details collapse">
-                                    <table class="table table-sm bg-whitewash">
+                                    <table class="table table-sm bg-ghostwhite">
                                         <thead>
                                             <tr>
                                                 <th width="5%">SKU</th>
                                                 <th width="10%">Description</th>
                                                 <th width="5%">UPC</th>
                                                 <th width="5%">Container Type</th>
-                                                <th width="5%">Quantity</th>
+                                                <th width="5%">Qty/Case</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1260,7 +1260,7 @@ All Inventory
                             <td class="p-0 border-0"></td>
                             <td class="p-0 border-0" colspan="12">
                                 <div id="details-case-{{$case->id}}" class="details collapse">
-                                    <table class="table table-sm bg-whitewash">
+                                    <table class="table table-sm bg-ghostwhite">
                                         <thead>
                                             <tr>
                                                 <th width="10%">SKU</th>
@@ -1300,15 +1300,14 @@ All Inventory
                     <table class="table table-sm table-bordered kits-table">
                         <thead>
                         <tr>
-                            <th width="2%">Expand</th>
+                            <th width="2%"></th>
                             <th width="5%">SKU</th>
                             <th width="10%">Description</th>
                             <th width="5%">UPC</th>
-                            <th width="5%">Quantity</th>
-                            <th width="5%">Qty/Kit</th>
+                            <th width="5%">Total</th>
                             <th width="5%">Location</th>
                             <th width="5%">Lot #</th>
-                            <th width="5%">Actions</th>
+                            <th width="3%"></th>
                         </tr>
                         </thead>
                         @foreach($user->kits->all() as $kit)
@@ -1321,7 +1320,6 @@ All Inventory
                             <td contenteditable="false" class="desc">{{$kit->description}}</td>
                             <td contenteditable="false" class="upc">{{$kit->upc}}</td>
                             <td contenteditable="false" class="total_qty">{{$kit->total_qty}}</td>
-                            <td contenteditable="false" class="kit_qty">{{$kit->kit_qty}}</td>
                             <td contenteditable="false" class="location">{{$kit->location}}</td>
                             <td contenteditable="false" class="lot_num">{{$kit->lot_num}}</td>
                             <td>
@@ -1330,7 +1328,7 @@ All Inventory
                                     <form action="/removekit/{{$kit->id}}" method="POST" class="d-inline">
                                         @method('DELETE')
                                         @csrf
-                                        <button type="submit" class="btn btn-link text-danger btn-sm"><i class="far fa-trash-alt fa-lg"></i></button>
+                                        <button type="submit" class="btn btn-link text-danger btn-sm d-inline"><i class="far fa-trash-alt fa-lg"></i></button>
                                     </form>
 
                             </td>
@@ -1343,14 +1341,14 @@ All Inventory
                             <td class="p-0 border-0"></td>
                             <td class="p-0 border-0" colspan="12">
                                 <div id="details-kit-{{$kit->id}}" class="details collapse">
-                                    <table class="table table-sm bg-whitewash">
+                                    <table class="table table-sm bg-ghostwhite">
                                         <thead>
                                             <tr>
                                                 <th width="10%">SKU</th>
                                                 <th width="15%">Description</th>
                                                 <th width="10%">UPC</th>
                                                 <th width="5%">Container Type</th>
-                                                <th width="5%">Quantity</th>
+                                                <th width="5%">Qty/Kit</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1416,16 +1414,14 @@ All Inventory
                             <td contenteditable="false" class="location">{{$unit->location}}</td>
                             <td contenteditable="false" class="lot_num">{{$unit->lot_num}}</td>
                             <td>    
-                                    <button id="unit-{{$unit->id}}" class="btn btn-link text-success btn-sm update-unit d-none"><i class="far fa-check-circle fa-lg"></i></button>
-                                    <button class="btn btn-link text-denim btn-sm enable-modify d-inline"><i class="far fa-edit fa-lg"></i></button>
-                                    <form action="/removebasicunit/{{$unit->id}}" method="POST" class="d-inline"
-                                        style="margin-right:1%">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button type="submit" class="btn btn-link text-danger btn-sm d-inline"><i class="far fa-trash-alt fa-lg"></i></button>
-                                    </form>
-
-                                
+                                <button id="unit-{{$unit->id}}" class="btn btn-link text-success btn-sm update-unit d-none"><i class="far fa-check-circle fa-lg"></i></button>
+                                <button class="btn btn-link text-denim btn-sm enable-modify d-inline"><i class="far fa-edit fa-lg"></i></button>
+                                <form action="/removebasicunit/{{$unit->id}}" method="POST" class="d-inline"
+                                    style="margin-right:1%">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="btn btn-link text-danger btn-sm d-inline"><i class="far fa-trash-alt fa-lg"></i></button>
+                                </form>
                             </td>
 
                         </tr>
@@ -1448,10 +1444,33 @@ All Inventory
 @section('scripts')
 <script>
 
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+  
+  function filterFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    div = document.getElementById("myDropdown");
+    a = div.getElementsByTagName("a");
+    for (i = 0; i < a.length; i++) {
+      txtValue = a[i].textContent || a[i].innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        a[i].style.display = "";
+      } else {
+        a[i].style.display = "none";
+      }
+    }
+  }
+
+$(document).ready(function(e){
+
+
+
 $('.pick-pallet').on('click', function(e){
     e.preventDefault();
     var url = $(this).attr('href');
-    console.log('URL = ' + url);
     var id = url.slice(16);
     $.ajax({
         headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"},
@@ -1462,6 +1481,7 @@ $('.pick-pallet').on('click', function(e){
     .done(function(data){
         $('.modal-header').prepend('<h5>Remove from Pallet</h5>')
         let pallet = data.pallet;
+        console.log(pallet);
         let html='<form id="pick-form" class="pallet-' + pallet.id + '">';
         
         if(pallet.cases.length > 0){
@@ -1590,10 +1610,7 @@ $('.update-case').on('click', function(e){
     var desc = $(row).find('.desc').text();
     var upc = $(row).find('.upc').text();
     var pallet_qty = $(row).find('.pallet_qty').text();
-    var carton_qty = $(row).find('.carton_qty').text();
-    var case_qty = $(row).find('.case_qty').text();
-    var kit_qty = $(row).find('.kit_qty').text();
-    var loose_item_qty = $(row).find('.loose_item_qty').text();
+    var shelf_qty = $(row).find('.shelf_qty').text();
     var total_qty = $(row).find('.total_qty').text();
     var location = $(row).find('.location').text();
     var lot_num = $(row).find('.lot_num').text();
@@ -1606,10 +1623,7 @@ $('.update-case').on('click', function(e){
     formData.append('desc', desc);
     formData.append('upc', upc);
     formData.append('pallet_qty', pallet_qty);
-    formData.append('carton_qty', carton_qty);
-    formData.append('case_qty', case_qty);
-    formData.append('kit_qty', kit_qty);
-    formData.append('loose_item_qty', loose_item_qty);
+    formData.append('shelf_qty', shelf_qty);
     formData.append('total_qty',total_qty);
     formData.append('location',location);
     formData.append('lot_num',lot_num);
@@ -1694,6 +1708,7 @@ $(document).on('click', '.enable-modify', function(e){
     row.find('.desc').attr('contenteditable', true);
     row.find('.upc').attr('contenteditable', true);
     row.find('.pallet_qty').attr('contenteditable', true);
+    row.find('.shelf_qty').attr('contenteditable', true);
     row.find('.carton_qty').attr('contenteditable', true);
     row.find('.case_qty').attr('contenteditable', true);
     row.find('.kit_qty').attr('contenteditable', true);
@@ -1750,24 +1765,7 @@ $(document).click(function(event) {
   }
 });
 
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-  }
-  
-  function filterFunction() {
-    var input, filter, ul, li, a, i;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    div = document.getElementById("myDropdown");
-    a = div.getElementsByTagName("a");
-    for (i = 0; i < a.length; i++) {
-      txtValue = a[i].textContent || a[i].innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        a[i].style.display = "";
-      } else {
-        a[i].style.display = "none";
-      }
-    }
-  }
+
+});
   </script>
 @endsection
