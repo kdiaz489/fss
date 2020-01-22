@@ -226,7 +226,7 @@ All Inventory
             <h3 class="font-weight-light">Product On Pallets</h3>
 
             @if(count($user->pallets->all()) > 0)
-            <div class="table-responsive">
+            <div class="table-responsive-md">
                 <table class="table table-sm">
                     <thead>
                     <tr>
@@ -412,7 +412,7 @@ All Inventory
             <h3 class="font-weight-light">Product In Cartons</h3>
 
             @if(count($user->cartons->all()) > 0)
-            <div class="table-responsive">
+            <div class="table-responsive-md">
                 <table class="table table-sm">
                     <thead>
                     <tr>
@@ -565,7 +565,7 @@ All Inventory
             <h3 class="font-weight-light">Product In Cases</h3>
 
             @if(count($user->cases->all()) > 0)
-            <div class="table-responsive">
+            <div class="table-responsive-md">
                 <table class="table table-sm">
                     <thead>
                     <tr>
@@ -685,7 +685,7 @@ All Inventory
             <h3 class="font-weight-light">Product In Kits</h3>
 
             @if(count($user->kits->all()) > 0)
-            <div class="table-responsive">
+            <div class="table-responsive-md">
                 <table class="table table-sm">
                     <thead>
                     <tr>
@@ -773,7 +773,7 @@ All Inventory
 
             <h3 class="font-weight-light">Units</h3>
             @if(count($user->basic_units->all()) > 0)
-            <div class="table-responsive">
+            <div class="table-responsive-md">
                 <table class="table table-sm">
                     <thead>
                     <tr>
@@ -843,7 +843,7 @@ All Inventory
                 <h3 class="font-weight-light">Product On Pallets</h3>
 
                 @if(count($user->pallets->all()) > 0)
-                <div class="table-responsive">
+                <div class="table-responsive-md">
                     <table class="table table-sm">
                         <thead>
                         <tr>
@@ -1030,7 +1030,7 @@ All Inventory
                 <h3 class="font-weight-light">Product In Cartons</h3>
 
                 @if(count($user->cartons->all()) > 0)
-                <div class="table-responsive">
+                <div class="table-responsive-md">
                     <table class="table table-sm">
                         <thead>
                         <tr>
@@ -1180,7 +1180,7 @@ All Inventory
                 <h3 class="font-weight-light">Product In Cases</h3>
 
                 @if(count($user->cases->all()) > 0)
-                <div class="table-responsive">
+                <div class="table-responsive-md">
                     <table class="table table-sm table-bordered">
                         <thead>
                         <tr>
@@ -1296,7 +1296,7 @@ All Inventory
                 <h3 class="font-weight-light">Product In Kits</h3>
 
                 @if(count($user->kits->all()) > 0)
-                <div class="table-responsive">
+                <div class="table-responsive-md">
                     <table class="table table-sm table-bordered kits-table">
                         <thead>
                         <tr>
@@ -1380,7 +1380,7 @@ All Inventory
 
                 <h3 class="font-weight-light">Units</h3>
                 @if(count($user->basic_units->all()) > 0)
-                <div class="table-responsive">
+                <div class="table-responsive-md">
                     <table class="table table-sm table-bordered units-table">
                         <thead>
                         <tr>

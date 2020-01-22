@@ -219,7 +219,7 @@ Fulfilment Orders
 
                     <p class="h1 font-weight-light">Fulfillment Orders</p>
                     @if(count($orders) > 0)
-                    <div class="table-responsive">
+                    <div class="table-responsive-md">
                         <table class="table table-sm" id="filorders">
                             <thead>
                                 <tr>
@@ -444,7 +444,7 @@ Fulfilment Orders
 
               <p class="h1 font-weight-light">Fulfillment Orders History</p>
               @if(count($ordershistory) > 0)
-              <div class="table-responsive">
+              <div class="table-responsive-md">
                   <table class="table table-sm" id="filorders">
                       <thead>
                           <tr>

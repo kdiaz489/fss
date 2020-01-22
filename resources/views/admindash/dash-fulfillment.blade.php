@@ -203,7 +203,7 @@
                         <br>
 
                         @if(count($orders) > 0)
-                        <div class="table-responsive">
+                        <div class="table-responsive-md">
                             <table class="table table-sm" id="">
                                 <thead>
                                     <tr>
@@ -458,7 +458,7 @@
               <br>
 
               @if(count($ordershistory) > 0)
-              <div class="table-responsive">
+              <div class="table-responsive-md">
                   <table class="table table-sm" id="">
                       <thead>
                           <tr>
@@ -686,6 +686,43 @@
 
     @section('scripts')
     <script>
+    function validateForm() {
+    // This function deals with validation of the form fields
+    var x, y, i, valid = true;
+    x = document.getElementsByClassName(".modal");
+    y = x.getElementsByTagName("input");
+    // A loop that checks every input field in the current tab:
+    for (i = 0; i < y.length; i++) {
+        // If a field is empty...
+        
+        if(y[i].type === 'checkbox'){
+            if (y[i].checked == false ) {
+            // add an "invalid" class to the field:
+            y[i].closest('label').className += " invalid";
+            // and set the current valid status to false
+            valid = false;
+        }
+        else{
+            y[i].closest('label').classList.remove('invalid');
+        }
+        }
+        if(y[i].type === 'text'){
+        if (y[i].value == "" || y[i].classList.contains('invalid')) {
+            // add an "invalid" class to the field:
+            y[i].className += " invalid";
+            // and set the current valid status to false
+            valid = false;
+            }
+            else{
+            y[i].classList.remove('invalid');
+        }
+        }
+
+
+    }
+    return valid; // return the valid status
+    }
+
     $(document).ready(function(){
 
     var currentRow = '';
@@ -726,7 +763,7 @@
                 console.log('fail');
             });
         }
-        else if(status == 'Picked'){
+        else if(status == 'Picked' || status == 'Completed'){
             $('.modal-body').html('<p class="p-5 font-weight-bold border border-secondary text-success text-center">Your order is already picked. Please proceed to boxing the products. <br> <br> <i class="border p-4 rounded-circle border-success bg-success text-white fas fa-3x fa-box"></i></p>');
             $('.modal-footer').html('');
             $('.modal').modal('show');

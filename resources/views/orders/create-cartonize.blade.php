@@ -340,7 +340,7 @@
 
 
 @section('breadcrumb')
-Transfer In
+Cartonize
 @endsection
 
 @section('content')
@@ -376,7 +376,7 @@ Transfer In
     </div>
 
     <div class="container container-transin mb-5">
-        <h1 class="font-weight-light text-center mb-5">Create Transfer In Order</h1>
+        <h1 class="font-weight-light text-center mb-5">Create Cartonize</h1>
         <form id="trans_in_order_form" action="/createtransin" method="POST">
             <div class="form-row justify-content-center">
 
@@ -446,7 +446,7 @@ Transfer In
 
                     </div>
 
-                    <input type="hidden" name="order_type" value="Transfer In Items">
+                    <input type="hidden" name="order_type" value="Cartonize">
 
                 </div>
             </div>
@@ -474,9 +474,7 @@ Transfer In
                                 <label for="container_type">Container Type</label>
                                 <select name="container_type[0][]" class="form-control container_type required">
                                     <option value="">Choose</option>
-                                    <option value="Pallet">Palletize</option>
                                     <option value="Carton">Cartonize</option>
-                                    <option value="Loose Items">Loose Items</option>
                                 </select>
                             </div>
                             <div class="col-md-4">
@@ -558,6 +556,7 @@ Transfer In
 @section('scripts')
 
 <script>
+
     $(document).ready(function(){
 
         //var container = $('.create-container').html();
@@ -787,7 +786,7 @@ Transfer In
                 
                 
                 $.ajax({
-                    url:'/createtransin',
+                    url:'/createcartonize',
                     method:'post',
                     data:$('#trans_in_order_form').serialize(),
                     dataType:'json',

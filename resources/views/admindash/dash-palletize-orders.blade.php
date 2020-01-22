@@ -85,7 +85,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                           <li class="nav-item">
-                            <a href="/dashboard/admin/orders" class="nav-link text-gunmetal bg-whitewash">
+                            <a href="/dashboard/admin/orders" class="nav-link text-white">
                               <i class="fas fa-angle-right nav-icon"></i>
                               <p>Storage Orders</p>
                             </a>
@@ -93,7 +93,7 @@
                                 <i class="fas fa-angle-right nav-icon"></i>
                                 <p>Cartonized Orders</p>
                             </a>
-                            <a href="/dashboard/admin/palletizeorders" class="nav-link text-white">
+                            <a href="/dashboard/admin/palletizeorders" class="nav-link text-gunmetal bg-whitewash">
                                 <i class="fas fa-angle-right nav-icon"></i>
                                 <p>Palletized Orders</p>
                             </a>
@@ -160,6 +160,22 @@
 
 @section('content')
 
+<!-- Modal -->
+<div class="modal fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+        </div>
+        <div class="modal-body">
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <div class="container-fluid dashboard-container">
 
@@ -238,7 +254,7 @@
                                             class="btn btn-link btn-sm m-0"><small>Update</small></button>
                                     </form>
                                 </td>
-                                <td>
+                                <td class="order-id" id = "order-{{$order->id}}">
                                     <a href="/vieworder/{{$order->id}}">
                                         <button class="btn btn-link text-denim btn-sm px-0 "
                                             type="button">{{str_pad($order->orderid, 6, '0', STR_PAD_LEFT)}}</button>
@@ -252,14 +268,13 @@
                                 <td>{{$order->carrier}}</td>
                                 <td>{{$order->carrier_id}}</td>
                                 <td>{{$order->created_at->format('H:i:s m/d/y')}}</td>
-                                <td>{{$order->status}}</td>
+                                <td class="status">{{$order->status}}</td>
                                 
                                 <td>
                                     <div style="margin-left: 10%">
-    
-                                        <a href="/vieworder/{{$order->id}}" class="float-left" style="margin-right:1%">
-                                            <button class="btn btn-link text-denim btn-sm" type="button">View</button>
-                                        </a>
+
+                                        <button class="btn btn-link text-success btn-sm float-left pick-order" id="pick-pallet-order-{{$order->id}}">Pick</button>
+                                        <button class="btn btn-link text-denim btn-sm float-left fulfill-order" id="fulfill-pallet-order-{{$order->id}}">Fulfill</button>
                                         <form action="/order/remove/{{$order->id}}" method="POST" class="float-left">
                                             @method('DELETE')
                                             @csrf
@@ -678,4 +693,287 @@
             </div>
         </div>
     </div>
+    @endsection
+
+    @section('scripts')
+    <script>
+        function validatePick() {
+        // This function deals with validation of the form fields
+        var x, y, i, valid = true;
+        x = $(document).find('.modal-body');
+        y = $(x).find('.qty').toArray();
+        // A loop that checks every input field in the current tab:
+        for (i = 0; i < y.length; i++) {
+            // If a field is empty...
+            
+            
+            if ($(y[i]).hasClass('counting') || !($(y[i]).hasClass('picked'))) {
+                // add an "invalid" class to the field:
+                $(y[i]).addClass('invalid');
+                // and set the current valid status to false
+                valid = false;
+                }
+                else{
+                $(y[i]).removeClass('invalid');
+            }
+            
+        }
+        return valid; // return the valid status
+        }
+
+        $(document).ready(function(){
+            let currentRow = '';
+
+            $('.pick-order').on('click', function(e){
+                e.preventDefault();
+                currentRow = $(this).closest('tr');
+                let id = $(this).attr('id').slice(18);
+                let status = $(currentRow).find('.status').text();
+                if(status != 'Picked'){
+                    $.ajax({
+                        type: 'GET',
+                        url: '/getpalletizedorder/' + id
+                    })
+                    .done(function(result){
+                        
+                        let order = result.order;
+                        let pallets = order.pallets;
+                        let cases = pallets.cases;
+                        
+
+                        let html = '<div class="container" id=" order-' + id + '">';
+                        for(let i = 0; i < pallets.length; i++){
+                            for(let x = 0; x < pallets[i].cases.length; x++){
+                                let pallet_case = pallets[i].cases[x];
+
+                                html += '<div class="row border-top py-0 border-bottom my-3">';
+                                html += '<div class="col-md-4 border-bottom bg-ghostwhite"><p class="my-0">Case SKU</p></div>';
+                                html += '<div class="col-md-4 border-bottom bg-ghostwhite"><p class="my-0">Quantity</p></div>';
+                                html += '<div class="col-md-4 border-bottom bg-ghostwhite"><p class="my-0">Picked</p></div>';
+                                html += '<div class="col-md-4"><p class="case_sku case">' + pallet_case.sku + '</p></div>';
+                                html += '<div class="col-md-4 case-qty"><p> x' + pallet_case.pivot.quantity + '</p></div>';
+                                html += '<div class="col-md-4 qty"><p>0</p></div>';
+                                html += '</div>';
+
+                            }
+                            html += '</div>';
+                        }
+                            
+                        var footer = '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button><button type="button" class="btn btn-primary bg-denim submit-pick">Pick Order</button>'
+                        $('.modal-header').prepend('<h5>#' + id + '</h5>');
+                        $('.modal-body').html(html);
+                        $('.modal-footer').html(footer);
+                        $('.modal').modal('show');
+                    })
+                    .fail(function(result){
+                        console.log('fail');
+                    });
+            }
+            else if(status == 'Picked' || status == 'Completed'){
+                
+                $('.modal-body').html('<p class="p-5 font-weight-bold border border-secondary text-success text-center">Your order is already picked. Please proceed to boxing the products. <br> <br> <i class="border p-4 rounded-circle border-success bg-success text-white fas fa-3x fa-box"></i></p>');
+                $('.modal-footer').html('');
+                $('.modal').modal('show');
+            }
+            });
+
+
+        function verify_sku(sku, barcode, type, id){
+            var valid = false;
+            console.log( 'verify id = ' + id);
+            $.ajax({
+                        type: 'POST',
+                        headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"},
+                        url: '/verifyorderskus/' + id,
+                        async:false,
+                        data: {
+                            sku: sku,
+                            barcode: barcode,
+                            type: type
+                        },
+                        success: function(data){
+                            console.log('success');
+                            valid = true; 
+                        },
+                        fail: function(e){
+                            console.log('fail');
+                        }
+                        });
+
+            return valid;
+        }
+
+    $('.modal').scannerDetection({
+            onComplete: function(barcode, qty){
+                
+                var modal_body = $(document).find('.modal-body');
+                var id = $(document).find('.modal-header').find('h5').text().slice(1);
+                var input_list = modal_body.find('.case_sku').toArray();
+                console.log('input list = ' + input_list);
+                var valid = "";
+                
+                for(var i = 0; i < input_list.length; i++){
+                    var sku = $(input_list[i]).text();
+                    var type = 'Case';
+                    var qty = parseInt($(input_list[i]).closest('.row').find('.case-qty').find('p').text().slice(2),10);
+                    valid = verify_sku(sku, barcode, type, id);
+                    
+                    if(valid === true){
+
+                        var current_count = parseInt($(input_list[i]).closest('.row').find('.qty').text(), 10);
+                        current_count++;
+
+                        if(current_count == qty){
+                            $(input_list[i]).closest('.row').find('.qty').text(current_count);
+                            $(input_list[i]).closest('.row').find('.qty').addClass('bg-success picked');
+                            $(input_list[i]).closest('.row').find('.qty').removeClass('invalid');
+                            $(input_list[i]).closest('.row').find('.qty').append('<i class=" ml-2 fas fa-check d-inline"></i>'); 
+                            $(input_list[i]).addClass('picked');
+                            console.log($(input_list[i]));
+                            
+                            
+                        }
+                        else if(current_count < qty){
+                            $(input_list[i]).closest('.row').find('.qty').text(current_count);
+                            $('div.alert:contains(' + barcode + ')').css('display', 'none');  
+                        }
+                        else{
+                            
+                        }
+                        break;
+
+                    }                
+                }
+                if(valid === false){
+                    console.log('valid === false ... ' + valid);
+                    if(!$('div.alert:contains(' + barcode + ')').length){
+                        $('.modal-body').prepend('<div class="alert alert-danger alert-dismissable fade show" role ="alert">' + barcode + ' not found <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+
+                    }
+                    
+                    }
+
+            }
+            });
+
+            $('.modal').on('click', '.submit-pick', function(e){
+            e.preventDefault();
+            
+            var id = $(this).parent().prev().find('.container').attr('id').slice(7);
+            var status = $(currentRow).find('.status');
+            var button = $(this);
+            
+
+            var formData = new FormData();
+            formData.append('status', 'Picked');
+            formData.append('_method', 'PUT');
+            formData.append('_token', '{{csrf_token()}}');
+
+            if(validatePick()){
+                $.ajax({
+                type: 'POST',
+                headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"},
+                url: '/order/update/' + id,
+                data: formData,
+                processData: false,
+                contentType: false,
+                beforeSend:function(){
+                    
+                    $(button).attr('disabled','disabled');
+                    }
+                })
+                .done(function (result) {
+                    $(currentRow).find('.status').html('Picked');
+                    $('.modal-body').html('<p class="p-5 font-weight-bold border border-secondary text-success text-center">Your order has been successfully picked. <br> <br> <i class="border p-4 rounded-circle border-success bg-success text-white fas fa-3x fa-thumbs-up"></i></p>');
+                    $('.modal-footer').html('');
+                    $('.modal').modal('show');
+
+                    
+                })
+
+                .fail(function (jqXHR, textStatus, error) {
+                    $('.modal-body').html('<p class="p-5 font-weight-bold border border-secondary text-danger text-center">Your order has not been successfully picked. Please try again. <br> <br> <i class=" border p-4 rounded-circle border-danger fas fa-3x fa-thumbs-down"></i></p>');
+                    $('.modal-footer').html('');
+                    $('.modal').modal('show');
+
+                    
+                });
+            }
+            else if(!validatePick()){
+                console.log(validatePick() + ' ... Form has not been validated.');
+                return false;
+            }
+
+        });
+        $(document).on('click', '.fulfill-order', function(e){
+                e.preventDefault();
+                currentRow = $(this).closest('tr');
+                var status = $(currentRow).find('.status').text();
+                if(status == 'Completed'){
+                    $('.modal-body').html('<p class="p-5 font-weight-bold border border-secondary text-success text-center">This order has aready been fulfilled by FillStorShip. Please proceed to the next order. <br> <br> <i class="border p-4 rounded-circle border-success bg-success text-white fas fa-3x fa-check"></i></p>');
+                    $('.modal-footer').html('');
+                    $('.modal').modal('show');
+                }
+                else if(status == 'Pending Approval'){
+                    $('.modal-body').html('<p class="p-5 font-weight-bold border border-secondary text-secondary text-center">This order has not been picked by FillStorShip. Please pick the products before finalizing Fulfillment. <br> <br> <i class="border p-4 rounded-circle border-warning bg-warning text-white fas fa-3x fa-exclamation-triangle"></i></p>');
+                    $('.modal-footer').html('');
+                    $('.modal').modal('show');
+                }
+                else if(status != 'Completed'){
+                    var html = '';
+                    var footer = '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button><button type="button" class="btn btn-primary bg-denim submit-fulfillment">Fulfill</button>'
+                    html += '<div class="row justify-content-center"><h2>Is this order Boxed and Labeled?</h2><div class="checkbox-wrapper"> <input type="checkbox" id="check" hidden><label for="check" class="checkmark"></label></div></div>';
+                    $('.modal-body').css('height', 'auto');
+                    $('.modal-body').html(html);
+                    $('.modal-footer').html(footer);
+                    $('.modal').modal('show')
+                }
+
+        });
+
+        $(document).on('click', '.submit-fulfillment', function(e){
+
+            if($(this).parent().prev().find('input[type="checkbox"]').prop('checked') == false){
+
+                $(this).parent().prev().find('input[type="checkbox"]').parent().addClass('invalid');
+            
+            }
+
+            else if($(this).parent().prev().find('input[type="checkbox"]').prop('checked') == true){
+
+                $(this).parent().prev().find('input[type="checkbox"]').parent().removeClass('invalid');
+                var id = currentRow.find('.order-id').attr('id').slice(6);
+                var button = $(this);
+                $.ajax({
+                type: 'POST',
+                url: '/order/update/' + id,
+                data: {
+                    status: 'Completed',
+                    _method: 'PUT',
+                    _token: '{{csrf_token()}}'
+                },
+                beforeSend:function(){
+                $(button).attr('disabled','disabled');
+                }
+                })
+                .done(function (result) {
+                    var success = '<div class="border border-secondary text-center p-4"><h4 class="text-success">You have successfully fulfilled this order.</h4> <br> <br> <i class=" border p-4 rounded-circle text-white bg-success border-success fas fa-3x fa-thumbs-up"></i><div>';
+                    $(currentRow).find('.status').html('Completed');
+                    $('.modal-body').html(success);
+                    $('.modal-footer').html('');
+                    $('.modal').modal('show');
+                    
+                })
+
+                .fail(function (jqXHR, textStatus, error) {
+                    var fail = '<div class="border border-secondary text-center p-4"><h4 class="text-danger">You have not successfully fulfilled this order. Please try again.</h4> <br> <i class=" border p-4 rounded-circle text-white bg-danger border-danger fas fa-3x fa-thumbs-down"></i><div>'
+                    $('.modal-body').html(fail);
+                    $('.modal-footer').html('');
+                    $('.modal').modal('show');
+                    
+                });
+            }
+        });
+    });
+    </script>
     @endsection

@@ -47,6 +47,12 @@ class UserController extends Controller
         return redirect()->back()->with('success', $user->name . "'s account balance has been updated to: ". $user->account_balance . ".");
     }
 
+    public function getuser($id){
+        $user = User::with('cases')->find($id);
+        return collect(['user' => $user]);
+        
+    }
+
 
     public function destroy($id){
 

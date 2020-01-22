@@ -175,7 +175,7 @@
             @endif
 
             <div class="col-lg-12 col-12">
-                        <div class="table-responsive">
+                        <div class="table-responsive-md">
                             <h3 class="font-weight-light mb-3">Manage Users</h3>
 
                             <table class="table table-sm users-table mb-3">

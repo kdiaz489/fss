@@ -251,7 +251,7 @@ Inventory
                     <p class="h1 font-weight-light">Product On Pallets</p>
 
                     @if(count($pallets) > 0)
-                    <div class="table-responsive">
+                    <div class="table-responsive-md">
                     <table class="table table-sm">
                         <thead>
                             <tr>
@@ -430,7 +430,7 @@ Inventory
                     <p class="h1 font-weight-light">Product In Cartons</p>
 
                     @if(count($cartons) > 0)
-                    <div class="table-responsive">
+                    <div class="table-responsive-md">
                     <table class="table table-sm">
                         <thead>
                         <tr>
@@ -577,7 +577,7 @@ Inventory
                     <p class="h1 font-weight-light">Product In Cases</p>
 
                     @if(count($cases) > 0)
-                    <div class="table-responsive">
+                    <div class="table-responsive-md">
                     <table class="table table-sm cases-table">
                         <thead>
                         <tr>
@@ -695,7 +695,7 @@ Inventory
                     <p class="h1 font-weight-light">Product In Kits</p>
 
                     @if(count($kits) > 0)
-                    <div class="table-responsive">
+                    <div class="table-responsive-md">
                     <table class="table table-sm">
                         <thead>
                         <tr>
@@ -785,7 +785,7 @@ Inventory
                         
                 
                     @if(count($basic_units) > 0)
-                    <div class="table-responsive">
+                    <div class="table-responsive-md">
                     <table class="table table-sm">
                         <thead>
                         <tr>

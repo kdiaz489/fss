@@ -240,7 +240,7 @@ Create Kit
             
                     <div class="form-row justify-content-center mb-2">
                         <div class="col-md-12 justify-content-center">
-                            <div class="table-responsive">
+                            <div class="table-responsive-md">
                             <table class="table table-bordered table-striped" id="user_table">
                                 <thead>
                                     <tr>

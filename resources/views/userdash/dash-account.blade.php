@@ -244,7 +244,7 @@ Account
                             </div>
                         </div>
 
-                        <div class="table-responsive">
+                        <div class="table-responsive-md">
                             <table class="table table-sm">
                                     <tr>
                                         <th class="font-weight-normal">User</th>

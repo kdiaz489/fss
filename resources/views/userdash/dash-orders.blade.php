@@ -219,7 +219,7 @@ Storage Orders
                     -->
                 <p class="h1 font-weight-light">Active Orders</p>
                 @if(count($orders) > 0)
-                <div class="table-responsive">
+                <div class="table-responsive-md">
                     <table class="table table-sm orders">
                         <tr>
                             <th width="10%"></th>
@@ -454,7 +454,7 @@ Storage Orders
                     -->
                 <p class="h1 font-weight-light">Order History</p>
                 @if(count($orderhistory) > 0)
-                <div class="table-responsive">
+                <div class="table-responsive-md">
                     <table class="table table-sm orders">
                         <tr>
                             <th width="10%"></th>

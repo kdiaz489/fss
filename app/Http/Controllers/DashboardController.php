@@ -208,6 +208,23 @@ class DashboardController extends Controller
         return view('admindash.dash-orders')->with('orders', $orders)->with('ordershistory', $ordershistory);
     }
 
+    public function getcartonizeorders(){
+        $orders = Order::orderBy('orderid', 'desc')->get()->where('status', '!=', 'Completed')->where('order_type', '=', 'Cartonize');
+        $ordershistory = Order::orderBy('orderid', 'desc')->get()->where('status', '=', 'Completed')->where('order_type', '=', 'Cartonize');
+        return view('admindash.dash-cartonize-orders')->with('orders', $orders)->with('ordershistory', $ordershistory);
+    }
+
+    public function getpalletizeorders(){
+        $orders = Order::orderBy('orderid', 'desc')->get()->where('status', '!=', 'Completed')->where('order_type', '=', 'Palletize');
+        $ordershistory = Order::orderBy('orderid', 'desc')->get()->where('status', '=', 'Completed')->where('order_type', '=', 'Palletize');
+        return view('admindash.dash-palletize-orders')->with('orders', $orders)->with('ordershistory', $ordershistory);
+    }
+
+    public function admincreatecartonize(){
+        $users = User::with('cases');
+        return view('admindash.create-cartonize')->with('users', User::all());
+    }
+
     public function getadmininventory(){
         /*
         $units = DB::select('SELECT * FROM basic_unit_tbl');

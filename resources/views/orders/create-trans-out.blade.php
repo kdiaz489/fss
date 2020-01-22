@@ -494,7 +494,7 @@ Transfer Out
                             <div class="col-md-12">
 
                                 <label> Select Products for Container</label>
-                                <div class="table-responsive">
+                                <div class="table-responsive-md">
                                     <table class="table" id="container_table">
                                         <thead style="display:none">
                                             <tr>

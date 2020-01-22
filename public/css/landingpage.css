@@ -106,6 +106,10 @@
     border-color: var(--lightsteelblue);
   }
 
+  .border-orange{
+    border-color: var(--orange);
+  }
+
   .cover {
     background: no-repeat center/cover;
   }

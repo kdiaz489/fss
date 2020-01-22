@@ -180,7 +180,7 @@
 
 
                     @if(count($shipments) > 0)
-                    <div class="table-responsive">
+                    <div class="table-responsive-md">
                         <table class="table table-sm shipment-table">
                             <thead>
                             <tr>
@@ -265,7 +265,7 @@
                     <h3 class="font-weight-light mb-0">Shipment History</h3>
 
                     @if(count($shipmentshistory) > 0)
-                    <div class="table-responsive">
+                    <div class="table-responsive-md">
                         <table class="table table-sm shipment-history">
                             <thead>
                             <tr>

@@ -142,7 +142,7 @@
 <!-- AdminLTE App -->
 <script src="/assets/dist/js/adminlte.js"></script>
 
-
+<script src="{{asset('js/scannerdetection.js')}}"></script>
 @yield('scripts')
 
 </body>

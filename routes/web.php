@@ -121,6 +121,14 @@ Route::post('/createfilorder', 'OrdersController@store_fil_order');
 Route::post('/verifyorderskus/{id}', 'OrdersController@verify_order_skus');
 Route::get('/getorder/{id}', 'OrdersController@getorder');
 
+Route::get('/getcartonizedorder/{id}', 'OrdersController@getcartonizedorder');
+Route::get('/getpalletizedorder/{id}', 'OrdersController@getpalletizedorder');
+
+Route::get('/createcartonize', 'OrdersController@create_cartonize');
+Route::get('/createpalletize', 'OrdersController@create_palletize');
+Route::post('/createcartonize', 'OrdersController@store_cartonize');
+Route::post('/createpalletize', 'OrdersController@store_palletize');
+
 Route::resource('posts', 'PostsController');
 
 Auth::routes(['verify' =>true]);
@@ -141,10 +149,13 @@ Route::get('/dash/test', 'DashboardController@getdashhome');
 Route::get('/dashboard/admin/users', 'DashboardController@getadminusers');
 Route::get('/dashboard/admin/fulfillment', 'DashboardController@getadminfulfillment');
 Route::get('/dashboard/admin/orders', 'DashboardController@getadminorders');
+Route::get('/dashboard/admin/cartonizeorders', 'DashboardController@getcartonizeorders');
+Route::get('/dashboard/admin/palletizeorders', 'DashboardController@getpalletizeorders');
 Route::get('/dashboard/admin/inventory', 'DashboardController@getadmininventory');
 Route::get('/dashboard/admin/account', 'DashboardController@getadminaccount');
 Route::get('/dashboard/admin/fulfill/{id}', 'DashboardController@getadminfulfillorderform');
 Route::get('/dashboard/admin/editunit/{id}', 'DashboardController@admineditunit');
+Route::get('/dashboard/admin/createcartonize', 'DashboardController@admincreatecartonize');
 
 Route::get('/updateusername', 'DashboardController@getupdateusername');
 Route::get('/updateemail', 'DashboardController@getupdateemail');
@@ -191,5 +202,6 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
 Route::put('/user/credit/update/{id}', 'Admin\UserController@creditupdate');
 Route::put('/user/accbal/update/{id}', 'Admin\UserController@accountbalanceupdate');
 Route::get('/Admin/impersonate/destroy', 'Admin\ImpersonateController@destroy')->name('admin.impersonate.destroy');
+Route::get('/getuser/{id}', 'Admin\UserController@getuser');
 
 Auth::routes();
