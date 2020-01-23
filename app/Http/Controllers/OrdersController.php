@@ -703,7 +703,7 @@ class OrdersController extends Controller
                 $ordernumber->save();
 
 
-                $order->user_id = auth()->user()->id;
+                $order->user_id = $request->user_id;
                 $order->company = auth()->user()->company_name;
                 $order->order_type = $request->order_type;
                 $order->originator = $request->originator;

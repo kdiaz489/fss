@@ -65,15 +65,16 @@ class PalletsController extends Controller
 
                 $cases[$i]->case_pallet_qty -= $item_qty[$i];
                 $cases[$i]->case_shelf_qty += $item_qty[$i];
+                $cases[$i]->total_qty = ($cases[$i]->case_shelf_qty + $cases[$i]->case_pallet_qty);
                 $cases[$i]->save();
 
                 foreach($cases[$i]->basic_units->all() as $unit){
                     $unit->pallet_qty -= $item_qty[$i] * $cases[$i]->qty_per_case;
                     $unit->case_qty += $item_qty[$i] * $cases[$i]->qty_per_case;
+                    $unit->total_qty = ($unit->case_qty + $unit->pallet_qty);
                     $unit->save();
                 }
 
-                
             }
         }
     }

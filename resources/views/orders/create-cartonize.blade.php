@@ -447,6 +447,7 @@ Cartonize
                     </div>
 
                     <input type="hidden" name="order_type" value="Cartonize">
+                    <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
 
                 </div>
             </div>

@@ -404,7 +404,7 @@ Cartonize
                     </div>
                     <div class="col-md-4">
                       <label for="user">Customer</label>
-                      <select name="user" class="form-control user" id="">
+                      <select name="user_id" class="form-control select_user">
                         <option value="">Choose Customer</option>
 
                         @foreach ($users as $user)
@@ -564,7 +564,12 @@ Cartonize
 @section('scripts')
 
 <script>
+
+
 $(document).ready(function(){
+
+  var container = $('.card-container').clone(true);
+  var count = 0;
 
   function getUser(id){
     var user = '';
@@ -588,29 +593,95 @@ $(document).ready(function(){
       return user;
   }
 
-  $(document).on('change', '.user', function(){
+    $(document).on('click', '.add-container', function(e){
+      e.preventDefault();
+      console.log(container);
+      $(container)
+      .clone()
+      .appendTo('div.create-container')
+      .find('input')
+      .attr('name', function(_, currentValue){
+          return currentValue.replace(/\d/, function(num){
+              var tot_ele = ($('.card-container').length) - 1;
+              return +num+ tot_ele;
+          });
+      });
+      $('.card-container:last').find('select')
+      .attr('name', function(_, currentValue){
+          return currentValue.replace(/\d/, function(num){
+              var tot_ele = ($('.card-container').length) - 1;
+              return +num+ tot_ele;
+          });
+      });
+      //$('.create-container').append(container);
+              
+      });
+
+      $(document).on('click', '.remove-carton', function(){
+        
+        $(this).closest('.carton-container').remove();
+
+        });
+
+        $(document).on('click', '.remove', function(){
+          count--;
+          $(this).closest("tr").remove();
+        });
+
+  $(document).on('change', '.select_user', function(){
+    $(document).find('.select_cases').empty();
     var selected = $(':selected', this);
     var user_id = selected.val();
-    console.log('user id = ' + user_id);
     var user = getUser(user_id);
-    var select = '';
-    console.log(user);
+    var options = '';
+    options += '<option value="">Choose Item</option>';
     if(user == 'User not found'){
       $(document).find('.select_cases').append('<option value="">No Cases found.</option>');
     }
     else{
       if(user.cases.length <= 0){
-        select += '<option value="">No cases available</option>';
+        options += '<option value="">No cases available</option>';
       }
       else{
         for(var i = 0; i < user.cases.length; i++){
-          select += '<option value="' + user.cases[i].upc + '">' + user.cases[i].sku + '</option>';
+          options += '<option value="' + user.cases[i].upc + '">' + user.cases[i].sku + '</option>';
         }
       }
 
-      $(document).find('.select_cases').append(select);
+      $(document).find('.select_cases').append(options);
     }     
   });
+
+  $(document).on('click', '.add', function(){
+        count++;
+        var user_id = $(':selected', '.select_user').val();
+        var user = getUser(user_id);
+        var html = '';
+        html = '<tr>';
+        html += '<td><select name="items['+count+'][]" class="form-control select_cases required">';
+        html += '<option value="">Choose Item</option>';
+        
+        if(user == 'User not found'){
+          html += '<option value="">No Cases found.</option>';
+        }
+        else{
+          if(user.cases.length <= 0){
+            html += '<option value="">No cases available</option>';
+          }
+          else{
+            for(var i = 0; i < user.cases.length; i++){
+              html += '<option value="' + user.cases[i].upc + '">' + user.cases[i].sku + '</option>';
+            }
+          }
+        } 
+        html += '</select></td>'; 
+        html += '<td><input type="text" name="item_qty['+count+'][]" class="form-control required item_qty" placeholder="Quantity #"/></td>';
+        html += '<td><button type="button" name="remove" id="" class="btn btn-danger btn-sm remove circle"><i class="fas fa-lg fa-minus"></i></button>\
+                    <small class="text-danger">Remove</small></td>';
+        html += '</tr>';
+        $(this).closest('table').append(html);
+
+        });
 
 });
 
