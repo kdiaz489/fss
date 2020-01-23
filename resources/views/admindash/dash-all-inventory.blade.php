@@ -89,6 +89,14 @@
                               <i class="fas fa-angle-right nav-icon"></i>
                               <p>Storage Orders</p>
                             </a>
+                            <a href="/dashboard/admin/cartonizeorders" class="nav-link text-white">
+                                <i class="fas fa-angle-right nav-icon"></i>
+                                <p>Cartonized Orders</p>
+                            </a>
+                            <a href="/dashboard/admin/palletizeorders" class="nav-link text-white">
+                                <i class="fas fa-angle-right nav-icon"></i>
+                                <p>Palletized Orders</p>
+                            </a>
                           </li>
                         </ul>
                       </li>

@@ -393,16 +393,16 @@ Cartonize
                 </div>
                 <div class="card-body">
                 <div class="form-row justify-content-center mb-4">
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label for="originator">Originator</label>
                         <input type="text" name="originator" class="form-control required" placeholder="Originator">
                     </div>
 
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label for="in_care_of">In Care Of</label>
                         <input type="text" name="in_care_of" class="form-control required" placeholder="In Care of">
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                       <label for="user">Customer</label>
                       <select name="user" class="form-control user" id="">
                         <option value="">Choose Customer</option>
@@ -570,7 +570,7 @@ $(document).ready(function(){
     var user = '';
     
     $.ajax({
-      type: 'POST',
+      type: 'GET',
       headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"},
       url: '/getuser/' + id,
       async:false,
@@ -591,16 +591,25 @@ $(document).ready(function(){
   $(document).on('change', '.user', function(){
     var selected = $(':selected', this);
     var user_id = selected.val();
+    console.log('user id = ' + user_id);
     var user = getUser(user_id);
-           
+    var select = '';
+    console.log(user);
     if(user == 'User not found'){
-      $(this).append('<option value="">No Cases found.</option>');
+      $(document).find('.select_cases').append('<option value="">No Cases found.</option>');
     }
+    else{
+      if(user.cases.length <= 0){
+        select += '<option value="">No cases available</option>';
+      }
       else{
         for(var i = 0; i < user.cases.length; i++){
-          $(this).append('<option value="' + user.cases[i].upc + '">' + user.cases[i].sku + '</option>');
+          select += '<option value="' + user.cases[i].upc + '">' + user.cases[i].sku + '</option>';
         }
-      }     
+      }
+
+      $(document).find('.select_cases').append(select);
+    }     
   });
 
 });
