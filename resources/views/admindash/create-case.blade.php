@@ -223,7 +223,7 @@ Create Carton
               <p class="card-text">
                   <form action="/createcase" id="createcase" method="POST">
                     <div class="form-row justify-content-center">
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <span class="text-center" id="result"></span>
                         </div>
                     

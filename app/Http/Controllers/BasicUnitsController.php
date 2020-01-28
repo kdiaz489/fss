@@ -46,8 +46,8 @@ class BasicUnitsController extends Controller
         //
         $request->validate([
             'sku'=> [ 'required',
-                        Rule::unique('basic_unit_tbl')->where(function ($query){
-                        $query->where('user_id', auth()->user()->id);
+                        Rule::unique('basic_unit_tbl')->where(function ($query) use($request){
+                        $query->where('user_id', $request->user_id);
             })], 
             
             'desc' => 'required',
@@ -69,7 +69,7 @@ class BasicUnitsController extends Controller
         $unit->location = 'N/A';
         $unit->lot_num = 'N/A';
         $unit->save();
-        return redirect('/basicunit')->with('success', 'Product has been created - Sku: ' . $unit->sku);
+        return redirect()->back()->with('success', 'Product has been created - Sku: ' . $unit->sku);
     }
 
     /**
