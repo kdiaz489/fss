@@ -214,7 +214,8 @@ Create Kit
                         </div>
                     </div>
             
-            
+                    <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
+
                     <div class="form-row justify-content-center mb-4">
             
                         <div class="col-md-6">
@@ -374,7 +375,7 @@ Create Kit
                         }
                         else
                         {
-                            //dynamic_field(1);
+                            
                             $('#result').html('<div class="alert alert-success">'+data.success+'</div>');
 
                         }

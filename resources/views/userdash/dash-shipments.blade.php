@@ -39,10 +39,16 @@
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="/dashboard/user/fulfillment" class="nav-link text-white">
-                              <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Fulfillment Orders</p>
-                            </a>
+                              <a href="/createcartonize" class="nav-link text-white">
+                                  <i class="fas fa-angle-right nav-icon"></i>
+                                  <p>Create Cartonize</p>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="/createpalletize" class="nav-link text-white">
+                                  <i class="fas fa-angle-right nav-icon"></i>
+                                  <p>Create Palletize</p>
+                              </a>
                           </li>
                         </ul>
                       </li>
@@ -62,11 +68,16 @@
                               <p>All Inventory</p>
                             </a>
                           </li>
-          
                           <li class="nav-item">
-                            <a href="/dashboard/user/orders" class="nav-link text-white">
+                            <a href="/createtransin" class="nav-link text-white">
                               <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Storage Orders</p>
+                              <p>Create Transfer In</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/createtransout" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Transfer Out</p>
                             </a>
                           </li>
                           <li class="nav-item">
@@ -129,19 +140,17 @@
                         </a>
                         <ul class="nav nav-treeview">
                           <li class="nav-item">
-                            <a href="/createtransin" class="nav-link text-white">
+                            <a href="/dashboard/user/fulfillment" class="nav-link text-white">
                               <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Create Transfer In</p>
+                              <p>Fulfillment Orders</p>
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="/createtransout" class="nav-link text-white">
+                            <a href="/dashboard/user/orders" class="nav-link text-white">
                               <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Create Transfer Out</p>
+                              <p>Storage Orders</p>
                             </a>
                           </li>
-          
-          
                         </ul>
                       </li>
                       <li class="nav-item has-treeview">
@@ -229,24 +238,30 @@ Shipments
                                 <thead>
                                 <tr>
                                     <th>Order #</th>
-                                    <th>Booked On</th>
-                                    <th>Status</th>
-                                    <th>Org Info</th>
-                                    <th>Dest Info</th>
-                                    <th>Pick Date</th>
-                                    <th>Delivery Date</th>
-                                    <th>Contact Name</th>
-                                    <th>Contact Email</th>
-                                    <th>Contact Phone</th>
+                                    <th>Booked</th>
+                                    <th width="6%">Status</th>
+                                    <th>Sender</th>
+                                    <th>Receiver</th>
+                                    <th>Pickup</th>
+                                    <th>Delivery</th>
+                                    <th>Contact</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
                                     <th>Dock</th>
-                                    <th>Fork Lift</th>
+                                    <th width="6%">Fork Lift</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($shipments as $shipment)
                                 <tr>
-                                    <td>{{str_pad($shipment->id, 6, '0', STR_PAD_LEFT)}}</td>
+                                    <td>
+                                      <a href="/ship/{{$shipment->id}}" class="float-left">
+                                        <button class="btn btn-link text-denim btn-sm px-0 pr-1"
+                                          type="button">{{str_pad($shipment->id, 6, '0', STR_PAD_LEFT)}}</button>
+                                      </a>
+                                      
+                                    </td>
                                     <td>{{$shipment->created_at->format('m/d/y')}}</td>
                                     <td>{{$shipment->work_status}}</td>
                                     <td>{{$shipment->orig_company}}</td>
@@ -260,10 +275,6 @@ Shipments
                                     <td>{{$shipment->dest_frklft}}</td>
                                     <td>
                                         <div>
-                                            <a href="/ship/{{$shipment->id}}" class="float-left">
-                                                <button class="btn btn-link text-success btn-sm px-0 pr-1"
-                                                    type="button"><small>View</small></button>
-                                            </a>
                                             <a href="/pdf/{{$shipment->id}}" class="float-left">
                                                 <button class="btn btn-link text-denim btn-sm px-0 pr-1" type="button"><small>PDF</small></button>
                                             </a>
@@ -302,24 +313,29 @@ Shipments
                             <thead>
                             <tr>
                                 <th>Order #</th>
-                                <th>Booked On</th>
-                                <th>Status</th>
-                                <th>Org Info</th>
-                                <th>Dest Info</th>
-                                <th>Pick Date</th>
-                                <th>Delivery Date</th>
-                                <th>Contact Name</th>
-                                <th>Contact Email</th>
-                                <th>Contact Phone</th>
+                                <th>Booked</th>
+                                <th width="6%">Status</th>
+                                <th>Sender</th>
+                                <th>Receiver</th>
+                                <th>Pickup</th>
+                                <th>Delivery</th>
+                                <th>Contact</th>
+                                <th>Email</th>
+                                <th>Phone</th>
                                 <th>Dock</th>
-                                <th>Fork Lift</th>
+                                <th width="6%">Fork Lift</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($shipmentshistory as $shipment)
                             <tr>
-                                <td>{{str_pad($shipment->id, 6, '0', STR_PAD_LEFT)}}</td>
+                                <td>  
+                                  <a href="/ship/{{$shipment->id}}" class="float-left">
+                                    <button class="btn btn-link text-denim btn-sm px-0 pr-1"
+                                      type="button">{{str_pad($shipment->id, 6, '0', STR_PAD_LEFT)}}</button>
+                                  </a>
+                              </td>
                                 <td>{{$shipment->created_at->format('m/d/y')}}</td>
                                 <td>{{$shipment->work_status}}</td>
                                 <td>{{$shipment->orig_company}}</td>

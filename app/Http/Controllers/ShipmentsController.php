@@ -600,76 +600,76 @@ class ShipmentsController extends Controller
 
         //Blank Input Handler
         if(request('orig_address_02') == ''){
-            $orig_address_02 = 'N/A';
+            $orig_address_02 = '';
         }
         else{
             $orig_address_02 = request('orig_address_02');
         }
 
         if(request('dest_address_02') == ''){
-            $dest_address_02 = 'N/A';
+            $dest_address_02 = '';
         }
         else{
             $dest_address_02 = request('dest_address_02');
         }
         if(request('orig_notes') == '' || request('orig_notes') == ' '){
-            $orig_notes = 'N/A';
+            $orig_notes = '';
         }
         else{
             $orig_notes = request('orig_notes'); 
         }
         if(request('dest_notes') == '' || request('dest_notes') == ' '){
-            $dest_notes = 'N/A';
+            $dest_notes = '';
         }
         else{
             $dest_notes = request('dest_notes');
         }
         if(request('prod_desc') == '' || request('prod_desc') == ' '){
-            $prod_desc = 'N/A';
+            $prod_desc = '';
         }
         else{
             $prod_desc = request('prod_desc');
          
         }
         if(request('prod_value') == '' || request('prod_value') == ' '){
-            $prod_value = 'N/A';
+            $prod_value = '';
         }
         else{
             $prod_value = request('prod_value');
          
         }
         if(request('orig_cont_name') == ''){
-            $orig_cont_name = 'N/A';
+            $orig_cont_name = '';
         }
         else{
             $orig_cont_name = request('orig_cont_name');
         }
         if(request('orig_cont_phone') == ''){
-            $orig_cont_phone = 'N/A';
+            $orig_cont_phone = '';
         }
         else{
             $orig_cont_phone = request('orig_cont_phone');
         }
         if(request('orig_cont_email') == ''){
-            $orig_cont_email = 'N/A';
+            $orig_cont_email = '';
         }
         else{
             $orig_cont_email = request('orig_cont_email');
         }
         if(request('dest_cont_name') == ''){
-            $dest_cont_name = 'N/A';
+            $dest_cont_name = '';
         }
         else{
             $dest_cont_name = request('dest_cont_name');
         }
         if(request('dest_cont_phone') == ''){
-            $dest_cont_phone = 'N/A';
+            $dest_cont_phone = '';
         }
         else{
             $dest_cont_phone = request('dest_cont_phone');
         }
         if(request('dest_cont_email') == ''){
-            $dest_cont_email = 'N/A';
+            $dest_cont_email = '';
         }
         else{
             $dest_cont_email = request('dest_cont_email');
@@ -863,6 +863,8 @@ class ShipmentsController extends Controller
         $path = 'storage/uploads/bol_' . $shipmentid . '.pdf';
         $shipment->pdf_url = $path;
         $shipment->save();
+
+
         Mail::to('ship@fillstorship.com')->send(new ShipmentBookingMail($path, $shipment));
         //Mail::to(auth()->user()->email)->send(new CustomerShipmentBookingMail($emaildata));
         return response()->json($shipmentid);

@@ -16,40 +16,40 @@
       
       <!-- Flash Alerts Ends -->
 
-      <div class="services-container container">
+      <div class="services-container container w-55 m-auto">
           <section id="process" class="process">
             <div class="container-fluid container-fluid-max">
               <div class="row text-center">
-                <div class="col-12 pb-4">
-                  <h1 class="text-gunmetal font-weight-light">Our Services</h1>
+                <div class="col-12">
+                  <h2 class="text-gunmetal font-weight-light mb-0">Our Services</h2>
                   <br>
                   <br>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3">
                   <span class="fa-stack fa-2x">
                     <!--<i class="fas fa-circle fa-stack-2x text-frenchblue"></i>-->
-                    <i class="fas fa-box-open fa-stack-1x text-frenchblue"></i>
+                    <i class="fas fa-box-open fa-stack-1x fa-sm text-frenchblue"></i>
                   </span>
                   <h3 class="mt-3 services-h3 font-weight-light">Fulfillment</h3>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3">
                   <span class="fa-stack fa-2x">
                     <!--<i class="fas fa-circle fa-stack-2x text-frenchblue"></i>-->
-                    <i class="fas fa-warehouse fa-stack-1x text-frenchblue"></i>
+                    <i class="fas fa-warehouse fa-stack-1x fa-sm text-frenchblue"></i>
                   </span>
                   <h3 class="mt-3 services-h3 font-weight-light">Storage</h3>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3">
                   <span class="fa-stack fa-2x">
                     <!--<i class="fas fa-circle fa-stack-2x text-frenchblue"></i>-->
-                    <i class="fas fa-shipping-fast fa-stack-1x text-frenchblue"></i>
+                    <i class="fas fa-shipping-fast fa-stack-1x fa-sm text-frenchblue"></i>
                   </span>
                   <h3 class="mt-3 services-h3 font-weight-light">Shipping</h3>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3">
                   <span class="fa-stack fa-2x">
                     <!--<i class="fas fa-circle fa-stack-2x text-frenchblue"></i>-->
-                    <i class="fas fa-clipboard-list fa-stack-1x text-frenchblue"></i>
+                    <i class="fas fa-clipboard-list fa-stack-1x fa-sm text-frenchblue"></i>
                   </span>
                   <h3 class="mt-3 services-h3 font-weight-light">Kitting + Assembly</h3>
                 </div>
@@ -61,7 +61,7 @@
                 <div class="col-12 col-sm-6 col-lg-3">
                   <span class="fa-stack fa-2x">
                     <!--<i class="fas fa-circle fa-stack-2x text-frenchblue"></i>-->
-                    <i class="fas fa-lightbulb fa-stack-1x text-frenchblue"></i>
+                    <i class="fas fa-lightbulb fa-stack-1x fa-sm text-frenchblue"></i>
                   </span>
                   <h3 class="mt-3 services-h3 font-weight-light">Packaging Solutions</h3>
                 </div>
@@ -75,14 +75,14 @@
                 <div class="col-12 col-sm-6 col-lg-3">
                   <span class="fa-stack fa-2x">
                     <!--<i class="fas fa-circle fa-stack-2x text-frenchblue"></i>-->
-                    <i class="fas fa-truck-loading fa-stack-1x text-frenchblue"></i>
+                    <i class="fas fa-truck-loading fa-stack-1x fa-sm text-frenchblue"></i>
                   </span>
                   <h3 class="mt-3 services-h3 font-weight-light">Distribution</h3>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3">
                   <span class="fa-stack fa-2x">
                     <!--<i class="fas fa-circle fa-stack-2x text-frenchblue"></i>-->
-                    <i class="fas fa-handshake fa-stack-1x text-frenchblue"></i>
+                    <i class="fas fa-handshake fa-stack-1x fa-sm text-frenchblue"></i>
                   </span>
                   <h3 class="mt-3 services-h3 font-weight-light">Consulting</h3>
                 </div>
@@ -105,7 +105,7 @@
                     Orders are received through your Ecommerce driver and based on sales volume, we fulfill as needed, “On Demand” by pre-determined volumes that you can control.
                     Warehousing, fulfillment and distribution are all wrapped up in detailed reports tracking inventory, sales trends and custom set alerts to advise when levels are low.
                     </p>
-                  <a class="btn bg-denim text-white" target="_blank" href="" role="button">Read More</a>
+                  <a class="btn bg-denim text-white" href="/fil" role="button">Read More</a>
                 </div>
               </div>
               <div class="col-12 col-md-6 order-0 order-md-1">
@@ -118,7 +118,7 @@
                 <div class="right-text">
                   <h2 class="font-weight-light">Storage</h2>
                   <p>FillStorShip provides optimal warehousing spaces that are modern, efficient, sanitation-certified and securely monitored for our customer’s inventory.</p>
-                  <a class="btn bg-denim text-white" target="_blank" href="/stor" role="button">Read More</a>
+                  <a class="btn bg-denim text-white" href="/stor" role="button">Read More</a>
                 </div>
               </div>
 
@@ -127,7 +127,7 @@
                   <h2 class="font-weight-light">Shipping</h2>
                   <p>FillStorShip enables you to maximize efficiency, maintain visibility, and reduce cost. Our shipping coverage extends to the entire Southwestern U.S.
                   Products we ship for our customers include beauty care, wellness and healthcare, industrial supplies, pre-packaged food products, limited quantity hazardous materials, and much more.</p>
-                  <a class="btn bg-denim text-white" target="_blank" href="/ship" role="button">Read More</a>
+                  <a class="btn bg-denim text-white" href="/ship" role="button">Read More</a>
                 </div>
               </div>
               <div class="col-12 col-md-6 order-4 order-md-4">

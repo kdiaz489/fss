@@ -16,6 +16,15 @@ body {
 
 }
 
+.w-60{
+    width: 60% !important;
+}
+
+.w-55{
+    width: 55% !important;
+}
+
+
 .btn {
 
     font-size: 18px;
@@ -38,8 +47,7 @@ body {
 
 
 .stor-txt {
-    /*font-size: 28px;*/
-    margin-top: 10%;
+    margin-top: 5%;
 }
 
 
@@ -61,6 +69,7 @@ body {
 .stor-background1 {
     background-image: linear-gradient(rgba(79, 129, 189, 0.9), rgba(79, 129, 189, 0.9)), url('/img/packages.jpg');
     background-size: cover;
+    background-position: 50% 50%;
 }
 
 .stor-background2 {
@@ -141,7 +150,6 @@ body {
     margin-bottom: 20px;
     font-size: 16px;
     font-weight: 600;
-    text-transform: uppercase;
     letter-spacing: 1px;
 }
 
@@ -566,7 +574,7 @@ input[type=checkbox] {
       }      
 
     .jumbotron-fluid {
-        height: 500px !important;
+        height: 350px !important;
 
     }
 

@@ -365,7 +365,8 @@ Show Order
                 <table class="table table-sm">
                   <thead>
                     <tr>
-                      <th class="font-weight-normal">Order ID #</th>
+                      <th class="font-weight-normal">FSS Order ID #</th>
+                      <th class="font-weight-normal">Shopify ID #</th>
                       <th class="font-weight-normal">Company</th>
                       <th class="font-weight-normal">Order Type</th>
                     </tr>
@@ -373,6 +374,7 @@ Show Order
                   <tbody>
                     <tr>
                       <td>{{$order->orderid}}</td>
+                      <td>{{$order->cust_order_no}}</td>
                       <td>{{$order->company}}</td>
                     <td>{{$order->order_type}}</td>
                     </tr>

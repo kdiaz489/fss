@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Pallet;
+use App\Carton;
 use App\Cases;
+use App\Kit;
+use App\Basic_Unit;
 use Illuminate\Support\Facades\Validator;
 
 class PalletsController extends Controller
@@ -98,8 +101,6 @@ class PalletsController extends Controller
             $rules = array(
                 'items.*'  => 'required',
                 'item_qty.*'  => 'required',
-                'type' => 'required',
-                
             );
 
             $error = Validator::make($request->all(), $rules);
@@ -115,8 +116,8 @@ class PalletsController extends Controller
              */
             $pallet = new Pallet();
             $pallet->pallet_name = $request->pallet_name;
-            $pallet->user_id = auth()->user()->id;
-            $pallet->company = auth()->user()->company_name;
+            $pallet->user_id = $request->user_id;
+            $pallet->company = User::find($request->user_id)->company_name;
             $pallet->sku = $request->sku;
             $pallet->upc = $request->upc;
             $pallet->status="Pending Approval";
@@ -137,7 +138,6 @@ class PalletsController extends Controller
              * 
              */
             $items = $request->items;
-            $types = $request->type;
             $item_qty = $request->item_qty;
 
 
@@ -145,70 +145,27 @@ class PalletsController extends Controller
              * Conditional statements check for the type of items that were submitted to the form
              * Checks for Unit, Kit, Case, if condition is met then create an object based on the item type and attached to the $pallet
              */
-            for ($i = 0; $i < count($types); $i++) {
-                if ($types[$i] == 'Unit') {
-                    /* 
-                    $data = array(
-                        'basic__unit_id' => $items[$i],
-                        'quantity' => $item_qty[$i]
-                    );
-                    
-                    $unit_data[] = $data;
-                    */
-                    $pallet->basic_units()->attach(['basic__unit_id' => $items[$i]], ['quantity' => $item_qty[$i]]);
-
-
+            for ($i = 0; $i < count($items); $i++) {
+                if (Basic_Unit::where('upc', $items[$i])->where('user_id', $request->user_id)->exists()) {
+                    $unit = Basic_Unit::where('upc', $items[$i])->where('user_id', $request->user_id)->first();
+                    $pallet->basic_units()->attach(['basic__unit_id' => $unit->id], ['quantity' => $item_qty[$i]]);
                  }
 
-                if ($types[$i] == 'Kit') {
-                    /* 
-                    $data = array(
-                        'kit_id' => $items[$i],
-                        'quantity' => $item_qty[$i]
-                    );
-                    
-                    $kit_data[] = $data;
-                    */
-                    $pallet->kits()->attach(['kit_id' => $items[$i]], ['quantity' => $item_qty[$i]]);
-
-
+                 if (Kit::where('upc', $items[$i])->where('user_id', $request->user_id)->exists()) {
+                     $kit = Kit::where('upc', $items[$i])->where('user_id', $request->user_id)->first();
+                    $pallet->kits()->attach(['kit_id' => $kit->id], ['quantity' => $item_qty[$i]]);
                  }
 
-                if ($types[$i] == 'Case') {
-                    /*
-                    $data = array(
-                        'cases_id' => $items[$i],
-                        'quantity' => $item_qty[$i]
-                    );
-                    
-                    $case_data[] = $data;
-                    */
-                    $pallet->cases()->attach(['cases_id' => $items[$i]], ['quantity' => $item_qty[$i]]);
+                 if (Cases::where('upc', $items[$i])->where('user_id', $request->user_id)->exists()) {
+                    $case = Cases::where('upc', $items[$i])->where('user_id', $request->user_id)->first();
+                    $pallet->cases()->attach(['cases_id' => $case->id], ['quantity' => $item_qty[$i]]);
                 }
 
-                if ($types[$i] == 'Carton') {
-                    /*
-                    $data = array(
-                        'cases_id' => $items[$i],
-                        'quantity' => $item_qty[$i]
-                    );
-                    
-                    $case_data[] = $data;
-                    */
-                    $pallet->cartons()->attach(['carton_id' => $items[$i]], ['quantity' => $item_qty[$i]]);
+                if (Carton::where('upc', $items[$i])->where('user_id', $request->user_id)->exists()) {
+                    $carton = Carton::where('upc', $items[$i])->where('user_id', $request->user_id)->first();
+                    $pallet->cartons()->attach(['carton_id' => $carton->id], ['quantity' => $item_qty[$i]]);
                 }
             }
-
-            /*
-            for ($i = 0; $i < count($cases); $i++) {
-                $data = array(
-                    'cases_id' => $cases[$i],
-                    'quantity'  => $case_qty[$i]
-                );
-                $insert_data[] = $data;
-            }
-            */
-
 
             /**
              * Pallet that was initiated and saved. Json success message returned to form.

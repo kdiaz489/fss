@@ -16,9 +16,6 @@
                   <!-- Sidebar Menu -->
                   <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
-                      <!-- Add icons to the links using the .nav-icon class
-                         with font-awesome or any other icon font library -->
-          
           
                       <li class="nav-item has-treeview">
                         <a href="#" class="nav-link text-white">
@@ -30,11 +27,16 @@
                           </p>
                         </a>
                         <ul class="nav nav-treeview">
-          
                           <li class="nav-item">
-                            <a href="/dashboard/admin/fulfillment" class="nav-link text-white">
+                            <a href="/dashboard/admin/createpalletize" class="nav-link text-white">
                               <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Fulfillment Orders</p>
+                              <p>Create Palletized</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createcartonize" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Cartonized</p>
                             </a>
                           </li>
                         </ul>
@@ -55,7 +57,36 @@
                               <p>All Inventory</p>
                             </a>
                           </li>
-          
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createtransin" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Transfer In</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createtransout" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Transfer Out</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createpallet" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Pallet</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createcase" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Case</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createunit" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Unit</p>
+                            </a>
+                          </li>
                         </ul>
                       </li>
                       <li class="nav-item has-treeview menu-open">
@@ -85,19 +116,29 @@
                         </a>
                         <ul class="nav nav-treeview">
                           <li class="nav-item">
-                            <a href="/dashboard/admin/orders" class="nav-link text-white">
-                              <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Storage Orders</p>
-                            </a>
-                            <a href="/dashboard/admin/cartonizeorders" class="nav-link text-white">
-                              <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Cartonized Orders</p>
-                          </a>
-                          <a href="/dashboard/admin/palletizeorders" class="nav-link text-white">
-                              <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Palletized Orders</p>
-                          </a>
-                          </li>
+                              <a href="/dashboard/admin/fulfillment" class="nav-link text-white">
+                                <i class="fas fa-angle-right nav-icon"></i>
+                                <p>Fulfillment Orders</p>
+                              </a>
+                            </li>
+                            <li class="nav-item">
+                              <a href="/dashboard/admin/orders" class="nav-link text-white">
+                                <i class="fas fa-angle-right nav-icon"></i>
+                                <p>Storage Orders</p>
+                              </a>
+                            </li>
+                            <li class="nav-item">
+                              <a href="/dashboard/admin/cartonizeorders" class="nav-link text-white">
+                                <i class="fas fa-angle-right nav-icon"></i>
+                                <p>Cartonized Orders</p>
+                              </a>
+                            </li>
+                            <li class="nav-item">
+                              <a href="/dashboard/admin/palletizeorders" class="nav-link text-white">
+                                <i class="fas fa-angle-right nav-icon"></i>
+                                <p>Palletized Orders</p>
+                              </a>
+                            </li>
                         </ul>
                       </li>
                       <li class="nav-item has-treeview">
@@ -192,69 +233,74 @@
                         <table class="table table-sm shipment-table">
                             <thead>
                             <tr>
-                                <th>Edit Status</th>
-                                <th>Order #</th>
-                                <th>Booked</th>
-                                <th>Status</th>
-                                <th>Orig Info</th>
-                                <th>Dest Info</th>
-                                <th>Pickup</th>
-                                <th>Delivery</th>
-                                <th>Contact Name</th>
-                                <th>Contact Email</th>
-                                <th>Contact Phone</th>
-                                <th>Dock</th>
-                                <th>Fork Lift</th>
-                                <th>Actions</th>
+                                <th class="fit">Status</th>
+                                <th class="fit">Order #</th>
+                                <th class="fit">Booked</th>
+                                <th class="fit">Status</th>
+                                <th class="fit">Sender</th>
+                                <th class="fit">Receiver</th>
+                                <th class="fit">Pickup</th>
+                                <th class="fit">Delivery</th>
+                                <th class="fit">Contact</th>
+                                <th class="fit">Email</th>
+                                <th class="fit">Phone</th>
+                                <th class="fit">Dock</th>
+                                <th class="fit">Fork Lift</th>
+                                <th class="fit">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($shipments as $shipment)
                             <tr>
-                                <td>
-                                    <form action="/ship/admin/update/{{$shipment->id}}" method="POST">
-                                        @csrf
-                                        {{method_field('PUT')}}
-                                        <select name="status_1" id="" class=" form-control form-control-sm">
-                                            <option value="" selected disabled>Choose</option>
-                                            <option value="Completed">Completed</option>
-                                            <option value="Approved">Approved</option>
-                                            <option value="In Progress">In Progress</option>
-                                            <option value="Rejected">Rejected</option>
-                                        </select>
-
-                                        <button type="submit" class="btn btn-link btn-sm text-center">
-                                            <small>Update</small>
-                                        </button>
-                                    </form>
-
+                                <td class="fit">
+                                    <div class="input-group">
+                                        <form action="/ship/admin/update/{{$shipment->id}}" id="update-ship-{{$shipment->id}}" method="POST">
+                                
+                                            {{method_field('PUT')}}
+                                            <select name="status" class="custom-select custom-select-sm rounded-0">
+                                                <option value="" selected disabled>Choose</option>
+                                                <option value="Approved">Approved</option>
+                                                <option value="Picked">Picked</option>
+                                                <option value="Boxed">Boxed</option>
+                                                <option value="Rejected">Rejected</option>
+                                            </select>
+                                            @csrf
+                                        </form>
+                                
+                                        <div class="input-group-append">
+                                
+                                            <button type="submit" form="update-ship-{{$shipment->id}}"
+                                                class="btn btn-secondary bg-denim btn-sm border-0 form-control form-control-sm"><small>Update</small></button>
+                                        </div>
+                                    </div>
                                 </td>
-                                <td>{{str_pad($shipment->id, 6, '0', STR_PAD_LEFT)}}</td>
-                                <td>{{$shipment->created_at->format(' m/d/y')}}</td>
-                                <td>{{$shipment->work_status}}</td>
-                                <td>{{$shipment->orig_company}}</td>
-                                <td>{{$shipment->dest_company}}</td>
-                                <td>{{date('m/d/y', strtotime($shipment->orig_pickup_date))}}</td>
-                                <td>{{date('m/d/y', strtotime($shipment->dest_pickup_date))}}</td>
-                                <td>{{$shipment->dest_cont_name}}</td>
-                                <td>{{$shipment->dest_cont_email}}</td>
-                                <td>{{$shipment->dest_cont_phone}}</td>
-                                <td>{{$shipment->dest_dock}}</td>
-                                <td>{{$shipment->dest_frklft}}</td>
-                                <td>
+                                <td class="fit">
+                                  <a href="/ship/{{$shipment->id}}" class="float-left">
+                                    <button class="btn btn-link text-denim btn-sm px-0"
+                                      type="button">{{str_pad($shipment->id, 6, '0', STR_PAD_LEFT)}}</button>
+                                  </a>
+                                </td>
+                                <td class="fit">{{$shipment->created_at->format(' m/d/y')}}</td>
+                                <td class="fit">{{$shipment->work_status}}</td>
+                                <td class="fit">{{$shipment->orig_company}}</td>
+                                <td class="fit">{{$shipment->dest_company}}</td>
+                                <td class="fit">{{date('m/d/y', strtotime($shipment->orig_pickup_date))}}</td>
+                                <td class="fit">{{date('m/d/y', strtotime($shipment->dest_pickup_date))}}</td>
+                                <td class="fit">{{$shipment->dest_cont_name}}</td>
+                                <td class="fit">{{$shipment->dest_cont_email}}</td>
+                                <td class="fit">{{$shipment->dest_cont_phone}}</td>
+                                <td class="fit">{{$shipment->dest_dock}}</td>
+                                <td class="fit">{{$shipment->dest_frklft}}</td>
+                                <td class="fit">
                                     <div>
-                                        <a href="/ship/{{$shipment->id}}" class="float-left">
-                                            <button class="btn btn-link btn-sm px-0 pr-1" type="button"><small>View</small></button>
-                                        </a>
                                         <a href="/pdf/{{$shipment->id}}" class="float-left">
-                                            <button class="btn btn-link text-denim btn-sm px-0 pr-1" type="button"><small>PDF</small></button>
+                                            <button class="btn btn-link text-denim btn-sm p-0 m-0" type="button"><small>PDF</small></button>
                                         </a>
                                         <form action="/ship/{{$shipment->id}}" method="POST" class="float-left">
                                             @method('DELETE')
                                             @csrf
-
                                             <button type="submit"
-                                                class="btn btn-link text-danger btn-sm px-0 pr-1"><small>Delete</small></button>
+                                                class="btn btn-link text-danger btn-sm p-0 m-0"><small>Delete</small></button>
                                         </form>
                                     </div>
                                 </td>
@@ -277,20 +323,20 @@
                         <table class="table table-sm shipment-history">
                             <thead>
                             <tr>
-                                <th>Edit Status</th>
-                                <th>Order #</th>
-                                <th>Booked</th>
-                                <th>Status</th>
-                                <th>Orig Info</th>
-                                <th>Dest Info</th>
-                                <th>Pickup</th>
-                                <th>Delivery</th>
-                                <th>Contact Name</th>
-                                <th>Contact Email</th>
-                                <th>Contact Phone</th>
-                                <th>Dock</th>
-                                <th>Fork Lift</th>
-                                <th>Actions</th>
+                                <th class="fit">Status</th>
+                                <th class="fit">Order #</th>
+                                <th class="fit">Booked</th>
+                                <th class="fit">Status</th>
+                                <th class="fit">Sender</th>
+                                <th class="fit">Receiver</th>
+                                <th class="fit">Pickup</th>
+                                <th class="fit">Delivery</th>
+                                <th class="fit">Contact</th>
+                                <th class="fit">Email</th>
+                                <th class="fit">Phone</th>
+                                <th class="fit">Dock</th>
+                                <th class="fit">Fork Lift</th>
+                                <th class="fit">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -298,24 +344,33 @@
                             
                             <tr>
                                 <td>
-                                    <form action="/ship/admin/update/{{$shipment->id}}" method="POST">
-                                        @csrf
-                                        {{method_field('PUT')}}
-                                        <select name="status_1" id="" class=" form-control form-control-sm">
-                                            <option value="" selected disabled>Choose</option>
-                                            <option value="Completed">Completed</option>
-                                            <option value="Approved">Approved</option>
-                                            <option value="In Progress">In Progress</option>
-                                            <option value="Rejected">Rejected</option>
-                                        </select>
-
-                                        <button type="submit" class="btn btn-link btn-sm text-center">
-                                            <small>Update</small>
-                                        </button>
-                                    </form>
-
+                                    <div class="input-group">
+                                        <form action="/ship/admin/update/{{$shipment->id}}" id="update-ship-{{$shipment->id}}" method="POST">
+                                
+                                            {{method_field('PUT')}}
+                                            <select name="status" class="custom-select custom-select-sm rounded-0">
+                                                <option value="" selected disabled>Choose</option>
+                                                <option value="Approved">Approved</option>
+                                                <option value="Picked">Picked</option>
+                                                <option value="Boxed">Boxed</option>
+                                                <option value="Rejected">Rejected</option>
+                                            </select>
+                                            @csrf
+                                        </form>
+                                
+                                        <div class="input-group-append">
+                                
+                                            <button type="submit" form="update-ship-{{$shipment->id}}"
+                                                class="btn btn-secondary bg-denim btn-sm border-0 form-control form-control-sm"><small>Update</small></button>
+                                        </div>
+                                    </div>
                                 </td>
-                                <td>{{str_pad($shipment->id, 6, '0', STR_PAD_LEFT)}}</td>
+                                <td>
+                                    <a href="/ship/{{$shipment->id}}" class="float-left">
+                                      <button class="btn btn-link text-denim btn-sm px-0"
+                                        type="button">{{str_pad($shipment->id, 6, '0', STR_PAD_LEFT)}}</button>
+                                    </a>
+                                </td>
                                 <td>{{$shipment->created_at->format(' m/d/y')}}</td>
                                 <td>{{$shipment->work_status}}</td>
                                 <td>{{$shipment->orig_company}}</td>
@@ -329,18 +384,16 @@
                                 <td>{{$shipment->dest_frklft}}</td>
                                 <td>
                                     <div>
-                                            <a href="/ship/{{$shipment->id}}" class="float-left">
-                                                <button class="btn btn-link btn-sm px-0 pr-1" type="button"><small>View</small></button>
-                                            </a>
+
                                             <a href="/pdf/{{$shipment->id}}" class="float-left">
-                                                <button class="btn btn-link text-denim btn-sm px-0 pr-1" type="button"><small>PDF</small></button>
+                                                <button class="btn btn-link text-success btn-sm px-0" type="button"><small>PDF</small></button>
                                             </a>
                                             <form action="/ship/{{$shipment->id}}" method="POST" class="float-left">
                                                 @method('DELETE')
                                                 @csrf
     
                                                 <button type="submit"
-                                                    class="btn btn-link text-danger btn-sm px-0 pr-1"><small>Delete</small></button>
+                                                    class="btn btn-link text-danger btn-sm px-0"><small>Delete</small></button>
                                             </form>
                                         </div>
                                 </td>

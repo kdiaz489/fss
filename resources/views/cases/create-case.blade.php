@@ -192,7 +192,7 @@ Create Case
 
 <div class="container mt-5">
 
-    <h1 class="display-4 text-center mb-4">Create your Case</h1>
+    <h1 class="font-weight-light text-center mb-4">Create your Case</h1>
 
     <!-- Flash Alerts Begin -->
 
@@ -204,17 +204,18 @@ Create Case
         <div class="col-sm-8">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title font-weight-bold">Case Information</h5>
               <p class="card-text">
                   <form action="/createcase" id="createcase" method="POST">
                     <div class="form-row justify-content-center">
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <span class="text-center" id="result"></span>
                         </div>
             
                     </div>
             
-            
+                    <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
+
+
                     <div class="form-row justify-content-center mb-4">
             
                         <div class="col-md-6">
@@ -240,8 +241,8 @@ Create Case
             
                     <div class="form-row justify-content-center mb-4">
                         <div class="col-md-12 justify-content-center">
-                          <div class="table-responsive-md">
-                            <table class="table table-bordered table-striped" id="user_table">
+                          <div class="table-responsive-xl">
+                            <table class="table table-bordered" id="user_table">
                                 <thead>
                                     <tr>
                                         <th class="font-weight-normal" width="20%">Select Items</th>
@@ -381,7 +382,7 @@ Create Case
                         }
                         else
                         {
-                            dynamic_field(1);
+                            
                             $('#result').html('<div class="alert alert-success">'+data.success+'</div>');
 
                         }

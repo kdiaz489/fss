@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- Main jumbotron for a primary marketing message or call to action -->
+
 <div class="jumbotron-fluid jumbotron-storage">
         <div class="container">
           <h1 class="font-weight-light">Get your storage quote today.</h1>
@@ -15,21 +15,7 @@
         </div>
       </div>
 
-      <!---
       <div class="container">
-      <div class="row justify-content-center">
-
-        <div class="col col-lg-12 col-12" style="max-width: 400px; text-align: center; font-size: 54px; background-color: gold;">
-          <i class="fas fa-tools"></i>
-          <p>
-            Site Under Construction!
-          </p>
-        </div>
-      </div>
-
-
-      -->
-      <div class="container stor-container">
         <div class="container">
           <div class="row justify-content-center">
 
@@ -66,16 +52,12 @@
 
                     If you have unique needs, FillStorShip can accommodate your business at an additional cost. All quotes are customized for each customer.
                     Ask us how we can make it work for you!
-
                 </p>
-
               </div>
             </div>
         </div>
 
       </div>
-
-
 
          <!-- Modal -->
          <div class="modal fade storModal" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
@@ -155,4 +137,5 @@
          </div>
        </div>
 
-@endsection()
+@endsection
+

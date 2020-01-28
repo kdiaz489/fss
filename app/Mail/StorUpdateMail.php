@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use phpDocumentor\Reflection\Types\Null_;
 
 class StorUpdateMail extends Mailable
 {
@@ -30,6 +31,14 @@ class StorUpdateMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.contact.stor-update-email')->subject('Inventory Request - Update');
+        if(($this->data->order_type == 'Fulfill Items') && ($this->data->cust_order_no != null)){
+            return $this->markdown('emails.contact.stor-update-email')->from('ship@fillstorship.com')->subject('Order #' . $this->data->cust_order_no . ' is now ' . $this->data->status);
+        }
+        elseif(($this->data->order_type == 'Fulfill Items') && ($this->data->cust_order_no == null)){
+            return $this->markdown('emails.contact.stor-update-email')->from('ship@fillstorship.com')->subject('Order #' . $this->data->orderid . ' is now ' . $this->data->status);
+        }
+        else{
+            return $this->markdown('emails.contact.stor-update-email')->from('ship@fillstorship.com')->subject('Order #' . $this->data->orderid . ' is now ' . $this->data->status);
+        }
     }
 }

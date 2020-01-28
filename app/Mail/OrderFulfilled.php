@@ -31,6 +31,6 @@ class OrderFulfilled extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.contact.fulfilled');
+        return $this->markdown('emails.contact.fulfilled')->from('ship@fillstorship.com')->subject('Order #' . $this->data->cust_order_no . ' Has Been Fulfilled');
     }
 }

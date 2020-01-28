@@ -16,10 +16,7 @@
                   <!-- Sidebar Menu -->
                   <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
-                      <!-- Add icons to the links using the .nav-icon class
-                         with font-awesome or any other icon font library -->
-          
-          
+
                       <li class="nav-item has-treeview">
                         <a href="#" class="nav-link text-white">
           
@@ -30,11 +27,16 @@
                           </p>
                         </a>
                         <ul class="nav nav-treeview">
-          
                           <li class="nav-item">
-                            <a href="/dashboard/admin/fulfillment" class="nav-link text-white">
+                            <a href="/dashboard/admin/createpalletize" class="nav-link text-white">
                               <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Fulfillment Orders</p>
+                              <p>Create Palletized</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createcartonize" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Cartonized</p>
                             </a>
                           </li>
                         </ul>
@@ -55,7 +57,36 @@
                               <p>All Inventory</p>
                             </a>
                           </li>
-          
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createtransin" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Transfer In</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createtransout" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Transfer Out</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createpallet" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Pallet</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createcase" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Case</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createunit" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Unit</p>
+                            </a>
+                          </li>
                         </ul>
                       </li>
                       <li class="nav-item has-treeview">
@@ -76,30 +107,40 @@
                         </ul>
                       </li>
                       <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link text-white">
-                          <i class="nav-icon fas fa-edit"></i>
-                          <p>
-                            Orders
-                            <i class="fas fa-angle-left right"></i>
-                          </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                          <li class="nav-item">
-                            <a href="/dashboard/admin/orders" class="nav-link text-white">
-                              <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Storage Orders</p>
+                            <a href="#" class="nav-link text-white">
+                              <i class="nav-icon fas fa-edit"></i>
+                              <p>
+                                Orders
+                                <i class="fas fa-angle-left right"></i>
+                              </p>
                             </a>
-                            <a href="/dashboard/admin/cartonizeorders" class="nav-link text-white">
-                                <i class="fas fa-angle-right nav-icon"></i>
-                                <p>Cartonized Orders</p>
-                            </a>
-                            <a href="/dashboard/admin/palletizeorders" class="nav-link text-white">
-                                <i class="fas fa-angle-right nav-icon"></i>
-                                <p>Palletized Orders</p>
-                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/dashboard/admin/fulfillment" class="nav-link text-white">
+                                        <i class="fas fa-angle-right nav-icon"></i>
+                                        <p>Fulfillment Orders</p>
+                                    </a>
+                                </li>
+                              <li class="nav-item">
+                                <a href="/dashboard/admin/orders" class="nav-link text-white">
+                                  <i class="fas fa-angle-right nav-icon"></i>
+                                  <p>Storage Orders</p>
+                                </a>
+                              </li>
+                              <li class="nav-item">
+                                <a href="/dashboard/admin/cartonizeorders" class="nav-link text-white">
+                                  <i class="fas fa-angle-right nav-icon"></i>
+                                  <p>Cartonized Orders</p>
+                                </a>
+                              </li>
+                              <li class="nav-item">
+                                <a href="/dashboard/admin/palletizeorders" class="nav-link text-white">
+                                  <i class="fas fa-angle-right nav-icon"></i>
+                                  <p>Palletized Orders</p>
+                                </a>
+                              </li>
+                            </ul>
                           </li>
-                        </ul>
-                      </li>
                       <li class="nav-item has-treeview">
                             <a href="#" class="nav-link text-white">
                               <i class="nav-icon fas fa-users"></i>

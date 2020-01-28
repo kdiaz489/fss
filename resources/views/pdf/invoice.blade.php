@@ -601,7 +601,7 @@
           </div>
           <div class="col-xs-8">
             <p class="py-0 my-0">
-              {{$shipment->orig_address_01 . ' ' . $shipment->orig_address_02 . ' ' . $shipment->orig_city . ' ' . $shipment->oriz_zip}}
+              {{$shipment->orig_address_01 . ' ' . $shipment->orig_address_02 . ' ' . $shipment->orig_city . ' ' . $shipment->orig_zip}}
             </p>
           </div>
         </div>

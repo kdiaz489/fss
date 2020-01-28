@@ -156,6 +156,14 @@ Route::get('/dashboard/admin/account', 'DashboardController@getadminaccount');
 Route::get('/dashboard/admin/fulfill/{id}', 'DashboardController@getadminfulfillorderform');
 Route::get('/dashboard/admin/editunit/{id}', 'DashboardController@admineditunit');
 Route::get('/dashboard/admin/createcartonize', 'DashboardController@admincreatecartonize');
+Route::get('/dashboard/admin/editunit/{id}', 'DashboardController@admineditunit');
+Route::get('/dashboard/admin/createpalletize', 'DashboardController@admincreatepalletize');
+Route::get('/dashboard/admin/createtransin', 'DashboardController@admincreatetransin');
+Route::get('/dashboard/admin/createtransout', 'DashboardController@admincreatetransout');
+Route::get('/dashboard/admin/createpallet', 'DashboardController@admincreatepallet');
+Route::get('/dashboard/admin/createcarton', 'DashboardController@admincreatecarton');
+Route::get('/dashboard/admin/createcase', 'DashboardController@admincreatecase');
+Route::get('/dashboard/admin/createunit', 'DashboardController@admincreateunit');
 
 Route::get('/updateusername', 'DashboardController@getupdateusername');
 Route::get('/updateemail', 'DashboardController@getupdateemail');

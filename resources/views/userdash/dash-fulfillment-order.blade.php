@@ -39,11 +39,18 @@
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="/dashboard/user/fulfillment" class="nav-link text-white">
-                              <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Fulfillment Orders</p>
-                            </a>
+                              <a href="/createcartonize" class="nav-link text-white">
+                                  <i class="fas fa-angle-right nav-icon"></i>
+                                  <p>Create Cartonize</p>
+                              </a>
                           </li>
+                          <li class="nav-item">
+                              <a href="/createpalletize" class="nav-link text-white">
+                                  <i class="fas fa-angle-right nav-icon"></i>
+                                  <p>Create Palletize</p>
+                              </a>
+                          </li>
+
                         </ul>
                       </li>
           
@@ -62,13 +69,18 @@
                               <p>All Inventory</p>
                             </a>
                           </li>
-          
                           <li class="nav-item">
-                            <a href="/dashboard/user/orders" class="nav-link text-white">
-                              <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Storage Orders</p>
-                            </a>
-                          </li>
+                              <a href="/createtransin" class="nav-link text-white">
+                                <i class="fas fa-angle-right nav-icon"></i>
+                                <p>Create Transfer In</p>
+                              </a>
+                            </li>
+                            <li class="nav-item">
+                              <a href="/createtransout" class="nav-link text-white">
+                                <i class="fas fa-angle-right nav-icon"></i>
+                                <p>Create Transfer Out</p>
+                              </a>
+                            </li>
                           <li class="nav-item">
                             <a href="/basicunit" class="nav-link text-white">
                               <i class="fas fa-angle-right nav-icon"></i>
@@ -129,18 +141,18 @@
                         </a>
                         <ul class="nav nav-treeview">
                           <li class="nav-item">
-                            <a href="/createtransin" class="nav-link text-white">
+                            <a href="/dashboard/user/fulfillment" class="nav-link text-white">
                               <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Create Transfer In</p>
+                              <p>Fulfillment Orders</p>
                             </a>
                           </li>
+                          
                           <li class="nav-item">
-                            <a href="/createtransout" class="nav-link text-white">
+                            <a href="/dashboard/user/orders" class="nav-link text-white">
                               <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Create Transfer Out</p>
+                              <p>Storage Orders</p>
                             </a>
                           </li>
-          
           
                         </ul>
                       </li>
@@ -312,6 +324,7 @@ Fulfilment Order
                             <div class="col-md-4">
                                 <label for="container_qty">Quantity</label>
                                 <input type="text" name="container_qty[0][]" class="form-control container_qty required" placeholder="Container Quantity">
+                                <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
                             </div>
                         </div>
 
@@ -337,7 +350,6 @@ Fulfilment Order
                                                         @if (count($cases) > 0) <optgroup label="Cases"> @foreach ($cases as $case) <option value="{{$case->sku}}">{{$case->sku}}</option> @endforeach</optgroup> @else<option value="" disabled>No Cases Available</option> @endif 
                                                         @if (count($kits) > 0) <optgroup label="Kits"> @foreach ($kits as $kit) <option value="{{$kit->sku}}">{{$kit->sku}}</option> @endforeach</optgroup> @else<option value="" disabled>No Kits Available</option> @endif 
                                                         @if (count($units) > 0) <optgroup label="Units"> @foreach ($units as $unit) <option value="{{$unit->sku}}">{{$unit->sku}}</option> @endforeach</optgroup> @else<option value="" disabled>No Units Available</option> @endif 
-    
                                                     </select>
                                                 </td>
 

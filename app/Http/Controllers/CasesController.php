@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Cases;
 use App\User;
+use App\Kit;
 use App\Basic_Unit;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 class CasesController extends Controller
@@ -45,11 +46,13 @@ class CasesController extends Controller
     {
         if ($request->ajax()) {
 
-
             $rules = array(
+                'upc'=> [ 'required',
+                        Rule::unique('cases')->where(function ($query) use($request){
+                        $query->where('user_id', '=', $request->user_id);
+                 })],
                 'items.*'  => 'required',
                 'item_qty.*'  => 'required',
-                'types.*' => 'required'
             );
 
 
@@ -61,8 +64,8 @@ class CasesController extends Controller
                 ]);
             }
             $case = new Cases();
-            $case->user_id = auth()->user()->id;
-            $case->company = auth()->user()->company_name;
+            $case->user_id = $request->user_id;
+            $case->company = User::find($request->user_id)->company_name;
             $case->description = $request->desc;
             $case->sku = $request->sku;
             $case->upc = $request->upc;
@@ -80,33 +83,22 @@ class CasesController extends Controller
 
             $items = $request->items;
             $item_qty = $request->item_qty;
-            $types = $request->types;
 
+            for ($i = 0; $i < count($items); $i++) {
+                
+                $case->qty_per_case += $item_qty[$i];
+                if (Basic_Unit::where('upc', $items[$i])->where('user_id', $request->user_id)->exists()) {
+                    $unit = Basic_Unit::where('upc', $items[$i])->where('user_id', $request->user_id)->first();
+                    $case->basic_units()->attach(['basic__unit_id' => $unit->id], ['quantity' => $item_qty[$i]]);
+                 }
 
-            for ($i = 0; $i < count($types); $i++) {
-                if ($types[$i] == 'Unit') {
-                    $data = array(
-                        'basic__unit_id' => $items[$i],
-                        'quantity' => $item_qty[$i]
-                    );
-                    $unit_data[] = $data;
-                    $case->qty_per_case += $item_qty[$i];
-                    $case->save();
-                    $case->basic_units()->attach($unit_data);
-                }
+                 if (Kit::where('upc', $items[$i])->where('user_id', $request->user_id)->exists()) {
+                    $kit = Kit::where('upc', $items[$i])->where('user_id', $request->user_id)->first();
+                    $case->kits()->attach(['kit_id' => $kit->id], ['quantity' => $item_qty[$i]]);
+                 }
 
-                if ($types[$i] == 'Kit') {
-                    $data = array(
-                        'kit_id' => $items[$i],
-                        'quantity' => $item_qty[$i]
-                    );
-                    $kit_data[] = $data;
-                    $case->qty_per_case += $item_qty[$i];
-                    $case->save();
-                    $case->kits()->attach($kit_data);
-                }
             }
-            
+            $case->save();
             return response()->json([
                 'success'  => 'Case has been created. - SKU: ' . $case->sku . ' UPC: ' . $case->upc . ''
             ]);

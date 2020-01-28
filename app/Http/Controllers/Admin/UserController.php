@@ -48,7 +48,7 @@ class UserController extends Controller
     }
 
     public function getuser($id){
-        $user = User::with('cases')->find($id);
+        $user = User::with('cases', 'kits', 'basic_units')->find($id);
         return collect(['user' => $user]);
         
     }

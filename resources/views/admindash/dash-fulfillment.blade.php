@@ -16,12 +16,9 @@
                   <!-- Sidebar Menu -->
                   <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
-                      <!-- Add icons to the links using the .nav-icon class
-                         with font-awesome or any other icon font library -->
           
-          
-                      <li class="nav-item has-treeview menu-open">
-                        <a href="#" class="nav-link text-white shadow-sm" style="background-color: #3b679c">
+                      <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link text-white">
           
                           <i class="nav-icon fas fa-box-open"></i>
                           <p>
@@ -30,11 +27,16 @@
                           </p>
                         </a>
                         <ul class="nav nav-treeview">
-          
                           <li class="nav-item">
-                            <a href="/dashboard/admin/fulfillment" class="nav-link text-gunmetal bg-whitewash">
+                            <a href="/dashboard/admin/createpalletize" class="nav-link text-white">
                               <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Fulfillment Orders</p>
+                              <p>Create Palletized</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createcartonize" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Cartonized</p>
                             </a>
                           </li>
                         </ul>
@@ -55,7 +57,42 @@
                               <p>All Inventory</p>
                             </a>
                           </li>
-          
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createtransin" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Transfer In</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createtransout" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Transfer Out</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createpallet" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Pallet</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createcarton" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Carton</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createcase" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Case</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createunit" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Unit</p>
+                            </a>
+                          </li>
                         </ul>
                       </li>
                       <li class="nav-item has-treeview">
@@ -68,38 +105,48 @@
                         </a>
                         <ul class="nav nav-treeview">
                           <li class="nav-item">
-                            <a href="/dashboard" class="nav-link text-gunmetal bg-whitewash" >
+                            <a href="/dashboard" class="nav-link text-white" >
                               <i class="fas fa-angle-right nav-icon"></i>
                               <p>All Shipments</p>
                             </a>
                           </li>
                         </ul>
                       </li>
-                      <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link text-white">
-                          <i class="nav-icon fas fa-edit"></i>
-                          <p>
-                            Orders
-                            <i class="fas fa-angle-left right"></i>
-                          </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                          <li class="nav-item">
-                            <a href="/dashboard/admin/orders" class="nav-link text-white">
-                              <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Storage Orders</p>
+                      <li class="nav-item has-treeview menu-open">
+                            <a href="#" class="nav-link text-white shadow-sm" style="background-color: #3b679c">
+                              <i class="nav-icon fas fa-edit"></i>
+                              <p>
+                                Orders
+                                <i class="fas fa-angle-left right"></i>
+                              </p>
                             </a>
-                            <a href="/dashboard/admin/cartonizeorders" class="nav-link text-white">
-                                <i class="fas fa-angle-right nav-icon"></i>
-                                <p>Cartonized Orders</p>
-                            </a>
-                            <a href="/dashboard/admin/palletizeorders" class="nav-link text-white">
-                                <i class="fas fa-angle-right nav-icon"></i>
-                                <p>Palletized Orders</p>
-                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/dashboard/admin/fulfillment" class="nav-link text-gunmetal bg-whitewash">
+                                        <i class="fas fa-angle-right nav-icon"></i>
+                                        <p>Fulfillment Orders</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/dashboard/admin/orders" class="nav-link text-white">
+                                        <i class="fas fa-angle-right nav-icon"></i>
+                                        <p>Storage Orders</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/dashboard/admin/cartonizeorders" class="nav-link text-white">
+                                        <i class="fas fa-angle-right nav-icon"></i>
+                                        <p>Cartonized Orders</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/dashboard/admin/palletizeorders" class="nav-link text-white">
+                                        <i class="fas fa-angle-right nav-icon"></i>
+                                        <p>Palletized Orders</p>
+                                    </a>
+                                </li>
+                            </ul>
                           </li>
-                        </ul>
-                      </li>
                       <li class="nav-item has-treeview">
                             <a href="#" class="nav-link text-white">
                               <i class="nav-icon fas fa-users"></i>
@@ -216,10 +263,10 @@
                                 <thead>
                                     <tr>
                                         <th width="2%">Expand</th>
-                                        <th width="10%%">Update</th>
-                                        <th width="7%">Order ID</th>
+                                        <th width="10%">Update</th>
+                                        <th width="7%">Shopify ID</th>
                                         <th width="10%">Customer</th>
-                                        <th width="10%">Payment</th>
+                                        <th width="5%">Payment</th>
                                         <th width="10%">Status</th>
                                         <th width="10%">Created</th>
                                         <th width="10%"></th>
@@ -236,27 +283,28 @@
                                             data-target="#details{{$order->id}}" aria-expanded="false"
                                             aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
                                     <td>
-                                        
-                                            <div class="input-group">
+                                    
+                                        <div class="input-group">
                                             <form action="/order/update/{{$order->id}}" id="update-order-{{$order->id}}" method="POST">
-                                                    
-                                                        {{method_field('PUT')}}
-                                                        <select name="status" class="custom-select custom-select-sm rounded-0">
-                                                            <option value="" selected disabled>Choose</option>
-                                                            <option value="Approved">Approved</option>
-                                                            <option value="Picked">Picked</option>
-                                                            <option value="Boxed">Boxed</option>
-                                                            <option value="Rejected">Rejected</option>
-                                                        </select>
-                                                        @csrf 
-                                                    </form>    
-                                                                                              
-                                                    <div class="input-group-append">
-                                                             
-                                                        <button type="submit" form="update-order-{{$order->id}}" class="btn btn-secondary bg-denim btn-sm border-0 form-control form-control-sm"><small>Update</small></button>
-                                                    </div>
+                                    
+                                                {{method_field('PUT')}}
+                                                <select name="status" class="custom-select custom-select-sm rounded-0">
+                                                    <option value="" selected disabled>Choose</option>
+                                                    <option value="Approved">Approved</option>
+                                                    <option value="Picked">Picked</option>
+                                                    <option value="Boxed">Boxed</option>
+                                                    <option value="Rejected">Rejected</option>
+                                                </select>
+                                                @csrf
+                                            </form>
+                                    
+                                            <div class="input-group-append">
+                                    
+                                                <button type="submit" form="update-order-{{$order->id}}"
+                                                    class="btn btn-secondary bg-denim btn-sm border-0 form-control form-control-sm"><small>Update</small></button>
                                             </div>
-
+                                        </div>
+                                    
                                     </td>
                                     <td class="order-id" id = 'order-{{$order->id}}'>
                                         <a href="/vieworder/{{$order->id}}">
@@ -266,7 +314,8 @@
                                     <td>{{$order->cust_name}}</td>
                                     <td>{{$order->financial_status}}</td>
                                     <td class="status">{{$order->status}}</td>
-                                    <td>{{$order->created_at->format('H:i:s m/d/y')}}</td>
+                                    <td>{{date('m/d/y', strtotime($order->created_at))}}</td>
+                                    
                                     
     
     

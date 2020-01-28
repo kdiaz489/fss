@@ -225,6 +225,39 @@ class DashboardController extends Controller
         return view('admindash.create-cartonize')->with('users', User::all());
     }
 
+    public function admincreatetransin(){
+        return view('admindash.create-transin')->with('users', User::all());
+    }
+
+    public function admincreatetransout(){
+        return view('admindash.create-transout')->with('users', User::all());
+    }
+
+    public function admincreatepalletize(){
+        $users = User::with('cases', 'basic_units');
+        return view('admindash.create-palletize')->with('users', User::all());
+    }
+
+    public function admincreatepallet(){
+        $users = User::with('cases', 'basic_units');
+        return view('admindash.create-pallet')->with('users', User::all());
+    }
+
+    public function admincreatecarton(){
+        $users = User::with('cases', 'basic_units');
+        return view('admindash.create-carton')->with('users', User::all());
+    }
+
+    public function admincreatecase(){
+        $users = User::with('basic_units', 'kits');
+        return view('admindash.create-case')->with('users', User::all());
+    }
+
+    public function admincreateunit(){
+        $users = User::with('basic_units', 'kits');
+        return view('admindash.create-unit')->with('users', User::all());
+    }
+
     public function getadmininventory(){
         /*
         $units = DB::select('SELECT * FROM basic_unit_tbl');

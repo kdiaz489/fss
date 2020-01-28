@@ -1,191 +1,5 @@
 @extends('layouts.userdashlte')
 
-@hasrole('user')
-@section('main-sidebar')
-        <!-- Main Sidebar Container -->
-        <aside class="main-sidebar bg-denim elevation-4">
-                <!-- Brand Logo -->
-                <a href="#" class="brand-link justify-content-center border-0">
-                  <img src="{{asset('img/fss-white.svg')}}" alt="AdminLTE Logo" class="brand-image" width="100px" height="80px" style="max-height:27px; width:auto">
-                  <span class="brand-text font-weight-light text-white">Dashboard</span>
-                </a>
-          
-                <!-- Sidebar -->
-                <div class="sidebar">
-          
-          
-                  <!-- Sidebar Menu -->
-                  <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
-                      <!-- Add icons to the links using the .nav-icon class
-                         with font-awesome or any other icon font library -->
-          
-          
-                      <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link text-white" >
-          
-                          <i class="nav-icon fas fa-box-open"></i>
-                          <p>
-                            Fulfilment
-                            <i class="right fas fa-angle-left"></i>
-                          </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-          
-                          <li class="nav-item">
-                            <a href="/createfilorder" class="nav-link text-white">
-                              <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Create Manual Order</p>
-                            </a>
-                          </li>
-                          <li class="nav-item">
-                            <a href="/dashboard/user/fulfillment" class="nav-link text-white">
-                              <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Fulfillment Orders</p>
-                            </a>
-                          </li>
-                        </ul>
-                      </li>
-          
-                      <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link text-white">
-                          <i class="nav-icon fas fa-warehouse"></i>
-                          <p>
-                            Storage
-                            <i class="right fas fa-angle-left"></i>
-                          </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                          <li class="nav-item">
-                            <a href="/dashboard/user/inventory" class="nav-link text-white">
-                              <i class="fas fa-angle-right nav-icon"></i>
-                              <p>All Inventory</p>
-                            </a>
-                          </li>
-          
-                          <li class="nav-item">
-                            <a href="/dashboard/user/orders" class="nav-link text-white">
-                              <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Storage Orders</p>
-                            </a>
-                          </li>
-                          <li class="nav-item">
-                            <a href="/basicunit" class="nav-link text-white">
-                              <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Create Unit</p>
-                            </a>
-                          </li>
-                          <li class="nav-item">
-                            <a href="/createkit" class="nav-link text-white">
-                              <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Create Kit</p>
-                            </a>
-                          </li>
-                          <li class="nav-item">
-                            <a href="/createcase" class="nav-link text-white">
-                              <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Create Case</p>
-                            </a>
-                          </li>
-          
-                        </ul>
-                      </li>
-                      <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link text-white">
-                          <i class="nav-icon fas fa-shipping-fast"></i>
-                          <p>
-                            Shipments
-                            <i class="fas fa-angle-left right"></i>
-                          </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                          <li class="nav-item">
-                            <a href="/dashboard" class="nav-link text-white">
-                              <i class="fas fa-angle-right nav-icon"></i>
-                              <p>All Shipments</p>
-                            </a>
-                          </li>
-                          <li class="nav-item">
-                            <a href="/dashboard/user/getquote" class="nav-link text-white">
-                              <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Get Quote</p>
-                            </a>
-                          </li>
-                          <li class="nav-item">
-                            <a href="/dashboard/user/bookshipment" class="nav-link text-white">
-                              <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Book Shipment</p>
-                            </a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li class="nav-item has-treeview menu-open">
-                        <a href="#" class="nav-link text-white shadow-sm" style="background-color: #3b679c">
-                          <i class="nav-icon fas fa-edit"></i>
-                          <p>
-                            Orders
-                            <i class="fas fa-angle-left right"></i>
-                          </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                          <li class="nav-item">
-                            <a href="/createtransin" class="nav-link text-gunmetal bg-whitewash">
-                              <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Create Transfer In</p>
-                            </a>
-                          </li>
-                          <li class="nav-item">
-                            <a href="/createtransout" class="nav-link text-white">
-                              <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Create Transfer Out</p>
-                            </a>
-                          </li>
-          
-          
-                        </ul>
-                      </li>
-                      <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link text-white">
-          
-                          <i class="nav-icon fas fa-user-alt"></i>
-                          <p>
-                            {{auth()->user()->name}} 
-                            <i class="fas fa-angle-left right"></i>
-                          </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                          <li class="nav-item">
-                            <a href="/dashboard/user/account" class="nav-link text-white">
-                              <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Account Details</p>
-                            </a>
-                          </li>
-                          <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                          document.getElementById('logout-form').submit();">
-                              <i class="fas fa-angle-right nav-icon"></i>
-                              {{ __('Logout') }}
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                              @csrf
-                            </form>
-                          </li>
-          
-          
-                        </ul>
-                      </li>
-          
-          
-          
-                    </ul>
-                  </nav>
-                  <!-- /.sidebar-menu -->
-                </div>
-                <!-- /.sidebar -->
-              </aside>
-@endsection
-@endhasrole
-
 @hasrole('admin')
 @section('main-sidebar')
         <!-- Main Sidebar Container -->
@@ -203,12 +17,9 @@
                   <!-- Sidebar Menu -->
                   <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
-                      <!-- Add icons to the links using the .nav-icon class
-                         with font-awesome or any other icon font library -->
-          
-          
-                      <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link text-white">
+
+                      <li class="nav-item has-treeview menu-open">
+                        <a href="#" class="nav-link text-white shadow-sm" style="background-color: #3b679c">
           
                           <i class="nav-icon fas fa-box-open"></i>
                           <p>
@@ -217,11 +28,16 @@
                           </p>
                         </a>
                         <ul class="nav nav-treeview">
-          
                           <li class="nav-item">
-                            <a href="/dashboard/admin/fulfillment" class="nav-link text-white">
+                            <a href="/dashboard/admin/createpalletize" class="nav-link text-white">
                               <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Fulfillment Orders</p>
+                              <p>Create Palletized</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createcartonize" class="nav-link text-gunmetal bg-whitewash">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Cartonized</p>
                             </a>
                           </li>
                         </ul>
@@ -242,7 +58,36 @@
                               <p>All Inventory</p>
                             </a>
                           </li>
-          
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createtransin" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Transfer In</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createtransout" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Transfer Out</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createpallet" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Pallet</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createcase" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Case</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createunit" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Unit</p>
+                            </a>
+                          </li>
                         </ul>
                       </li>
                       <li class="nav-item has-treeview">
@@ -262,8 +107,8 @@
                           </li>
                         </ul>
                       </li>
-                      <li class="nav-item has-treeview menu-open">
-                        <a href="#" class="nav-link text-white shadow-sm" style="background-color: #3b679c">
+                      <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link text-white">
                           <i class="nav-icon fas fa-edit"></i>
                           <p>
                             Orders
@@ -271,6 +116,12 @@
                           </p>
                         </a>
                         <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/dashboard/admin/fulfillment" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Fulfillment Orders</p>
+                            </a>
+                          </li>
                           <li class="nav-item">
                             <a href="/dashboard/admin/orders" class="nav-link text-white">
                               <i class="fas fa-angle-right nav-icon"></i>
@@ -354,7 +205,7 @@ Cartonize
     <!-- Flash Alerts Ends -->
 
     <!-- Modal -->
-    <div class="modal fade confirmModal" id="" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle"
+    <div class="modal fade confirmModal" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
             <div class="modal-content">
@@ -373,6 +224,13 @@ Cartonize
                 </div>
             </div>
         </div>
+    </div>
+
+    <!--Spinner-->
+    <div id="overlay" style="display:none;">
+        <div class="spinner"></div>
+        <br/>
+        Loading...
     </div>
 
     <div class="container container-transin mb-5">
@@ -452,7 +310,7 @@ Cartonize
                 <div class="form-row justify-content-center mb-4">
                     <div class="col-md-12">
                         <label for="desc">Description</label>
-                        <textarea name="desc" id="" cols="30" rows="3" class="form-control"
+                        <textarea name="desc" cols="30" rows="3" class="form-control"
                             placeholder="Description Here"></textarea>
 
                     </div>
@@ -525,7 +383,7 @@ Cartonize
                                                 <td width="20%">
                                                     <input type="text" name="item_qty[0][]" class="form-control required" placeholder="Quantity #"/>
                                                 </td>
-                                                <td width="20%"><button type="button" name="remove" id=""
+                                                <td width="20%"><button type="button" name="remove"
                                                         class="btn btn-danger btn-sm remove circle mr-1"><i
                                                             class="fas fa-lg fa-minus"></i></button><small
                                                         class="text-danger">Remove</small></td>
@@ -533,7 +391,7 @@ Cartonize
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <td colspan="4" class="pb-0"><button type="button" name="add" id=""
+                                                <td colspan="4" class="pb-0"><button type="button" name="add"
                                                         class="btn btn-success btn-sm add circle"><i
                                                             class="fas fa-lg fa-plus"></i></button><small
                                                         class="text-success ml-1">Add Product to Container</small></td>
@@ -571,6 +429,14 @@ $(document).ready(function(){
   var container = $('.card-container').clone(true);
   var count = 0;
 
+  $(document).ajaxStart(function () {
+    $('#overlay').fadeIn();
+  });
+
+  $(document).ajaxComplete(function () {
+    $('#overlay').css("display", "none");
+  });
+  
   function getUser(id){
     var user = '';
     
@@ -649,6 +515,7 @@ $(document).ready(function(){
       }
 
       $(document).find('.select_cases').append(options);
+      container = $(document).find('.card-container').clone(true);
     }     
   });
 
@@ -676,12 +543,66 @@ $(document).ready(function(){
         } 
         html += '</select></td>'; 
         html += '<td><input type="text" name="item_qty['+count+'][]" class="form-control required item_qty" placeholder="Quantity #"/></td>';
-        html += '<td><button type="button" name="remove" id="" class="btn btn-danger btn-sm remove circle"><i class="fas fa-lg fa-minus"></i></button>\
+        html += '<td><button type="button" name="remove" class="btn btn-danger btn-sm remove circle"><i class="fas fa-lg fa-minus"></i></button>\
                     <small class="text-danger">Remove</small></td>';
         html += '</tr>';
         $(this).closest('table').append(html);
 
         });
+
+        $('.confirm_submit').on('click', function(event){
+                event.preventDefault();
+                $('.confirmModal').modal("hide");
+                if($('#trans_in_order_form').valid()){
+                    $('#trans_in_order_form').find('.card-container').each(function(i,ele){
+                    $(ele).find('.container_type').attr('name', 'container_type['+i+'][]');
+                    $(ele).find('.container_barcode').attr('name', 'container_barcode['+i+'][]');
+                    $(ele).find('.container_qty').attr('name', 'container_qty['+i+'][]');
+                    $(ele).find('.select_cases').attr('name', 'items['+i+'][]');
+                    $(ele).find('.item_qty').attr('name', 'item_qty['+i+'][]');
+                    
+                    $(this).find('.carton-container').each(function(y, ele2){
+                        $(ele2).find('.carton_barcode').attr('name', 'carton_barcode['+i+']['+y+']');
+                        $(ele2).find('.carton_qty').attr('name', 'carton_qty['+i+']['+y+']');
+                        $(ele2).find('.select_carton_skus').attr('name', 'carton_items['+i+']['+y+'][]');
+                        $(ele2).find('.carton_item_qty').attr('name', 'carton_item_qty['+i+']['+y+'][]');
+                    });
+                    
+
+                });
+                
+                $.ajax({
+                    url:'/createcartonize',
+                    method:'post',
+                    data:$('#trans_in_order_form').serialize(),
+                    dataType:'json',
+                    beforeSend:function(){
+                        $('#save').attr('disabled','disabled');
+                    },
+                    success:function(data)
+                    {
+                        if(data.error)
+                        {
+                            var error_html = '';
+                            for(var count = 0; count < data.error.length; count++)
+                            {
+                                error_html += '<p>'+data.error[count]+'</p>';
+                            }
+                            
+                            $('#order-result').html('<div class="alert alert-danger text-center">'+data.error+'</div>');
+                        }
+                        else
+                        {
+                            //dynamic_field(1);
+                            $('#order-result').html('<div class="alert alert-success text-center">'+data.success+'</div>');
+
+                        }
+                        $('#save').attr('disabled', false);
+                    }
+                });
+            }
+            
+            });
 
 });
 

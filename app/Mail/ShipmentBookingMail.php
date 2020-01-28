@@ -26,7 +26,7 @@ class ShipmentBookingMail extends Mailable
         //$shipment = Shipment::find($id);
         $this->filePath = $filePath;
         $this->data = $shipment;
-        //dd($filePath);
+       
     
     }
 

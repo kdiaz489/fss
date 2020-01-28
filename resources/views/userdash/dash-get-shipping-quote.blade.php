@@ -21,29 +21,35 @@
         
         
                     <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link text-white">
-        
+                      <a href="#" class="nav-link text-white">
+                    
                         <i class="nav-icon fas fa-box-open"></i>
                         <p>
-                        Fulfilment
-                        <i class="right fas fa-angle-left"></i>
+                          Fulfilment
+                          <i class="right fas fa-angle-left"></i>
                         </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-        
+                      </a>
+                      <ul class="nav nav-treeview">
+                    
                         <li class="nav-item">
-                        <a href="/createfilorder" class="nav-link text-white">
+                          <a href="/createfilorder" class="nav-link text-white">
                             <i class="fas fa-angle-right nav-icon"></i>
                             <p>Create Manual Order</p>
-                        </a>
+                          </a>
                         </li>
                         <li class="nav-item">
-                        <a href="/dashboard/user/fulfillment" class="nav-link text-white">
-                            <i class="fas fa-angle-right nav-icon"></i>
-                            <p>Fulfillment Orders</p>
-                        </a>
+                            <a href="/createcartonize" class="nav-link text-white">
+                                <i class="fas fa-angle-right nav-icon"></i>
+                                <p>Create Cartonize</p>
+                            </a>
                         </li>
-                    </ul>
+                        <li class="nav-item">
+                            <a href="/createpalletize" class="nav-link text-white">
+                                <i class="fas fa-angle-right nav-icon"></i>
+                                <p>Create Palletize</p>
+                            </a>
+                        </li>
+                      </ul>
                     </li>
         
                     <li class="nav-item has-treeview">
@@ -61,12 +67,17 @@
                             <p>All Inventory</p>
                         </a>
                         </li>
-        
                         <li class="nav-item">
-                        <a href="/dashboard/user/orders" class="nav-link text-white">
+                          <a href="/createtransin" class="nav-link text-white">
                             <i class="fas fa-angle-right nav-icon"></i>
-                            <p>Storage Orders</p>
-                        </a>
+                            <p>Create Transfer In</p>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="/createtransout" class="nav-link text-white">
+                            <i class="fas fa-angle-right nav-icon"></i>
+                            <p>Create Transfer Out</p>
+                          </a>
                         </li>
                         <li class="nav-item">
                         <a href="/basicunit" class="nav-link text-white">
@@ -127,20 +138,18 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                        <a href="/createtransin" class="nav-link text-white">
-                            <i class="fas fa-angle-right nav-icon"></i>
-                            <p>Create Transfer In</p>
+                      <li class="nav-item">
+                        <a href="/dashboard/user/fulfillment" class="nav-link text-white">
+                          <i class="fas fa-angle-right nav-icon"></i>
+                          <p>Fulfillment Orders</p>
                         </a>
-                        </li>
-                        <li class="nav-item">
-                        <a href="/createtransout" class="nav-link text-white">
-                            <i class="fas fa-angle-right nav-icon"></i>
-                            <p>Create Transfer Out</p>
+                      </li>
+                      <li class="nav-item">
+                        <a href="/dashboard/user/orders" class="nav-link text-white">
+                          <i class="fas fa-angle-right nav-icon"></i>
+                          <p>Storage Orders</p>
                         </a>
-                        </li>
-        
-        
+                      </li>
                     </ul>
                     </li>
                     <li class="nav-item has-treeview">

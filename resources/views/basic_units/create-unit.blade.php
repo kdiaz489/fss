@@ -212,6 +212,9 @@ Create Unit
             <div class=" card-text">
                 <form action="/basicunit" method="POST">
                   <div class="form-row justify-content-center mb-3">
+
+                      <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
+
                       <div class="col-md-6">
                           <label for="sku" class="font-weight-normal">SKU</label>
                           <input type="text" name="sku" class="form-control form-control-sm" value="{{ old('sku')}}"
