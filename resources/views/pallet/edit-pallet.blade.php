@@ -1,6 +1,7 @@
 
 @extends('layouts.userdashlte')
 
+@hasrole('user')
 @section('main-sidebar')
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar bg-denim elevation-4">
@@ -31,7 +32,6 @@
                           </p>
                         </a>
                         <ul class="nav nav-treeview">
-          
                           <li class="nav-item">
                             <a href="/createfilorder" class="nav-link text-white">
                               <i class="fas fa-angle-right nav-icon"></i>
@@ -39,11 +39,18 @@
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="/dashboard/user/fulfillment" class="nav-link text-white">
-                              <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Fulfillment Orders</p>
+                            <a href="/createcartonize" class="nav-link text-white">
+                                <i class="fas fa-angle-right nav-icon"></i>
+                                <p>Create Cartonize</p>
                             </a>
-                          </li>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/createpalletize" class="nav-link text-white">
+                                <i class="fas fa-angle-right nav-icon"></i>
+                                <p>Create Palletize</p>
+                            </a>
+                        </li>
+                        
                         </ul>
                       </li>
           
@@ -57,18 +64,23 @@
                         </a>
                         <ul class="nav nav-treeview">
                           <li class="nav-item">
-                            <a href="/dashboard/user/inventory" class="nav-link text-white">
+                            <a href="/dashboard/user/inventory" class="nav-link text-gunmetal bg-whitewash">
                               <i class="fas fa-angle-right nav-icon"></i>
                               <p>All Inventory</p>
                             </a>
                           </li>
-          
-                          <li class="nav-item">
-                            <a href="/dashboard/user/orders" class="nav-link text-white">
-                              <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Storage Orders</p>
+                        <li class="nav-item">
+                            <a href="/createtransin" class="nav-link text-white">
+                                <i class="fas fa-angle-right nav-icon"></i>
+                                <p>Create Transfer In</p>
                             </a>
-                          </li>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/createtransout" class="nav-link text-white">
+                                <i class="fas fa-angle-right nav-icon"></i>
+                                <p>Create Transfer Out</p>
+                            </a>
+                        </li>
                           <li class="nav-item">
                             <a href="/basicunit" class="nav-link text-white">
                               <i class="fas fa-angle-right nav-icon"></i>
@@ -76,7 +88,7 @@
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="/createkit" class="nav-link text-gunmetal bg-whitewash">
+                            <a href="/createkit" class="nav-link text-white">
                               <i class="fas fa-angle-right nav-icon"></i>
                               <p>Create Kit</p>
                             </a>
@@ -106,13 +118,13 @@
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="/ship" class="nav-link text-white">
+                            <a href="/dashboard/user/getquote" class="nav-link text-white">
                               <i class="fas fa-angle-right nav-icon"></i>
                               <p>Get Quote</p>
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="/ship/book" class="nav-link text-white">
+                            <a href="/dashboard/user/bookshipment" class="nav-link text-white">
                               <i class="fas fa-angle-right nav-icon"></i>
                               <p>Book Shipment</p>
                             </a>
@@ -128,20 +140,18 @@
                           </p>
                         </a>
                         <ul class="nav nav-treeview">
-                          <li class="nav-item">
-                            <a href="/createtransin" class="nav-link text-white">
-                              <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Create Transfer In</p>
-                            </a>
-                          </li>
-                          <li class="nav-item">
-                            <a href="/createtransout" class="nav-link text-white">
-                              <i class="fas fa-angle-right nav-icon"></i>
-                              <p>Create Transfer Out</p>
-                            </a>
-                          </li>
-          
-          
+                            <li class="nav-item">
+                                <a href="/dashboard/user/fulfillment" class="nav-link text-white">
+                                    <i class="fas fa-angle-right nav-icon"></i>
+                                    <p>Fulfillment Orders</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/dashboard/user/orders" class="nav-link text-white">
+                                    <i class="fas fa-angle-right nav-icon"></i>
+                                    <p>Storage Orders</p>
+                                </a>
+                            </li>
                         </ul>
                       </li>
                       <li class="nav-item has-treeview">
@@ -184,6 +194,210 @@
                 <!-- /.sidebar -->
               </aside>
 @endsection
+@endhasrole
+
+
+
+@hasrole('admin')
+@section('main-sidebar')
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar bg-denim elevation-4">
+                <!-- Brand Logo -->
+                <a href="#" class="brand-link justify-content-center border-0">
+                  <img src="{{asset('img/fss-white.svg')}}" alt="AdminLTE Logo" class="brand-image" width="100px" height="80px" style="max-height:27px; width:auto">
+                  <span class="brand-text font-weight-light text-white">Admin Dashboard</span>
+                </a>
+          
+                <!-- Sidebar -->
+                <div class="sidebar">
+          
+          
+                  <!-- Sidebar Menu -->
+                  <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
+
+                      <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link text-white">
+          
+                          <i class="nav-icon fas fa-box-open"></i>
+                          <p>
+                            Fulfilment
+                            <i class="right fas fa-angle-left"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createpalletize" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Palletized</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createcartonize" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Cartonized</p>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+          
+                      <li class="nav-item has-treeview menu-open">
+                        <a href="#" class="nav-link text-white shadow-sm" style="background-color: #3b679c">
+                          <i class="nav-icon fas fa-warehouse"></i>
+                          <p>
+                            Storage
+                            <i class="right fas fa-angle-left"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/inventory" class="nav-link text-gunmetal shadow-sm bg-whitewash">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>All Inventory</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createtransin" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Transfer In</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createtransout" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Transfer Out</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createpallet" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Pallet</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createcase" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Case</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/createunit" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Create Unit</p>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link text-white">
+                          <i class="nav-icon fas fa-shipping-fast"></i>
+                          <p>
+                            Shipments
+                            <i class="fas fa-angle-left right"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="/dashboard" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>All Shipments</p>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link text-white">
+                              <i class="nav-icon fas fa-edit"></i>
+                              <p>
+                                Orders
+                                <i class="fas fa-angle-left right"></i>
+                              </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/dashboard/admin/fulfillment" class="nav-link text-white">
+                                        <i class="fas fa-angle-right nav-icon"></i>
+                                        <p>Fulfillment Orders</p>
+                                    </a>
+                                </li>
+                              <li class="nav-item">
+                                <a href="/dashboard/admin/orders" class="nav-link text-white">
+                                  <i class="fas fa-angle-right nav-icon"></i>
+                                  <p>Storage Orders</p>
+                                </a>
+                              </li>
+                              <li class="nav-item">
+                                <a href="/dashboard/admin/cartonizeorders" class="nav-link text-white">
+                                  <i class="fas fa-angle-right nav-icon"></i>
+                                  <p>Cartonized Orders</p>
+                                </a>
+                              </li>
+                              <li class="nav-item">
+                                <a href="/dashboard/admin/palletizeorders" class="nav-link text-white">
+                                  <i class="fas fa-angle-right nav-icon"></i>
+                                  <p>Palletized Orders</p>
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                      <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link text-white">
+                              <i class="nav-icon fas fa-users"></i>
+                              <p>
+                                Users
+                                <i class="fas fa-angle-left right"></i>
+                              </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                              <li class="nav-item">
+                                <a href="/dashboard/admin/users" class="nav-link text-white">
+                                    <i class="fas fa-angle-right nav-icon"></i>
+                                  <p>Manage Users</p>
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                      <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link text-white">
+          
+                          <i class="nav-icon fas fa-user-alt"></i>
+                          <p>
+                            {{auth()->user()->name}} 
+                            <i class="fas fa-angle-left right"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="/dashboard/admin/account" class="nav-link text-white">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              <p>Account Details</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                          document.getElementById('logout-form').submit();">
+                              <i class="fas fa-angle-right nav-icon"></i>
+                              {{ __('Logout') }}
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                              @csrf
+                            </form>
+                          </li>
+          
+          
+                        </ul>
+                      </li>
+          
+          
+          
+                    </ul>
+                  </nav>
+                  <!-- /.sidebar-menu -->
+                </div>
+                <!-- /.sidebar -->
+              </aside>
+@endsection
+@endhasrole
 
 @section('breadcrumb')
 Edit Pallet
@@ -192,7 +406,7 @@ Edit Pallet
 @section('content')
     <div class="container mt-5">
 
-        <h1 class="display-4 text-center mb-4">Edit your Pallet</h1>
+        <h1 class="font-weight-light text-center mb-4">Edit your Pallet</h1>
 
         <form action="/editpallet/{{$pallet->id}}" id="editpallet" method="POST">
         {{method_field('PUT')}}
@@ -206,7 +420,7 @@ Edit Pallet
         <div class="form-row justify-content-center mb-4">
 
             <div class="col-md-8">
-                <label for="sku">Pallet Sku</label>
+                <label for="sku" class="font-weight-normal">Pallet Sku</label>
                 <input type="text" name="sku" class="form-control form-control-sm" value="{{$pallet->sku}}" placeholder="Sku #">
                 <div style="font-weight: 700; color:red">{{$errors->first('sku')}}</div>
             </div>
@@ -214,7 +428,7 @@ Edit Pallet
 
         <div class="form-row justify-content-center mb-4">
             <div class="col-md-8">
-                <label for="desc">Description</label>
+                <label for="desc" class="font-weight-normal">Description</label>
                 <textarea name="desc" id="" cols="30" rows="3" class="form-control form-control-sm" placeholder="Description Here">{{$pallet->description}}</textarea>
                 <div style="font-weight: 700; color:red">{{$errors->first('desc')}}</div>
             </div>
@@ -223,13 +437,13 @@ Edit Pallet
         <div class="form-row justify-content-center mb-4">
             <div class="col-md-8 justify-content-center">
                 <div class="table-responsive-md">
-                <table class="table table-bordered table-striped" id="user_table">
+                <table class="table table-bordered" id="user_table">
                     <thead>
                         <tr>
-                            <th width="25%">Item Sku</th>
-                            <th width="25%">Type</th>
-                            <th width="20%">Quantity</th>
-                            <th width="30%"></th>
+                            <th width="25%" class="font-weight-normal">Item Sku</th>
+                            <th width="25%" class="font-weight-normal">Type</th>
+                            <th width="20%" class="font-weight-normal">Quantity</th>
+                            <th width="30%" class="font-weight-normal"></th>
                             
                         </tr>
                     </thead>
@@ -313,7 +527,7 @@ Edit Pallet
         </div>
         <div class="form-row justify-content-center">
             <div class="col-md-8">
-                <input type="submit" name="save" id="save" class="btn btn-primary bg-denim border-0" value="Submit Edit">
+                <button type="submit" name="save" id="save" class="btn btn-primary bg-denim border-0">Submit Edit</button>
             </div>
         </div>
         @csrf

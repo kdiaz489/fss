@@ -192,7 +192,7 @@ Create Case
 
 <div class="container mt-5">
 
-    <h1 class="font-weight-light text-center mb-4">Create your Case</h1>
+    <h1 class="font-weight-light text-center mb-4">Create Case</h1>
 
     <!-- Flash Alerts Begin -->
 

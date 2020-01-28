@@ -61,6 +61,10 @@ class KitsController extends Controller
 
             
             $rules = array(
+                'upc'=> [ 'required',
+                        Rule::unique('kit_tbl')->where(function ($query) use($request){
+                        $query->where('user_id', '=', $request->user_id);
+                 })],
                 'items.*'  => 'required',
                 'item_qty.*'  => 'required',
                 'type.*' => 'required',

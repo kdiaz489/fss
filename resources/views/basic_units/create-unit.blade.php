@@ -202,13 +202,12 @@ Create Unit
      </div> 
 
 
-    <h1 class="display-4 text-center">Create Unit</h1>
+    <h1 class="font-weight-light text-center">Create Unit</h1>
      
     <div class="row justify-content-center mt-4">
      <div class="col-md-6">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title font-weight-bold">Unit Information</h4>
             <div class=" card-text">
                 <form action="/basicunit" method="POST">
                   <div class="form-row justify-content-center mb-3">

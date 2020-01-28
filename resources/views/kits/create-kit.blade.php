@@ -192,7 +192,7 @@ Create Kit
 
 <div class="container mt-5">
 
-    <h1 class="display-4 text-center mb-4">Create your Kit</h1>
+    <h1 class="font-weight-light text-center mb-4">Create Kit</h1>
 
 
     <!-- Flash Alerts Begin -->
@@ -205,7 +205,6 @@ Create Kit
         <div class="col-md-8">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title font-weight-bold">Kit Information</h5>
               <p class="card-text">
                   <form action="/createkit" id="createkit" method="POST">
                     <div class="form-row justify-content-center">
@@ -242,7 +241,7 @@ Create Kit
                     <div class="form-row justify-content-center mb-2">
                         <div class="col-md-12 justify-content-center">
                             <div class="table-responsive-md">
-                            <table class="table table-bordered table-striped" id="user_table">
+                            <table class="table table-bordered" id="user_table">
                                 <thead>
                                     <tr>
                                         <th class="font-weight-normal" width="20%">Select Kit Items</th>
