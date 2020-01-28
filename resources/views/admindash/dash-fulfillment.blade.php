@@ -220,8 +220,6 @@
         <div class="modal-body">
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary bg-denim import-orders">Import Orders</button>
         </div>
         </div>
     </div>
@@ -1007,8 +1005,9 @@
                     else{
                         html += '<div class=" alert alert-secondary> <h5 class="alert-heading"> Inventory scanned. Ready to import. Continue?';
                     }
-
+                    var footer = '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button><button type="button" class="btn btn-primary bg-denim import-orders">Import Orders</button>';
                     $('.modal-body').html(html);
+                    $('.modal-footer').html(footer);
                     $('.modal').modal('show');
                     //location.reload();
                 })
