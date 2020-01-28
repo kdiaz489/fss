@@ -45,7 +45,7 @@ class BasicUnitsController extends Controller
     {
         //
         $request->validate([
-            'sku'=> [ 'required',
+            'upc'=> [ 'required',
                         Rule::unique('basic_unit_tbl')->where(function ($query) use($request){
                         $query->where('user_id', $request->user_id);
             })], 
