@@ -234,19 +234,19 @@
                         <table class="table table-sm orders">
                             <thead>
                             <tr>
-                                <th width="2%"></th>
-                                <th width="10%"></th>
-                                <th width="10%">Order #</th>
-                                <th width="10%">Originator</th>
-                                <th width="10%">In Care Of</th>
-                                <th width="10%">PO #</th>
-                                <th width="10%">SO #</th>
-                                <th width="10%">Job #</th>
-                                <th width="10%">Carrier</th>
-                                <th width="10%">Carrier ID#</th>
-                                <th width="10%">Created</th>
-                                <th width="10%">Status</th>
-                                <th width="10%"></th>
+                                <th class="fit"></th>
+                                <th class="fit"></th>
+                                <th class="fit">Order #</th>
+                                <th class="fit">Originator</th>
+                                <th class="fit">In Care Of</th>
+                                <th class="fit">PO #</th>
+                                <th class="fit">SO #</th>
+                                <th class="fit">Job #</th>
+                                <th class="fit">Carrier</th>
+                                <th class="fit">Carrier ID#</th>
+                                <th class="fit">Created</th>
+                                <th class="fit">Status</th>
+                                <th class="fit"></th>
     
                             </tr>
                             </thead>
@@ -254,54 +254,59 @@
     
     
                             <tr>
-                                <td>
+                                <td class="fit">
                                     <button type="button" class="btn text-denim toggle-{{$order->id}}"
                                         id="toggle-details{{$order->id}}" data-toggle="collapse"
                                         data-target="#details{{$order->id}}" aria-expanded="false" aria-controls="details"
                                         data-delay="0"><i class="fas fa-plus"></i></button>
                                 </td>
-                                <td>                         
-                                    <form action="/order/update/{{$order->id}}" method="POST">
-                                        @csrf
-                                        {{method_field('PUT')}}
-                                        <select name="status" id="" class=" form-control form-control-sm">
-                                            <option value="" selected disabled>Choose</option>
-                                            <option value="Completed">Completed</option>
-                                            <option value="Approved">Approved</option>
-                                            <option value="In Progress">In Progress</option>
-                                            <option value="Rejected">Rejected</option>
-                                        </select>
+                                <td class="fit">                         
+                                    <div class="input-group">
+                                            <form action="/order/update/{{$order->id}}" id="update-order-{{$order->id}}" method="POST">
+                                    
+                                                {{method_field('PUT')}}
+                                                <select name="status" class="custom-select custom-select-sm rounded-0">
+                                                    <option value="" selected disabled>Choose</option>
+                                                    <option value="Approved">Approved</option>
+                                                    <option value="Completed">Completed</option>
+                                                    <option value="Rejected">Rejected</option>
+                                                </select>
+                                                @csrf
+                                            </form>
+                                    
+                                            <div class="input-group-append">
+                                    
+                                                <button type="submit" form="update-order-{{$order->id}}"
+                                                    class="btn btn-secondary bg-denim btn-sm border-0 form-control form-control-sm"><small>Update</small></button>
+                                            </div>
+                                        </div>
 
-                                        <button type="submit" style=" margin-left: 1.25rem;"
-                                            class="btn btn-link btn-sm m-0"><small>Update</small></button>
-                                    </form>
                                 </td>
-                                <td>
+                                <td class="fit">
                                     <a href="/vieworder/{{$order->id}}">
                                         <button class="btn btn-link text-denim btn-sm px-0 "
                                             type="button">{{str_pad($order->orderid, 6, '0', STR_PAD_LEFT)}}</button>
                                     </a>
                                 </td>
-                                <td>{{$order->originator}}</td>
-                                <td>{{$order->in_care_of}}</td>
-                                <td>{{$order->po_num}}</td>
-                                <td>{{$order->so_num}}</td>
-                                <td>{{$order->job_num}}</td>
-                                <td>{{$order->carrier}}</td>
-                                <td>{{$order->carrier_id}}</td>
-                                <td>{{date('m/d/y', strtotime($order->created_at))}}</td>
-                                <td>{{$order->status}}</td>
+                                <td class="fit">{{$order->originator}}</td>
+                                <td class="fit">{{$order->in_care_of}}</td>
+                                <td class="fit">{{$order->po_num}}</td>
+                                <td class="fit">{{$order->so_num}}</td>
+                                <td class="fit">{{$order->job_num}}</td>
+                                <td class="fit">{{$order->carrier}}</td>
+                                <td class="fit">{{$order->carrier_id}}</td>
+                                <td class="fit">{{date('m/d/y', strtotime($order->created_at))}}</td>
+                                <td class="fit">{{$order->status}}</td>
                                 
-                                <td>
-                                    <div style="margin-left: 10%">
-    
-                                        <a href="/vieworder/{{$order->id}}" class="float-left" style="margin-right:1%">
-                                            <button class="btn btn-link text-denim btn-sm" type="button">View</button>
+                                <td class="fit">
+                                    <div>
+                                        <a href="/vieworder/{{$order->id}}" class="float-left">
+                                            <button class="btn btn-link text-denim btn-sm px-1" type="button">View</button>
                                         </a>
                                         <form action="/order/remove/{{$order->id}}" method="POST" class="float-left">
                                             @method('DELETE')
                                             @csrf
-                                            <button type="submit" class="btn btn-link text-danger btn-sm">Remove</button>
+                                            <button type="submit" class="btn btn-link text-danger btn-sm px-1">Remove</button>
                                         </form>
                                     </div>
                                 </td>
@@ -488,18 +493,18 @@
                         <table class="table table-sm orders">
                             <thead>
                             <tr>
-                                <th width="2%"></th>
-                                <th width="10%">Order #</th>
-                                <th width="10%">Originator</th>
-                                <th width="10%">In Care Of</th>
-                                <th width="10%">PO #</th>
-                                <th width="10%">SO #</th>
-                                <th width="10%">Job #</th>
-                                <th width="10%">Carrier</th>
-                                <th width="10%">Carrier ID#</th>
-                                <th width="10%">Created</th>
-                                <th width="10%">Status</th>
-                                <th width="10%"></th>
+                                <th class="fit"></th>
+                                <th class="fit">Order #</th>
+                                <th class="fit">Originator</th>
+                                <th class="fit">In Care Of</th>
+                                <th class="fit">PO #</th>
+                                <th class="fit">SO #</th>
+                                <th class="fit">Job #</th>
+                                <th class="fit">Carrier</th>
+                                <th class="fit">Carrier ID#</th>
+                                <th class="fit">Created</th>
+                                <th class="fit">Status</th>
+                                <th class="fit"></th>
     
                             </tr>
                             </thead>
@@ -507,39 +512,39 @@
     
     
                             <tr>
-                                <td>
+                                <td class="fit">
                                     <button type="button" class="btn text-denim toggle-{{$order->id}}"
                                         id="toggle-details{{$order->id}}" data-toggle="collapse"
                                         data-target="#details{{$order->id}}" aria-expanded="false" aria-controls="details"
                                         data-delay="0"><i class="fas fa-plus"></i></button>
                                 </td>
-                                <td>
+                                <td class="fit">
                                     <a href="/vieworder/{{$order->id}}">
                                         <button class="btn btn-link text-denim btn-sm px-0 "
                                             type="button">{{str_pad($order->orderid, 6, '0', STR_PAD_LEFT)}}</button>
                                     </a>
                                 </td>
-                                <td>{{$order->originator}}</td>
-                                <td>{{$order->in_care_of}}</td>
-                                <td>{{$order->po_num}}</td>
-                                <td>{{$order->so_num}}</td>
-                                <td>{{$order->job_num}}</td>
-                                <td>{{$order->carrier}}</td>
-                                <td>{{$order->carrier_id}}</td>
-                                <td>{{date('m/d/y', strtotime($order->created_at))}}</td>
-                                <td>{{$order->status}}</td>
+                                <td class="fit">{{$order->originator}}</td>
+                                <td class="fit">{{$order->in_care_of}}</td>
+                                <td class="fit">{{$order->po_num}}</td>
+                                <td class="fit">{{$order->so_num}}</td>
+                                <td class="fit">{{$order->job_num}}</td>
+                                <td class="fit">{{$order->carrier}}</td>
+                                <td class="fit">{{$order->carrier_id}}</td>
+                                <td class="fit">{{date('m/d/y', strtotime($order->created_at))}}</td>
+                                <td class="fit">{{$order->status}}</td>
     
     
-                                <td>
-                                    <div style="margin-left: 10%">
+                                <td class="fit">
+                                    <div>
     
-                                        <a href="/vieworder/{{$order->id}}" class="float-left" style="margin-right:1%">
-                                            <button class="btn btn-link text-denim btn-sm" type="button">View</button>
+                                        <a href="/vieworder/{{$order->id}}" class="float-left">
+                                            <button class="btn btn-link text-denim btn-sm px-1" type="button">View</button>
                                         </a>
                                         <form action="/order/remove/{{$order->id}}" method="POST" class="float-left">
                                             @method('DELETE')
                                             @csrf
-                                            <button type="submit" class="btn btn-link text-danger btn-sm">Remove</button>
+                                            <button type="submit" class="btn btn-link text-danger btn-sm px-1">Remove</button>
                                         </form>
                                     </div>
                                 </td>

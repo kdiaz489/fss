@@ -299,7 +299,7 @@
                                             @method('DELETE')
                                             @csrf
                                             <button type="submit"
-                                                class="btn btn-link text-danger btn-sm p-0 m-0"><small>Delete</small></button>
+                                                class="btn btn-link text-danger btn-sm p-0 m-0"><small>Remove</small></button>
                                         </form>
                                     </div>
                                 </td>
@@ -392,7 +392,7 @@
                                                 @csrf
     
                                                 <button type="submit"
-                                                    class="btn btn-link text-danger btn-sm px-0"><small>Delete</small></button>
+                                                    class="btn btn-link text-danger btn-sm px-0"><small>Remove</small></button>
                                             </form>
                                         </div>
                                 </td>

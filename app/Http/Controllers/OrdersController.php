@@ -810,8 +810,7 @@ class OrdersController extends Controller
 
     public function store_palletize(Request $request)
     {
-        dd($request);
-
+       
         /**
          * 
          * Establishes rules for form input
