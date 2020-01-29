@@ -73,7 +73,7 @@ class ShopifyController extends Controller
                 $ordernumber->save();
 
                 $shopify_order->cust_order_no = $orders[$i]->order_number;
-                $shopify_order->user_id = '3';
+                $shopify_order->user_id = '129';
                 $shopify_order->shopify_id = $orders[$i]->id;
                 $shopify_order->company = $user->company_name;
                 $shopify_order->cust_name = ucwords($orders[$i]->customer->first_name . ' ' . $orders[$i]->customer->last_name);

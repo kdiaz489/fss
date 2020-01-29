@@ -285,6 +285,7 @@
                                                 <select name="status" class="custom-select custom-select-sm rounded-0">
                                                     <option value="" selected disabled>Choose</option>
                                                     <option value="Approved">Approved</option>
+                                                    <option value="In Progress">In Progress</option>
                                                     <option value="Completed">Completed</option>
                                                     <option value="Rejected">Rejected</option>
                                                 </select>

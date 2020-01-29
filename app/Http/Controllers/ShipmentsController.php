@@ -547,13 +547,13 @@ class ShipmentsController extends Controller
     public function update(Request $request, $id){
 
         $shipment = Shipment::find($id);
-        $shipment->work_status = $request->status_1;
+        $shipment->work_status = $request->status;
         $shipment->save();
         $useremail = User::find($shipment->user_id);
         $useremail = $useremail->email;
         //dd($shipment->work_status);
         //dd($useremail);
-        Mail::to($useremail)->send(new ShipUpdateMail($shipment));
+        //Mail::to($useremail)->send(new ShipUpdateMail($shipment));
         Mail::to('ship@fillstorship.com')->send(new ShipUpdateMail($shipment));
         return redirect()->back()->with('success', 'Shipment has been updated');
     }
