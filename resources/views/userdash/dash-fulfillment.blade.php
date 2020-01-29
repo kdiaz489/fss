@@ -485,7 +485,7 @@ Fulfilment Orders
                           </td>
                           <td width="10%">{{$order->created_at->format('m/d/y')}}</td>
                           <td width="10%">{{$order->cust_name}}</td>
-                          <td width="10%"></td>
+                          <td width="10%">{{$order->financial_status}}</td>
                           <td width="10%">{{$order->status}}</td>
                           <td width="10%">
                               <div style="margin-left: 10%">
