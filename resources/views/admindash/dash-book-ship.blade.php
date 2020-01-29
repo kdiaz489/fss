@@ -99,13 +99,26 @@
                         </a>
                         <ul class="nav nav-treeview">
                           <li class="nav-item">
-                            <a href="/dashboard" class="nav-link text-gunmetal bg-whitewash" >
+                            <a href="/dashboard" class="nav-link text-white" >
                               <i class="fas fa-angle-right nav-icon"></i>
                               <p>All Shipments</p>
                             </a>
                           </li>
+                        <li class="nav-item">
+                            <a href="/dashboard/admin/getquote" class="nav-link text-white">
+                                <i class="fas fa-angle-right nav-icon"></i>
+                                <p>Shipment Quote</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/dashboard/admin/bookshipment" class="nav-link text-gunmetal bg-whitewash">
+                                <i class="fas fa-angle-right nav-icon"></i>
+                                <p>Book Shipment</p>
+                            </a>
+                        </li>
                         </ul>
                       </li>
+                      
                       <li class="nav-item has-treeview">
                         <a href="#" class="nav-link text-white">
                           <i class="nav-icon fas fa-edit"></i>
@@ -799,9 +812,9 @@ Book Shipment
 
 
 
-                    <div class="form-row m-auto">
+                    <div class="form-row justify-content-center mt-4">
 
-                        <div class="col-lg-3 col-12">
+                        <div class="form-group col-lg-3 col-12">
                             <label>Hazardous</label>
 
                             <div class="small">
@@ -811,7 +824,7 @@ Book Shipment
                                             value="Yes"> Yes
                                     </label>
                                 </div>
-                                <br>
+                                
                                 <div class="form-check form-check-inline">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="radio" name="prod_hazard" id="prod_hazard"
@@ -821,7 +834,7 @@ Book Shipment
                             </div>
                         </div>
 
-                        <div class="col-lg-3 col-12">
+                        <div class="form-group col-lg-3 col-12">
                             <label>Stackable</label>
 
                             <div class="small">
@@ -831,7 +844,7 @@ Book Shipment
                                             id="prod_stackable" value="Yes"> Yes
                                     </label>
                                 </div>
-                                <br>
+                                
                                 <div class="form-check form-check-inline">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="radio" name="prod_stackable"
@@ -841,7 +854,7 @@ Book Shipment
                             </div>
                         </div>
 
-                        <div class="col-lg-3 col-12">
+                        <div class="form-group col-lg-3 col-12">
                             <label>Load Strap</label>
 
                             <div class="small">
@@ -851,7 +864,7 @@ Book Shipment
                                             value="Yes"> Yes
                                     </label>
                                 </div>
-                                <br>
+                                
                                 <div class="form-check form-check-inline">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="radio" name="load_strap" id="load_strap"
@@ -861,7 +874,7 @@ Book Shipment
                             </div>
                         </div>
 
-                        <div class="col-lg-3 col-12">
+                        <div class="form-group col-lg-3 col-12">
                             <label>Load Block</label>
 
                             <div class="small">
@@ -871,7 +884,7 @@ Book Shipment
                                             value="Yes"> Yes
                                     </label>
                                 </div>
-                                <br>
+                                
                                 <div class="form-check form-check-inline">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="radio" name="load_blck" id="load_blck"

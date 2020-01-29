@@ -164,6 +164,8 @@ Route::get('/dashboard/admin/createpallet', 'DashboardController@admincreatepall
 Route::get('/dashboard/admin/createcarton', 'DashboardController@admincreatecarton');
 Route::get('/dashboard/admin/createcase', 'DashboardController@admincreatecase');
 Route::get('/dashboard/admin/createunit', 'DashboardController@admincreateunit');
+Route::get('/dashboard/admin/bookshipment', 'DashboardController@adminbookshipment');
+Route::get('/dashboard/admin/getquote', 'DashboardController@admingetquote');
 
 Route::get('/updateusername', 'DashboardController@getupdateusername');
 Route::get('/updateemail', 'DashboardController@getupdateemail');

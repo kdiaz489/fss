@@ -258,6 +258,14 @@ class DashboardController extends Controller
         return view('admindash.create-unit')->with('users', User::all());
     }
 
+    public function adminbookshipment(){
+        return view('admindash.dash-book-ship');
+    }
+
+    public function admingetquote(){
+        return view('admindash.dash-get-ship-quote');
+    }
+
     public function getadmininventory(){
         /*
         $units = DB::select('SELECT * FROM basic_unit_tbl');

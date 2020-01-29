@@ -99,10 +99,22 @@
                         </a>
                         <ul class="nav nav-treeview">
                           <li class="nav-item">
-                            <a href="/dashboard" class="nav-link text-gunmetal bg-whitewash" >
+                            <a href="/dashboard" class="nav-link text-white" >
                               <i class="fas fa-angle-right nav-icon"></i>
                               <p>All Shipments</p>
                             </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="/dashboard/admin/getquote" class="nav-link text-gunmetal bg-whitewash">
+                                  <i class="fas fa-angle-right nav-icon"></i>
+                                  <p>Shipment Quote</p>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="/dashboard/admin/bookshipment" class="nav-link text-white">
+                                  <i class="fas fa-angle-right nav-icon"></i>
+                                  <p>Book Shipment</p>
+                              </a>
                           </li>
                         </ul>
                       </li>
@@ -201,7 +213,7 @@
 
 
 @section('breadcrumb')
-Get Shipping Quote
+Shipping Quote
 @endsection
 
 @section('content')
@@ -521,10 +533,7 @@ Get Shipping Quote
               placeholder="stackable">
               <option value="No">No</option>
               <option value="Yes">Yes</option>
-
             </select>
-
-
           </div>
 
         </div>
