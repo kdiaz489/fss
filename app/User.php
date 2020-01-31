@@ -101,4 +101,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public function hasAnyRole($role){
         return null !== $this->roles()->where('name', $role)->first();
     }
+
+    public function providers(){
+        return $this->belongsToMany('App\Provider')->using('App\ProviderUser')->withPivot('api_key', 'api_pass', 'shop_name')->withTimestamps();
+    }
 }

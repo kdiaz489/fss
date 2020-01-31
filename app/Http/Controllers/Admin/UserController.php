@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Role;
+use App\Provider;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -53,6 +55,31 @@ class UserController extends Controller
         
     }
 
+    public function setapikeys(Request $request, $company){
+    
+        $error = Validator::make($request->all(), [
+            // Do not allow any special characters   
+            'shop_name' => ['required','max:255','regex:/^([a-zA-Z0-9_\-\.]+)\.\bmyshopify\b\.\bcom\b$/'],  
+            'api_key' => ['required','max:255','regex:/^[a-zA-Z0-9]+$/'],  
+            'api_pass' => ['required','max:255','regex:/^[a-zA-Z0-9]+$/'],         
+            
+            
+        ]);
+        if($error->fails()){
+            return response()->json([
+                'error'  => $error->errors()->all()
+            ], 404);
+        }
+
+        $user = User::where('company_name', $company)->first();
+        $providers = Provider::where('provider_name', '=', 'Shopify')->first();
+        $user->providers()->attach($providers);
+        $provideruser = $user->providers->first()->pivot;
+        $provideruser->api_key = $request->api_key;
+        $provideruser->api_pass = $request->api_key;
+        $provideruser->shop_name = $request->api_key;
+        $provideruser->save();
+    }
 
     public function destroy($id){
 

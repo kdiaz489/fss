@@ -10,8 +10,31 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\User;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Client;
 
 Route::get('/', 'PagesController@index');
+Route::post('/testpost', function(){
+
+});
+Route::get('/testget', function(){
+    $user = User::find(3);
+    $providers = \App\Provider::all();
+    //$provideruser = $user->providers->first()->pivot;
+    $provideruser = $user->providers->first()->pivot;
+    $provideruser->api_key = '0493c9fe78fa2bf98569e3c62c245f30';
+    $provideruser->api_pass = '39c46415113189e15f50e6b32ec1eb0a';
+    $provideruser->shop_name = 'colorproofhair.myshopify.com';
+    $provideruser->save();
+    dd($provideruser->api_key);
+
+    //$client = new Client();
+    //$myBody['name'] = "Demo";
+    //$response = $client->post('https://jsonplaceholder.typicode.com/posts', ['form_params' => $myBody]);
+    //$response = json_decode($response->getBody());
+    //dd($response);
+});
 
 Route::get('/about', 'PagesController@about');
 
@@ -187,8 +210,8 @@ Route::post('/checkout', 'AuthorizeController@chargeCreditCard');
 Route::get('/makepayment/{id}', 'AuthorizeController@makepaymentform');
 Route::post('/makeapayment', 'AuthorizeController@makepayment');
 
-Route::get('/getallproducts', 'ShopifyController@index');
-Route::get('/scanshopifyorders', 'ShopifyController@scanOrders');
+Route::get('/getorders/{id}', 'ShopifyController@index');
+Route::get('/scanshopifyorders/{id}', 'ShopifyController@scanOrders');
 
 Route::post('csv_file/import', 'CsvFile@csv_import')->name('import');
 Route::get('csv_file/export', 'CsvFile@csv_export')->name('export');
@@ -213,5 +236,6 @@ Route::put('/user/credit/update/{id}', 'Admin\UserController@creditupdate');
 Route::put('/user/accbal/update/{id}', 'Admin\UserController@accountbalanceupdate');
 Route::get('/Admin/impersonate/destroy', 'Admin\ImpersonateController@destroy')->name('admin.impersonate.destroy');
 Route::get('/getuser/{id}', 'Admin\UserController@getuser');
+Route::post('/setapikeys/{company}', 'Admin\UserController@setapikeys');
 
 Auth::routes();

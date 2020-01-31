@@ -13,6 +13,7 @@ use OhMyBrew\BasicShopifyAPI;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use Illuminate\Support\Str;
+use League\Flysystem\Exception;
 
 class ShopifyController extends Controller
 {
@@ -21,15 +22,21 @@ class ShopifyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
         
+        $user = User::find($id);
+        $user = $user->providers->first()->pivot;
+        $shop_name = strval($user->shop_name);
+        $api_key = strval($user->api_key);
+        $api_pass = strval($user->api_pass);
 
+        dd($shop_name);
         $api = new BasicShopifyAPI(true); // true sets it to private
         $api->setVersion('2019-04'); // "YYYY-MM" or "unstable"
-        $api->setShop('colorproofhair.myshopify.com');
-        $api->setApiKey('0493c9fe78fa2bf98569e3c62c245f30');
-        $api->setApiPassword('39c46415113189e15f50e6b32ec1eb0a');
+        $api->setShop($shop_name);
+        $api->setApiKey($api_key);
+        $api->setApiPassword($api_pass);
         //This line returns filtered orders from Shopify
         if(Order::where('company', 'Color Proof')->exists()){
             $lastorder = Order::where('company', 'Color Proof')->get()->last();
@@ -142,12 +149,26 @@ class ShopifyController extends Controller
         //return view('userdash.dash-shopifyorders')->with('orders', $orders);
     }
 
-    public function scanOrders(){
+    public function scanOrders($id){
+        $user = User::find($id);
+        try{
+            $user = $user->providers->first()->pivot;
+        }
+        catch(\Exception $e){
+            return response()->json([
+                'error' => 'Error with Shopify API Keys. Please confirm you have the correct information for this user.'
+            ], 404);
+        }
+        
+        $shop_name = strval($user->shop_name);
+        $api_key = strval($user->api_key);
+        $api_pass = strval($user->api_pass);
+        
         $api = new BasicShopifyAPI(true); // true sets it to private
         $api->setVersion('2019-04'); // "YYYY-MM" or "unstable"
-        $api->setShop('colorproofhair.myshopify.com');
-        $api->setApiKey('0493c9fe78fa2bf98569e3c62c245f30');
-        $api->setApiPassword('39c46415113189e15f50e6b32ec1eb0a');
+        $api->setShop($shop_name);
+        $api->setApiKey($api_key);
+        $api->setApiPassword($api_pass);
         //This line returns filtered orders from Shopify
         if(Order::where('company', 'Color Proof')->exists()){
             $lastorder = Order::where('company', 'Color Proof')->get()->last();

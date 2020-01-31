@@ -246,7 +246,7 @@ Palletize
     </div>
 
     <div class="container container-transin mb-5">
-        <h1 class="font-weight-light text-center mb-5">Create Palletize</h1>
+        <h1 class="font-weight-light text-center mb-5">Create Palletized Order</h1>
         <form id="admin_palletize_form" action="/createtransin" method="POST">
             <div class="form-row justify-content-center">
 

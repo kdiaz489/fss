@@ -179,7 +179,7 @@ class DashboardController extends Controller
     }
 
     public function getadminusers(){
-
+        //dd(count(User::find(3)->providers->all()));
         return view('admindash.dash-all-user')->with('users', User::all());
     }
 
@@ -192,7 +192,8 @@ class DashboardController extends Controller
 
         $orders = Order::orderBy('cust_order_no', 'desc')->where('order_type', '=', 'Fulfill Items')->where('status', '!=', 'Completed')->get();
         $ordershistory = Order::orderBy('cust_order_no', 'desc')->where('order_type', '=', 'Fulfill Items')->where('status', '=', 'Completed')->get();
-        return view('admindash.dash-fulfillment')->with('orders', $orders)->with('ordershistory', $ordershistory);
+
+        return view('admindash.dash-fulfillment')->with('users', User::all()->where('user_id', '!=', '1'));
     }
 
     public function getadminfulfillorderform($id){

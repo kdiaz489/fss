@@ -246,7 +246,7 @@ Cartonize
     </div>
 
     <div class="container container-transin mb-5">
-        <h1 class="font-weight-light text-center mb-5">Create Cartonize</h1>
+        <h1 class="font-weight-light text-center mb-5">Create Cartonized Order</h1>
         <form id="trans_in_order_form" action="/createtransin" method="POST">
             <div class="form-row justify-content-center">
 
@@ -355,7 +355,7 @@ Cartonize
                                 <label for="container_type">Container Type</label>
                                 <select name="container_type[0][]" class="form-control container_type required">
                                     <option value="">Choose</option>
-                                    <option value="Carton">Cartonize</option>
+                                    <option value="Carton">Carton</option>
                                 </select>
                             </div>
                             <div class="col-md-4">
