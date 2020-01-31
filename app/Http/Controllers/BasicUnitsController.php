@@ -55,9 +55,9 @@ class BasicUnitsController extends Controller
 
         $unit = new Basic_Unit();
         $unit->sku = $request->sku;
-        $unit->user_id = auth()->user()->id;
+        $unit->user_id = $request->user_id;
         $unit->upc = $request->upc;
-        $unit->company = auth()->user()->company_name;
+        $unit->company = User::find($request->user_id)->company_name;
         $unit->loose_item_qty = 0;
         $unit->basic_unit_qty = 0;
         $unit->kit_qty = 0;
