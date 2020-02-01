@@ -131,6 +131,7 @@ class BasicUnitsController extends Controller
         //dd($request);
         
         $basic_unit = Basic_Unit::find($id);
+        $total = $basic_unit->pallet_qty + $basic_unit->case_qty + $basic_unit->loose_item_qty;
 
         $basic_unit->update([
                         'sku' => $request->sku, 
@@ -144,7 +145,7 @@ class BasicUnitsController extends Controller
                         'pallet_qty' => $request->pallet_qty,
                         'location' => $request->location,
                         'lot_num' => $request->lot_num,
-                        'total_qty' => $request->total_qty
+                        'total_qty' => $total
                         ]);
 
 
