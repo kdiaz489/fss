@@ -47,37 +47,55 @@ class PalletsController extends Controller
     }
 
     public function getpallet($id){
-        $pallet = Pallet::with('cartons', 'cases')->find($id);
+        $pallet = Pallet::with('basic_units', 'cases')->find($id);
         return collect(['pallet' => $pallet]);
     }
 
     public function pickfrompallet(Request $request, $id){
         
-        $pallet = Pallet::with('cases')->find($id);
+        $pallet = Pallet::with('cases','basic_units')->find($id);
         $item = $request->item;
         $item_qty = $request->item_qty;
-        $cases = $pallet->cases;
-        
-        for($i = 0; $i < count($cases); $i++){
-            if($cases[$i]->sku == $item[$i]){
-                
-                $quantity = ((int)$cases[$i]->pivot->quantity - (int)$item_qty[$i]);
-                
-                $cases[$i]->pivot->quantity = $quantity;
-                $cases[$i]->pivot->save();
+        if($pallet->cases != null){
+            $cases = $pallet->cases;
+            for($i = 0; $i < count($cases); $i++){
+                if($cases[$i]->sku == $item[$i]){
+                    
+                    $quantity = ((int)$cases[$i]->pivot->quantity - (int)$item_qty[$i]);
+                    
+                    $cases[$i]->pivot->quantity = $quantity;
+                    $cases[$i]->pivot->save();
 
-                $cases[$i]->case_pallet_qty -= $item_qty[$i];
-                $cases[$i]->case_shelf_qty += $item_qty[$i];
-                $cases[$i]->total_qty = ($cases[$i]->case_shelf_qty + $cases[$i]->case_pallet_qty);
-                $cases[$i]->save();
+                    $cases[$i]->case_pallet_qty -= $item_qty[$i];
+                    $cases[$i]->case_shelf_qty += $item_qty[$i];
+                    $cases[$i]->total_qty = ($cases[$i]->case_shelf_qty + $cases[$i]->case_pallet_qty);
+                    $cases[$i]->save();
 
-                foreach($cases[$i]->basic_units->all() as $unit){
-                    $unit->pallet_qty -= $item_qty[$i] * $cases[$i]->qty_per_case;
-                    $unit->case_qty += $item_qty[$i] * $cases[$i]->qty_per_case;
-                    $unit->total_qty = ($unit->case_qty + $unit->pallet_qty);
-                    $unit->save();
+                    foreach($cases[$i]->basic_units->all() as $unit){
+                        $unit->pallet_qty -= $item_qty[$i] * $cases[$i]->qty_per_case;
+                        $unit->case_qty += $item_qty[$i] * $cases[$i]->qty_per_case;
+                        $unit->total_qty = ($unit->case_qty + $unit->pallet_qty + $unit->loose_item_qty);
+                        $unit->save();
+                    }
+
                 }
+            }
+        }
 
+        if($pallet->basic_units != null){
+            $units = $pallet->basic_units;
+            for($i = 0; $i < count($units); $i++){
+                if($units[$i]->sku == $item[$i]){
+                    
+                    $quantity = ((int)$units[$i]->pivot->quantity - (int)$item_qty[$i]);
+                    
+                    $units[$i]->pivot->quantity = $quantity;
+                    $units[$i]->pivot->save();
+
+                    $units[$i]->pallet_qty -= $item_qty[$i];
+                    $units[$i]->total_qty = ($units[$i]->case_qty + $units[$i]->pallet_qty + $units[$i]->loose_item_qty);
+                    $units[$i]->save();
+                }
             }
         }
     }

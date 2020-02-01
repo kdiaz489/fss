@@ -302,10 +302,9 @@ All Inventory
                         <td class="fit">{{$pallet->status}}</td>
                         <td class="fit">N/A</td>
                         <td class="fit">
-                            <div style="margin-left: 30%">
+                            <div>
                                 
-                                <a href="/editpallet/{{$pallet->id}}" class="float-left"
-                                    style="margin-right:1%">
+                                <a href="/editpallet/{{$pallet->id}}" class="float-left">
                                     <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
                                 </a>
 
@@ -490,10 +489,9 @@ All Inventory
                         <td class="fit">N/A</td>
                         
                         <td class="fit">
-                            <div style="margin-left: 30%">
+                            <div>
                             
-                                <a href="/editcarton/{{$carton->id}}" class="float-left"
-                                    style="margin-right:1%">
+                                <a href="/editcarton/{{$carton->id}}" class="float-left">
                                     <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
                                 </a>
 
@@ -643,14 +641,13 @@ All Inventory
                         <td class="fit">{{$case->case_qty}}</td>
                         <td class="fit">N/A</td>
                         <td class="fit">
-                            <div style="margin-left: 30%">
+                            <div>
                                 
-                                <a href="/editcase/{{$case->id}}" class="float-left" style="margin-right:1%">
+                                <a href="/editcase/{{$case->id}}" class="float-left">
                                     <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
                                 </a>
 
-                                <form action="/removecase/{{$case->id}}" method="POST" class="float-left"
-                                    style="margin-right:1%">
+                                <form action="/removecase/{{$case->id}}" method="POST" class="float-left">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-link text-danger btn-sm">Remove</button>
@@ -760,9 +757,9 @@ All Inventory
                         <td class="fit">N/A</td>
                         <td class="fit">
 
-                            <div style="margin-left: 30%">
+                            <div>
                                 
-                                <a href="/editkit/{{$kit->id}}" class="float-left" style="margin-right:1%">
+                                <a href="/editkit/{{$kit->id}}" class="float-left">
                                     <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
                                 </a>
 
@@ -851,15 +848,13 @@ All Inventory
                         <td class="fit">{{$unit->loose_item_qty}}</td>
                         <td class="fit">{{$unit->total_qty}}</td>
                         <td class="fit">
-                            <div style="margin-left: 30%">
+                            <div>
                                 
-                                <a href="/editbasicunit/{{$unit->id}}" class="float-left"
-                                    style="margin-right:1%">
+                                <a href="/editbasicunit/{{$unit->id}}" class="float-left">
                                     <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
                                 </a>
 
-                                <form action="/removebasicunit/{{$unit->id}}" method="POST" class="float-left"
-                                    style="margin-right:1%">
+                                <form action="/removebasicunit/{{$unit->id}}" method="POST" class="float-left">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-link text-danger btn-sm">Remove</button>
@@ -896,7 +891,7 @@ All Inventory
                     <table class="table table-sm">
                         <thead>
                         <tr>
-                            <th width="2%"></th>
+                            <th class="fit"></th>
                             <th class="fit">Sku</th>
                             <th class="fit">Date Created</th>
                             <th class="fit">Quantity</th>
@@ -907,25 +902,23 @@ All Inventory
                     </thead>
                         @foreach($user->pallets->all() as $pallet)
                         <tr>
-                            <td><button type="button" class="btn text-denim toggle-{{$pallet->id}}"
+                            <td class="fit"><button type="button" class="btn text-denim toggle-{{$pallet->id}}"
                                     id="toggle-details-pallet-{{$pallet->id}}" data-toggle="collapse"
                                     data-target="#details-pallet-{{$pallet->id}}" aria-expanded="false" aria-controls="details"
                                     data-delay="0"><i class="fas fa-plus"></i></button></td>
 
-                            <td>{{$pallet->sku}}</td>
-                            <td>{{date('m/d/y', strtotime($pallet->created_at))}}</td>
-                            <td>{{$pallet->total_qty}}</td>
-                            <td>N/A</td>
-                            <td>
-                                <div style="margin-left: 30%">
+                            <td class="fit">{{$pallet->sku}}</td>
+                            <td class="fit">{{date('m/d/y', strtotime($pallet->created_at))}}</td>
+                            <td class="fit">{{$pallet->total_qty}}</td>
+                            <td class="fit">N/A</td>
+                            <td class="fit">
+                                <div>
                                     
-                                    <a href="/editpallet/{{$pallet->id}}" class="float-left"
-                                        style="margin-right:1%">
+                                    <a href="/editpallet/{{$pallet->id}}" class="float-left">
                                         <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
                                     </a>
 
-                                <a href="/getpallet/{{$pallet->id}}" class="float-left pick-pallet"
-                                        style="margin-right:1%">
+                                <a href="/getpallet/{{$pallet->id}}" class="float-left pick-pallet">
                                         <button class="btn btn-link text-success btn-sm" type="button">Pick</button>
                                     </a>
 
@@ -1106,8 +1099,7 @@ All Inventory
                             <td class="fit">
                                 <div>
                                     
-                                    <a href="/editcarton/{{$carton->id}}" class="float-left"
-                                        style="margin-right:1%">
+                                    <a href="/editcarton/{{$carton->id}}" class="float-left">
                                         <button class="btn btn-link text-denim btn-sm px-1" type="button">Edit</button>
                                     </a>
 
@@ -1247,7 +1239,7 @@ All Inventory
                         </thead>
                         @foreach($user->cases->all() as $case)
                         <tr>
-                            <td class="text-center"><button type="button" class="fit btn btn-sm text-denim toggle-{{$case->id}}"
+                            <td class="text-center fit"><button type="button" class="fit btn btn-sm text-denim toggle-{{$case->id}}"
                                     id="toggle-details-case-{{$case->id}}" data-toggle="collapse"
                                     data-target="#details-case-{{$case->id}}" aria-expanded="false" aria-controls="details"
                                     data-delay="0"><i class="fas fa-plus"></i></button></td>
@@ -1262,8 +1254,7 @@ All Inventory
                             <td>
                                     <button id="case-{{$case->id}}" class="fit btn btn-link text-success btn-sm update-case d-none"><i class="far fa-check-circle fa-lg"></i></button>
                                     <button class="btn btn-link text-denim btn-sm enable-modify d-inline"><i class="far fa-edit fa-lg"></i></button>
-                                    <form action="/removecase/{{$case->id}}" method="POST" class="d-inline"
-                                        style="margin-right:1%">
+                                    <form action="/removecase/{{$case->id}}" method="POST" class="d-inline">
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit" class="btn btn-link text-danger btn-sm d-inline"><i class="far fa-trash-alt fa-lg"></i></button>
@@ -1515,7 +1506,12 @@ function myFunction() {
 
 $(document).ready(function(e){
 
+var initialContent = $(document).find('.modal-content').html();
 
+$('.modal').on('hide.bs.modal', function (e) {
+      $('.modal-content').html(initialContent);
+      $('.modal-footer').css('display', 'flex');
+      });
 
 $('.pick-pallet').on('click', function(e){
     e.preventDefault();
@@ -1542,12 +1538,12 @@ $('.pick-pallet').on('click', function(e){
                 }
         }
 
-        if(pallet.cartons.length > 0){
+        if(pallet.basic_units.length > 0){
             html += '';
-                for(var i = 0; i < pallet.cartons.length; i++){
+                for(var i = 0; i < pallet.basic_units.length; i++){
                     html += '<div class="row"><div class="col-md-6">';
-                    html += '<label class="font-weight-normal">SKU <input type="text" class="form-control" value="' + pallet.cartons[i].upc + '" name="item[] readonly"></div></label>';
-                    html += '<div class="col-md-6"><label class="font-weight-normal"><input type="number" name="item_qty[]" class="form-control" value="1"></label></div>';
+                    html += '<label class="font-weight-normal">SKU <input type="text" class="form-control" value="' + pallet.basic_units[i].upc + '" name="item[] readonly"></div></label>';
+                    html += '<div class="col-md-6"><label class="font-weight-normal"><input type="number" name="item_qty[]" class="form-control" value="1"></label></div></div>';
 
                 }
         }

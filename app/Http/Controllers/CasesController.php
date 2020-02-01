@@ -234,7 +234,7 @@ class CasesController extends Controller
         if($request->pallet_qty > $case->case_pallet_qty){
             $unit->pallet_qty += ($case->qty_per_case * ($request->pallet_qty - $case->case_pallet_qty));
         }
-        $unit->total_qty = $unit->pallet_qty + $unit->case_qty;
+        $unit->total_qty = $unit->pallet_qty + $unit->case_qty + $unit->loose_item_qty;
         $unit->save();
         $total = $request->shelf_qty + $request->pallet_qty;
         $case->update([

@@ -325,25 +325,51 @@ Create Pallet
           var options = '';
           options += '<option value="">Choose Item</option>'
           if(user == 'User not found'){
-            $(document).find('.select_pallet_skus').append('<option value="">No Cases found.</option>');
-            
-          }
-          else{
-            if(user.cases.length <= 0){
-              options += '<option value="">No cases available</option>';
+                $(document).find('.select_case_skus').append('<option value="">No inventory for this user</option>');
+                
             }
             else{
-              for(var i = 0; i < user.cases.length; i++){
-                options += '<option value="' + user.cases[i].upc + '">' + user.cases[i].sku + '</option>';
-              }
-            }
+                if(user.cases.length == 0){
+                options += '<option value="">No cases available</option>';
+                }
+                else{
+                    options += '<optgroup label="Cases">';
+                    for(var i = 0; i < user.cases.length; i++){
+                        options += '<option value="' + user.cases[i].upc + '">' + user.cases[i].sku + '</option>';
+                    }
+                    options += '</optgroup>';
+                }
 
-            $(document).find('.select_pallet_skus').append(options);
-            $('.select_pallet_skus').select2({
+                if(user.kits.length == 0){
+                    options += '<option value="">No kits available</option>';
+                }
+                else{
+                    options += '<optgroup label="Kits">';
+                    for(var i = 0; i < user.kits.length; i++){
+                        options += '<option value="' + user.kits[i].upc + '">' + user.kits[i].sku + '</option>';
+                    }
+                    options += '</optgroup>';
+                }
+
+                if(user.basic_units.length == 0){
+                    options += '<option value="">No units available</option>';
+                }
+                else{
+                    options += '<optgroup label="Units">'
+                    for(var i = 0; i < user.basic_units.length; i++){
+                        options += '<option value="' + user.basic_units[i].upc + '">' + user.basic_units[i].sku + '</option>';
+                    }
+                    options += '</optgroup>';
+                }
+
+                $(document).find('.select_pallet_skus').append(options);
+                
+                $('.select_pallet_skus').select2({
+                    placeholder: "Choose Item",
                     theme: 'bootstrap4',
                     width: '100%',
-                });
-          }
+                    });
+            }
           dropdown = $(document).find('.select_pallet_skus').clone(true);     
           });
        
