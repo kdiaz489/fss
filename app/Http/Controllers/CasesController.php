@@ -212,15 +212,38 @@ class CasesController extends Controller
         //
         //dd($request);
         
-        $case = Cases::find($id);
+        $case = Cases::with('basic_units')->find($id);
+        //dd($case->basic_units->first()->pivot);
+        $pivot = $case->basic_units->first()->pivot;
+        $unit_id = $pivot->basic__unit_id;
+        $unit = Basic_Unit::find($unit_id);
+        //dd($unit);
+        if($request->shelf_qty < $case->case_shelf_qty){
+            $unit->case_qty -= ($case->qty_per_case * ($case->case_shelf_qty - $request->shelf_qty));
+            
+        }
+        if($request->shelf_qty > $case->case_shelf_qty){
+            $unit->case_qty += ($case->qty_per_case * ($request->shelf_qty - $case->case_shelf_qty));
+           
+        }
 
+        if($request->pallet_qty < $case->case_pallet_qty){
+            $unit->pallet_qty -= ($case->qty_per_case * ($case->case_pallet_qty - $request->pallet_qty));
+           
+        }
+        if($request->pallet_qty > $case->case_pallet_qty){
+            $unit->pallet_qty += ($case->qty_per_case * ($request->pallet_qty - $case->case_pallet_qty));
+        }
+        $unit->total_qty = $unit->pallet_qty + $unit->case_qty;
+        $unit->save();
+        $total = $request->shelf_qty + $request->pallet_qty;
         $case->update([
                         'sku' => $request->sku, 
                         'upc' => $request->upc, 
                         'description' => $request->desc,
                         'case_shelf_qty' => $request->shelf_qty,
                         'case_pallet_qty' => $request->pallet_qty,
-                        'total_qty' => $request->total_qty,
+                        'total_qty' => $total,
                         'location' => $request->location,
                         'lot_num' => $request->lot_num,
                         ]);
