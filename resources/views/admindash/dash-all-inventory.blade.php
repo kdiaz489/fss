@@ -282,7 +282,7 @@ All Inventory
                         <th class="fit"></th>
                         <th class="fit">Sku</th>
                         <th class="fit">Date Created</th>
-                        <th class="fit">Quantity</th>
+                        <th class="fit">Date Updated</th>
                         <th class="fit">Status</th>
                         <th class="fit">Location</th>
                         <th class="fit"></th>
@@ -298,7 +298,7 @@ All Inventory
 
                         <td contenteditable="false" class="fit sku">{{$pallet->sku}}</td>
                         <td class="fit">{{date('m/d/y', strtotime($pallet->created_at))}}</td>
-                        <td contenteditable="false" class="fit total_qty">{{$pallet->total_qty}}</td>
+                        <td contenteditable="false" class="fit total_qty">{{$pallet->updated_at}}</td>
                         <td contenteditable="false" class="fit status">{{$pallet->status}}</td>
                         <td contenteditable="false" class="fit location">N/A</td>
                         <td class="fit">
@@ -741,7 +741,7 @@ All Inventory
                             <th class="fit"></th>
                             <th class="fit">Sku</th>
                             <th class="fit">Date Created</th>
-                            <th class="fit">Quantity</th>
+                            <th class="fit">Date Updated</th>
                             <th class="fit">Location</th>
                             <th class="fit"></th>
 
@@ -755,8 +755,8 @@ All Inventory
                                     data-delay="0"><i class="fas fa-plus"></i></button></td>
 
                             <td class="fit">{{$pallet->sku}}</td>
-                            <td class="fit">{{date('m/d/y', strtotime($pallet->created_at))}}</td>
-                            <td class="fit">{{$pallet->total_qty}}</td>
+                            <td class="fit">{{$pallet->created_at}}</td>
+                            <td class="fit">{{$pallet->updated_at}}</td>
                             <td class="fit">N/A</td>
                             <td class="fit">
                                 <div>
@@ -1390,6 +1390,9 @@ $('.update-case').on('click', function(e){
         console.log('fail');
     });
 });
+
+
+
 
 $('.update-kit').on('click', function(e){
     e.preventDefault();
