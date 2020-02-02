@@ -135,7 +135,7 @@ class PalletsController extends Controller
              * If request passes validation, Pallet object is initiated and attributes are set
              */
             $pallet = new Pallet();
-            $pallet->pallet_name = $request->pallet_name;
+            //$pallet->pallet_name = $request->pallet_name;
             $pallet->user_id = $request->user_id;
             $pallet->company = User::find($request->user_id)->company_name;
             $pallet->sku = $request->sku;

@@ -296,11 +296,11 @@ All Inventory
                                 data-target="#details-pallet-{{$pallet->id}}" aria-expanded="false" aria-controls="details"
                                 data-delay="0"><i class="fas fa-plus"></i></button></td>
 
-                        <td class="fit">{{$pallet->sku}}</td>
+                        <td contenteditable="false" class="fit sku">{{$pallet->sku}}</td>
                         <td class="fit">{{date('m/d/y', strtotime($pallet->created_at))}}</td>
-                        <td class="fit">{{$pallet->total_qty}}</td>
-                        <td class="fit">{{$pallet->status}}</td>
-                        <td class="fit">N/A</td>
+                        <td contenteditable="false" class="fit total_qty">{{$pallet->total_qty}}</td>
+                        <td contenteditable="false" class="fit status">{{$pallet->status}}</td>
+                        <td contenteditable="false" class="fit location">N/A</td>
                         <td class="fit">
                             <div>
                                 
@@ -1231,7 +1231,7 @@ $('.pick-pallet').on('click', function(e){
             html += '';
                 for(var i = 0; i < pallet.cases.length; i++){
                     html += '<div class="row mb-3"><div class="col-md-6">';
-                    html += '<label class="font-weight-normal">SKU <input type="text" class="form-control" value="' + pallet.cases[i].sku + '" name="item[]" readonly></div></label>';
+                    html += '<label class="font-weight-normal">SKU <input type="text" class="form-control" value="' + pallet.cases[i].sku + '" name="item[]" readonly></label></div>';
                     html += '<div class="col-md-6"><label class="font-weight-normal">Quantity <input type="number" name="item_qty[]" class="form-control" value="1"></label></div></div>';
                 }
         }
@@ -1239,9 +1239,9 @@ $('.pick-pallet').on('click', function(e){
         if(pallet.basic_units.length > 0){
             html += '';
                 for(var i = 0; i < pallet.basic_units.length; i++){
-                    html += '<div class="row"><div class="col-md-6">';
-                    html += '<label class="font-weight-normal">SKU <input type="text" class="form-control" value="' + pallet.basic_units[i].upc + '" name="item[] readonly"></div></label>';
-                    html += '<div class="col-md-6"><label class="font-weight-normal"><input type="number" name="item_qty[]" class="form-control" value="1"></label></div></div>';
+                    html += '<div class="row mb-3"><div class="col-md-6">';
+                    html += '<label class="font-weight-normal">SKU <input type="text" class="form-control" value="' + pallet.basic_units[i].sku + '" name="item[]" readonly></label></div>';
+                    html += '<div class="col-md-6"><label class="font-weight-normal">Quantity <input type="number" name="item_qty[]" class="form-control" value="1"></label></div></div>';
 
                 }
         }
