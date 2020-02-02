@@ -106,6 +106,7 @@ class CasesController extends Controller
 
             }
             $case->save();
+            DB::commit();
             return response()->json([
                 'success'  => 'Case has been created. - SKU: ' . $case->sku . ' UPC: ' . $case->upc . ''
             ]);

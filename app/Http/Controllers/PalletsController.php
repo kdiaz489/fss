@@ -196,7 +196,7 @@ class PalletsController extends Controller
             /**
              * Pallet that was initiated and saved. Json success message returned to form.
              */
-            
+            DB::commit();
             return response()->json([
                 'success'  => 'Pallet submitted successfully.',
                 'id' => $pallet->id,
