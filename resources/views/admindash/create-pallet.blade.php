@@ -457,10 +457,9 @@ Create Pallet
                         if(data.error)
                         {
                             var error_html = '';
-                            for(var count = 0; count < data.error.length; count++)
-                            {
-                                error_html += '<p>'+data.error[count]+'</p>';
-                            }
+                            
+                                error_html += '<p>'+data.error+'</p>';
+                            
                             $('#result').html('<div class="alert alert-danger">'+error_html+'</div>');
                         }
                         else

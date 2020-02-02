@@ -289,7 +289,7 @@ Create Carton
                         </div>
                     </div>
                 
-                    <button type="submit" name="save" id="save" class="btn btn-primary bg-denim btn-sm border-0" >Submit Edit</button>
+                    <button type="submit" name="save" id="save" class="btn btn-primary bg-denim btn-sm border-0" >Create Case</button>
                         
                     @csrf
                 </form>
@@ -447,18 +447,14 @@ Create Carton
             },
             success:function(data)
             {
-            if(data.error)
-            {
-            var error_html = '';
-            for(var count = 0; count < data.error.length; count++) { error_html +='<p>' +data.error[count]+'</p>'; }
-                $('#result').html('<div class="alert alert-danger">'+error_html+'</div>');
-                }
-                else
-                {
-            
-                $('#result').html('<div class="alert alert-success">'+data.success+'</div>');
-            
-                }
+            if(data.error){
+              var error_html = '';
+              error_html +='<p>' +data.error+'</p>'; 
+              $('#result').html('<div class="alert alert-danger">'+error_html+'</div>');
+            }
+            else{
+              $('#result').html('<div class="alert alert-success">'+data.success+'</div>');
+              }
                 $('#save').attr('disabled', false);
                 }
                 });

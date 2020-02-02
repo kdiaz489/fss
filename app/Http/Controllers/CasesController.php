@@ -9,6 +9,7 @@ use App\Basic_Unit;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CasesController extends Controller
 {
@@ -63,6 +64,9 @@ class CasesController extends Controller
                     'error'  => $error->errors()->all()
                 ]);
             }
+            DB::beginTransaction();
+            try{
+
             $case = new Cases();
             $case->user_id = $request->user_id;
             $case->company = User::find($request->user_id)->company_name;
@@ -80,21 +84,24 @@ class CasesController extends Controller
             $case->pallet_qty = 0;
             $case->total_qty = 0;
             $case->save();
-
+            $unit='';
+            $kit='';
             $items = $request->items;
             $item_qty = $request->item_qty;
 
             for ($i = 0; $i < count($items); $i++) {
                 
                 $case->qty_per_case += $item_qty[$i];
-                if (Basic_Unit::where('upc', $items[$i])->where('user_id', $request->user_id)->exists()) {
-                    $unit = Basic_Unit::where('upc', $items[$i])->where('user_id', $request->user_id)->first();
+                if (Basic_Unit::where('user_id', $request->user_id)->whereNotNull('upc')->where('upc', $items[$i])->exists()) {
+                    $unit = Basic_Unit::where('user_id', $request->user_id)->whereNotNull('upc')->where('upc', $items[$i])->first();
                     $case->basic_units()->attach(['basic__unit_id' => $unit->id], ['quantity' => $item_qty[$i]]);
                  }
-
-                 if (Kit::where('upc', $items[$i])->where('user_id', $request->user_id)->exists()) {
-                    $kit = Kit::where('upc', $items[$i])->where('user_id', $request->user_id)->first();
+                 elseif (Kit::where('user_id', $request->user_id)->whereNotNull('upc')->where('upc', $items[$i])->exists()) {
+                    $kit = Kit::where('user_id', $request->user_id)->whereNotNull('upc')->where('upc', $items[$i])->first();
                     $case->kits()->attach(['kit_id' => $kit->id], ['quantity' => $item_qty[$i]]);
+                 }
+                 else{
+                    throw new \Exception('Please confirm that all items have a UPC/Barcode to continue creating case.');
                  }
 
             }
@@ -102,6 +109,13 @@ class CasesController extends Controller
             return response()->json([
                 'success'  => 'Case has been created. - SKU: ' . $case->sku . ' UPC: ' . $case->upc . ''
             ]);
+        }
+        catch(\Exception $e){
+            DB::rollBack();
+            return response()->json([
+                'error' => $e->getMessage()
+            ]);
+        }
         }
     }
 

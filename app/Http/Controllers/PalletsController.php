@@ -10,6 +10,7 @@ use App\Cases;
 use App\Kit;
 use App\Basic_Unit;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class PalletsController extends Controller
 {
@@ -128,7 +129,8 @@ class PalletsController extends Controller
                 ]);
             }
 
-
+            DB::beginTransaction();
+            try{
             /**
              * If request passes validation, Pallet object is initiated and attributes are set
              */
@@ -164,25 +166,31 @@ class PalletsController extends Controller
              * Checks for Unit, Kit, Case, if condition is met then create an object based on the item type and attached to the $pallet
              */
             for ($i = 0; $i < count($items); $i++) {
-                if (Basic_Unit::where('upc', $items[$i])->where('user_id', $request->user_id)->exists()) {
-                    $unit = Basic_Unit::where('upc', $items[$i])->where('user_id', $request->user_id)->first();
+                if (Basic_Unit::where('user_id', $request->user_id)->whereNotNull('upc')->where('upc', $items[$i])->exists()) {
+                    $unit = Basic_Unit::where('user_id', $request->user_id)->whereNotNull('upc')->where('upc', $items[$i])->first();
                     $pallet->basic_units()->attach(['basic__unit_id' => $unit->id], ['quantity' => $item_qty[$i]]);
                  }
+                 
 
-                 if (Kit::where('upc', $items[$i])->where('user_id', $request->user_id)->exists()) {
-                     $kit = Kit::where('upc', $items[$i])->where('user_id', $request->user_id)->first();
+                 elseif (Kit::where('user_id', $request->user_id)->whereNotNull('upc')->where('upc', $items[$i])->exists()) {
+                     $kit = Kit::where('user_id', $request->user_id)->whereNotNull('upc')->where('upc', $items[$i])->first();
                     $pallet->kits()->attach(['kit_id' => $kit->id], ['quantity' => $item_qty[$i]]);
                  }
+                 
 
-                 if (Cases::where('upc', $items[$i])->where('user_id', $request->user_id)->exists()) {
-                    $case = Cases::where('upc', $items[$i])->where('user_id', $request->user_id)->first();
+                 elseif (Cases::where('user_id', $request->user_id)->whereNotNull('upc')->where('upc', $items[$i])->exists()) {
+                    $case = Cases::where('user_id', $request->user_id)->whereNotNull('upc')->where('upc', $items[$i])->first();
                     $pallet->cases()->attach(['cases_id' => $case->id], ['quantity' => $item_qty[$i]]);
                 }
+                
 
-                if (Carton::where('upc', $items[$i])->where('user_id', $request->user_id)->exists()) {
-                    $carton = Carton::where('upc', $items[$i])->where('user_id', $request->user_id)->first();
+                elseif (Carton::where('user_id', $request->user_id)->whereNotNull('upc')->where('upc', $items[$i])->exists()) {
+                    $carton = Carton::where('user_id', $request->user_id)->whereNotNull('upc')->where('upc', $items[$i])->first();
                     $pallet->cartons()->attach(['carton_id' => $carton->id], ['quantity' => $item_qty[$i]]);
                 }
+                else{
+                    throw new \Exception('Please confirm that all items have a UPC/Barcode to continue creating pallet.');
+                 }
             }
 
             /**
@@ -194,6 +202,13 @@ class PalletsController extends Controller
                 'id' => $pallet->id,
                 'sku' => $pallet->sku
             ]);
+        }
+        catch(\Exception $e){
+            DB::rollBack();
+            return response()->json([
+                'error' => $e->getMessage()
+            ]);
+        }
         }
     }
 
