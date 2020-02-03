@@ -286,7 +286,7 @@
 
                             <br>
 
-                            @if(count($user->orders->all()) > 0)
+                            @if(count($user->orders->where('order_type','=', 'Fulfill Items')->all()) > 0)
                             <div class="table-responsive-md">
                                 <table class="table table-sm" id="">
                                     <thead>
@@ -303,7 +303,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($$user->orders->all() as $order)
+                                    @foreach($user->orders->where('order_type', '=', 'Fulfill Items')->all() as $order)
         
         
                                     <tr>
@@ -559,7 +559,7 @@
 
                             <br>
 
-                            @if(count($user->orders->all()) > 0)
+                            @if(count($user->orders->where('order_type', 'Fulfill Items')->all()) > 0)
                             <div class="table-responsive-md">
                                 <table class="table table-sm" id="">
                                     <thead>
@@ -576,7 +576,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($user->orders->all() as $order)
+                                    @foreach($user->orders->where('order_type', '=', 'Fulfill Items')->all() as $order)
         
         
                                     <tr>
