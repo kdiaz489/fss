@@ -572,7 +572,6 @@
                                             <th class="fit">Status</th>
                                             <th class="fit">Created</th>
                                             <th class="fit"></th>
-        
                                         </tr>
                                     </thead>
                                     <tbody>

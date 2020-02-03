@@ -73,7 +73,7 @@ class UserController extends Controller
 
         $user = User::where('company_name', $company)->first();
         $providers = Provider::where('provider_name', '=', 'Shopify')->first();
-        $user->providers()->attach($providers);
+        $user->providers()->sync($providers);
         $provideruser = $user->providers->first()->pivot;
         $provideruser->api_key = $request->api_key;
         $provideruser->api_pass = $request->api_pass;
