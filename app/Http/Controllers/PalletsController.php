@@ -176,7 +176,7 @@ class PalletsController extends Controller
                  
 
                  elseif (Kit::where('user_id', $request->user_id)->whereNotNull('upc')->where('upc', $items[$i])->exists()) {
-                     $kit = Kit::where('user_id', $request->user_id)->whereNotNull('upc')->where('upc', $items[$i])->first();
+                    $kit = Kit::where('user_id', $request->user_id)->whereNotNull('upc')->where('upc', $items[$i])->first();
                     $pallet->kits()->attach(['kit_id' => $kit->id], ['quantity' => $item_qty[$i]]);
                  }
                  
@@ -192,17 +192,11 @@ class PalletsController extends Controller
                             
                                 $unit = Basic_Unit::find($units[$y]->pivot->basic__unit_id);
                                 $quantity = ((int)$case->qty_per_case * (int)$item_qty[$i]);
-                                
                                 $unit->pallet_qty += $quantity;
                                 $unit->total_qty = $unit->pallet_qty + $unit->case_qty + $unit->loose_item_qty;
                                 $unit->save();
-            
-                                
-            
-                            
                         }
                     }
-                    
                     $pallet->cases()->attach(['cases_id' => $case->id], ['quantity' => $item_qty[$i]]);
                 }
                 

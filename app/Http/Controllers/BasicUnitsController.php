@@ -131,7 +131,7 @@ class BasicUnitsController extends Controller
         //dd($request);
         
         $basic_unit = Basic_Unit::find($id);
-        $total = $basic_unit->pallet_qty + $basic_unit->case_qty + $basic_unit->loose_item_qty;
+        $total = $request->pallet_qty + $request->case_qty + $request->loose_item_qty;
 
         $basic_unit->update([
                         'sku' => $request->sku, 
@@ -149,7 +149,7 @@ class BasicUnitsController extends Controller
                         ]);
 
 
-        return redirect('/dashboard/admin/editunit/' . $id)->with('success', 'You have successfully updated unit. - SKU: ' . $basic_unit->sku . ' UPC: ' . $basic_unit->upc . '');
+        return redirect()->back()->with('success', 'You have successfully updated unit. - SKU: ' . $basic_unit->sku . ' UPC: ' . $basic_unit->upc . '');
     
     }
 
