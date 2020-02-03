@@ -85,7 +85,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function orders(){
-        return $this->hasMany('App\Order');
+        return $this->hasMany('App\Order')->orderBy('cust_order_no', 'desc');
     }
 
     public function pallets(){
