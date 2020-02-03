@@ -76,8 +76,8 @@ class UserController extends Controller
         $user->providers()->attach($providers);
         $provideruser = $user->providers->first()->pivot;
         $provideruser->api_key = $request->api_key;
-        $provideruser->api_pass = $request->api_key;
-        $provideruser->shop_name = $request->api_key;
+        $provideruser->api_pass = $request->api_pass;
+        $provideruser->shop_name = $request->shop_name;
         $provideruser->save();
     }
 

@@ -27,11 +27,11 @@ class ShopifyController extends Controller
         
         $user = User::find($id);
         $user = $user->providers->first()->pivot;
+
         $shop_name = strval($user->shop_name);
         $api_key = strval($user->api_key);
         $api_pass = strval($user->api_pass);
 
-        dd($shop_name);
         $api = new BasicShopifyAPI(true); // true sets it to private
         $api->setVersion('2019-04'); // "YYYY-MM" or "unstable"
         $api->setShop($shop_name);
@@ -163,6 +163,7 @@ class ShopifyController extends Controller
         $shop_name = strval($user->shop_name);
         $api_key = strval($user->api_key);
         $api_pass = strval($user->api_pass);
+
         
         $api = new BasicShopifyAPI(true); // true sets it to private
         $api->setVersion('2019-04'); // "YYYY-MM" or "unstable"

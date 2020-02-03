@@ -927,9 +927,9 @@ All Inventory
                             <th class="fit">SKU</th>
                             <th class="fit">Description</th>
                             <th class="fit">UPC</th>
-                            <th class="fit">Total</th>
                             <th class="fit">Pallet</th>
                             <th class="fit">Shelf</th>
+                            <th class="fit">Total</th>
                             <th class="fit">Location</th>
                             <th class="fit">Lot #</th>
                             <th class="fit"></th>
@@ -944,9 +944,9 @@ All Inventory
                             <td contenteditable="false" class="fit sku">{{$case->sku}}</td>
                             <td contenteditable="false" class="fit desc">{{$case->description}}</td>
                             <td contenteditable="false" class="fit upc">{{$case->upc}}</td>
-                            <td contenteditable="false" class="fit total_qty">{{$case->total_qty}}</td>
                             <td contenteditable="false" class="fit pallet_qty">{{$case->case_pallet_qty}}</td>
                             <td contenteditable="false" class="fit shelf_qty">{{$case->case_shelf_qty}}</td>
+                            <td contenteditable="false" class="fit total_qty">{{$case->total_qty}}</td>
                             <td contenteditable="false" class="fit location">{{$case->location}}</td>
                             <td contenteditable="false" class="fit lot_num">{{$case->lot_num}}</td>
                             <td>

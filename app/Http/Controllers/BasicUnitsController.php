@@ -131,6 +131,9 @@ class BasicUnitsController extends Controller
         //dd($request);
         
         $basic_unit = Basic_Unit::find($id);
+        if($request->pallet_qty == $basic_unit->pallet_qty){
+
+        }
         $total = $request->pallet_qty + $request->case_qty + $request->loose_item_qty;
 
         $basic_unit->update([
@@ -148,9 +151,7 @@ class BasicUnitsController extends Controller
                         'total_qty' => $total
                         ]);
 
-
         return redirect()->back()->with('success', 'You have successfully updated unit. - SKU: ' . $basic_unit->sku . ' UPC: ' . $basic_unit->upc . '');
-    
     }
 
     /**
@@ -161,7 +162,6 @@ class BasicUnitsController extends Controller
      */
     public function destroy($id)
     {
-        //
         $basic_unit = Basic_Unit::find($id);
         $basic_unit->orders()->detach();
         $basic_unit->cases()->detach();
