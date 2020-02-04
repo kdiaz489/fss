@@ -594,7 +594,7 @@ Inventory
                             <td class="fit">{{$case->description}}</td>
                             <td class="fit">{{$case->upc}}</td>
                             <td class="fit">{{$case->total_qty}}</td>
-                            <td class="fit">{{$case->case_qty}}</td>
+                            <td class="fit">{{$case->qty_per_case}}</td>
                             <td class="fit">N/A</td>
                             
                         </tr>
