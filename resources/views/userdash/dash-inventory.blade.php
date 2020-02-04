@@ -264,39 +264,24 @@ Inventory
                     <table class="table table-sm">
                         <thead>
                             <tr>
-                                    <th width="10%"></th>
-                                    <th width="10%">UPC</th>
-                                    <th width="10%">Date Received</th>
-                                    <th width="10%">Quantity</th>
-                                    <th width="10%">Location</th>
-                                    <th width="10%"></th>
+                                    <th class="fit"></th>
+                                    <th class="fit">UPC</th>
+                                    <th class="fit">Date Received</th>
+                                    <th class="fit">Quantity</th>
+                                    <th class="fit">Location</th>
+                                    
         
                                 </tr>
                         </thead>
 
                         @foreach($pallets as $pallet)
                         <tr>
-                            <td><button type="button" class="btn text-denim toggle-{{$pallet->id}}" id="toggle-details-pallet-{{$pallet->id}}" data-toggle="collapse" data-target="#details-pallet-{{$pallet->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
-                            <td>{{$pallet->upc}}</td>
-                            <td>{{$pallet->created_at->format('m/d/y')}}</td>
-                            <td>{{$pallet->total_qty}}</td>
-                            <td>N/A</td>
-                            <td>
-                                <div style="margin-left: 30%">
-                                    
-                                    <a href="/editpallet/{{$pallet->id}}" class="float-left"
-                                        style="margin-right:1%">
-                                        <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
-                                    </a>
-
-                                    <form action="/removepallet/{{$pallet->id}}" method="POST" class="float-left">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button type="submit" class="btn btn-link text-danger btn-sm">Remove</button>
-                                    </form>
-
-                                </div>
-                            </td>
+                            <td class="fit"><button type="button" class="btn text-denim toggle-{{$pallet->id}}" id="toggle-details-pallet-{{$pallet->id}}" data-toggle="collapse" data-target="#details-pallet-{{$pallet->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
+                            <td class="fit">{{$pallet->upc}}</td>
+                            <td class="fit">{{$pallet->created_at->format('m/d/y')}}</td>
+                            <td class="fit">{{$pallet->total_qty}}</td>
+                            <td class="fit">N/A</td>
+                           
                         </tr>
                             @if($pallet->basic_units->all())
                                 @foreach ($pallet->basic_units->all() as $unit)
@@ -308,20 +293,20 @@ Inventory
                                                     <table class="table table-sm bg-whitewash">
                                                             <thead>
                                                                 <tr>
-                                                                    <th width="10%">SKU</th>
-                                                                    <th width="10%">Description</th>
-                                                                    <th width="10%">UPC</th>
-                                                                    <th width="10%">Container Type</th>
-                                                                    <th width="10%">Quantity</th>
+                                                                    <th class="fit">SKU</th>
+                                                                    <th class="fit">Description</th>
+                                                                    <th class="fit">UPC</th>
+                                                                    <th class="fit">Container Type</th>
+                                                                    <th class="fit">Quantity</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
-                                                                    <td>{{$unit->sku}}</td>
-                                                                    <td>{{$unit->description}}</td>
-                                                                    <td>{{$unit->upc}}</td>
-                                                                    <td>Loose Item</td>
-                                                                    <td>{{$unit->pivot->quantity}}</td>
+                                                                    <td class="fit">{{$unit->sku}}</td>
+                                                                    <td class="fit">{{$unit->description}}</td>
+                                                                    <td class="fit">{{$unit->upc}}</td>
+                                                                    <td class="fit">Loose Item</td>
+                                                                    <td class="fit">{{$unit->pivot->quantity}}</td>
                                                                 </tr>                                                          
                                                             </tbody>
                                                         </table>
@@ -341,20 +326,20 @@ Inventory
                                                     <table class="table table-sm bg-whitewash">
                                                             <thead>
                                                                 <tr>
-                                                                    <th width="10%">SKU</th>
-                                                                    <th width="10%">Description</th>
-                                                                    <th width="10%">UPC</th>
-                                                                    <th width="10%">Container Type</th>
-                                                                    <th width="10%">Quantity</th>
+                                                                    <th class="fit">SKU</th>
+                                                                    <th class="fit">Description</th>
+                                                                    <th class="fit">UPC</th>
+                                                                    <th class="fit">Container Type</th>
+                                                                    <th class="fit">Quantity</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
-                                                                    <td>{{$carton->sku}}</td>
-                                                                    <td>{{$carton->description}}</td>
-                                                                    <td>{{$carton->upc}}</td>
-                                                                    <td>Carton</td>
-                                                                    <td>{{$carton->pivot->quantity}}</td>
+                                                                    <td class="fit">{{$carton->sku}}</td>
+                                                                    <td class="fit">{{$carton->description}}</td>
+                                                                    <td class="fit">{{$carton->upc}}</td>
+                                                                    <td class="fit">Carton</td>
+                                                                    <td class="fit">{{$carton->pivot->quantity}}</td>
                                                                 </tr>                                                          
                                                             </tbody>
                                                         </table>
@@ -373,20 +358,20 @@ Inventory
                                                     <table class="table table-sm bg-whitewash">
                                                             <thead>
                                                                 <tr>
-                                                                    <th width="10%">SKU</th>
-                                                                    <th width="10%">Description</th>
-                                                                    <th width="10%">UPC</th>
-                                                                    <th width="10%">Container Type</th>
-                                                                    <th width="10%">Quantity</th>
+                                                                    <th class="fit">SKU</th>
+                                                                    <th class="fit">Description</th>
+                                                                    <th class="fit">UPC</th>
+                                                                    <th class="fit">Container Type</th>
+                                                                    <th class="fit">Quantity</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
-                                                                    <td>{{$kit->sku}}</td>
-                                                                    <td>{{$kit->description}}</td>
-                                                                    <td>{{$kit->upc}}</td>
-                                                                    <td>Kit</td>
-                                                                    <td>{{$kit->pivot->quantity}}</td>
+                                                                    <td class="fit">{{$kit->sku}}</td>
+                                                                    <td class="fit">{{$kit->description}}</td>
+                                                                    <td class="fit">{{$kit->upc}}</td>
+                                                                    <td class="fit">Kit</td>
+                                                                    <td class="fit">{{$kit->pivot->quantity}}</td>
                                                                 </tr>                                                          
                                                             </tbody>
                                                         </table>
@@ -406,20 +391,20 @@ Inventory
                                                     <table class="table table-sm bg-whitewash">
                                                             <thead>
                                                                 <tr>
-                                                                    <th width="10%">SKU</th>
-                                                                    <th width="10%">Description</th>
-                                                                    <th width="10%">UPC</th>
-                                                                    <th width="10%">Container Type</th>
-                                                                    <th width="10%">Quantity</th>
+                                                                    <th class="fit">SKU</th>
+                                                                    <th class="fit">Description</th>
+                                                                    <th class="fit">UPC</th>
+                                                                    <th class="fit">Container Type</th>
+                                                                    <th class="fit">Quantity</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
-                                                                    <td>{{$case->sku}}</td>
-                                                                    <td>{{$case->description}}</td>
-                                                                    <td>{{$case->upc}}</td>
-                                                                    <td>Case</td>
-                                                                    <td>{{$case->pivot->quantity}}</td>
+                                                                    <td class="fit">{{$case->sku}}</td>
+                                                                    <td class="fit">{{$case->description}}</td>
+                                                                    <td class="fit">{{$case->upc}}</td>
+                                                                    <td class="fit">Case</td>
+                                                                    <td class="fit">{{$case->pivot->quantity}}</td>
                                                                 </tr>                                                          
                                                             </tbody>
                                                         </table>
@@ -443,23 +428,23 @@ Inventory
                     <table class="table table-sm">
                         <thead>
                         <tr>
-                            <th width="10%"></th>
-                            <th width="10%">UPC</th>
-                            <th width="10%">Date Received</th>
-                            <th width="10%">Quantity</th>
-                            <th width="10%">Location</th>
-                            <th width="10%"></th>
+                            <th class="fit"></th>
+                            <th class="fit">UPC</th>
+                            <th class="fit">Date Received</th>
+                            <th class="fit">Quantity</th>
+                            <th class="fit">Location</th>
+                            <th class="fit"></th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($cartons as $carton)
                         <tr>
-                            <td><button type="button" class="btn text-denim toggle-{{$carton->id}}" id="toggle-details-carton-{{$carton->id}}" data-toggle="collapse" data-target="#details-carton-{{$carton->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
-                            <td>{{$carton->upc}}</td>
-                            <td>{{$carton->created_at->format('m/d/y')}}</td>
-                            <td>{{$carton->total_qty}}</td>
-                            <td>N/A</td>
-                            <td>
+                            <td class="fit"><button type="button" class="btn text-denim toggle-{{$carton->id}}" id="toggle-details-carton-{{$carton->id}}" data-toggle="collapse" data-target="#details-carton-{{$carton->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
+                            <td class="fit">{{$carton->upc}}</td>
+                            <td class="fit">{{$carton->created_at->format('m/d/y')}}</td>
+                            <td class="fit">{{$carton->total_qty}}</td>
+                            <td class="fit">N/A</td>
+                            <td class="fit">
                                 <div style="margin-left: 30%">
                                 
                                     <a href="/editcarton/{{$carton->id}}" class="float-left"
@@ -487,20 +472,20 @@ Inventory
                                                     <table class="table table-sm bg-whitewash">
                                                             <thead>
                                                                 <tr>
-                                                                    <th width="10%">SKU</th>
-                                                                    <th width="10%">Description</th>
-                                                                    <th width="10%">UPC</th>
-                                                                    <th width="10%">Container Type</th>
-                                                                    <th width="10%">Quantity</th>
+                                                                    <th class="fit">SKU</th>
+                                                                    <th class="fit">Description</th>
+                                                                    <th class="fit">UPC</th>
+                                                                    <th class="fit">Container Type</th>
+                                                                    <th class="fit">Quantity</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
-                                                                    <td>{{$unit->sku}}</td>
-                                                                    <td>{{$unit->description}}</td>
-                                                                    <td>{{$unit->upc}}</td>
-                                                                    <td>Loose Item</td>
-                                                                    <td>{{$unit->pivot->quantity}}</td>
+                                                                    <td class="fit">{{$unit->sku}}</td>
+                                                                    <td class="fit">{{$unit->description}}</td>
+                                                                    <td class="fit">{{$unit->upc}}</td>
+                                                                    <td class="fit">Loose Item</td>
+                                                                    <td class="fit">{{$unit->pivot->quantity}}</td>
                                                                 </tr>                                                          
                                                             </tbody>
                                                         </table>
@@ -519,20 +504,20 @@ Inventory
                                                     <table class="table table-sm bg-whitewash">
                                                             <thead>
                                                                 <tr>
-                                                                    <th width="10%">SKU</th>
-                                                                    <th width="10%">Description</th>
-                                                                    <th width="10%">UPC</th>
-                                                                    <th width="10%">Container Type</th>
-                                                                    <th width="10%">Quantity</th>
+                                                                    <th class="fit">SKU</th>
+                                                                    <th class="fit">Description</th>
+                                                                    <th class="fit">UPC</th>
+                                                                    <th class="fit">Container Type</th>
+                                                                    <th class="fit">Quantity</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
-                                                                    <td>{{$kit->sku}}</td>
-                                                                    <td>{{$kit->description}}</td>
-                                                                    <td>{{$kit->upc}}</td>
-                                                                    <td>Kit</td>
-                                                                    <td>{{$kit->pivot->quantity}}</td>
+                                                                    <td class="fit">{{$kit->sku}}</td>
+                                                                    <td class="fit">{{$kit->description}}</td>
+                                                                    <td class="fit">{{$kit->upc}}</td>
+                                                                    <td class="fit">Kit</td>
+                                                                    <td class="fit">{{$kit->pivot->quantity}}</td>
                                                                 </tr>                                                          
                                                             </tbody>
                                                         </table>
@@ -552,20 +537,20 @@ Inventory
                                                     <table class="table table-sm bg-whitewash">
                                                             <thead>
                                                                 <tr>
-                                                                    <th width="10%">SKU</th>
-                                                                    <th width="10%">Description</th>
-                                                                    <th width="10%">UPC</th>
-                                                                    <th width="10%">Container Type</th>
-                                                                    <th width="10%">Quantity</th>
+                                                                    <th class="fit">SKU</th>
+                                                                    <th class="fit">Description</th>
+                                                                    <th class="fit">UPC</th>
+                                                                    <th class="fit">Container Type</th>
+                                                                    <th class="fit">Quantity</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
-                                                                    <td>{{$case->sku}}</td>
-                                                                    <td>{{$case->description}}</td>
-                                                                    <td>{{$case->upc}}</td>
-                                                                    <td>Case</td>
-                                                                    <td>{{$case->pivot->quantity}}</td>
+                                                                    <td class="fit">{{$case->sku}}</td>
+                                                                    <td class="fit">{{$case->description}}</td>
+                                                                    <td class="fit">{{$case->upc}}</td>
+                                                                    <td class="fit">Case</td>
+                                                                    <td class="fit">{{$case->pivot->quantity}}</td>
                                                                 </tr>                                                          
                                                             </tbody>
                                                         </table>
@@ -590,43 +575,28 @@ Inventory
                     <table class="table table-sm cases-table">
                         <thead>
                         <tr>
-                            <th width="10%">Expand</th>
-                            <th width="10%">Sku</th>
-                            <th width="10%">Description</th>
-                            <th width="10%">UPC</th>
-                            <th width="10%">Quantity</th>
-                            <th width="10%">Qty/Case</th>
-                            <th width="10%">Location</th>
-                            <th width="10%"></th>
+                            <th class="fit">Expand</th>
+                            <th class="fit">Sku</th>
+                            <th class="fit">Description</th>
+                            <th class="fit">UPC</th>
+                            <th class="fit">Quantity</th>
+                            <th class="fit">Qty/Case</th>
+                            <th class="fit">Location</th>
+                            
 
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($cases as $case)
                         <tr>
-                            <td><button type="button" class="btn text-denim toggle-{{$case->id}}" id="toggle-details-cases-{{$case->id}}" data-toggle="collapse" data-target="#details-cases-{{$case->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
-                            <td>{{$case->sku}}</td>
-                            <td>{{$case->description}}</td>
-                            <td>{{$case->upc}}</td>
-                            <td>{{$case->total_qty}}</td>
-                            <td>{{$case->case_qty}}</td>
-                            <td>N/A</td>
-                            <td>
-                                <div style="margin-left: 30%">
-                                
-                                    <a href="/editcase/{{$case->id}}" class="float-left" style="margin-right:1%">
-                                        <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
-                                    </a>
-
-                                    <form action="/removecase/{{$case->id}}" method="POST" class="float-left"
-                                        style="margin-right:1%">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button type="submit" class="btn btn-link text-danger btn-sm">Remove</button>
-                                    </form>
-
-                                </div>
-                            </td>
+                            <td class="fit"><button type="button" class="btn text-denim toggle-{{$case->id}}" id="toggle-details-cases-{{$case->id}}" data-toggle="collapse" data-target="#details-cases-{{$case->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
+                            <td class="fit">{{$case->sku}}</td>
+                            <td class="fit">{{$case->description}}</td>
+                            <td class="fit">{{$case->upc}}</td>
+                            <td class="fit">{{$case->total_qty}}</td>
+                            <td class="fit">{{$case->case_qty}}</td>
+                            <td class="fit">N/A</td>
+                            
                         </tr>
                     
                             @if($case->basic_units->all())
@@ -639,20 +609,20 @@ Inventory
                                                 <table class="table table-sm bg-whitewash">
                                                         <thead>
                                                             <tr>
-                                                                <th width="10%">SKU</th>
-                                                                <th width="10%">Description</th>
-                                                                <th width="10%">UPC</th>
-                                                                <th width="10%">Container Type</th>
-                                                                <th width="10%">Qty</th>
+                                                                <th class="fit">SKU</th>
+                                                                <th class="fit">Description</th>
+                                                                <th class="fit">UPC</th>
+                                                                <th class="fit">Container Type</th>
+                                                                <th class="fit">Qty</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <tr>
-                                                                <td>{{$unit->sku}}</td>
-                                                                <td>{{$unit->description}}</td>
-                                                                <td>{{$unit->upc}}</td>
-                                                                <td>Loose Item</td>
-                                                                <td>{{$unit->pivot->quantity}}</td>
+                                                                <td class="fit">{{$unit->sku}}</td>
+                                                                <td class="fit">{{$unit->description}}</td>
+                                                                <td class="fit">{{$unit->upc}}</td>
+                                                                <td class="fit">Loose Item</td>
+                                                                <td class="fit">{{$unit->pivot->quantity}}</td>
                                                             </tr>                                                          
                                                         </tbody>
                                                     </table>
@@ -671,20 +641,20 @@ Inventory
                                                     <table class="table table-sm bg-whitewash">
                                                             <thead>
                                                                 <tr>
-                                                                    <th width="10%">SKU</th>
-                                                                    <th width="10%">Description</th>
-                                                                    <th width="10%">UPC</th>
-                                                                    <th width="10%">Container Type</th>
-                                                                    <th width="10%">Quantity</th>
+                                                                    <th class="fit">SKU</th>
+                                                                    <th class="fit">Description</th>
+                                                                    <th class="fit">UPC</th>
+                                                                    <th class="fit">Container Type</th>
+                                                                    <th class="fit">Quantity</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
-                                                                    <td>{{$kit->sku}}</td>
-                                                                    <td>{{$kit->description}}</td>
-                                                                    <td>{{$kit->upc}}</td>
-                                                                    <td>Kit</td>
-                                                                    <td>{{$kit->pivot->quantity}}</td>
+                                                                    <td class="fit">{{$kit->sku}}</td>
+                                                                    <td class="fit">{{$kit->description}}</td>
+                                                                    <td class="fit">{{$kit->upc}}</td>
+                                                                    <td class="fit">Kit</td>
+                                                                    <td class="fit">{{$kit->pivot->quantity}}</td>
                                                                 </tr>                                                          
                                                             </tbody>
                                                         </table>
@@ -708,41 +678,26 @@ Inventory
                     <table class="table table-sm">
                         <thead>
                         <tr>
-                            <th width="10%"></th>
-                            <th width="10%">Sku</th>
-                            <th width="10%">Description</th>
-                            <th width="10%">UPC</th>
-                            <th width="10%">Quantity</th>
-                            <th width="10%">Qty/Kit</th>
-                            <th width="10%">Location</th>
-                            <th width="10%"></th>
+                            <th class="fit"></th>
+                            <th class="fit">Sku</th>
+                            <th class="fit">Description</th>
+                            <th class="fit">UPC</th>
+                            <th class="fit">Quantity</th>
+                            <th class="fit">Qty/Kit</th>
+                            <th class="fit">Location</th>
+                            
                         </tr>
                         </thead>
                         @foreach($kits as $kit)
                         <tr>
-                            <td><button type="button" class="btn text-denim toggle-{{$kit->id}}" id="toggle-details-kit-{{$kit->id}}" data-toggle="collapse" data-target="#details-kit-{{$kit->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
-                            <td>{{$kit->sku}}</td>
-                            <td>{{$kit->description}}</td>
-                            <td>{{$kit->upc}}</td>
-                            <td>{{$kit->total_qty}}</td>
-                            <td>{{$kit->kit_qty}}</td>
-                            <td>N/A</td>
-                            <td>
-
-                                <div style="margin-left: 30%">
-                                    
-                                    <a href="/editkit/{{$kit->id}}" class="float-left" style="margin-right:1%">
-                                        <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
-                                    </a>
-
-                                    <form action="/removekit/{{$kit->id}}" method="POST" class="float-left">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button type="submit" class="btn btn-link text-danger btn-sm">Remove</button>
-                                    </form>
-
-                                </div>
-                            </td>
+                            <td class="fit"><button type="button" class="btn text-denim toggle-{{$kit->id}}" id="toggle-details-kit-{{$kit->id}}" data-toggle="collapse" data-target="#details-kit-{{$kit->id}}" aria-expanded="false" aria-controls="details" data-delay="0"><i class="fas fa-plus"></i></button></td>
+                            <td class="fit">{{$kit->sku}}</td>
+                            <td class="fit">{{$kit->description}}</td>
+                            <td class="fit">{{$kit->upc}}</td>
+                            <td class="fit">{{$kit->total_qty}}</td>
+                            <td class="fit">{{$kit->kit_qty}}</td>
+                            <td class="fit">N/A</td>
+                            
                         </tr>
 
                             @if($kit->basic_units->all())
@@ -755,20 +710,20 @@ Inventory
                                                 <table class="table table-sm bg-whitewash">
                                                         <thead>
                                                             <tr>
-                                                                <th width="10%">SKU</th>
-                                                                <th width="10%">Description</th>
-                                                                <th width="10%">UPC</th>
-                                                                <th width="10%">Container Type</th>
-                                                                <th width="10%">Quantity</th>
+                                                                <th class="fit">SKU</th>
+                                                                <th class="fit">Description</th>
+                                                                <th class="fit">UPC</th>
+                                                                <th class="fit">Container Type</th>
+                                                                <th class="fit">Quantity</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <tr>
-                                                                <td>{{$unit->sku}}</td>
-                                                                <td>{{$unit->description}}</td>
-                                                                <td>{{$unit->upc}}</td>
-                                                                <td>Loose Item</td>
-                                                                <td>{{$unit->pivot->quantity}}</td>
+                                                                <td class="fit">{{$unit->sku}}</td>
+                                                                <td class="fit">{{$unit->description}}</td>
+                                                                <td class="fit">{{$unit->upc}}</td>
+                                                                <td class="fit">Loose Item</td>
+                                                                <td class="fit">{{$unit->pivot->quantity}}</td>
                                                             </tr>                                                          
                                                         </tbody>
                                                     </table>
@@ -799,47 +754,31 @@ Inventory
                         <thead>
                         <tr>
 
-                            <th width="10%">Sku</th>
-                            <th width="10%">Description</th>
-                            <th width="10%">UPC</th>
-                            <th width="10%">Pallet Qty</th>
-                            <th width="10%">Carton Qty</th>
-                            <th width="10%">Case Qty</th>
-                            <th width="10%">Kit Qty</th>
-                            <th width="10%">Loose Qty</th>
-                            <th width="10%">Total Qty</th>
-                            <th width="10%"></th>
+                            <th class="fit">Sku</th>
+                            <th class="fit">Description</th>
+                            <th class="fit">UPC</th>
+                            <th class="fit">Pallet Qty</th>
+                            <th class="fit">Carton Qty</th>
+                            <th class="fit">Case Qty</th>
+                            <th class="fit">Kit Qty</th>
+                            <th class="fit">Loose Qty</th>
+                            <th class="fit">Total Qty</th>
+                           
 
                         </tr>
                         </thead>
                         @foreach($basic_units as $unit)
                         <tr>
-                            <td>{{$unit->sku}}</td>
-                            <td>{{$unit->description}}</td>
-                            <td>{{$unit->upc}}</td>
-                            <td>{{$unit->pallet_qty}}</td>
-                            <td>{{$unit->carton_qty}}</td>
-                            <td>{{$unit->case_qty}}</td>
-                            <td>{{$unit->kit_qty}}</td>
-                            <td>{{$unit->loose_item_qty}}</td>
-                            <td>{{$unit->total_qty}}</td>
-                            <td>
-                                <div style="margin-left: 30%">
-                                    
-                                    <a href="/editbasicunit/{{$unit->id}}" class="float-left"
-                                        style="margin-right:1%">
-                                        <button class="btn btn-link text-denim btn-sm" type="button">Edit</button>
-                                    </a>
-
-                                    <form action="/removebasicunit/{{$unit->id}}" method="POST" class="float-left"
-                                        style="margin-right:1%">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button type="submit" class="btn btn-link text-danger btn-sm">Remove</button>
-                                    </form>
-
-                                </div>
-                            </td>
+                            <td class="fit">{{$unit->sku}}</td>
+                            <td class="fit">{{$unit->description}}</td>
+                            <td class="fit">{{$unit->upc}}</td>
+                            <td class="fit">{{$unit->pallet_qty}}</td>
+                            <td class="fit">{{$unit->carton_qty}}</td>
+                            <td class="fit">{{$unit->case_qty}}</td>
+                            <td class="fit">{{$unit->kit_qty}}</td>
+                            <td class="fit">{{$unit->loose_item_qty}}</td>
+                            <td class="fit">{{$unit->total_qty}}</td>
+                           
 
                         </tr>
                         @endforeach
