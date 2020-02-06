@@ -752,9 +752,10 @@ class OrdersController extends Controller
                  */
 
                 for ($i = 0; $i < count($container_types); $i++) {
-                    $container_type = strval($container_types[$i][0]);
+                    
 
-                    if ($container_type === 'Carton') {
+                        /*
+                        $container_type = strval($container_types[$i][0]);
                         $carton = new Carton();
                         $carton->user_id = $request->user_id;
                         $carton->company = User::find($request->user_id)->company_name;
@@ -764,25 +765,27 @@ class OrdersController extends Controller
                         $carton->total_qty += $container_qtys[$i][0];
                         $carton->save();
                         $order->cartons()->attach([['carton_id' => $carton->id, 'quantity' => $container_qtys[$i][0]]]);
+                        */
+
                         for ($x = 0; $x < count($items[$i]); $x++) {
 
                             if (Basic_Unit::where('upc', $items[$i][$x])->where('user_id', $request->user_id)->exists()) {
                                 $total_units += $item_qty[$i][$x];
                                 $unit = Basic_Unit::where('upc', $items[$i][$x])->where('user_id', $request->user_id)->first();
-                                $carton->basic_units()->attach([['basic__unit_id' => $unit->id, 'quantity' => $item_qty[$i][$x]]]);
+                                $order->basic_units()->attach([['basic__unit_id' => $unit->id, 'quantity' => $item_qty[$i][$x]]]);
                             }
                             if (Kit::where('upc', $items[$i][$x])->where('user_id', $request->user_id)->exists()) {
                                 $total_kits += $item_qty[$i][$x];
                                 $kit = Kit::where('upc', $items[$i][$x])->where('user_id', $request->user_id)->first();
-                                $carton->kits()->attach([['kit_id' => $kit->id, 'quantity' => $item_qty[$i][$x]]]);
+                                $order->kits()->attach([['kit_id' => $kit->id, 'quantity' => $item_qty[$i][$x]]]);
                             }
                             if (Cases::where('upc', $items[$i][$x])->where('user_id', $request->user_id)->exists()) {
                                 $total_cases += $item_qty[$i][$x];
                                 $case = Cases::where('upc', $items[$i][$x])->where('user_id', $request->user_id)->first();
-                                $carton->cases()->attach([['cases_id' => $case->id, 'quantity' => $item_qty[$i][$x]]]);
+                                $order->cases()->attach([['cases_id' => $case->id, 'quantity' => $item_qty[$i][$x]]]);
                             }
                         }
-                    }
+                    
 
                 }
 
