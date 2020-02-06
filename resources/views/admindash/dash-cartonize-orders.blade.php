@@ -786,30 +786,27 @@
                     .done(function(result){
                         
                         let order = result.order;
-                        let cartons = order.cartons;
-                        let cases = cartons.cases;
+                        //let cartons = order.cartons;
+                        let cases = order.cases;
+                        //console.log(cases.length);
                         
-
                         let html = '<div class="container" id=" order-' + id + '">';
-                        for(let i = 0; i < order.cases.length; i++){
-                            
-                                let case = order.cases[i];
+                        for(let i = 0; i < cases.length; i++){
+                                var order_case = cases[i];
                                 
                                 html += '<div class="row border-top py-0 border-bottom my-3">';
                                 html += '<div class="col-md-4 border-bottom bg-ghostwhite"><p class="my-0">SKU</p></div>';
                                 html += '<div class="col-md-4 border-bottom bg-ghostwhite"><p class="my-0">Quantity</p></div>';
                                 html += '<div class="col-md-4 border-bottom bg-ghostwhite"><p class="my-0">Picked</p></div>';
-                                html += '<div class="col-md-4"><p class="case_sku case">' + case.sku + '</p></div>';
-                                html += '<div class="col-md-4 case-qty"><p> x' + case.pivot.quantity + '</p></div>';
+                                html += '<div class="col-md-4"><p class="case_sku case">' + order_case.sku + '</p></div>';
+                                html += '<div class="col-md-4 case-qty"><p> x' + order_case.pivot.quantity + '</p></div>';
                                 html += '<div class="col-md-4 qty"><p>0</p></div>';
-
                                 html += '</div>';
                                 
-                            
-                            html += '</div>';
+                                
                         }
-                            
-
+                        html += '</div>';
+                        
 
                         var footer = '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button><button type="button" class="btn btn-primary bg-denim submit-pick">Pick Order</button>'
                         $('.modal-header').html('<h5>#' + id + '</h5>');

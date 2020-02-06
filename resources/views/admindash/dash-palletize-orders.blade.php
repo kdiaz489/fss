@@ -780,14 +780,14 @@
                     .done(function(result){
                         
                         let order = result.order;
-                        let pallets = order.pallets;
-                        let cases = pallets.cases;
+                        //let pallets = order.pallets;
+                        let cases = order.cases;
                         
 
                         let html = '<div class="container" id=" order-' + id + '">';
-                        for(let i = 0; i < pallets.length; i++){
-                            for(let x = 0; x < pallets[i].cases.length; x++){
-                                let pallet_case = pallets[i].cases[x];
+                        for(let i = 0; i < cases.length; i++){
+                            
+                                let pallet_case = cases[i];
 
                                 html += '<div class="row border-top py-0 border-bottom my-3">';
                                 html += '<div class="col-md-4 border-bottom bg-ghostwhite"><p class="my-0">Case SKU</p></div>';
@@ -797,10 +797,9 @@
                                 html += '<div class="col-md-4 case-qty"><p> x' + pallet_case.pivot.quantity + '</p></div>';
                                 html += '<div class="col-md-4 qty"><p>0</p></div>';
                                 html += '</div>';
-
-                            }
-                            html += '</div>';
+                            
                         }
+                        html += '</div>';
                             
                         var footer = '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button><button type="button" class="btn btn-primary bg-denim submit-pick">Pick Order</button>'
                         $('.modal-header').prepend('<h5>#' + id + '</h5>');
