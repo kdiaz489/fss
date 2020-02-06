@@ -270,7 +270,7 @@ Cartonize
 
                     <div class="col-md-4">
                         <label for="in_care_of">In Care Of</label>
-                        <input type="text" name="in_care_of" class="form-control required" placeholder="In Care of">
+                        <input type="text" name="in_care_of" class="form-control" placeholder="In Care of">
                     </div>
                     <div class="col-md-4">
                       <label for="user">Customer</label>
@@ -303,12 +303,12 @@ Cartonize
                 <div class="form-row justify-content-center mb-4">
                         <div class="col-md-6">
                             <label for="carrier">Carrier</label>
-                            <input type="text" name="carrier" class="form-control required" placeholder="Carrier">
+                            <input type="text" name="carrier" class="form-control" placeholder="Carrier">
                         </div>
     
                         <div class="col-md-6">
                             <label for="carrier_id">Carrier Id</label>
-                            <input type="text" name="carrier_id" class="form-control required" placeholder="Carrier Id">
+                            <input type="text" name="carrier_id" class="form-control" placeholder="Carrier Id">
                         </div>
                     </div>
                 <div class="form-row justify-content-center mb-4">
@@ -336,7 +336,7 @@ Cartonize
 
             <div class="card">
                 <div class="card-header">
-                  <span class="display-4" style="font-size: 1.2rem;"> 2. Create Product Container</span>
+                  <span class="display-4" style="font-size: 1.2rem;"> 2. Select Product</span>
                     <div class="float-right"><button class="btn btn-link add-container p-0 m-0">Add Container</button></div>
 
                 </div>
