@@ -782,7 +782,7 @@
                         let order = result.order;
                         //let pallets = order.pallets;
                         let cases = order.cases;
-                        
+                        console.log(order);
 
                         let html = '<div class="container" id=" order-' + id + '">';
                         for(let i = 0; i < cases.length; i++){
