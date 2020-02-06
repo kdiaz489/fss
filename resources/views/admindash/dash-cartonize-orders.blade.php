@@ -791,21 +791,21 @@
                         
 
                         let html = '<div class="container" id=" order-' + id + '">';
-                        for(let i = 0; i < cartons.length; i++){
-                            for(let x = 0; x < cartons[i].cases.length; x++){
-                                let carton_case = cartons[i].cases[x];
+                        for(let i = 0; i < order.cases.length; i++){
+                            
+                                let case = order.cases[i];
                                 
                                 html += '<div class="row border-top py-0 border-bottom my-3">';
                                 html += '<div class="col-md-4 border-bottom bg-ghostwhite"><p class="my-0">SKU</p></div>';
                                 html += '<div class="col-md-4 border-bottom bg-ghostwhite"><p class="my-0">Quantity</p></div>';
                                 html += '<div class="col-md-4 border-bottom bg-ghostwhite"><p class="my-0">Picked</p></div>';
-                                html += '<div class="col-md-4"><p class="case_sku case">' + carton_case.sku + '</p></div>';
-                                html += '<div class="col-md-4 case-qty"><p> x' + carton_case.pivot.quantity + '</p></div>';
+                                html += '<div class="col-md-4"><p class="case_sku case">' + case.sku + '</p></div>';
+                                html += '<div class="col-md-4 case-qty"><p> x' + case.pivot.quantity + '</p></div>';
                                 html += '<div class="col-md-4 qty"><p>0</p></div>';
 
                                 html += '</div>';
                                 
-                            }
+                            
                             html += '</div>';
                         }
                             

@@ -270,7 +270,7 @@ Palletize
 
                     <div class="col-md-4">
                         <label for="in_care_of">In Care Of</label>
-                        <input type="text" name="in_care_of" class="form-control required" placeholder="In Care of">
+                        <input type="text" name="in_care_of" class="form-control" placeholder="In Care of">
                     </div>
                     <div class="col-md-4">
                         <label for="user">Customer</label>
@@ -303,12 +303,12 @@ Palletize
                 <div class="form-row justify-content-center mb-4">
                         <div class="col-md-6">
                             <label for="carrier">Carrier</label>
-                            <input type="text" name="carrier" class="form-control required" placeholder="Carrier">
+                            <input type="text" name="carrier" class="form-control" placeholder="Carrier">
                         </div>
     
                         <div class="col-md-6">
                             <label for="carrier_id">Carrier Id</label>
-                            <input type="text" name="carrier_id" class="form-control required" placeholder="Carrier Id">
+                            <input type="text" name="carrier_id" class="form-control" placeholder="Carrier Id">
                         </div>
                     </div>
                 <div class="form-row justify-content-center mb-4">
@@ -353,7 +353,7 @@ Palletize
 
                             <div class="col-md-4">
                                 <label for="container_type">Container Type</label>
-                                <select name="container_type[0][]" class="form-control container_type required">
+                                <select name="container_type[0][]" class="form-control container_type">
                                     <option value="">Choose</option>
                                     <option value="Pallet">Pallet</option>
                                 </select>
@@ -365,7 +365,7 @@ Palletize
                             </div>
                             <div class="col-md-4">
                                 <label for="container_qty">Quantity</label>
-                                <input type="text" name="container_qty[0][]" class="form-control container_qty required"
+                                <input type="text" name="container_qty[0][]" class="form-control container_qty"
                                     placeholder="container quantity">
                             </div>
                         </div>
@@ -465,6 +465,13 @@ Palletize
             $('#overlay').css("display", "none");
         });
 
+        $('.select_items').select2({
+        placeholder: "Choose Item",
+        theme: 'bootstrap4',
+        width: '100%',
+        });
+        
+        /*
         $(document).on('change', '.container_type', function(){
             var selected = $(':selected', this);
             var value = selected.val();
@@ -482,36 +489,50 @@ Palletize
             }
              
         });
-          
+          */
 
         $(document).on('change', '.select_user', function(){
             $(document).find('.select_items').empty();
             var selected = $(':selected', this);
             var user_id = selected.val();
             var user = getUser(user_id);
-            var options = '';
-            options += '<option value="">Choose Item</option>';
+            var html = '';
+            html += '<option value="">Choose Item</option>';
             if(user == 'User not found'){
             $(document).find('.select_items').append('<option value="">No Cases found.</option>');
             }
             else{
             if(user.cases.length <= 0){
-                options += '<option value="">No cases available</option>';
+                html += '<option value="">No cases available</option>';
             }
             else{
+              html += '<optgroup label="Cases">'
                 for(var i = 0; i < user.cases.length; i++){
-                    options += '<option value="' + user.cases[i].upc + '">' + user.cases[i].sku + '</option>';
+                    html += '<option value="' + user.cases[i].upc + '">' + user.cases[i].sku + '</option>';
                 }
+              html += '<optgroup>';
             }
-            $(document).find('.select_items').append(options);
+            if(user.basic_units.length <= 0){
+                html += '<option value="">No cases available</option>';
+            }
+            else{
+              html += '<optgroup label="Units">'
+                for(var i = 0; i < user.basic_units.length; i++){
+                    html += '<option value="' + user.basic_units[i].upc + '">' + user.basic_units[i].sku + '</option>';
+                }
+              html += '<optgroup>';
+            }
+            $(document).find('.select_items').append(html);
             container = $(document).find('.card-container').clone(true);
             }  
+            $('.select_items').select2({
+              placeholder: "Choose Item",
+              theme: 'bootstrap4',
+              width: '100%',
+              });
   });
 
-        $(document).on('click', '.add-carton', function(e){
-            e.preventDefault();
-            $(this).closest('div.container_items').append(html);            
-        });
+       
 
         $(document).on('click', '.add-container', function(e){
             e.preventDefault();
@@ -540,9 +561,7 @@ Palletize
         });
 
 
-        $(document).on('click', '.remove-carton', function(){
-            $(this).closest('.carton-container').remove();
-        });
+        
 
         $(document).on('click', '.add', function(){
             count++;
@@ -561,9 +580,21 @@ Palletize
                 html += '<option value="">No cases available</option>';
             }
             else{
+                html += '<optgroup label="Cases">'
                 for(var i = 0; i < user.cases.length; i++){
                 html += '<option value="' + user.cases[i].upc + '">' + user.cases[i].sku + '</option>';
                 }
+                html += '</optgroup>'
+            }
+            if(user.basic_units <= 0){
+                html += '<option value="">No cases available</option>';
+            }
+            else{
+                html += '<optgroup label="Units">'
+                for(var i = 0; i < user.basic_units.length; i++){
+                html += '<option value="' + user.basic_units[i].upc + '">' + user.basic_units[i].sku + '</option>';
+                }
+                html += '</optgroup>'
             }
             } 
             html += '</select></td>'; 
@@ -572,13 +603,14 @@ Palletize
                         <small class="text-danger">Remove</small></td>';
             html += '</tr>';
             $(this).closest('table').append(html);
+            $('.select_items').select2({
+              placeholder: "Choose Item",
+              theme: 'bootstrap4',
+              width: '100%',
+              });
 
         });
 
-        $(document).on('click', '.add_carton_row', function(){
-            count++;
-            $(this).closest('table').append(html);
-        });
 
         $(document).on('click', '.remove', function(){
             count--;
@@ -592,16 +624,6 @@ Palletize
             });
             
         });
-
-
-        $('.createcarton').on('click', function(e){
-            e.preventDefault();
-            $('.modal-body').load('/createcarton', function(){
-                $('.modal').modal('show');
-            });
-            
-        });
-
         
         $('.confirm_submit').on('click', function(event){
                 event.preventDefault();
@@ -613,13 +635,14 @@ Palletize
                     $(ele).find('.container_qty').attr('name', 'container_qty['+i+'][]');
                     $(ele).find('.select_items').attr('name', 'items['+i+'][]');
                     $(ele).find('.item_qty').attr('name', 'item_qty['+i+'][]');
-                    
+                    /*
                     $(this).find('.carton-container').each(function(y, ele2){
                         $(ele2).find('.carton_barcode').attr('name', 'carton_barcode['+i+']['+y+']');
                         $(ele2).find('.carton_qty').attr('name', 'carton_qty['+i+']['+y+']');
                         $(ele2).find('.select_carton_skus').attr('name', 'carton_items['+i+']['+y+'][]');
                         $(ele2).find('.carton_item_qty').attr('name', 'carton_item_qty['+i+']['+y+'][]');
                     });
+                    */
                 });
                 
                 $.ajax({

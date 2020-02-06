@@ -48,12 +48,12 @@ class OrdersController extends Controller
     }
 
     public function getcartonizedorder($id){
-        $order = Order::with('cartons.cases.basic_units')->find($id);
+        $order = Order::with('cases.basic_units')->find($id);
         return collect(['order' => $order]);
     }
 
     public function getpalletizedorder($id){
-        $order = Order::with('pallets.cases.basic_units')->find($id);
+        $order = Order::with('cases.basic_units')->find($id);
         return collect(['order' => $order]);
     }
 
