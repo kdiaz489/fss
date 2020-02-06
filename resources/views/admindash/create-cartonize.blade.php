@@ -448,6 +448,12 @@ $(document).ready(function(){
   $(document).ajaxComplete(function () {
     $('#overlay').css("display", "none");
   });
+
+  $('.select_cases').select2({
+                    placeholder: "Choose Item",
+                    theme: 'bootstrap4',
+                    width: '100%',
+                    });
   
   function getUser(id){
     var user = '';
@@ -511,22 +517,24 @@ $(document).ready(function(){
     var selected = $(':selected', this);
     var user_id = selected.val();
     var user = getUser(user_id);
-    var options = '';
-    options += '<option value="">Choose Item</option>';
+    var html = '';
+    html += '<option value="">Choose Item</option>';
     if(user == 'User not found'){
       $(document).find('.select_cases').append('<option value="">No Cases found.</option>');
     }
     else{
       if(user.cases.length <= 0){
-        options += '<option value="">No cases available</option>';
+        html += '<option value="">No cases available</option>';
       }
       else{
+        html += '<optgroup label="Cases">';
         for(var i = 0; i < user.cases.length; i++){
-          options += '<option value="' + user.cases[i].upc + '">' + user.cases[i].sku + '</option>';
+          html += '<option value="' + user.cases[i].upc + '">' + user.cases[i].sku + '</option>';
         }
+        html += '</optgroup>';
       }
 
-      $(document).find('.select_cases').append(options);
+      $(document).find('.select_cases').append(html);
       container = $(document).find('.card-container').clone(true);
     }     
   });
@@ -548,9 +556,11 @@ $(document).ready(function(){
             html += '<option value="">No cases available</option>';
           }
           else{
+            html += '<optgroup label="Cases">'
             for(var i = 0; i < user.cases.length; i++){
               html += '<option value="' + user.cases[i].upc + '">' + user.cases[i].sku + '</option>';
             }
+            html += '</optgroup>';
           }
         } 
         html += '</select></td>'; 
@@ -559,7 +569,11 @@ $(document).ready(function(){
                     <small class="text-danger">Remove</small></td>';
         html += '</tr>';
         $(this).closest('table').append(html);
-
+        $('.select_cases').select2({
+                    placeholder: "Choose Item",
+                    theme: 'bootstrap4',
+                    width: '100%',
+                    });
         });
 
         $('.confirm_submit').on('click', function(event){
