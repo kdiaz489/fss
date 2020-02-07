@@ -263,7 +263,7 @@ Transfer In
 
                     <div class="col-md-4">
                         <label for="in_care_of">In Care Of</label>
-                        <input type="text" name="in_care_of" class="form-control required" placeholder="In Care of">
+                        <input type="text" name="in_care_of" class="form-control " placeholder="In Care of">
                     </div>
                     <div class="col-md-4">
                         <label for="user">Customer</label>
@@ -296,12 +296,12 @@ Transfer In
                 <div class="form-row justify-content-center mb-4">
                         <div class="col-md-6">
                             <label for="carrier">Carrier</label>
-                            <input type="text" name="carrier" class="form-control required" placeholder="Carrier">
+                            <input type="text" name="carrier" class="form-control" placeholder="Carrier">
                         </div>
     
                         <div class="col-md-6">
                             <label for="carrier_id">Carrier Id</label>
-                            <input type="text" name="carrier_id" class="form-control required" placeholder="Carrier Id">
+                            <input type="text" name="carrier_id" class="form-control" placeholder="Carrier Id">
                         </div>
                     </div>
                 <div class="form-row justify-content-center mb-4">
@@ -450,37 +450,60 @@ Transfer In
 
           return user;
       }
+      $('.select_transin_skus').select2({
+          placeholder: "Choose Item",
+          theme: 'bootstrap4',
+          width: '100%',
+        });
+      
 
         var container = $('.card-container').clone(true);
         var product_dropdown = $('.select_transin_skus').clone(true);
         var count = 0;
 
         $(document).on('change', '.select_user', function(){
-          $(document).find('.select_transin_skus').empty();
+
+          $(document).find('.select_cases').empty();
           var selected = $(':selected', this);
           var user_id = selected.val();
           var user = getUser(user_id);
-          var options = '';
-          options += '<option value="">Choose Item</option>'
+          var html = '';
+          html += '<option value="">Choose Item</option>';
           if(user == 'User not found'){
             $(document).find('.select_transin_skus').append('<option value="">No Cases found.</option>');
-            $(document).find('.select_carton_skus').append('<option value="">No Cases found.</option>');
           }
           else{
             if(user.cases.length <= 0){
-              options += '<option value="">No cases available</option>';
+              html += '<option value="">No cases available</option>';
             }
             else{
+              html += '<optgroup label="Cases">';
               for(var i = 0; i < user.cases.length; i++){
-                options += '<option value="' + user.cases[i].upc + '">' + user.cases[i].sku + '</option>';
+                html += '<option value="' + user.cases[i].upc + '">' + user.cases[i].sku + '</option>';
               }
+              html += '</optgroup>';
+            }
+            if(user.basic_units.length <= 0){
+              html += '<option value="">No units available</option>';
+            }
+            else{
+              html += '<optgroup label="Units">';
+              for(var i = 0; i < user.basic_units.length; i++){
+                html += '<option value="' + user.basic_units[i].upc + '">' + user.basic_units[i].sku + '</option>';
+              }
+              html += '</optgroup>';
             }
 
-            $(document).find('.select_transin_skus').append(options);
-            $(document).find('.select_carton_skus').append(options);
-            container = $(document).find('.card-container').clone(true);
+            $(document).find('.select_transin_skus').append(html);
+            $(document).find('.select_carton_skus').append(html);
             product_dropdown = $(document).find('.select_transin_skus').clone(true);
-          }     
+            container = $(document).find('.card-container').clone(true);
+            $('.select_transin_skus').select2({
+              placeholder: "Choose Item",
+              theme: 'bootstrap4',
+              width: '100%',
+            });
+          }    
           });
 
         $(document).on('change', '.container_type', function(){
@@ -572,17 +595,40 @@ Transfer In
         });
 
         $(document).on('click', '.add', function(){
-          count++;
-          html = '<tr>';
-          html += '<td><select name="items['+count+'][]" class="form-control select_transin_skus required">'
-          html += '<option value="">Choose Item</option>'
-          html += '</select></td>'
-          html += '<td><input type="text" name="item_qty['+count+'][]" class="form-control required item_qty" placeholder="Quantity #"/></td>';
-          html += '<td><button type="button" name="remove" id="" class="btn btn-danger btn-sm remove circle"><i class="fas fa-lg fa-minus"></i></button>\
-                      <small class="text-danger">Remove</small>\
-                      </td></tr>';
-          $(this).closest('table').append(html);
-
+            count++;
+            var user_id = $(':selected', '.select_user').val();
+            var user = getUser(user_id);
+            var html = '';
+            html = '<tr>';
+            html += '<td><select name="items['+count+'][]" class="form-control select_cases required">';
+            html += '<option value="">Choose Item</option>';
+            
+            if(user == 'User not found'){
+              html += '<option value="">No Cases found.</option>';
+            }
+            else{
+              if(user.cases.length <= 0){
+                html += '<option value="">No cases available</option>';
+              }
+              else{
+                html += '<optgroup label="Cases">'
+                for(var i = 0; i < user.cases.length; i++){
+                  html += '<option value="' + user.cases[i].upc + '">' + user.cases[i].sku + '</option>';
+                }
+                html += '</optgroup>';
+              }
+            } 
+            html += '</select></td>'; 
+            html += '<td><input type="text" name="item_qty['+count+'][]" class="form-control required item_qty" placeholder="Quantity #"/></td>';
+            html += '<td><button type="button" name="remove" class="btn btn-danger btn-sm remove circle"><i class="fas fa-lg fa-minus"></i></button>\
+                        <small class="text-danger">Remove</small></td>';
+            html += '</tr>';
+            $(this).closest('table').append(html);
+            $('.select_cases').select2({
+              placeholder: "Choose Item",
+              theme: 'bootstrap4',
+              width: '100%',
+              });
         });
 
         $(document).on('click', '.add_carton_row', function(){

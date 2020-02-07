@@ -169,6 +169,7 @@ class PalletsController extends Controller
                 if (Basic_Unit::where('user_id', $request->user_id)->whereNotNull('upc')->where('upc', $items[$i])->exists()) {
                     $unit = Basic_Unit::where('user_id', $request->user_id)->whereNotNull('upc')->where('upc', $items[$i])->first();
                     $unit->pallet_qty += $item_qty[$i];
+                    $unit->loose_item_qty -= $item_qty[$i];
                     $unit->total_qty = $unit->pallet_qty + $unit->case_qty + $unit->loose_item_qty;
                     $unit->save();
                     $pallet->basic_units()->attach(['basic__unit_id' => $unit->id], ['quantity' => $item_qty[$i]]);
@@ -184,6 +185,7 @@ class PalletsController extends Controller
                  elseif (Cases::where('user_id', $request->user_id)->whereNotNull('upc')->where('upc', $items[$i])->exists()) {
                     $case = Cases::with('basic_units')->where('user_id', $request->user_id)->whereNotNull('upc')->where('upc', $items[$i])->first();
                     $case->case_pallet_qty += $item_qty[$i];
+                    $case->case_shelf_qty -= $item_qty[$i];
                     $case->total_qty = $case->case_pallet_qty + $case->case_shelf_qty;
                     $case->save();
                     if($case->basic_units != null){
@@ -193,6 +195,7 @@ class PalletsController extends Controller
                                 $unit = Basic_Unit::find($units[$y]->pivot->basic__unit_id);
                                 $quantity = ((int)$case->qty_per_case * (int)$item_qty[$i]);
                                 $unit->pallet_qty += $quantity;
+                                $unit->case_qty -= $quantity;
                                 $unit->total_qty = $unit->pallet_qty + $unit->case_qty + $unit->loose_item_qty;
                                 $unit->save();
                         }

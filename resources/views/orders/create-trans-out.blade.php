@@ -409,7 +409,7 @@ Transfer Out
         
                             <div class="col-md-6">
                                 <label for="incareof">In Care Of</label>
-                                <input type="text" name="in_care_of" class="form-control required" placeholder="In Care Of">
+                                <input type="text" name="in_care_of" class="form-control" placeholder="In Care Of">
                             </div>
                         </div>
                         <div class="form-row justify-content-center mb-4">
@@ -431,12 +431,12 @@ Transfer Out
                         <div class="form-row justify-content-center mb-4">
                                 <div class="col-md-6">
                                     <label for="carrier">Carrier</label>
-                                    <input type="text" name="carrier" class="form-control required" placeholder="Carrier">
+                                    <input type="text" name="carrier" class="form-control" placeholder="Carrier">
                                 </div>
             
                                 <div class="col-md-6">
                                     <label for="carrier_id">Carrier Id</label>
-                                    <input type="text" name="carrier_id" class="form-control required" placeholder="Carrier Id">
+                                    <input type="text" name="carrier_id" class="form-control" placeholder="Carrier Id">
                                 </div>
                             </div>
                         <div class="form-row justify-content-center mb-4">
