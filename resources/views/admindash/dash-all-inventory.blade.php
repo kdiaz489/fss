@@ -730,7 +730,9 @@ All Inventory
                 {{ session('status') }}
             </div>
             @endif
+                
                 <h2 class="font-weight-light bg-whitewash mb-4 p-1">{{$user->company_name . ' - Inventory'}}</h2>
+                <a href="/inventory/export/{{$user->id}}" class="btn btn-link text-denim btn-sm ml-0 pl-0" role="button" aria-pressed="false"><i class="fas fa-file-export"></i> Export Inventory</a>
                 <h3 class="font-weight-light">Product On Pallets</h3>
 
                 @if(count($user->pallets->all()) > 0)
@@ -1116,7 +1118,8 @@ All Inventory
 
 
 
-                <h3 class="font-weight-light">Units</h3>
+                <h3 class="font-weight-light d-inline">Units</h3>
+                
                 @if(count($user->basic_units->all()) > 0)
                 <div class="table-responsive-md">
                     <table class="table table-sm table-bordered units-table">
