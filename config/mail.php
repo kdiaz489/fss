@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => 'mg.fillstorship.com',
-        'name' => 'FillStorShip',
+        'address' => env('MAIL_FROM_ADDRESS', 'mg.fillstorship.com'),
+        'name' => env('MAIL_FROM_NAME', 'FillStorShip'),
     ],
 
     /*
