@@ -2313,12 +2313,7 @@ class OrdersController extends Controller
 
         $order->save();
         DB::commit();
-        Mail::to('ship@fillstorship.com')->send(new StorUpdateMail($order));
-        /*
-        return response()->json([
-            'success'  => 'Success. Order #: ' . $order->orderid . ' has been updated.'
-        ]);
-        */
+        //Mail::to('ship@fillstorship.com')->send(new StorUpdateMail($order));
         return back()->with('success', 'Success. Order #: ' . $order->orderid . ' has been updated.');
 
 
@@ -2326,17 +2321,7 @@ class OrdersController extends Controller
         DB::rollBack();
         return back()->with('eror', 'Error updating order #' . $order->orderid);
 
-        /*
-        return response()->json([
-            'error'  => $e->getMessage()
-        ]);
-        */
     }
-
-        //$order_history = Order::find($id);
-        //$order_history = $order_history->toArray();
-        //OrderHistory::insert($order_history);
-        //Mail::to($useremail)->send(new StorUpdateMail($order));
 
     }
 
