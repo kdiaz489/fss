@@ -293,6 +293,7 @@
                                                     <option value="" selected disabled>Choose</option>
                                                     <option value="Approved">Approved</option>
                                                     <option value="In Progress">In Progress</option>
+                                                    <option value="Picked">Picked</option>
                                                     <option value="Completed">Completed</option>
                                                     <option value="Rejected">Rejected</option>
                                                 </select>
