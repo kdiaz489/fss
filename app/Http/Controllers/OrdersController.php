@@ -2307,7 +2307,7 @@ class OrdersController extends Controller
                     $unitobj->save();
                 }
             }
-            Mail::to('ship@fillstorship.com')->send(new OrderFulfilled($order));
+            //Mail::to('ship@fillstorship.com')->send(new OrderFulfilled($order));
         }
 
 
