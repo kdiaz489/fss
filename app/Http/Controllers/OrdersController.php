@@ -167,6 +167,8 @@ class OrdersController extends Controller
          * If fields are not filled in, will return json error message
          * 
          */
+
+         //dd($request);
         if ($request->ajax()) {
 
 
@@ -250,22 +252,26 @@ class OrdersController extends Controller
                         $order->pallets()->attach([['pallet_id' => $pallet->id, 'quantity' => $container_qtys[$i][0]]]);
                         if($items != NULL){
                             for ($y = 0; $y < count($items[$i]); $y++) {
+                                
+                                if (Cases::where('upc', $items[$i][$y])->where('user_id', $request->user_id)->exists()) {
+                                    $total_cases += $item_qty[$i][$y];
+                                    $case = Cases::where('upc', $items[$i][$y])->where('user_id', $request->user_id)->first();
+                                    $pallet->cases()->attach([['cases_id' => $case->id, 'quantity' => $item_qty[$i][$y]]]);
+                                }
 
                                 if (Basic_Unit::where('upc', $items[$i][$y])->where('user_id', $request->user_id)->exists()) {
                                     $total_units += $item_qty[$i][$y];
                                     $unit = Basic_Unit::where('upc', $items[$i][$y])->where('user_id', $request->user_id)->first();
                                     $pallet->basic_units()->attach([['basic__unit_id' => $unit->id, 'quantity' => $item_qty[$i][$y]]]);
                                 }
+                                /*
                                 if (Kit::where('upc', $items[$i][$y])->where('user_id', $request->user_id)->exists()) {
                                     $total_kits += $item_qty[$i][$y];
                                     $kit = Kit::where('upc', $items[$i][$y])->where('user_id', $request->user_id)->first();
                                     $pallet->kits()->attach([['kit_id' => $kit->id, 'quantity' => $item_qty[$i][$y]]]);
                                 }
-                                if (Cases::where('upc', $items[$i][$y])->where('user_id', $request->user_id)->exists()) {
-                                    $total_cases += $item_qty[$i][$y];
-                                    $case = Cases::where('upc', $items[$i][$y])->where('user_id', $request->user_id)->first();
-                                    $pallet->cases()->attach([['cases_id' => $case->id, 'quantity' => $item_qty[$i][$y]]]);
-                                }
+                                */
+                                
                         }
                     }
                         if($request->carton_items != NULL){

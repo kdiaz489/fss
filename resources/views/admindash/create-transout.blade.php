@@ -462,7 +462,7 @@ Transfer Out
             });
 
         $(document).on('change', '.select_user', function(){
-          $(document).find('.select_cases').empty();
+          $(document).find('.select_transout_skus').empty();
           var selected = $(':selected', this);
           var user_id = selected.val();
           var user = getUser(user_id);

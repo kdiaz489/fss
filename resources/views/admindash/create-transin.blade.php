@@ -463,7 +463,7 @@ Transfer In
 
         $(document).on('change', '.select_user', function(){
 
-          $(document).find('.select_cases').empty();
+          $(document).find('.select_transin_skus').empty();
           var selected = $(':selected', this);
           var user_id = selected.val();
           var user = getUser(user_id);
@@ -600,7 +600,7 @@ Transfer In
             var user = getUser(user_id);
             var html = '';
             html = '<tr>';
-            html += '<td><select name="items['+count+'][]" class="form-control select_cases required">';
+            html += '<td><select name="items['+count+'][]" class="form-control select_transin_skus required">';
             html += '<option value="">Choose Item</option>';
             
             if(user == 'User not found'){
@@ -624,7 +624,7 @@ Transfer In
                         <small class="text-danger">Remove</small></td>';
             html += '</tr>';
             $(this).closest('table').append(html);
-            $('.select_cases').select2({
+            $('.select_transin_skus').select2({
               placeholder: "Choose Item",
               theme: 'bootstrap4',
               width: '100%',
@@ -658,7 +658,7 @@ Transfer In
                     $(ele).find('.container_type').attr('name', 'container_type['+i+'][]');
                     $(ele).find('.container_barcode').attr('name', 'container_barcode['+i+'][]');
                     $(ele).find('.container_qty').attr('name', 'container_qty['+i+'][]');
-                    $(ele).find('.select_transin_skus').attr('name', 'items['+i+'][]');
+                    $(document).find(ele).find('.select_transin_skus').attr('name', 'items['+i+'][]');
                     $(ele).find('.item_qty').attr('name', 'item_qty['+i+'][]');
                     
                     $(this).find('.carton-container').each(function(y, ele2){
