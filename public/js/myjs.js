@@ -1004,7 +1004,7 @@ $(document).ready(function () {
 
         e.preventDefault();
         e.stopImmediatePropagation();
-        initialContent = $('.modal-content').html();
+        //initialContent = $('.modal-content').html();
         if ($("#storage-quote-form").valid()) {
             $.ajax({
                 type: 'POST',
@@ -1017,7 +1017,7 @@ $(document).ready(function () {
                     $(".modal-footer").html('');
                     $('.modal').modal('show');
                     console.log("Credit Application submission was successful");
-                    $('.modal').on('hide.bs.modal', function (e) {
+                    $('.storModal').on('hide.bs.modal', function (e) {
                         $('.modal-content').html(initialContent);
                     });
                 })
@@ -1025,7 +1025,7 @@ $(document).ready(function () {
                 .fail(function (jqXHR, textStatus, error) {
                     $(".modal-body").html(errorModal);
                     $(".modal-footer").html('');
-                    $('.modal').on('hide.bs.modal', function (e) {
+                    $('.storModal').on('hide.bs.modal', function (e) {
                         $('.modal-content').html(initialContent);
                     });
                 });

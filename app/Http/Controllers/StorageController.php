@@ -167,6 +167,15 @@ class StorageController extends Controller
         elseif(($numPallets >= 71) && ($numPallets <=80)){
             $rate = 8/13.32;
         }
+        elseif(($numPallets >= 81) && ($numPallets <=90)){
+            $rate = 7/13.32;
+        }
+        elseif(($numPallets >= 91) && ($numPallets <=99)){
+            $rate = 6/13.32;
+        }
+        else{
+            $rate = 5/13.31;
+        }
 
         return $rate;
 
