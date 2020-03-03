@@ -932,7 +932,7 @@ class OrdersController extends Controller
                                 $total_cases += $item_qty[$i][$y];
                                 $case = Cases::where('upc', $items[$i][$y])->where('user_id', $request->user_id)->first();
                                 if ($case->total_qty < $item_qty[$i][$y]) {
-                                    throw new \Exception('Quantity of cases on pallet is greater than quantity at hand.');
+                                    throw new \Exception('Quantity of cases on pallet is greater than quantity at hand for SKU # ' . $case->sku);
                                 }
                                 else{
                                     $order->cases()->attach([['cases_id' => $case->id, 'quantity' => $item_qty[$i][$y]]]);
