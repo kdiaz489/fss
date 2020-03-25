@@ -73,6 +73,7 @@ class ShopifyController extends Controller
                 $shopify_order = new Order();
                 $ordernumber = new OrderNumber();
                 $user = User::where('company_name', $company_name)->first();
+                $user_id = $user->id;
                 $ordernumber->save();
                 $ordernumber->fss_id = $ordernumber->id + 100;
                 $ordernumber->user_id = $user->id;
@@ -81,7 +82,7 @@ class ShopifyController extends Controller
                 $ordernumber->save();
 
                 $shopify_order->cust_order_no = $orders[$i]->order_number;
-                $shopify_order->user_id = '129';
+                $shopify_order->user_id = $user_id;
                 $shopify_order->shopify_id = $orders[$i]->id;
                 $shopify_order->company = $user->company_name;
                 $shopify_order->cust_name = ucwords($orders[$i]->customer->first_name . ' ' . $orders[$i]->customer->last_name);
