@@ -64,7 +64,7 @@ class ShopifyController extends Controller
         */
 
         for($i = 0; $i < count($orders); $i++){
-            dd($orders[$i]);
+            
             if(Order::where('cust_order_no', $orders[$i]->order_number)->where('company', $company_name)->exists()){
                 
             }
