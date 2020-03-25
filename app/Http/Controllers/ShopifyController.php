@@ -26,6 +26,7 @@ class ShopifyController extends Controller
     {
         
         $user = User::find($id);
+        $company_name = $user->company_name;
         $user = $user->providers->first()->pivot;
 
         $shop_name = strval($user->shop_name);
@@ -38,8 +39,8 @@ class ShopifyController extends Controller
         $api->setApiKey($api_key);
         $api->setApiPassword($api_pass);
         //This line returns filtered orders from Shopify
-        if(Order::where('company', 'Color Proof')->exists()){
-            $lastorder = Order::where('company', 'Color Proof')->get()->last();
+        if(Order::where('company', $company_name)->exists()){
+            $lastorder = Order::where('company', $company_name)->get()->last();
             $result = $api->rest('get', '/admin/api/2019-10/orders.json', ['limit' => '250', 'status' => 'any', 'since_id' => $lastorder->shopify_id]);
         }
         else{
@@ -64,14 +65,14 @@ class ShopifyController extends Controller
 
         for($i = 0; $i < count($orders); $i++){
             //dd($orders[$i]);
-            if(Order::where('cust_order_no', $orders[$i]->order_number)->where('company', 'Color Proof')->exists()){
+            if(Order::where('cust_order_no', $orders[$i]->order_number)->where('company', $company_name)->exists()){
                 
             }
             else{
                 
                 $shopify_order = new Order();
                 $ordernumber = new OrderNumber();
-                $user = User::where('company_name', 'Color Proof')->first();
+                $user = User::where('company_name', $company_name)->first();
                 $ordernumber->save();
                 $ordernumber->fss_id = $ordernumber->id + 100;
                 $ordernumber->user_id = $user->id;
@@ -102,8 +103,8 @@ class ShopifyController extends Controller
                 for($y = 0; $y < count($orders[$i]->line_items); $y++){
                     
 
-                    if (Basic_Unit::where('sku', $orders[$i]->line_items[$y]->sku)->where('company', 'Color Proof')->exists()) {
-                        $unit = Basic_Unit::where('sku', $orders[$i]->line_items[$y]->sku)->where('company', 'Color Proof')->first();
+                    if (Basic_Unit::where('sku', $orders[$i]->line_items[$y]->sku)->where('company', $company_name)->exists()) {
+                        $unit = Basic_Unit::where('sku', $orders[$i]->line_items[$y]->sku)->where('company', $company_name)->first();
                         $shopify_order->unit_qty +=  $orders[$i]->line_items[$y]->quantity;           
                         $shopify_order->basic_units()->attach([['basic__unit_id' => $unit->id, 'quantity' => $orders[$i]->line_items[$y]->quantity]]);
             
@@ -151,6 +152,7 @@ class ShopifyController extends Controller
 
     public function scanOrders($id){
         $user = User::find($id);
+        $company_name = $user->company_name;
         try{
             $user = $user->providers->first()->pivot;
         }
@@ -171,8 +173,8 @@ class ShopifyController extends Controller
         $api->setApiKey($api_key);
         $api->setApiPassword($api_pass);
         //This line returns filtered orders from Shopify
-        if(Order::where('company', 'Color Proof')->exists()){
-            $lastorder = Order::where('company', 'Color Proof')->get()->last();
+        if(Order::where('company', $company_name)->exists()){
+            $lastorder = Order::where('company', $company_name)->get()->last();
             $result = $api->rest('get', '/admin/api/2019-10/orders.json', ['limit' => '250', 'status' => 'any', 'since_id' => $lastorder->shopify_id]);
         }
         else{
@@ -182,7 +184,7 @@ class ShopifyController extends Controller
         
         //$result = $api->rest('get', '/admin/api/2019-10/orders.json', ['limit' => '250', 'status' => 'open', 'fulfillment_status' => 'unshipped', 'financial_status' => 'paid']);
         //dd($result->body->product->vendor);
-        //dd($result->body->orders);
+        //dd($result->body);
         $orders = $result->body->orders;
         //dd($orders);
         
@@ -200,7 +202,7 @@ class ShopifyController extends Controller
 
         for($i = 0; $i < count($orders); $i++){
             //dd($orders[$i]);
-            if(Order::where('cust_order_no', $orders[$i]->order_number)->where('company', 'Color Proof')->exists()){
+            if(Order::where('cust_order_no', $orders[$i]->order_number)->where('company', $company_name)->exists()){
                 
             }
             else{
@@ -208,27 +210,27 @@ class ShopifyController extends Controller
                 
                 for($y = 0; $y < count($orders[$i]->line_items); $y++){
                     
-                    //dd(gettype($orders[$i]->line_items[$y]->sku));
+                    //dd(gettype($orders[$i]->line_items[$y]));
                     if(!(STR::contains($orders[$i]->line_items[$y]->name, ['kit', 'set', 'Kit', 'Set', 'KIT', 'SET']))){
-                        if (Basic_Unit::where('sku', $orders[$i]->line_items[$y]->sku)->where('company', 'Color Proof')->doesntExist()) {
+                        if (Basic_Unit::where('sku', $orders[$i]->line_items[$y]->sku)->where('company', $company_name)->doesntExist()) {
                             //dd($orders[$i]->line_items[$y]->sku);
                             array_push($doesntExist, 'Basic Unit: ' . $orders[$i]->line_items[$y]->sku );                        
                         }
 
                         else{
-                            $unit = Basic_Unit::where('sku', $orders[$i]->line_items[$y]->sku)->where('company', 'Color Proof')->first();
+                            $unit = Basic_Unit::where('sku', $orders[$i]->line_items[$y]->sku)->where('company', $company_name)->first();
                             array_push($exists, 'Basic Unit: ' . $unit->sku );
                         }
                     }
 
                     if(STR::contains($orders[$i]->line_items[$y]->name, ['kit', 'set', 'Kit', 'Set', 'KIT', 'SET'])){
-                        if (Kit::where('sku', $orders[$i]->line_items[$y]->sku)->where('company', 'Color Proof')->doesntExist()) {
+                        if (Kit::where('sku', $orders[$i]->line_items[$y]->sku)->where('company', $company_name)->doesntExist()) {
                             array_push($doesntExist, 'Kit: ' . $orders[$i]->line_items[$y]->sku );
                             //$kit = Kit::where('sku', $orders[$i]->line_items[$y]->sku)->where('user_id', '3')->first();
                             //$shopify_order->kits()->attach([['kit_id' => $kit->id, 'quantity' => $orders[$i]->line_items[$y]->quantity]]);
                         }
                         else{
-                            $kit = Kit::where('sku', $orders[$i]->line_items[$y]->sku)->where('company', 'Color Proof')->first();
+                            $kit = Kit::where('sku', $orders[$i]->line_items[$y]->sku)->where('company', $company_name)->first();
                             array_push($exists, 'Kit: ' . $kit->sku );
                         }
                     }
